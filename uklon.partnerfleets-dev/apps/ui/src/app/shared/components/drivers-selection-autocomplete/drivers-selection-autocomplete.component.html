@@ -1,0 +1,70 @@
+<mat-form-field
+  [class]="inputClass ?? 'tw-w-full'"
+  [ngClass]="{
+    'mat-form-field-invalid': !selection.selected.length && (filterControl.dirty || filterControl.touched),
+  }"
+>
+  <mat-label>{{ 'Vehicles.VehicleAccess.SearchForDrivers.Caption' | translate }}</mat-label>
+
+  <input type="text" matInput [matAutocomplete]="autoDrivers" [formControl]="filterControl" />
+
+  <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+
+  <mat-autocomplete #autoDrivers="matAutocomplete">
+    <cdk-virtual-scroll-viewport
+      #scroller
+      [itemSize]="itemHeightPx"
+      [minBufferPx]="itemHeightPx * itemsPerPage"
+      [maxBufferPx]="panelHeightPx"
+      [style.height.px]="panelHeight$ | async"
+      (scrolledIndexChange)="handleScroll($event)"
+    >
+      <mat-option
+        *cdkVirtualFor="let driver of filteredDrivers$ | async"
+        class="!tw-p-0"
+        [disabled]="disabled"
+        (onSelectionChange)="handleDriverSelection(driver, $event)"
+      >
+        <div
+          class="tw-text-base tw-px-4"
+          [innerHTML]="driver.last_name + ' ' + driver.first_name | searchHighlight: filterControl.value"
+        >
+          {{ driver.last_name }} {{ driver.first_name }}
+        </div>
+      </mat-option>
+
+      @if (isLoading) {
+        <upf-progress-spinner class="!tw-h-10"></upf-progress-spinner>
+      }
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+
+  @if (!selection.selected.length && (filterControl.dirty || filterControl.touched)) {
+    <mat-hint class="tw-text tw-text-accent-coral-light">
+      {{ 'Vehicles.VehicleAccess.SearchForDrivers.NoDriverSelectedError' | translate }}
+    </mat-hint>
+  }
+</mat-form-field>
+
+@if (selection.selected.length) {
+  <mat-chip-listbox>
+    @for (driver of selection.selected; track driver) {
+      <mat-chip
+        [disabled]="disabled"
+        [ngxTippy]="
+          currentDriver?.id === driver.id ? ('Vehicles.VehicleAccess.Tooltips.RemoveAccess' | translate) : null
+        "
+        [tippyProps]="{ maxWidth: '250px' }"
+        class="tw-text-base"
+      >
+        {{ driver.last_name }} {{ driver.first_name }}
+
+        @if (currentDriver?.id !== driver.id) {
+          <button matChipRemove (click)="!disabled ? handleDriverRemoval(driver) : null">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        }
+      </mat-chip>
+    }
+  </mat-chip-listbox>
+}

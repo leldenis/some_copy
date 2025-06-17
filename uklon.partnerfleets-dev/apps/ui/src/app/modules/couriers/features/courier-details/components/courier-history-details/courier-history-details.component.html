@@ -1,0 +1,265 @@
+@switch (info.change_type) {
+  <!-- PictureUploaded -->
+  @case (changeType.PICTURE_UPLOADED) {
+    <div class="history-item">
+      <small class="tw-text-body">
+        {{ 'CourierHistory.Titles.Photo' | translate }}
+      </small>
+
+      <p>
+        {{ 'CourierHistory.Pictures.' + info.details?.type | translate }}
+      </p>
+    </div>
+  }
+
+  <!-- RestrictionsChanged -->
+  @case (changeType.RESTRICTIONS_CHANGED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.added?.length) {
+        <div class="history-item">
+          <small class="tw-text-alert-blood-dark">
+            {{ 'CourierHistory.Titles.AppliedRestrictions' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (item of info.details.added; track item) {
+              <span>
+                {{ 'Const.RestrictionReasonGroup.Enum.Restriction.' + item | translate }}
+              </span>
+            }
+          </p>
+        </div>
+      }
+
+      @if (info.details?.removed?.length && info.details.added?.length) {
+        <mat-divider class="tw-shrink-0" vertical></mat-divider>
+      }
+
+      @if (info.details?.removed?.length) {
+        <div class="history-item">
+          <small class="tw-text-alert-grass-light">
+            {{ 'CourierHistory.Titles.CanceledRestrictions' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (item of info.details.removed; track item) {
+              <span>
+                {{ 'Const.RestrictionReasonGroup.Enum.Restriction.' + item | translate }}
+              </span>
+            }
+          </p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- ProfileChanged -->
+  @case (changeType.PROFILE_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-2">
+        @for (prop of profileChangeProps; track prop) {
+          @if (profileHistoryPropsMap[prop]; as props) {
+            @if (!!info.details && (info.details[props.new] || info.details[props.old])) {
+              <div class="tw-flex tw-gap-md">
+                <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+                  <small data-cy="history-changed-field-label">
+                    {{ 'CourierHistory.Titles.Property' | translate }}
+                  </small>
+
+                  <p>
+                    {{ 'CourierHistory.ProfileChangeProperties.' + prop | translate }}
+                  </p>
+                </div>
+
+                <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+                <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+                  <small class="tw-text-alert-blood-dark" data-cy="history-old-value-label">
+                    {{ 'CourierHistory.Titles.OldProperty' | translate }}
+                  </small>
+
+                  <ng-container
+                    [ngTemplateOutlet]="changedProfileProp"
+                    [ngTemplateOutletContext]="{ $implicit: info.details[props.old], prop }"
+                  ></ng-container>
+                </div>
+
+                <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+                  <small class="tw-text-alert-grass-light" data-cy="history-new-value-label">
+                    {{ 'CourierHistory.Titles.NewProperty' | translate }}
+                  </small>
+
+                  <ng-container
+                    [ngTemplateOutlet]="changedProfileProp"
+                    [ngTemplateOutletContext]="{ $implicit: info.details[props.new], prop }"
+                  ></ng-container>
+                </div>
+              </div>
+
+              <mat-divider class="profile-divider"></mat-divider>
+            }
+          }
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Activity Rate -->
+  @case (changeType.ACTIVITY_RATE_RESETED) {
+    <div>
+      @if (info.details && (info.details.old_value || info.details.new_value)) {
+        <div class="tw-grid tw-gap-2">
+          <ng-container
+            [ngTemplateOutlet]="activityTpl"
+            [ngTemplateOutletContext]="{ $implicit: info.details }"
+          ></ng-container>
+        </div>
+      }
+    </div>
+  }
+
+  @case (changeType.ACTIVITY_RATE_MANUALLY_CHANGED) {
+    <div>
+      @if (info.details && (info.details.old_value || info.details.new_value)) {
+        <div class="tw-grid tw-gap-2">
+          <ng-container
+            [ngTemplateOutlet]="activityTpl"
+            [ngTemplateOutletContext]="{ $implicit: info.details }"
+          ></ng-container>
+        </div>
+      }
+    </div>
+  }
+  <!-- / Activity Rate -->
+
+  <!-- Blocked list - Blocked Reason -->
+  @case (changeType.BLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.reason) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details.reason, changeType: changeType.BLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+  <!-- / Blocked list - Blocked Reason -->
+
+  <!-- Blocked list - Unblocked Reason -->
+  @case (changeType.UNBLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.reason) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details.reason, changeType: changeType.UNBLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+  <!-- / Blocked list - Unblocked Reason -->
+
+  <!-- ProductAvailabilityChanged -->
+  @case (changeType.PRODUCT_AVAILABILITY_CHANGED) {
+    <div>
+      <div class="tw-flex tw-gap-md">
+        @if (info.details?.became_available?.length) {
+          <div class="history-item">
+            <small class="tw-text-alert-grass-light">
+              {{ 'CourierHistory.Titles.Enabled' | translate }}
+            </small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (product of info.details.became_available; track product) {
+                <span>
+                  {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                </span>
+              }
+            </p>
+          </div>
+        }
+
+        @if (info.details?.became_available?.length && info.details?.became_unavailable?.length) {
+          <mat-divider vertical class="tw-shrink-0"></mat-divider>
+        }
+
+        @if (info.details?.became_unavailable?.length) {
+          <div class="history-item">
+            <small class="tw-text-alert-blood-dark">
+              {{ 'CourierHistory.Titles.Disabled' | translate }}
+            </small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (product of info.details.became_unavailable; track product) {
+                <span>
+                  {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                </span>
+              }
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+}
+
+<ng-template #activityTpl let-details>
+  <div class="tw-flex tw-gap-md">
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small>{{ 'CourierHistory.Titles.DataTypes' | translate }}</small>
+      <p>
+        {{ 'CourierHistory.ActivityProperties.value' | translate }}
+      </p>
+    </div>
+
+    <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small class="tw-text-alert-blood-dark">
+        {{ 'CourierHistory.Titles.OldProperty' | translate }}
+      </small>
+
+      <p>
+        {{ details.old_value || '-' }}
+      </p>
+    </div>
+
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small class="tw-text-alert-grass-light">
+        {{ 'CourierHistory.Titles.NewProperty' | translate }}
+      </small>
+
+      <p>
+        {{ details.new_value || '-' }}
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #blockedListTpl let-reason let-changeType="changeType">
+  <div class="history-item">
+    <small class="tw-text-alert-blood-dark">
+      {{ 'BlockedList.Reason' | translate }}
+    </small>
+
+    <p class="tw-flex tw-gap-md">
+      {{
+        (reason === statusReason.OTHER ? 'BlockedList.Reasons.' + reason + changeType : 'BlockedList.Reasons.' + reason)
+          | translate
+      }}
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #changedProfileProp let-data let-prop="prop">
+  @if (prop === 'date_of_birth') {
+    <p>
+      {{ (data | seconds2Date) || '-' }}
+    </p>
+  }
+
+  @if (prop !== 'date_of_birth') {
+    <p>
+      {{ data || '-' }}
+    </p>
+  }
+</ng-template>

@@ -1,0 +1,9 @@
+.monthly-code-icon {
+  @apply tw-mt-2 tw-ml-2;
+  @apply tw-text-[#00783E] #{!important};
+}
+
+.monthly-code-title {
+  @apply tw-py-2 -tw-mr-6;
+  @apply tw-text-[16px] tw-text-[#00783E] tw-font-normal;
+}

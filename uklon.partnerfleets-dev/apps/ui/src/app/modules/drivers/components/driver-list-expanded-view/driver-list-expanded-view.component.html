@@ -1,0 +1,109 @@
+<div class="tw-grid tw-grid-cols-12 tw-py-2 tw-bg-neutral-silver">
+  <div class="tw-col-span-4 tw-h-cell-1 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-1">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+      {{ 'DriverListExpandedView.Header.Signal' | translate }}
+    </div>
+    <div>
+      {{ driver().signal }}
+    </div>
+  </div>
+
+  <div class="tw-col-span-4 tw-h-cell-1 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-1">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+      {{ 'DriverListExpandedView.Header.Rating' | translate }}
+    </div>
+    <div>
+      {{ driver().rating / 100 | number: '1.2-2' }}
+    </div>
+  </div>
+
+  <div class="tw-col-span-4 tw-h-cell-1 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-1">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit tw-relative">
+      {{ 'DriverListExpandedView.Header.Karma' | translate }}
+
+      <mat-icon [ngxTippy]="'DriverList.KarmaTooltip' | translate" class="outlined info-icon">info</mat-icon>
+    </div>
+
+    <div>
+      {{ driver().karma.value }}%
+      <span class="tw-text-neutral-granit">{{ 'Common.Enum.KarmaGroup.' + driver().karma?.group | translate }}</span>
+    </div>
+  </div>
+
+  <hr class="tw-col-span-12 tw-text-neutral-silver tw-mx-2" />
+
+  <div class="tw-col-span-4 tw-flex tw-flex-col tw-justify-start tw-px-2 tw-my-2 tw-gap-1">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+      {{ 'DriverListExpandedView.Header.Phone' | translate }}
+    </div>
+    <div>
+      <a
+        [href]="'tel:+' + driver().phone"
+        class="tw-text-accent-mint-light hover:tw-underline focus:tw-underline flt-expanded-view-link"
+      >
+        {{ driver().phone }}
+      </a>
+    </div>
+  </div>
+
+  <div class="tw-col-span-4 tw-flex tw-flex-col tw-grow tw-justify-start tw-px-2 tw-my-2 tw-gap-1 tw-min-h-0">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+      {{ 'DriverListExpandedView.Header.Vehicle' | translate }}
+    </div>
+
+    @if (driver().selected_vehicle; as vehicle) {
+      <div>
+        <div>
+          <a
+            [routerLink]="[vehicleDetailsPath, vehicle.vehicle_id]"
+            class="tw-text-accent-mint-light hover:tw-underline focus:tw-underline flt-expanded-view-link"
+          >
+            {{ vehicle.license_plate }}
+          </a>
+        </div>
+
+        <div>
+          <span class="tw-text-md">{{ vehicle.make }} {{ vehicle.model }}</span>
+        </div>
+      </div>
+    } @else {
+      <div>
+        <span class="tw-text-md">
+          {{ 'DriverListExpandedView.VehicleNotSelected' | translate }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="tw-col-span-4 tw-px-2 tw-my-2 tw-flex tw-flex-col tw-items-start tw-justify-center">
+    <div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <hr class="tw-col-span-full tw-text-neutral-silver tw-mx-2" />
+
+  @let driverFilters = driver().active_driver_filters | driverFilters: driver()?.is_online | async;
+
+  <div class="tw-col-span-full tw-px-2 tw-my-2 tw-flex tw-flex-col tw-items-start tw-gap-1 tw-justify-center">
+    <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+      {{ 'DriverFilters.Title' | translate }}
+    </div>
+
+    <div [class.tw-text-neutral-granit]="!driver()?.is_online" data-cy="cell-mobile-Filters">
+      @for (filter of driverFilters; track $index) {
+        <span
+          [class.filter-link]="filter.isLink"
+          (click)="onShowActiveFilters(driver().id, filter.isLink)"
+          [attr.data-cy]="'active-filter-mobile' + (filter.isLink ? '-link' : '')"
+        >
+          {{ filter.key | translate: { data: filter.data } }}
+        </span>
+
+        <span>
+          {{ $last ? '' : ',' }}
+        </span>
+      }
+    </div>
+  </div>
+</div>

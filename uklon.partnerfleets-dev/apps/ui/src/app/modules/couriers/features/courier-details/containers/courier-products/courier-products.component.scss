@@ -1,0 +1,4 @@
+:host {
+  @apply tw-grid tw-h-full tw-p-md tw-gap-md max-sm:tw-flex tw-flex-col tw-text-neutral-graphite;
+  grid-template-columns: 2fr 1fr;
+}

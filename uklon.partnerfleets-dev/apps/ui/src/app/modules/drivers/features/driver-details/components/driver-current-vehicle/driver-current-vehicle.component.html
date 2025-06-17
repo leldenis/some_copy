@@ -1,0 +1,53 @@
+<div class="vehicle-info">
+  @if (vehicleAvatar) {
+    <img
+      data-cy="vehicle-avatar"
+      upfDefaultImgSrc
+      [src]="vehicleAvatar?.url | uklSafe: 'url'"
+      [defaultSrc]="vehicleAvatar?.fallback_url | uklSafe: 'url'"
+      class="tw-w-12 tw-h-12 tw-rounded-full tw-object-center tw-object-cover"
+      alt="avatar"
+    />
+  } @else {
+    <div
+      data-cy="vehicle-avatar-placeholder"
+      class="flex-row justify-content-center align-items-center vehicle-avatar-placeholder"
+    >
+      <mat-icon svgIcon="i-vehicle-avatar" class="!tw-h-6 !tw-w-6 !tw-leading-6"></mat-icon>
+    </div>
+  }
+
+  @if (selected_vehicle) {
+    <div class="tw-flex tw-flex-col tw-gap-1">
+      <a
+        class="tw-text-base tw-font-medium hover:tw-underline focus:tw-underline"
+        [class.tw-pointer-events-none]="!selected_vehicle.currentFleet"
+        [routerLink]="[vehicleDetailsPath, selected_vehicle?.vehicle_id]"
+      >
+        {{ selected_vehicle?.license_plate }}
+      </a>
+
+      <div class="tw-text-md">
+        {{ selected_vehicle?.make }}
+        {{ selected_vehicle?.model }}
+      </div>
+    </div>
+  } @else {
+    <div class="tw-text-neutral-granit">
+      {{ 'Drivers.Drivers.Details.NoSelectedVehicle' | translate }}
+    </div>
+  }
+
+  @if (selected_vehicle) {
+    <button
+      mat-icon-button
+      [ngxTippy]="'Modals.UnlinkVehicle.Unlink' | translate"
+      [tippyProps]="{ placement: 'left' }"
+      [disabled]="unlinkBlocked"
+      (click)="!unlinkBlocked ? unlinkVehicle.emit() : null"
+      class="vehicle-unlink-btn"
+    >
+      <mat-icon class="outlined tw-text-neutral-graphite tw-text-xl">link_off</mat-icon>
+    </button>
+  }
+</div>

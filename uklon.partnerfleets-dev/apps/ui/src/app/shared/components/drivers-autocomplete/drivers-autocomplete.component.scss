@@ -1,0 +1,5 @@
+.with-all-option {
+  &::placeholder {
+    @apply tw-text-neutral-graphite;
+  }
+}

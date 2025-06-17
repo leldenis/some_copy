@@ -1,0 +1,30 @@
+@if (filterKey) {
+  <section class="upf-filter-section">
+    <h2 class="upf-filters-title tw-my-1">
+      {{ fleetEmployeeType + 'Statistic.Filters.Title' | translate }}
+    </h2>
+
+    <upf-filters-container
+      direction="row"
+      [filterKey]="filterKey"
+      [filterSubKey]="filterSubKey"
+      [expandable]="false"
+      [defaultFilters]="filterForm.getRawValue()"
+      (filtersChange)="filtersChange.emit($event.dateRange)"
+      class="tw-w-full sm:tw-w-auto"
+    >
+      <form [formGroup]="filterForm" class="upf-form-group upf-filter-form-group max-sm:tw-w-full">
+        <mat-form-field floatLabel="always" class="upf-form-field upf-filter-form-field no-errors">
+          <mat-label class="upf-form-field-label upf-filter-form-field-label">
+            {{ 'DriverStatistic.Filters.DateTimeRange.Label' | translate }}
+          </mat-label>
+
+          <upf-date-time-range-control
+            formControlName="dateRange"
+            class="upf-form-field-control upf-filter-form-field-control upf-date-time-range-control"
+          ></upf-date-time-range-control>
+        </mat-form-field>
+      </form>
+    </upf-filters-container>
+  </section>
+}

@@ -1,0 +1,20 @@
+<section>
+  <span class="finance-model-title">
+    {{ 'Finance.FleetEntrepreneur.Dialog.FinanceModel' | translate }}
+  </span>
+
+  <div class="finance-model-content">
+    <span class="finance-model-label">{{ 'Finance.FleetEntrepreneur.Dialog.SplitAdjustment.Field' | translate }}:</span>
+    <span class="finance-model-description">
+      {{ 'Finance.FleetEntrepreneur.Dialog.SplitAdjustment.' + balanceSplitModel?.split_adjustment_model | translate }}
+    </span>
+    <span class="finance-model-label">
+      {{ 'Finance.FleetEntrepreneur.Dialog.SplitDistribution.Field' | translate }}:
+    </span>
+    <span class="finance-model-description">
+      {{
+        'Finance.FleetEntrepreneur.Dialog.SplitDistribution.' + balanceSplitModel?.split_distribution_model | translate
+      }}
+    </span>
+  </div>
+</section>

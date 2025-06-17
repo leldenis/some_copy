@@ -1,0 +1,9 @@
+:host {
+  @apply tw-flex tw-items-center tw-justify-between tw-cursor-pointer tw-gap-2;
+  @apply tw-px-md tw-py-1.5 hover:tw-bg-neutral-silver tw-transition-colors;
+}
+
+.fullname {
+  @apply tw-font-medium tw-text-base;
+  word-break: break-word;
+}

@@ -1,0 +1,28 @@
+.mat-mdc-form-field {
+  @apply tw-w-full;
+}
+
+.upf-phone-input {
+  @apply tw-grid tw-gap-2 tw-w-full;
+  grid-template-columns: 100px auto 1fr;
+
+  &.with-suffix {
+    grid-template-columns: 100px auto 1fr auto min-content;
+  }
+}
+
+.mat-icon {
+  transition: transform 0.2s ease-in-out;
+
+  &.opened {
+    @apply tw-rotate-180;
+  }
+}
+
+.mat-mdc-option {
+  @apply tw-text-base;
+}
+
+.selected {
+  @apply tw-bg-neutral-silver tw-text-accent-mint-light;
+}

@@ -1,0 +1,29 @@
+:host {
+  @apply tw-flex tw-flex-col tw-p-4 tw-pt-0;
+}
+
+header {
+  @apply tw-py-3 tw-flex tw-justify-between tw-items-center;
+}
+
+mat-divider {
+  @apply -tw-ml-4 -tw-mr-4 tw-text-neutral-silver;
+}
+
+.mat-mdc-dialog-title {
+  h3 {
+    margin: 0;
+  }
+
+  .mat-icon {
+    @apply tw-text-neutral-graphite;
+  }
+}
+
+.content {
+  @apply tw-flex tw-flex-col tw-gap-[14px] tw-py-4;
+}
+
+footer {
+  @apply tw-flex tw-flex-row tw-justify-between tw-gap-4 tw-pt-4;
+}

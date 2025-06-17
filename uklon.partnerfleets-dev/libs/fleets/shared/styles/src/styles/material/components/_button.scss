@@ -1,0 +1,141 @@
+$btn-height: 44px;
+$btn-font-size: 14px;
+$btn-line-height: 16px;
+$btn-font-normal: 400;
+$btn-font-weight: 500;
+
+$btn-height-md: 40px;
+
+$btn-height-sm: 32px;
+$btn-font-size-sm: 12px;
+$btn-line-height-sm: 12px;
+
+:root {
+  --upf-btn-icon-size: 36px;
+  --upf-icon-size: 20px;
+}
+
+.mat-mdc-button,
+.mat-mdc-icon-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+  min-width: fit-content !important;
+}
+
+// Flat
+.mat-mdc-unelevated-button {
+  @media (max-width: 767px) {
+    height: $btn-height-md !important;
+  }
+
+  height: $btn-height !important;
+  transition: background-color 0.1s ease-in-out !important;
+
+  .mdc-button__label {
+    white-space: nowrap;
+    font-size: $btn-font-size;
+    line-height: $btn-line-height;
+    font-weight: $btn-font-weight;
+    width: 100%;
+  }
+
+  &:not(:disabled) {
+    --mdc-filled-button-label-text-color: white !important;
+  }
+
+  &:disabled {
+    --mdc-filled-button-label-text-color: #CFD0D2 !important;
+    border: 1px solid #CFD0D2;
+    background-color: transparent !important;
+  }
+
+  &.small {
+    height: $btn-height-sm !important;
+    font-size: $btn-font-size-sm !important;
+    line-height: $btn-line-height-sm;
+
+    .mat-mdc-button-touch-target {
+      height: $btn-height-sm !important;
+    }
+  }
+}
+
+// Primary
+.mat-primary:not(:disabled) {
+  &:hover, :focus-visible {
+    --mdc-filled-button-container-color: #30B38F;
+  }
+
+  &:active {
+    --mdc-filled-button-container-color: #1F9977;
+  }
+}
+
+// Accent
+.mat-accent:not(:disabled) {
+  --mdc-filled-button-label-text-color: #454754 !important;
+  --mdc-filled-button-container-color: #F2F2F2 !important;
+
+  &:hover, :focus-visible {
+    --mdc-filled-button-container-color: #E6E7E7;
+  }
+
+  &:active {
+    --mdc-filled-button-container-color: #CFD0D2;
+  }
+
+  &.warn {
+    --mdc-filled-button-label-text-color: #E97171 !important;
+  }
+}
+
+// Warn
+.mat-warn {
+  &:hover, :focus-visible {
+    --mdc-filled-button-container-color: #D35E5E;
+  }
+
+  &:active {
+    --mdc-filled-button-container-color: #B83E3E;
+  }
+}
+
+// With icons
+.mat-mdc-mini-fab.mat-primary {
+  --mat-fab-foreground-color: white !important;
+  --mat-fab-state-layer-color: white !important;
+}
+
+.mat-mdc-icon-button {
+  display: grid !important;
+  place-content: center;
+
+  --mdc-icon-button-state-layer-size: var(--upf-btn-icon-size) !important;
+  --mdc-icon-button-icon-size: var(--upf-icon-size) !important;
+  padding: 0px !important;
+
+  .mat-mdc-button-touch-target {
+    width: var(--upf-btn-icon-size) !important;
+    height: var(--upf-btn-icon-size) !important;
+  }
+
+  // TODO: Remove after updating to next material version
+  .mat-mdc-button-persistent-ripple {
+    display: none;
+  }
+
+  &:hover {
+    --mdc-filled-button-container-color: transparent;
+  }
+
+  .mat-icon {
+    width: var(--upf-icon-size);
+    height: var(--upf-icon-size);
+    line-height: var(--upf-icon-size);
+    font-size: var(--upf-icon-size);
+  }
+}
+
+.mat-button-toggle .mat-pseudo-checkbox {
+  display: none;
+}

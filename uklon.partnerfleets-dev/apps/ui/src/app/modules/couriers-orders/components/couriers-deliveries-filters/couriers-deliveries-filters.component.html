@@ -1,0 +1,32 @@
+<upf-filters-container
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+  direction="row"
+>
+  <form [formGroup]="filtersForm">
+    <mat-form-field floatLabel="always" data-cy="trips-period-filter">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="dateRange"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <upf-couriers-autocomplete [fleetId]="fleetId" formControlName="courierId"></upf-couriers-autocomplete>
+
+    <mat-form-field>
+      <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+      <mat-select formControlName="status">
+        <mat-option [value]="''">
+          {{ 'Orders.Trips.Filter.OrderStatus.all' | translate }}
+        </mat-option>
+
+        @for (status of deliveryStatus; track status) {
+          <mat-option data-cy="status-item" [value]="status">
+            {{ 'Orders.Trips.Filter.OrderStatus.' + status | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>

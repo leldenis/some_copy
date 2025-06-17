@@ -1,0 +1,8 @@
+variables:
+  UKLON_TEAM: partners
+  ServiceName: PartnerFleets
+  ProductLocalizationPath: "${ProductDistPath}/apps/ui/assets/i18n"
+
+include:
+  - project: 'web/uklon.web.ci'
+    file: 'lib/templates/monorepo.template.yml'

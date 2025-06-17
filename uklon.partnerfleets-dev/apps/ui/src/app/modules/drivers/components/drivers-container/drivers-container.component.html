@@ -1,0 +1,45 @@
+<section class="tw-flex tw-items-center sm:tw-justify-between">
+  <upf-driver-filter (filtersChange)="onFiltersChange($event)" class="tw-w-full" data-cy="driver-filter">
+    <ng-container [ngTemplateOutlet]="createDriverBtn"></ng-container>
+  </upf-driver-filter>
+
+  <div class="tw-hidden sm:tw-block">
+    <ng-container [ngTemplateOutlet]="createDriverBtn"></ng-container>
+  </div>
+</section>
+
+@if (fleetId()) {
+  <section class="upf-section tw-flex tw-grow tw-shrink tw-justify-center sm:tw-h-full">
+    @if (drivers()?.items?.length) {
+      <upf-drivers-list
+        [drivers]="drivers().items"
+        [total]="drivers().total_count"
+        (unlinkVehicle)="onUnlinkVehicle($event)"
+        (showActiveFilters)="getDriverActiveFilters($event)"
+        data-cy="driver-list"
+      ></upf-drivers-list>
+    } @else {
+      <upf-empty-state [state]="(failedToGetDrivers() && emptyState.ERROR) || emptyState.NO_DATA"></upf-empty-state>
+    }
+  </section>
+}
+
+<ng-template #createDriverBtn>
+  @if (registrationLink) {
+    <a
+      [href]="registrationLink"
+      mat-flat-button
+      color="primary"
+      target="_blank"
+      class="!tw-flex tw-flex-col tw-justify-center tw-w-full sm:tw-w-auto sm:!tw-py-1"
+      data-cy="add-vehicle-btn"
+    >
+      <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+        <mat-icon class="tw-text-icon">open_in_new</mat-icon>
+        <span>
+          {{ 'Drivers.AddDriverLink' | translate }}
+        </span>
+      </div>
+    </a>
+  }
+</ng-template>

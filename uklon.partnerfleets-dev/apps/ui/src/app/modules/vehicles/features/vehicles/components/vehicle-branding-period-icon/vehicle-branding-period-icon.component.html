@@ -1,0 +1,30 @@
+@let deadline = brandingPeriod().deadline_to_send | photoControlDeadlineMessage;
+<mat-icon
+  svgIcon="i-branded-empty"
+  class="tw-text-neutral-smoke"
+  [class.!tw-text-accent-coral-light]="deadline.passedDeadline"
+  [ngxTippy]="tooltipTpl"
+  [tippyContext]="{
+    data: { brandingPeriod: brandingPeriod(), deadline },
+  }"
+></mat-icon>
+
+<ng-template #tooltipTpl let-data="data">
+  <div class="tw-text-sm">
+    <div>
+      @if (data.brandingPeriod.status === ticketStatus.DRAFT) {
+        {{ 'VehicleBrandingPeriod.Tooltips.Title.Draft' | translate }}
+      }
+
+      @if (data.brandingPeriod.status === ticketStatus.CLARIFICATION) {
+        {{ 'VehicleBrandingPeriod.Tooltips.Title.Clarification' | translate }}
+      }
+    </div>
+
+    @if (data.brandingPeriod.deadline_to_send) {
+      <div class="tw-text-neutral-fog">
+        {{ data.deadline.longTitle | translate: { till: data.deadline.till, days: data.deadline.days } }}
+      </div>
+    }
+  </div>
+</ng-template>

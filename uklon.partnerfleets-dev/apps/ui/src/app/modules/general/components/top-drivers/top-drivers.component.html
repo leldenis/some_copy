@@ -1,0 +1,203 @@
+<div>
+  <div class="tw-text-neutral-graphite tw-text-tmp tw-font-medium tw-pb-md sm:tw-p-md">
+    {{ 'Dashboard.Statistics.TopDrivers.Title' | translate }}
+  </div>
+
+  @if (drivers()?.length) {
+    <cdk-table [dataSource]="drivers()" class="flt-table tw-gap-2 sm:tw-gap-0">
+      <!-- Driver -->
+      <ng-container cdkColumnDef="Driver">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.Driver' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-flex-col tw-justify-center">
+            <a
+              [routerLink]="[driverDetailsPath, row.driver.id]"
+              class="tw-text-base tw-text-neutral-graphite tw-font-medium hover:tw-underline focus:tw-underline"
+            >
+              {{ row.driver.last_name }} {{ row.driver.first_name }}
+            </a>
+
+            <div class="tw-text-md tw-text-neutral-granit">
+              <span class="tw-hidden sm:tw-inline">{{ row.driver.phone }}</span>
+              <a class="sm:tw-hidden" href="tel:{{ row.driver.phone }}">{{ row.driver.phone }}</a>
+            </div>
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- OrdersCount -->
+      <ng-container cdkColumnDef="OrdersCount">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.OrderCount' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            {{ row.total_orders_count }}
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- CancellationRate -->
+      <ng-container cdkColumnDef="CancellationRate">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.CancelationCount' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            {{ row.cancel_percent | number: (row.cancel_percent ? '1.2-2' : '') }}%
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- Income -->
+      <ng-container cdkColumnDef="Income">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.TotalIncome' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center tw-justify-end sm:tw-justify-start">
+            {{ row.total_income.amount / 100 | upfMoney: row.total_income.currency }}
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- Rating -->
+      <ng-container cdkColumnDef="Rating">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.Rating' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center tw-gap-3">
+            <mat-icon class="outlined !tw-w-5 !tw-h-5 tw-text-xl tw-mb-1 tw-text-yellow-400">star</mat-icon>
+
+            <div>{{ row.rating / 100 }}</div>
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- Karma -->
+      <ng-container cdkColumnDef="Karma">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">
+            <span class="tw-text-md tw-text-neutral-smoke">
+              {{ 'Dashboard.Statistics.TopDrivers.Karma' | translate }}
+            </span>
+          </div>
+        </cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell tw-col-span-5 sm:tw-col-span-2">
+          <div class="tw-flex tw-items-center">{{ row.karma }}%</div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- Toggle -->
+      <ng-container cdkColumnDef="Toggle">
+        <cdk-header-cell
+          *cdkHeaderCellDef
+          class="flt-table-cell tw-table-cell--visible tw-col-span-2 sm:!tw-hidden"
+        ></cdk-header-cell>
+
+        <cdk-cell
+          *cdkCellDef="let row; let index = index"
+          class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-2 sm:tw-col-span-1 sm:!tw-hidden"
+        >
+          <div
+            class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+            [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+          >
+            <button mat-icon-button (click)="selection.toggle(index)">
+              <mat-icon
+                [ngClass]="
+                  selection.isSelected(index) ? 'tw-rotate-180 tw-transition-transform' : 'tw-transition-transform'
+                "
+              >
+                expand_more
+              </mat-icon>
+            </button>
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <!-- ExpandedView -->
+      <ng-container cdkColumnDef="ExpandedView">
+        <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:!tw-hidden"></cdk-header-cell>
+
+        <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-toggleable tw-col-span-12 sm:tw-hidden">
+          <div class="tw-bg-neutral-silver tw-p-md">
+            <div class="tw-flex tw-items-center tw-gap-md">
+              <div class="tw-grid tw-gap-1">
+                <span class="tw-text-xs tw-text-neutral-granit">
+                  {{ 'Dashboard.Statistics.TopDrivers.OrderCancelationRatio' | translate }}
+                </span>
+
+                <span>
+                  {{ row.total_orders_count }}/{{ row.cancel_percent | number: (row.cancel_percent ? '1.2-2' : '') }}%
+                </span>
+              </div>
+
+              <mat-divider vertical class="tw-h-10"></mat-divider>
+
+              <div class="tw-grid tw-gap-1">
+                <span class="tw-text-xs tw-text-neutral-granit">
+                  {{ 'Dashboard.Statistics.TopDrivers.Rating' | translate }}
+                </span>
+                <span>{{ row.rating / 100 }}</span>
+              </div>
+
+              <mat-divider vertical class="tw-h-10"></mat-divider>
+
+              <div class="tw-grid tw-gap-1">
+                <span class="tw-text-xs tw-text-neutral-granit">
+                  {{ 'Dashboard.Statistics.TopDrivers.Karma' | translate }}
+                </span>
+                <span>{{ row.karma }}%</span>
+              </div>
+            </div>
+          </div>
+        </cdk-cell>
+      </ng-container>
+
+      <cdk-header-row
+        *cdkHeaderRowDef="columns; sticky: true"
+        class="flt-table-row flt-table-header-row tw-bg-neutral-white"
+      ></cdk-header-row>
+
+      <cdk-row
+        *cdkRowDef="let row; let index = index; columns: columns"
+        [ngClass]="[selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed']"
+        class="flt-table-row"
+      ></cdk-row>
+    </cdk-table>
+  } @else {
+    @if (!drivers()?.length) {
+      <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+    }
+  }
+</div>

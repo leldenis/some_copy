@@ -1,0 +1,24 @@
+<upf-commission-programs-info-icon-mobile
+  [participantType]="participantType.VEHICLE"
+  (mouseEnterEvent)="reportAnalytics(analyticsEventType.VEHICLE_COMMISSION_PROGRAMS_WHAT_IS_IT)"
+></upf-commission-programs-info-icon-mobile>
+
+<upf-commission-programs-sub-tabs
+  [participantType]="participantType.VEHICLE"
+  [activatedProgramType]="activatedProgramType()"
+  (changeProgramType)="handlerProgramType($event)"
+></upf-commission-programs-sub-tabs>
+
+@if (fleetData(); as fleet) {
+  @switch (activatedProgramType()) {
+    @case (programTypes.ACTIVE) {
+      <upf-vehicle-active-commission-programs [fleetData]="fleet"></upf-vehicle-active-commission-programs>
+    }
+    @case (programTypes.PLANNED) {
+      <upf-vehicle-planned-commission-programs [fleetData]="fleet"></upf-vehicle-planned-commission-programs>
+    }
+    @case (programTypes.ARCHIVED) {
+      <upf-vehicle-archived-commission-programs [fleetData]="fleet"></upf-vehicle-archived-commission-programs>
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="tw-flex tw-flex-col tw-grow">
+  @if (delivery$ | async; as delivery) {
+    @let isMobileView = isMobileView$ | async;
+    <div
+      leaflet
+      [leafletOptions]="mapOptions"
+      (leafletMapReady)="onMapReady($event, delivery, isMobileView)"
+      (click)="enableMapInteractions()"
+      class="live-map"
+    >
+      <upf-delivery-details-panel [delivery]="delivery" upfToggleMapInteractions></upf-delivery-details-panel>
+
+      <div class="active-area"></div>
+
+      <div class="disclaimer">
+        {{ 'LiveMap.MapDisclaimer' | translate }}
+      </div>
+    </div>
+  }
+</div>
+
+@if (isLoading$ | async) {
+  <upf-empty-state
+    class="tw-absolute tw-inset-0 tw-top-[101px] sm:tw-top-14"
+    [state]="emptyState.MAP"
+  ></upf-empty-state>
+}

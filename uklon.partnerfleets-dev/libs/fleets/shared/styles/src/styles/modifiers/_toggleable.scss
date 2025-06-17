@@ -1,0 +1,13 @@
+@mixin core() {
+  &--opened {
+    .flt-toggleable {
+      @apply [display:inherit];
+    }
+  }
+
+  &--closed {
+    .flt-toggleable {
+      @apply tw-hidden;
+    }
+  }
+}

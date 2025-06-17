@@ -1,0 +1,31 @@
+:host {
+  @apply tw-w-full tw-h-full;
+}
+
+.live-map {
+  @apply tw-h-full tw-outline-none tw-shadow-lg -tw-mx-md;
+  @apply sm:tw-rounded-t-lg sm:tw-mx-0;
+}
+
+.disclaimer {
+  @apply tw-absolute tw-inset-x-0 tw-bottom-0 tw-z-[1000] tw-p-2 tw-border-t tw-leading-3;
+  @apply tw-text-xs tw-text-neutral-granit tw-border-neutral-silver;
+  background: rgb(255 255 255 / 80%);
+
+  @screen sm {
+    @apply tw-text-sm tw-rounded-tl-lg tw-shadow-sm tw-border-none tw-inset-x-auto tw-right-0;
+  }
+}
+
+.fulscreen-btn {
+  @apply tw-absolute tw-z-[1000] tw-right-md tw-top-[106px] tw-grid tw-place-items-center;
+  @apply tw-w-9 tw-h-9 tw-rounded-sm tw-shadow-sm tw-bg-white;
+}
+
+.active-area {
+  @apply tw-absolute tw-inset-0 tw-bottom-[110px];
+
+  @screen sm {
+    @apply tw-inset-md tw-left-[400px];
+  }
+}

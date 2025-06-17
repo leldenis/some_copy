@@ -1,0 +1,100 @@
+<mat-accordion>
+  <div class="grid-header tw-bg-white tw-z-10">
+    <div data-cy="header-event-type">
+      {{ 'CourierHistory.EventType' | translate }}
+    </div>
+
+    <div class="tw-hidden sm:tw-grid" data-cy="header-role">
+      <span>{{ 'CourierHistory.Role' | translate }}</span>
+      <span class="tw-text-neutral-granit">{{ 'CourierHistory.Author' | translate }}</span>
+    </div>
+
+    <div data-cy="header-date">
+      {{ 'CourierHistory.OccurrenceDate' | translate }}
+    </div>
+  </div>
+
+  @for (change of history(); track change.id) {
+    <mat-expansion-panel
+      [disabled]="!change.has_additional_data"
+      (opened)="onGetFullInfo(change)"
+      (closed)="reportPanelClosed(change.change_type)"
+      #panel
+      hideToggle
+      class="!tw-shadow-none !tw-rounded-none !tw-m-0 tw-border-b tw-border-b-neutral-cloud"
+      [attr.data-cy]="'history-event-panel-' + change.change_type + '-' + $index"
+    >
+      <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="56px" class="!tw-pl-md !tw-pr-0">
+        <div class="grid-header panel-header">
+          <div class="tw-grid tw-gap-1">
+            <span
+              [attr.data-cy]="'cell-' + change.change_type + '-' + $index"
+              [ngClass]="{
+                'tw-text-accent-coral-light': removeChanges.has(change.change_type),
+              }"
+            >
+              {{ ('FleetProfile.FleetHistory.ChangeType.' + change.change_type | translate) || change.change_type }}
+            </span>
+
+            @if (!change.has_additional_data) {
+              <span
+                class="tw-text-neutral-granit tw-text-md"
+                [attr.data-cy]="'cell-no-data-' + change.change_type + '-' + $index"
+              >
+                {{ 'CourierHistory.NoAdditionalData' | translate }}
+              </span>
+            }
+          </div>
+
+          <div class="tw-hidden sm:tw-grid tw-gap-1">
+            @if (change.initiator.type !== initiatorType.UKLON_MANAGER) {
+              <span [attr.data-cy]="'cell-email-' + $index">
+                {{ change.initiator.display_name }}
+              </span>
+            }
+
+            <span class="tw-text-neutral-granit tw-text-md" [attr.data-cy]="'cell-role-' + $index">
+              {{ change.initiator.type ? ('CourierHistory.Roles.' + change.initiator.type | translate) : '-' }}
+            </span>
+          </div>
+
+          <div class="tw-grid tw-gap-1">
+            <span [attr.data-cy]="'cell-date-' + $index">
+              {{ change.occurred_at | seconds2Date }}
+            </span>
+            <span [attr.data-cy]="'cell-time-' + $index" class="tw-text-neutral-granit tw-text-md">
+              {{ change.occurred_at | seconds2Time }}
+            </span>
+          </div>
+        </div>
+
+        <mat-panel-description [ngClass]="{ expanded: panel.expanded }">
+          <mat-icon
+            [attr.data-cy]="'cell-toggle-' + $index"
+            [ngClass]="{ 'tw-opacity-0': !change.has_additional_data }"
+          >
+            expand_more
+          </mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="tw-grid tw-gap-2">
+        @if (additionalInfo().get(change.id); as info$) {
+          @if (info$ | async; as info) {
+            <upf-fleet-history-details
+              [info]="info"
+              (reportHistoryDetailsOpened)="reportPanelOpened($event)"
+              data-cy="history-additional-info"
+            ></upf-fleet-history-details>
+          } @else {
+            <upf-progress-spinner class="!tw-justify-start !tw-bg-neutral-silver !tw-h-auto"></upf-progress-spinner>
+          }
+        }
+      </div>
+    </mat-expansion-panel>
+  }
+
+  @if (isLoading()) {
+    <upf-progress-spinner></upf-progress-spinner>
+  }
+</mat-accordion>

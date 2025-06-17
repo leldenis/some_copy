@@ -1,0 +1,44 @@
+@use "../components/grid" as grid;
+@use "../components/filter-group" as filter-group;
+@use "../components/table-deprecated" as table-deprecated;
+@use "../components/table" as table;
+@use "../components/data-group" as data-group;
+@use "../typography" as typography;
+@use "../colors" as colors;
+@import "../material";
+@import "normalize";
+
+.upf-styles {
+  @include data-group.upfDataGroup;
+  @include grid.upfColumnGrid(12);
+  @include typography.upfTypography;
+  @include table-deprecated.upfTable;
+  @include filter-group.upfFilterFormGroup;
+  @include colors.upf-colors;
+}
+
+@include table.core();
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}

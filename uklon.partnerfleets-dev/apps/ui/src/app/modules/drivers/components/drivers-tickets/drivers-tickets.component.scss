@@ -1,0 +1,34 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-2 tw-pt-md tw-w-full sm:tw-gap-md;
+}
+
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}
+
+.grid-table {
+  @apply tw-grid tw-gap-2 tw-text-neutral-graphite sm:tw-shadow-sm sm:tw-rounded sm:tw-block sm:tw-grow;
+
+  .grid-row {
+    @apply tw-grid tw-text-base tw-p-2 tw-items-center tw-grid-cols-2 tw-gap-1;
+    @apply tw-rounded tw-shadow-sm tw-h-fit;
+
+    @screen sm {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      @apply tw-gap-md tw-shadow-none tw-px-md tw-h-14 tw-py-0;
+      @apply tw-border-b tw-border-[#e0e0e0];
+    }
+
+    &.header {
+      @apply tw-hidden tw-text-sm tw-h-12 tw-text-neutral-smoke sm:tw-grid;
+    }
+  }
+
+  .date-cell {
+    @apply tw-row-start-[-1] tw-col-start-2 tw-justify-self-end tw-text-sm tw-text-neutral-granit;
+
+    @screen sm {
+      @apply tw-row-auto tw-col-auto tw-justify-self-start tw-text-base tw-text-neutral-graphite;
+    }
+  }
+}

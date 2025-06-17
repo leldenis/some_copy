@@ -1,0 +1,31 @@
+.mat-mdc-menu-panel {
+  --mat-menu-item-label-text-size: 14px;
+  --mat-menu-item-label-text-line-height: 1.15;
+  --mat-menu-item-label-text-tracking: normal;
+  --mat-menu-item-label-text-color: var(--title-color);
+  --mat-menu-item-label-text-weight: 400;
+  --mat-menu-container-shape: 8px;
+
+  .mat-mdc-menu-item-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap !important;
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .mat-mdc-menu-content:not(:empty) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &.auto-height {
+    min-height: auto !important;
+  }
+
+  &.sidebar-menu {
+    --mat-menu-container-color: transparent;
+    margin-top: 18px;
+  }
+}

@@ -1,0 +1,192 @@
+<div class="tw-flex tw-flex-col tw-h-full tw-p-4 tw-gap-4">
+  <div class="tw-flex tw-flex-col tw-gap-1 tw-justify-center tw-items-center tw-self-center">
+    @if (driverAvatar$ | async; as driverAvatar) {
+      <img
+        upfDefaultImgSrc
+        [src]="driverAvatar?.url | uklSafe: 'url'"
+        [defaultSrc]="driverAvatar?.fallback_url | uklSafe: 'url'"
+        data-cy="user-avatar"
+        class="tw-w-14 tw-h-14 tw-rounded-full tw-object-center tw-object-cover"
+        alt="avatar"
+      />
+    } @else {
+      @let colors = driver().id | id2Color;
+
+      <div
+        data-cy="user-placeholder"
+        class="avatar-placeholder"
+        [style.background-color]="colors.back"
+        [style.color]="colors.fore"
+      >
+        {{ driver() | fullName: true }}
+      </div>
+    }
+
+    <span data-cy="driver-name" class="tw-font-medium tw-text-heading">
+      {{ driver() | fullName }}
+    </span>
+  </div>
+
+  @if (appConfig?.externalLinks?.karmaManual; as karmaManual) {
+    <upf-driver-karma
+      [driver]="driver()"
+      [karmaManual]="karmaManual | uklSafe: 'url'"
+      [karmaGroupRanges]="karmaGroupRanges()"
+      (opened)="reportKarmaEvent(analyticsEvent.DRIVERS_KARMA_OPENED)"
+      (linkClicked)="reportKarmaEvent(analyticsEvent.DRIVERS_KARMA_LINK_CLICKED)"
+    ></upf-driver-karma>
+  }
+
+  @if (isDriverBlocked()) {
+    @let hasReason =
+      driver()?.status?.reasons?.length && !driver().status.reasons.includes(driverListStatusReason.OTHER);
+
+    <upf-info-panel [hideToggle]="!hasReason" [expanded]="!hasReason" color="error">
+      <ng-template upfInfoPanelIcon>
+        <mat-icon>outlined_flag</mat-icon>
+      </ng-template>
+
+      <ng-template upfInfoPanelTitle>{{ 'BlockedList.Drivers.DriverBlocked' | translate }}</ng-template>
+
+      @if (hasReason) {
+        @for (reason of driver().status.reasons; track reason) {
+          {{
+            $last ? ('BlockedList.Reasons.' + reason | translate) : ('BlockedList.Reasons.' + reason | translate) + ', '
+          }}
+        }
+      }
+    </upf-info-panel>
+  }
+
+  @if (appConfig?.showDriverPhotoControl && photoControl()) {
+    <upf-driver-photo-control-panel
+      data-cy="driver-photo-control-panel"
+      [photoControl]="photoControl()"
+      [driverPhotoControl]="driver()?.photo_control"
+    ></upf-driver-photo-control-panel>
+  }
+
+  @if (isDriverBlocked()) {
+    <upf-info-panel color="neutral">
+      {{ 'BlockedList.Reasons.DriverProfileDataBlocked' | translate }}
+    </upf-info-panel>
+  }
+
+  @if (driver()?.delayed_restrictions; as delayedRestrictions) {
+    @if (delayedRestrictions?.length) {
+      <upf-delayed-employee-restriction-panel
+        [restrictions]="delayedRestrictions"
+      ></upf-delayed-employee-restriction-panel>
+    }
+  }
+
+  @if (restrictions$ | async; as restrictions) {
+    @if (restrictions?.length) {
+      <upf-employee-restriction-panel
+        data-cy="driver-details-restrictions-panel"
+        [restrictions]="restrictions"
+        (removeCashLimitRestriction)="onRemoveCashLimitRestriction()"
+      ></upf-employee-restriction-panel>
+    }
+  }
+
+  <upf-expandable-info [headerTitle]="'Drivers.Drivers.Details.Title' | translate">
+    <dl class="tw-grid tw-grid-cols-2 tw-gap-4 tw-text-base">
+      <dt>
+        {{ 'Drivers.Drivers.Details.Form.Phone' | translate }}
+      </dt>
+      <dd>
+        <span data-cy="driver-phone" class="max-sm:tw-hidden">{{ driver().phone }}</span>
+        <a href="tel:{{ driver().phone }}" class="sm:tw-hidden tw-font-medium">{{ driver().phone }}</a>
+      </dd>
+
+      <dt>E-mail</dt>
+      <dd data-cy="driver-email">{{ driver().email || '-' }}</dd>
+
+      <dt>
+        {{ 'Drivers.Drivers.Details.Form.Signal' | translate }}
+      </dt>
+      <dd data-cy="driver-signal">{{ driver().signal }}</dd>
+
+      <dt>
+        {{ 'Drivers.Drivers.Details.Form.AddedDate' | translate }}
+      </dt>
+      <dd data-cy="driver-added-date">
+        {{ driver()?.employed_from + '000' | date: 'dd.MM.YYYY' }}
+      </dd>
+
+      <dt>{{ 'Vehicles.DriverAccess.Accessibility' | translate }}</dt>
+      <dd>
+        <div class="access-status {{ driver().access_type | lowercase }}">
+          {{ 'Vehicles.DriverAccess.AccessType.' + driver().access_type | translate | uppercase }}
+        </div>
+      </dd>
+    </dl>
+  </upf-expandable-info>
+
+  <mat-divider></mat-divider>
+
+  @if (additionalDriverInfoRegions[selectedFleet().region_id]) {
+    <upf-expandable-info [headerTitle]="'DriverPaymentInfo.Title' | translate">
+      <upf-driver-payment-info [paymentInfo]="driver().payment_details"></upf-driver-payment-info>
+    </upf-expandable-info>
+
+    <mat-divider></mat-divider>
+  }
+
+  <upf-expandable-info [headerTitle]="'Drivers.Drivers.Details.SelectedVehicle' | translate">
+    <upf-driver-current-vehicle
+      [vehicleAvatar]="vehicleAvatar$ | async"
+      [selected_vehicle]="driver()?.selected_vehicle"
+      [unlinkBlocked]="isDriverBlocked()"
+      (unlinkVehicle)="unlink()"
+    ></upf-driver-current-vehicle>
+  </upf-expandable-info>
+
+  @if (denyList$ | async; as denyList) {
+    <mat-divider></mat-divider>
+
+    <upf-expandable-info [headerTitle]="'DenyList.Title' | translate">
+      <upf-driver-deny-list
+        [denyList]="denyList"
+        (clearBackList)="!isDriverBlocked() ? onClearDenyList() : null"
+      ></upf-driver-deny-list>
+    </upf-expandable-info>
+  }
+
+  <mat-divider></mat-divider>
+
+  <div class="tw-flex tw-grow tw-items-end tw-justify-items-stretch max-sm:!tw-hidden">
+    <button
+      mat-flat-button
+      color="accent"
+      [disabled]="isDriverBlocked()"
+      (click)="!isDriverBlocked() ? onDeleteDriver() : null"
+      data-cy="remove-driver-btn"
+      class="tw-w-full warn"
+    >
+      <span class="tw-text-accent-coral-light">
+        {{ 'Common.Buttons.B_Remove' | translate }}
+      </span>
+    </button>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-gap-md sm:tw-hidden">
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <span>{{ 'Common.Buttons.B_Remove' | translate }}</span>
+
+      <button
+        color="accent"
+        mat-icon-button
+        data-cy="remove-driver-btn"
+        [disabled]="isDriverBlocked()"
+        (click)="!isDriverBlocked() ? onDeleteDriver() : null"
+        class="warn"
+      >
+        <mat-icon class="tw-text-accent-coral-light outlined tw-text-xl">delete_outline</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+  </div>
+</div>

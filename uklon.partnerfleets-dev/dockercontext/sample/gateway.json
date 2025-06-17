@@ -1,0 +1,20 @@
+{
+  "port": 8080,
+  "serviceRegistry": {
+    "partnersService": "https://partners.dev.uklon.net/",
+    "analyticService": "https://as-dev.uklon.com.ua/"
+  },
+  "captcha": {
+    "secretKey": "6LcHX-0kAAAAAMe03mRly80MBTtBYlB1nWdzt396",
+    "score": 0.9
+  },
+  "logging": {
+    "level": [
+      "log",
+      "error",
+      "warn",
+      "debug"
+    ]
+  },
+  "swagger": true
+}

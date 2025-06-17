@@ -1,0 +1,9 @@
+<upf-filters-container direction="row" [filterKey]="filterKey()" (filtersChange)="filtersChanged.emit($any($event))">
+  <form [formGroup]="filtersForm">
+    <mat-form-field appearance="outline" floatLabel="always" class="tw-w-full sm:tw-w-80" color="primary">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="date"></upf-date-time-range-control>
+    </mat-form-field>
+  </form>
+</upf-filters-container>

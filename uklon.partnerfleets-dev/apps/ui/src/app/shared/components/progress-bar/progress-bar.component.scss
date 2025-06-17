@@ -1,0 +1,67 @@
+:host {
+  @apply tw-contents;
+
+  .progress {
+    @apply tw-relative tw-block;
+
+    &.progress-bar-sm {
+      @apply tw-w-[53px] tw-shrink-0;
+
+      .progress-bar-buffer {
+        @apply tw-bg-neutral-silver tw-h-[5px];
+      }
+    }
+
+    &.progress-bar-md {
+      @apply tw-w-full;
+
+      .progress-bar-buffer {
+        @apply tw-bg-white tw-h-2;
+      }
+    }
+
+    .progress-bar-buffer {
+      &.progress-inactive {
+        .progress-bar-leaner {
+          @apply tw-bg-neutral-fog;
+        }
+      }
+    }
+  }
+}
+
+.progress-bar-buffer {
+  @apply tw-absolute tw-top-0 tw-bottom-0 tw-m-auto tw-w-full tw-h-1;
+  @apply tw-overflow-hidden tw-bg-[#EBFAF6] tw-rounded-[10px];
+
+  .progress-bar-leaner {
+    @apply tw-absolute tw-top-0 tw-bottom-0 tw-m-auto tw-w-full;
+    @apply tw-transition-all tw-duration-300 tw-ease-in-out;
+    @apply tw-overflow-hidden tw-rounded-[10px];
+  }
+}
+
+.theme {
+  &-green {
+    .progress-bar-leaner {
+      @apply tw-bg-accent-mint-light;
+    }
+  }
+
+  &-black {
+    .progress-bar-leaner {
+      @apply tw-bg-neutral-graphite;
+    }
+  }
+
+  &-custom {
+    .progress-bar-buffer {
+      @apply tw-bg-[#EBFAF6] #{!important};
+      @apply tw-h-[5px] #{!important};
+    }
+
+    .progress-bar-leaner {
+      @apply tw-bg-accent-mint-light;
+    }
+  }
+}

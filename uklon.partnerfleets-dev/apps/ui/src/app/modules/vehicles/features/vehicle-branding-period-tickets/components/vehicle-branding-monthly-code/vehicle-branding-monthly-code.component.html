@@ -1,0 +1,12 @@
+<upf-info-panel class="sm:tw-w-fit">
+  <ng-template upfInfoPanelIcon>
+    <mat-icon class="monthly-code-icon" [svgIcon]="icons.checkCircle"></mat-icon>
+  </ng-template>
+
+  <ng-template upfInfoPanelTitle>
+    <span class="monthly-code-title" data-cy="vehicle-branding-period-monthly-code">
+      {{ 'VehicleBrandingPeriod.Panel.MonthlyCode' | translate }}:
+      <strong>{{ monthlyCode() }}</strong>
+    </span>
+  </ng-template>
+</upf-info-panel>

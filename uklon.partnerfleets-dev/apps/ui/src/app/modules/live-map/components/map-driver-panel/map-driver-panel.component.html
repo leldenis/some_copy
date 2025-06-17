@@ -1,0 +1,228 @@
+<div class="panel-container">
+  <section class="panel-header" (click)="togglePanelOpened(panelType.DRIVER_DETAILS)">
+    <div class="tw-flex tw-gap-md tw-items-center tw-w-full">
+      <button
+        mat-icon-button
+        (click)="onGoBack()"
+        class="back-btn tw-self-end sm:tw-self-start"
+        data-cy="map-driver-panel-back-btn"
+      >
+        <mat-icon class="tw-text-tmp">arrow_back</mat-icon>
+      </button>
+
+      <div class="panel-info">
+        <div class="data">
+          <a
+            [routerLink]="['/', path.WORKSPACE, path.DRIVERS, driverPath.DETAILS, employee().id]"
+            (click)="$event.stopPropagation()"
+            class="tw-shrink-0"
+            data-cy="map-driver-panel-avatar"
+          >
+            @if (employee().photos.driver_avatar_photo; as avatar) {
+              <img upfDefaultImgSrc [src]="avatar.url" [defaultSrc]="avatar.fallback_url" class="avatar" alt="avatar" />
+            }
+          </a>
+
+          <div class="details" data-cy="map-driver-panel-info">
+            <span class="tw-line-clamp-2">
+              <a
+                ngxTippy="{{ employee() | fullName }}"
+                [tippyProps]="{ delay: [750, 100] }"
+                [routerLink]="['/', path.WORKSPACE, path.DRIVERS, driverPath.DETAILS, employee().id]"
+              >
+                {{ employee() | fullName }}
+              </a>
+            </span>
+
+            <small>{{ employee().phone }}</small>
+          </div>
+        </div>
+
+        <div class="tw-flex tw-items-center tw-gap-2 tw-shrink-0">
+          <upf-status-badge [color]="employeeStatusStyling[employee().status]" data-cy="map-driver-panel-status">
+            {{ 'LiveMap.DriverStatus.' + employee().status | translate }}
+          </upf-status-badge>
+
+          <mat-icon class="expand-btn" [ngClass]="{ opened: isOpened }" data-cy="map-driver-panel-toggle">
+            expand_more
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  @if (isOpened) {
+    @if (isOpened) {
+      <section class="panel-content" data-cy="map-driver-panel-body">
+        <mat-divider class="!tw-mt-2.5 !tw-mb-md max-sm:!tw-hidden"></mat-divider>
+
+        <div class="tw-grid tw-gap-2">
+          <div class="tw-text-neutral-granit tw-text-base" data-cy="map-driver-panel-vehicle-title">
+            {{ 'LiveMap.Car' | translate }}
+          </div>
+
+          @if (employee().vehicle; as vehicle) {
+            <div class="panel-info">
+              <div class="data">
+                @if (vehicle.photos?.vehicle_angled_front ?? vehicle.photos?.driver_car_front_photo; as avatar) {
+                  <a
+                    [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, vehicle.id]"
+                    class="tw-shrink-0"
+                    data-cy="map-driver-panel-vehicle-avatar"
+                  >
+                    <img
+                      upfDefaultImgSrc
+                      [src]="avatar.url"
+                      [defaultSrc]="avatar.fallback_url"
+                      class="avatar"
+                      alt="avatar"
+                    />
+                  </a>
+                }
+
+                <div class="details" data-cy="map-driver-panel-vehicle-info">
+                  <span>
+                    <a [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, vehicle.id]">
+                      {{ vehicle.license_plate }}
+                    </a>
+                  </span>
+
+                  <small>{{ vehicle.make }} {{ vehicle.model }}</small>
+                </div>
+              </div>
+
+              <div class="tw-flex tw-items-center tw-gap-2">
+                @if (vehicle.photo_control) {
+                  <upf-map-photo-control-icon
+                    [photoControl]="vehicle.photo_control"
+                    [employeeStatus]="employee().status"
+                  ></upf-map-photo-control-icon>
+                }
+
+                <upf-status-badge data-cy="map-driver-panel-vehicle-licensePlate">
+                  {{ 'Common.Enum.FleetVehicleComfortLevel.' + vehicle.comfort_level | translate }}
+                </upf-status-badge>
+              </div>
+            </div>
+          }
+        </div>
+
+        <mat-divider class="!tw-my-md"></mat-divider>
+
+        <div class="tw-grid tw-grid-cols-[auto_1fr] tw-text-base tw-gap-md">
+          <div class="tw-text-neutral-granit tw-shrink-0" data-cy="map-driver-panel-location">
+            {{ 'LiveMap.LocationTitle' | translate }}
+          </div>
+
+          <div data-cy="map-driver-panel-location-value">
+            {{ currentAddress()?.street || ('LiveMap.UnknownGeolocation' | translate) }}
+          </div>
+
+          <div class="tw-text-neutral-granit w-shrink-0">
+            {{ 'DriverFilters.Title' | translate }}
+          </div>
+
+          <div
+            class="tw-flex tw-items-center tw-cursor-pointer tw-w-fit"
+            [class.tw-text-neutral-granit]="employee().status === employeeStatus.Inactive"
+          >
+            @let driverFilters =
+              employee().order_accepting_methods
+                | driverFilters: employee().is_device_online && !employee().is_driver_in_idle
+                | async;
+
+            @for (filter of driverFilters; track $index) {
+              <span
+                [class.filter-link]="filter.isLink"
+                [attr.data-cy]="'active-filter' + (filter.isLink ? '-link' : '')"
+                (click)="onShowActiveFilters(employee().id, filter.isLink)"
+              >
+                {{ filter.key | translate: { data: filter.data } }}
+              </span>
+
+              <span class="tw-mr-1">
+                {{ $last ? '' : ', ' }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <mat-divider class="!tw-mb-2.5 !tw-mt-md sm:!tw-hidden"></mat-divider>
+
+        @if (orders()?.length && isMobileView()) {
+          <div class="tw-grid tw-gap-md">
+            @for (order of orders(); track order.order_id) {
+              <div
+                [@growVertical]
+                (click)="onSelectRoute(order)"
+                class="tw-p-md tw-shadow-sm tw-rounded-lg tw-grid tw-gap-md"
+              >
+                <div class="tw-flex tw-items-center tw-w-full tw-justify-between">
+                  @let orderStatus = order.status | titlecase;
+
+                  <upf-status-badge [color]="orderStatusStyling[orderStatus]">
+                    {{ 'LiveMap.ActiveOrderStatus.' + orderStatus | translate }}
+                  </upf-status-badge>
+
+                  <div class="tw-flex tw-items-center tw-gap-md">
+                    <div class="tw-text-neutral-granit tw-text-base">
+                      {{ order.pickup_time | seconds2Date }}
+                      {{ order.pickup_time | seconds2Time }}
+                    </div>
+
+                    <button mat-icon-button disableRipple class="!tw-w-6 !tw-h-6 !tw-leading-6">
+                      <mat-icon>chevron_right</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+                <upf-map-route [routePoints]="order.route.route_points"></upf-map-route>
+              </div>
+            }
+          </div>
+
+          <mat-divider class="!tw-my-md"></mat-divider>
+        }
+      </section>
+    }
+  }
+</div>
+
+@if (orders()?.length && !isMobileView() && isOpened) {
+  <mat-accordion class="tw-grid tw-gap-2 tw-p-0.5 max-sm:tw-hidden">
+    @for (order of orders(); track order.order_id) {
+      <mat-expansion-panel
+        #panel
+        [expanded]="$first || openedPanels[order.order_id]"
+        (opened)="onSelectRoute(order)"
+        (closed)="onClosePanel(order.order_id)"
+        (afterCollapse)="onResetRoute()"
+        class="!tw-rounded-lg tw-w-full"
+        [ngClass]="{
+          '!tw-shadow-[0_0_0_2px] !tw-shadow-accent-mint-light': panel.expanded,
+        }"
+      >
+        <mat-expansion-panel-header expandedHeight="56px" collapsedHeight="56px" class="!tw-p-md tw-gap-md">
+          <div class="tw-flex tw-items-center tw-w-full tw-justify-between">
+            @let orderStatus = order.status | titlecase;
+
+            <upf-status-badge [color]="orderStatusStyling[orderStatus]">
+              {{ 'LiveMap.ActiveOrderStatus.' + orderStatus | translate }}
+            </upf-status-badge>
+
+            <div class="tw-text-neutral-granit tw-text-base">
+              {{ order.pickup_time | seconds2Date }}
+              {{ order.pickup_time | seconds2Time }}
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+
+        <div class="tw-grid tw-gap-md">
+          <upf-map-route [routePoints]="order.route.route_points"></upf-map-route>
+
+          <upf-map-route-details [order]="order" (navigateToOrder)="navigateToOrder.emit()"></upf-map-route-details>
+        </div>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+}

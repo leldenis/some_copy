@@ -1,0 +1,31 @@
+<mat-select
+  #rangeSelect
+  data-cy="date-range-select"
+  [formControl]="control"
+  [compareWith]="compareObjects"
+  (blur)="handleMatSelectBlur()"
+  (selectionChange)="onSelectionChange($event)"
+>
+  @for (dateTimeRangeOption of dateTimeRangeOptions; track dateTimeRangeOption) {
+    <mat-option
+      [value]="dateTimeRangeOption.values"
+      [attr.data-cy]="'date-range-option-' + dateTimeRangeOption.cyLabel"
+    >
+      {{ dateTimeRangeOption.label | translate }}
+    </mat-option>
+  }
+
+  <mat-option
+    [value]="customDateTimeRangeOption.values"
+    #customDateTimeRangeMatOption="matOption"
+    data-cy="date-range-option-custom"
+  >
+    <div
+      class="flex-row align-items-center justify-content-between custom-option"
+      (click)="openCustomDateTimeRangeSelectDialog(customDateTimeRangeOption, $event); rangeSelect.close()"
+    >
+      {{ (customDateTimeRangeOption.label | translate) || customDateTimeRangeOption.label }}
+      <mat-icon [svgIcon]="icons.next"></mat-icon>
+    </div>
+  </mat-option>
+</mat-select>

@@ -1,0 +1,60 @@
+@use "mixins" as m;
+
+$transition-options: 0.4s ease-in-out;
+
+:host {
+  @apply tw-overflow-hidden;
+}
+
+.phone-item {
+  @include m.navigation-item();
+  @apply tw-relative;
+
+  &::before {
+    content: '';
+    z-index: -1;
+    transition: left $transition-options, right $transition-options, background-color 0.2s ease-in-out;
+
+    @apply tw-absolute tw-inset-1.5 tw-left-2 tw-right-2 hover:tw-bg-[#398C764D];
+    @apply tw-border tw-border-accent-mint-light tw-rounded-lg;
+  }
+
+  &.opened {
+    .icon-container {
+      padding-inline: 2rem 1rem !important;
+    }
+
+    &::before {
+      @apply tw-left-md tw-right-md;
+    }
+  }
+}
+
+.phone-menu-item {
+  @apply tw-flex tw-items-center tw-justify-between tw-gap-md sm:tw-gap-14;
+}
+
+.phone-menu-btn {
+  @include m.icon-button(40px);
+  @apply tw-bg-neutral-silver tw-rounded tw-w-11;
+}
+
+.shell-menu {
+  @apply tw-text-base tw-text-neutral-graphite;
+}
+
+.panel-header {
+  @apply tw-px-md tw-py-2 tw-border-b tw-border-neutral-silver tw-flex tw-items-center tw-justify-between tw-h-14;
+}
+
+.panel-title {
+  @apply tw-text-tmp tw-leading-6;
+}
+
+.panel-footer {
+  @apply tw-px-md tw-py-3 tw-text-neutral-granit tw-text-sm tw-border-t tw-border-neutral-silver;
+}
+
+.tooltip-icon {
+  @apply tw-w-5 tw-h-5 tw-text-icon tw-text-neutral-granit;
+}

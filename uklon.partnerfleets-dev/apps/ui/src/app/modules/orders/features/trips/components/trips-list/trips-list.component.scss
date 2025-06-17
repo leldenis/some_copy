@@ -1,0 +1,70 @@
+:host {
+  ::ng-deep {
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+}
+
+.panel-header {
+  @apply tw-text-base tw-grid tw-gap-md tw-items-center tw-w-full;
+  @apply tw-pl-md tw-text-neutral-graphite tw-cursor-default;
+  grid-template-columns:
+    minmax(0, 2fr) minmax(0, 1fr) minmax(0, 3fr) repeat(2, minmax(0, 2fr)) repeat(2, minmax(0, 2fr)) minmax(0, 1fr) 52px;
+
+
+  &.main {
+    @apply tw-text-sm tw-text-neutral-smoke tw-h-12;
+  }
+
+  &.canceled {
+    @apply tw-text-neutral-granit;
+  }
+}
+
+.mobile-panel-header {
+  @apply tw-grid tw-gap-2 tw-pl-2 tw-items-center tw-w-full tw-h-14;
+  @apply tw-text-base tw-text-neutral-graphite;
+  grid-template-columns: 2fr 1fr 36px;
+}
+
+.trip-panel {
+  border-radius: 0.25rem !important;
+  @apply tw-shadow-sm #{!important};
+
+  @screen sm {
+    border-radius: 0 !important;
+    @apply tw-shadow-none #{!important};
+    @apply tw-border-t tw-border-neutral-cloud;
+  }
+}
+
+.expand-icon {
+  @apply tw-grid tw-place-items-center tw-h-full sm:tw-h-14 tw-cursor-pointer;
+  @apply sm:tw-h-14 tw-cursor-pointer;
+
+  .mat-icon {
+    @apply tw-transition-transform tw-text-icon tw-w-5 tw-h-5;
+  }
+
+  &.expanded {
+    @apply tw-bg-neutral-silver;
+
+    .mat-icon {
+      @apply tw-rotate-180;
+    }
+  }
+}
+
+.expanded-view {
+  @apply tw-text-neutral-graphite tw-grid tw-gap-x-4 tw-gap-y-2;
+  grid-template-columns: 1fr auto 1fr;
+
+  .title {
+    @apply tw-text-xs tw-text-neutral-granit;
+  }
+
+  .content {
+    @apply tw-text-base;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="tw-hidden sm:tw-flex tw-self-center">
+  @if (totalBalance.amount > 0) {
+    <mat-icon [svgIcon]="icons.financePositive"></mat-icon>
+  }
+  @if (totalBalance.amount < 0) {
+    <mat-icon [svgIcon]="icons.financeNegative"></mat-icon>
+  }
+  @if (!totalBalance.amount) {
+    <mat-icon [svgIcon]="icons.financeNeutral"></mat-icon>
+  }
+</div>
+
+<div class="tw-flex tw-gap-2">
+  <div class="tw-grid tw-gap-2">
+    <span class="tw-text-base">
+      {{ 'CourierFinance.CouriersWallets.TotalWalletsSum' | translate }}
+    </span>
+
+    <span class="tw-text-money tw-font-medium" [ngClass]="{ 'tw-text-accent-coral-light': totalBalance.amount < 0 }">
+      {{ totalBalance.amount / 100 | upfMoney: totalBalance.currency }}
+    </span>
+  </div>
+
+  <div class="tw-relative tw-w-6 tw-flex tw-justify-center">
+    <mat-divider vertical></mat-divider>
+
+    <div class="divider-icon">
+      <mat-icon class="!tw-w-5 !tw-h-5 tw-text-icon">chevron_right</mat-icon>
+    </div>
+  </div>
+
+  <div class="tw-grid tw-gap-2">
+    <span class="tw-text-base">
+      {{ 'DriverBalancesInfo.WithdrawalAmount.Title' | translate }}
+    </span>
+
+    <span
+      class="tw-text-headline tw-text-neutral-granit"
+      [ngClass]="{ 'tw-text-accent-mint-light': withdrawalSum > 0 }"
+    >
+      {{ withdrawalSum | upfMoney: totalBalance.currency }}
+    </span>
+  </div>
+</div>

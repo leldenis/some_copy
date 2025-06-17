@@ -1,0 +1,38 @@
+:host {
+  @apply tw-relative tw-flex tw-items-start tw-gap-md tw-p-3 tw-pl-[19px];
+
+  &:hover > .read-indicator {
+    @apply tw-border-neutral-granit;
+  }
+
+  .notification-border {
+    @apply tw-w-[3px] tw-shrink-0 tw-h-full tw-rounded-r tw-absolute tw-top-0 tw-left-0;
+  }
+
+  .notification-message {
+    @apply tw-text-base tw-leading-[22px];
+    word-break: break-word;
+  }
+
+  .notification-action {
+    @apply tw-underline tw-text-sm tw-leading-5 tw-font-medium tw-cursor-pointer tw-w-fit;
+  }
+
+  .read-indicator {
+    @apply tw-w-7 tw-aspect-square tw-grid tw-place-items-center tw-shrink-0 tw-ml-8;
+    @apply tw-rounded-full tw-transition-colors tw-border tw-border-transparent tw-cursor-pointer;
+    @apply tw-border tw-border-neutral-granit sm:tw-border-transparent;
+
+    &:hover {
+      @apply tw-border-[#F99B58];
+    }
+
+    .dot {
+      @apply tw-inline-block tw-w-2 tw-aspect-square tw-rounded-full tw-bg-[#F99B58];
+    }
+  }
+
+  .pin-icon {
+    @apply tw-w-5 tw-h-5 tw-text-icon tw-shrink-0;
+  }
+}

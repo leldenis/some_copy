@@ -1,0 +1,18 @@
+$label-font-size: 12px;
+$enabled-icon-color: #454754;
+$icon-size: 24px !important;
+$text-color: #222426 !important;
+
+.mat-mdc-paginator {
+  color: $text-color;
+  --mat-paginator-container-text-size: #{$label-font-size};
+
+  .mat-mdc-paginator-navigation-previous {
+    margin-right: $icon-size;
+  }
+
+  .mat-mdc-paginator-icon {
+    --mdc-icon-button-icon-size: #{$icon-size};
+    --mat-paginator-enabled-icon-color: #{$enabled-icon-color};
+  }
+}

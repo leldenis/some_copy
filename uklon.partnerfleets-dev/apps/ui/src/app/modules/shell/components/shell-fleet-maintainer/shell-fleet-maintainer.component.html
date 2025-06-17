@@ -1,0 +1,151 @@
+<div
+  class="phone-item"
+  [ngClass]="{ opened: drawerOpened() }"
+  [matMenuTriggerFor]="maintainerMenu"
+  (click)="reportAnalytics(analyticsEvent.FLEET_MANAGER_PANEL_OPENED)"
+>
+  <div class="icon-container">
+    <mat-icon class="outlined">phone_in_talk</mat-icon>
+  </div>
+
+  <span class="menu-item-name">{{ 'FleetMaintainer.ContactBtn' | translate }}</span>
+</div>
+
+<mat-menu #maintainerMenu yPosition="above" class="shell-menu phone" (closed)="copiedValue.set('')">
+  <div (click)="$event.stopPropagation()" data-cy="fleet-manager-panel">
+    <div class="panel-header">
+      <div class="tw-grid">
+        <b class="panel-title tw-flex tw-items-center tw-gap-2" data-cy="fleet-manager-fullName">
+          {{ maintainer().last_name }} {{ maintainer().first_name }}
+
+          @if (maintainer().reserve) {
+            <mat-icon
+              class="outlined tooltip-icon"
+              data-cy="fleet-manager-tooltip"
+              [ngxTippy]="'FleetMaintainer.ReserveMaintainerTooltip' | translate: { date: absentTill() }"
+            >
+              info
+            </mat-icon>
+          }
+        </b>
+
+        @if (!maintainer().reserve) {
+          <span class="tw-text-neutral-granit">{{ 'FleetMaintainer.Title' | translate }}</span>
+        }
+      </div>
+
+      <button mat-icon-button (click)="onCloseMenu()" data-cy="fleet-manager-panel-close-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="tw-py-5 tw-px-md tw-grid tw-gap-3">
+      <div class="phone-menu-item">
+        <div>
+          <div class="panel-title">{{ 'Account.Details.Phone' | translate }}</div>
+          <span class="tw-leading-5 tw-text-neutral-granit" data-cy="fleet-manager-phone">
+            {{ maintainer().phone }}
+          </span>
+        </div>
+
+        <div class="tw-flex tw-gap-2">
+          <button
+            mat-icon-button
+            class="phone-menu-btn"
+            data-cy="fleet-manager-copy-phone"
+            (click)="onCopy(maintainer().phone, analyticsEvent.FLEET_MANAGER_PANEL_COPY_PHONE)"
+            [ngxTippy]="
+              (maintainer().phone === copiedValue()
+                ? 'ProfileMenu.FleetOption.Actions.Tooltip.Copied'
+                : 'ProfileMenu.FleetOption.Actions.Tooltip.Copy'
+              ) | translate
+            "
+          >
+            <mat-icon [svgIcon]="icons.copyBlack"></mat-icon>
+          </button>
+
+          @if (isMobile) {
+            <a
+              href="tel:{{ maintainer().phone }}"
+              (click)="reportAnalytics(analyticsEvent.FLEET_MANAGER_PANEL_CONTACT_VIA_PHONE_CLICK)"
+            >
+              <button mat-icon-button class="phone-menu-btn">
+                <mat-icon class="outlined">phone_in_talk</mat-icon>
+              </button>
+            </a>
+          }
+        </div>
+      </div>
+
+      @if (maintainer().telegram_phone || maintainer().viber_phone) {
+        <div class="phone-menu-item">
+          <div class="panel-title">{{ 'FleetMaintainer.Messengers' | translate }}</div>
+
+          <div class="tw-flex tw-gap-2">
+            @if (maintainer().telegram_phone) {
+              <a
+                href="tg://resolve?phone={{ maintainer().telegram_phone }}"
+                data-cy="fleet-manager-telegram-btn"
+                (click)="reportAnalytics(analyticsEvent.FLEET_MANAGER_PANEL_CONTACT_VIA_TELEGRAM_CLICK)"
+              >
+                <button mat-icon-button class="phone-menu-btn">
+                  <mat-icon [svgIcon]="icons.telegram"></mat-icon>
+                </button>
+              </a>
+            }
+
+            @if (maintainer().viber_phone && isMobile) {
+              <a
+                href="viber://chat/?number={{ maintainer().viber_phone }}"
+                data-cy="fleet-manager-viber-btn"
+                (click)="reportAnalytics(analyticsEvent.FLEET_MANAGER_PANEL_CONTACT_VIA_VIBER_CLICK)"
+              >
+                <button mat-icon-button class="phone-menu-btn">
+                  <mat-icon [svgIcon]="icons.viber"></mat-icon>
+                </button>
+              </a>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="phone-menu-item">
+        <div>
+          <div class="panel-title">E-mail</div>
+          <span class="tw-leading-5 tw-text-neutral-granit" data-cy="fleet-manager-email">
+            {{ maintainer().email }}
+          </span>
+        </div>
+
+        <div class="tw-flex tw-gap-2">
+          <button
+            mat-icon-button
+            class="phone-menu-btn"
+            data-cy="fleet-manager-copy-email"
+            (click)="onCopy(maintainer().email, analyticsEvent.FLEET_MANAGER_PANEL_COPY_EMAIL)"
+            [ngxTippy]="
+              (maintainer().email === copiedValue()
+                ? 'ProfileMenu.FleetOption.Actions.Tooltip.Copied'
+                : 'ProfileMenu.FleetOption.Actions.Tooltip.Copy'
+              ) | translate
+            "
+          >
+            <mat-icon [svgIcon]="icons.copyBlack"></mat-icon>
+          </button>
+
+          <a
+            href="mailto:{{ maintainer().email }}"
+            data-cy="fleet-manager-email-btn"
+            (click)="reportAnalytics(analyticsEvent.FLEET_MANAGER_PANEL_CONTACT_VIA_EMAIL_CLICK)"
+          >
+            <button mat-icon-button class="phone-menu-btn">
+              <mat-icon class="outlined">mail</mat-icon>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer" data-cy="fleet-manager-workHours">{{ 'FleetMaintainer.WorkHours' | translate }}</div>
+  </div>
+</mat-menu>

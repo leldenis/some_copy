@@ -1,0 +1,26 @@
+<div class="header">
+  <div>{{ data.title | translate }}</div>
+
+  <button mat-icon-button mat-dialog-close data-cy="garage-dialog-approve-close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="tw-p-md tw-pt-2 tw-grid tw-gap-md">
+  <div class="tw-text-tmp tw-text-neutral-smoke" [innerHTML]="data.content | translate"></div>
+
+  <div class="tw-flex tw-justify-between">
+    <button mat-flat-button color="accent" mat-dialog-close data-cy="garage-dialog-approve-cancel-btn">
+      {{ data.cancelBtn | translate }}
+    </button>
+
+    <button
+      mat-flat-button
+      [color]="data.approve ? 'primary' : 'warn'"
+      [mat-dialog-close]="true"
+      data-cy="garage-dialog-approve-ok-btn"
+    >
+      {{ data.okBtn | translate }}
+    </button>
+  </div>
+</div>

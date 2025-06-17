@@ -1,0 +1,8 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow;
+  @apply sm:tw-shadow-sm sm:tw-rounded;
+
+  .cdk-table-sticky {
+    top: 48px !important;
+  }
+}

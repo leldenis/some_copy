@@ -1,0 +1,33 @@
+@mixin set-mat-icon-svg-vars($cssVarsMap) {
+  mat-icon svg {
+    @each $var, $value in $cssVarsMap {
+      #{$var}: $value;
+    }
+  }
+}
+
+// icon_link_rounded.svg
+// --box-color
+// --arrow-color
+// --arrow-opacity
+
+$icon-link-rounded-color-map: (
+  '--fill-box': var(--grey20-color),
+  '--fill-arrow': var(--grey20-color),
+  '--opacity-arrow': 0.6,
+  '--opacity-box': 1,
+);
+
+.i-link-rounded-wrap {
+  @include set-mat-icon-svg-vars($icon-link-rounded-color-map);
+}
+
+.mat-icon.outlined {
+  font-family: 'Material Symbols Outlined', sans-serif;
+}
+
+.mat-icon.icon-size-md {
+  width: 20px !important;
+  height: 20px !important;
+  @apply tw-flex-shrink-0 tw-text-icon;
+}

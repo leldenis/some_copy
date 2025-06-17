@@ -1,0 +1,33 @@
+<div
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  class="tw-w-full tw-flex tw-flex-col tw-min-h-screen tw-p-4 wrapper tw-overflow-auto"
+>
+  <div class="tw-flex tw-flex-col tw-grow">
+    @if (fleetId$ | async; as fleetId) {
+      <mat-tab-group
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedIndexChange)="handleFragmentChange($event)"
+        animationDuration="400ms"
+        color="primary"
+        class="tw-grow !tw-touch-pan-y mat-tab-group-wrap"
+        data-cy="couriers-tabs"
+      >
+        <mat-tab labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-1 sm:tw-w-auto">
+          <span *matTabLabel [attr.data-cy]="'tab-label-Couriers'">
+            {{ 'Couriers.Tabs.Couriers' | translate }}
+          </span>
+
+          <ng-template matTabContent>
+            <upf-couriers-container
+              class="tw-flex tw-grow tw-flex-col tw-w-full tw-mt-md"
+              [fleetId]="fleetId$ | async"
+            ></upf-couriers-container>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    }
+  </div>
+</div>

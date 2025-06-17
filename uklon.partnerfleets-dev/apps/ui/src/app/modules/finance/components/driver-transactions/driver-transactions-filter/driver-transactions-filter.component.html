@@ -1,0 +1,21 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+  (filtersReset)="filtersReset.emit()"
+>
+  <form [formGroup]="filtersForm" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="date"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <upf-drivers-autocomplete
+      [fleetId]="fleetId"
+      [withAllDriversOption]="false"
+      formControlName="driverId"
+    ></upf-drivers-autocomplete>
+  </form>
+</upf-filters-container>

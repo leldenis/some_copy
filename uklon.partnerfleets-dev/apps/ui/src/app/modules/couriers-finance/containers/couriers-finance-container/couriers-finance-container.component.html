@@ -1,0 +1,50 @@
+@if (role$ | async; as role) {
+  <div
+    infiniteScroll
+    [scrollWindow]="false"
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    class="tw-w-full tw-flex tw-flex-col tw-overflow-auto tw-p-md"
+  >
+    @if (fleet$ | async; as fleet) {
+      <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white">
+        <mat-tab-group
+          color="primary"
+          [selectedIndex]="selectedTabIndex$ | async"
+          (selectedIndexChange)="handleFragmentChange($event)"
+          class="tw-grow"
+          data-cy="finance-tabs"
+        >
+          @if (role === fleetRoleRef.OWNER) {
+            <mat-tab>
+              <span *matTabLabel [attr.data-cy]="'finance-tabs-fleet-wallet'">
+                {{ 'Finance.Tabs.FleetWallet' | translate }}
+              </span>
+              <upf-fleet-wallet [fleet]="fleet" [filterKey]="filterKey"></upf-fleet-wallet>
+            </mat-tab>
+          }
+
+          <mat-tab>
+            <span *matTabLabel>
+              {{ 'CourierFinance.Tabs.CouriersWallets' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              <upf-couriers-wallets-container></upf-couriers-wallets-container>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab>
+            <span *matTabLabel>
+              {{ 'CourierFinance.Tabs.CourierTransactions' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              <upf-courier-transactions-container [fleetId]="fleet.id"></upf-courier-transactions-container>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    }
+  </div>
+}

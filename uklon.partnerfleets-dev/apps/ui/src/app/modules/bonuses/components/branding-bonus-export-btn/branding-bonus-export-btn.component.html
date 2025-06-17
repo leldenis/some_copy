@@ -1,0 +1,12 @@
+<upf-loader-button
+  class="tw-w-full sm:!tw-py-1"
+  [disabled]="disabled()"
+  [loading]="loading()"
+  [dataCY]="'bonus-programs-export-button'"
+  (handlerClick)="exportFile()"
+>
+  <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+    <mat-icon [svgIcon]="icons.csv"></mat-icon>
+    <span>{{ 'Common.Buttons.Export.CSV' | translate }}</span>
+  </div>
+</upf-loader-button>

@@ -1,0 +1,22 @@
+@use '../functions';
+
+@mixin upfFilterFormGroup {
+  .upf-filter-form-group {
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    grid-template-rows: repeat(auto-fit, 3.5rem);
+    gap: functions.remify(4);
+    align-items: center;
+
+    .upf-filter-form-field {
+      width: 300px;
+
+      &.no-errors {
+        .mat-form-field-wrapper {
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

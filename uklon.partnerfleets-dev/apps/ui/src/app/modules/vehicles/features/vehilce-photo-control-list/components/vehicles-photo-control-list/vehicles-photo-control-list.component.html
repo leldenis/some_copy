@@ -1,0 +1,215 @@
+@let isMobileView = isMobileView$ | async;
+<div class="sm:tw-shadow-sm tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    <div class="panel-header main">
+      <div>{{ 'PhotoControl.TicketsList.LicensePlate' | translate }}</div>
+      <div>{{ 'PhotoControl.TicketsList.Vehicle' | translate }}</div>
+      <div>{{ 'PhotoControl.TicketsList.Reason' | translate }}</div>
+      <div>{{ 'PhotoControl.TicketsList.Deadline' | translate }}</div>
+      <div>{{ 'PhotoControl.TicketsList.RequiredPhotos' | translate }}</div>
+      <div>{{ 'PhotoControl.TicketsList.Status' | translate }}</div>
+      <div></div>
+    </div>
+
+    @for (ticket of tickets; track ticket.id) {
+      @let deadline = ticket.deadline_to_send | photoControlDeadlineMessage;
+
+      <mat-expansion-panel
+        [disabled]="!isMobileView"
+        #panel
+        hideToggle
+        class="data-panel"
+        [attr.data-cy]="'row-' + ticket.license_plate"
+      >
+        <mat-expansion-panel-header class="!tw-p-0 tw-cursor-default" expandedHeight="56px" collapsedHeight="56px">
+          <ng-container
+            [ngTemplateOutlet]="isMobileView ? mobilePanel : desktopPanel"
+            [ngTemplateOutletContext]="{ $implicit: ticket }"
+          ></ng-container>
+
+          <ng-template #mobilePanel let-ticket>
+            <div class="mobile-panel-header">
+              <div class="tw-grid tw-gap-1">
+                <a
+                  [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, ticket.vehicle_id]"
+                  class="tw-font-medium hover:sm:tw-underline tw-w-fit tw-flex tw-items-end tw-gap-1.5"
+                >
+                  <span>{{ ticket.license_plate }}</span>
+
+                  @if (ticket.vehicle_status.value === blockedStatus.BLOCKED) {
+                    <mat-icon class="blocked-icon" [ngxTippy]="'BlockedList.Blocked' | translate">
+                      outlined_flag
+                    </mat-icon>
+                  }
+                </a>
+
+                <div class="tw-text-sm">{{ ticket.make }} {{ ticket.model }}</div>
+              </div>
+
+              <div class="tw-flex tw-flex-col tw-items-end tw-gap-1">
+                <upf-status-badge [color]="statusColor[ticket.status]">
+                  {{ 'PhotoControl.TicketStatus.' + ticket.status | translate }}
+                </upf-status-badge>
+
+                @if (
+                  ticket.status !== ticketStatus.APPROVED &&
+                  ticket.status !== ticketStatus.REJECTED &&
+                  ticket.deadline_to_send
+                ) {
+                  <div
+                    class="tw-text-xs tw-text-neutral-granit tw-whitespace-nowrap"
+                    [ngClass]="{
+                      'tw-text-accent-coral-light': deadline.passedDeadline,
+                    }"
+                  >
+                    {{ deadline.shortTitle | translate: { till: deadline.till, days: deadline.days } }}
+                  </div>
+                }
+              </div>
+
+              <div class="expand-icon" [ngClass]="{ expanded: panel.expanded }">
+                <mat-icon>expand_more</mat-icon>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #desktopPanel let-ticket>
+            <div class="panel-header">
+              <a
+                [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, ticket.vehicle_id]"
+                class="tw-font-medium hover:sm:tw-underline tw-w-fit tw-flex tw-items-end tw-gap-1.5"
+              >
+                <span [attr.data-cy]="ticket.license_plate + '-license-plate-cell'">{{ ticket.license_plate }}</span>
+
+                @if (ticket.vehicle_status.value === blockedStatus.BLOCKED) {
+                  <mat-icon class="blocked-icon" [ngxTippy]="'BlockedList.Blocked' | translate">outlined_flag</mat-icon>
+                }
+              </a>
+
+              <div [attr.data-cy]="ticket.license_plate + '-vehicle-cell'">
+                <div>{{ ticket.make }} {{ ticket.model }}</div>
+                <div class="tw-text-sm tw-text-neutral-granit">{{ ticket.color }} • {{ ticket.production_year }}</div>
+              </div>
+
+              <div class="line-clamp-2" [attr.data-cy]="ticket.license_plate + '-reasons-cell'">
+                @for (item of ticket?.reasons; track $index) {
+                  {{ ('PhotoControl.TicketsList.Reasons.' + item | translate) + ($last ? '' : ', ') }}
+                }
+              </div>
+
+              <div
+                [ngClass]="{
+                  'tw-text-accent-coral-light': deadline.passedDeadline,
+                }"
+                [attr.data-cy]="ticket.license_plate + '-deadline-cell'"
+              >
+                @if (
+                  ticket.status !== ticketStatus.APPROVED &&
+                  ticket.status !== ticketStatus.REJECTED &&
+                  ticket.deadline_to_send
+                ) {
+                  {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+                } @else {
+                  <span class="tw-text-neutral-graphite">-</span>
+                }
+              </div>
+
+              <div class="line-clamp-2" [attr.data-cy]="ticket.license_plate + '-pictures-type-cell'">
+                @for (type of ticket.picture_types; track $index) {
+                  <span>
+                    {{ ('Vehicles.Details.Photos.Categories.' + type | translate) + ($last ? '' : ', ') }}
+                  </span>
+                }
+              </div>
+
+              <upf-status-badge
+                [color]="statusColor[ticket.status]"
+                [attr.data-cy]="ticket.license_plate + '-status-cell'"
+              >
+                {{ 'PhotoControl.TicketStatus.' + ticket.status | translate }}
+              </upf-status-badge>
+
+              <div class="tw-flex tw-items-center tw-justify-center">
+                @if (ticket.status === ticketStatus.DRAFT || ticket.status === ticketStatus.CLARIFICATION) {
+                  <a
+                    class="tw-w-fit tw-flex tw-text-accent-mint-light tw-cursor-pointer"
+                    (click)="navigateToPhotoControl(ticket.id, ticket.vehicle_id)"
+                    [ngClass]="{ '!tw-text-neutral-granit': isDesktop }"
+                    [ngxTippy]="isDesktop ? ('PhotoControl.Panel.DesktopTooltip' | translate) : null"
+                  >
+                    <mat-icon class="tw-text-current !tw-w-5 !tw-h-5 tw-text-xl">open_in_new</mat-icon>
+                  </a>
+                }
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel-header>
+
+        <div class="expanded-view">
+          @if (ticket?.reasons?.length > 0) {
+            <div class="line-clamp-2">
+              <div class="title">
+                {{ 'PhotoControl.TicketsList.Reason' | translate }}
+              </div>
+
+              <div class="description">
+                @for (item of ticket?.reasons; track $index) {
+                  {{ ('PhotoControl.TicketsList.Reasons.' + item | translate) + ($last ? '' : ', ') }}
+                }
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          <div>
+            <div class="title">
+              {{ 'PhotoControl.TicketsList.Deadline' | translate }}
+            </div>
+            <div
+              [ngClass]="{
+                'tw-text-accent-coral-light': deadline.passedDeadline,
+              }"
+              class="description"
+            >
+              @if (
+                ticket.status !== ticketStatus.APPROVED &&
+                ticket.status !== ticketStatus.REJECTED &&
+                ticket.deadline_to_send
+              ) {
+                {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+              } @else {
+                <span class="tw-text-neutral-graphite">-</span>
+              }
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div>
+            <div class="title">
+              {{ 'PhotoControl.TicketsList.RequiredPhotos' | translate }}
+            </div>
+            <div class="description">
+              @for (type of ticket.picture_types; track type) {
+                <span>{{ 'Vehicles.Details.Photos.Categories.' + type | translate }}{{ $last ? '' : ', ' }}</span>
+              }
+            </div>
+          </div>
+
+          @if (ticket.status === ticketStatus.DRAFT || ticket.status === ticketStatus.CLARIFICATION) {
+            <a
+              class="tw-text-base tw-text-accent-mint-light tw-flex tw-items-center tw-gap-2.5"
+              (click)="navigateToPhotoControl(ticket.id, ticket.vehicle_id)"
+            >
+              <mat-icon class="!tw-w-4 !tw-h-4 tw-text-tmp tw-leading-4">open_in_new</mat-icon>
+              <span class="tw-leading-4">
+                {{ 'PhotoControl.Panel.PhotoControlButton' | translate }}
+              </span>
+            </a>
+          }
+        </div>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>

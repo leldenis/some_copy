@@ -1,0 +1,56 @@
+@use "sass:map";
+
+$min-width: 300px;
+$preferred-width: 468px;
+$max-width: calc(100vw - 32px);
+
+$notification-types: (
+  "FleetCabinetUpdate": (background: "#F5FCFA", border: "#33CCA1"),
+  "ImportantInformation": (background: "#EDFCFF", border: "#1BB0CE"),
+  "AcceptanceRequired": (background: "#FFF7DC", border: "#F99B58"),
+);
+
+:host {
+  --background-color: #F5FCFA;
+  --border-color: #33CCA1;
+
+
+  @apply tw-block tw-relative tw-overflow-hidden tw-mb-3 tw-px-md tw-py-3;
+  @apply tw-text-neutral-graphite tw-pointer-events-auto tw-cursor-pointer tw-text-base;
+  width: clamp($min-width, $preferred-width, $max-width);
+  background-color: var(--background-color);
+  background-image: unset;
+  box-shadow: 0 2px 10px 0 #0000001F;
+  border-left: 3px solid var(--border-color);
+
+  &:last-of-type {
+    @apply tw-mb-0;
+  }
+
+
+  @each $type, $color in $notification-types {
+    &.#{$type} {
+      --background-color: #{map.get($color, "background")};
+      --border-color: #{map.get($color, "border")};
+    }
+  }
+
+  .icon {
+    @apply tw-grid tw-place-items-center tw-shrink-0 ;
+    @apply tw-w-8 tw-h-8 sm:tw-w-[46px] sm:tw-h-[46px] tw-rounded-full tw-text-white;
+    background-color: var(--border-color);
+
+    .mat-icon {
+      @apply tw-text-icon tw-w-5 tw-h-5 tw-leading-5
+    }
+  }
+}
+
+.custom-toast-container {
+  @apply tw-grid tw-gap-md tw-items-center tw-grid-cols-[auto_24px];
+
+  .custom-toast-message {
+    @apply tw-grid tw-gap-md tw-items-center tw-grid-cols-[36px_auto] sm:tw-grid-cols-[46px_auto];
+  }
+}
+

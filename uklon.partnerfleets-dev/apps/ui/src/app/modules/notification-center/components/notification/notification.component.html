@@ -1,0 +1,65 @@
+<ng-container *upfLet="customNotificationStyling[notification.type] as customStyling">
+  <div
+    data-cy="notification-border"
+    class="notification-border {{ isCustom ? customStyling?.mainColor : notificationBorder[notification.importance] }}"
+  ></div>
+
+  <upf-notification-avatar
+    data-cy="notification-avatar"
+    [notificationType]="notification.type"
+    [styling]="customStyling"
+  ></upf-notification-avatar>
+
+  <div class="tw-grid tw-gap-1 tw-grow">
+    <div
+      data-cy="notification-message"
+      [innerHTML]="notification.message | replaceNbsp | uklSafe: 'html'"
+      class="notification-message"
+    ></div>
+
+    @if (isCustom) {
+      <span
+        data-cy="notification-acknowledge-btn"
+        class="notification-action {{ customStyling?.textColor }}"
+        (click)="viewNotificationDetails.emit(notification)"
+      >
+        {{ 'Common.Buttons.B_Read' | translate }}
+      </span>
+    } @else {
+      <p class="tw-font-medium tw-text-sm tw-text-neutral-smoke tw-leading-5">
+        @if (notification.type | notificationAuthor; as author) {
+          <span data-cy="notification-author">{{ author }} &bull;</span>
+        }
+
+        @if (!isCustom) {
+          <span data-cy="notification-sent-at">
+            {{ notification.sent_at * 1000 | date: 'HH:mm' }}
+          </span>
+        }
+      </p>
+    }
+  </div>
+
+  @if (isPinned) {
+    <mat-icon data-cy="notification-pin-icon" class="outlined pin-icon {{ customStyling?.textColor }}">keep</mat-icon>
+  } @else {
+    <div
+      data-cy="notification-read-marker"
+      class="read-indicator"
+      [ngxTippy]="
+        isMobileView
+          ? null
+          : ((notification.is_read
+              ? 'NotificationCenter.Indicator.MarkAsUnread'
+              : 'NotificationCenter.Indicator.MarkAsRead'
+            ) | translate)
+      "
+      [tippyProps]="{ placement: 'left' }"
+      (click)="readStateChange.emit(notification)"
+    >
+      @if (!notification.is_read) {
+        <div class="dot" data-cy="notification-read-marker-dot"></div>
+      }
+    </div>
+  }
+</ng-container>

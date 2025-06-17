@@ -1,0 +1,32 @@
+<div class="trips">
+  @let orders = orders$ | async;
+  @let error = error$ | async;
+
+  <div class="tw-flex tw-items-center tw-justify-between tw-gap-24">
+    <upf-trips-filter
+      (filtersChange)="onFiltersChange($event)"
+      [disableCSVButton]="!orders?.data?.length"
+      [isDownloading]="isDownloading$ | async"
+      (exportCsv)="handleCsvExport()"
+      [fleetId]="fleetId"
+      class="tw-w-full"
+    ></upf-trips-filter>
+  </div>
+
+  <upf-what-is-merchant></upf-what-is-merchant>
+
+  @if (orders) {
+    @if (orders?.data.length) {
+      <upf-trips-list
+        [orders]="orders.data"
+        [isLoaded]="orders.status === 'done'"
+        (cdkScrolled)="handleScrolled(orders)"
+        (navigatedToOrder)="reportUserRole(analyticsEvents.ORDERS_NAVIGATE_TO_ORDER)"
+      ></upf-trips-list>
+    } @else {
+      <upf-empty-state [state]="error ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"></upf-empty-state>
+    }
+  } @else {
+    <upf-empty-state [state]="error ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"></upf-empty-state>
+  }
+</div>

@@ -1,0 +1,29 @@
+:host {
+  ::ng-deep {
+    .btn-wrap {
+      .mdc-button__label {
+        font-size: 12px;
+      }
+    }
+
+    @screen sm {
+      .btn-wrap {
+        .mdc-button__label {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.text-title {
+  @apply tw-text-neutral-graphite tw-font-medium;
+}
+
+.info-link {
+  @apply tw-flex tw-items-center tw-text-accent-mint-light tw-text-base tw-gap-2;
+
+  .mat-icon {
+    @apply tw-text-tmp tw-w-4 tw-h-4 tw-leading-4;
+  }
+}

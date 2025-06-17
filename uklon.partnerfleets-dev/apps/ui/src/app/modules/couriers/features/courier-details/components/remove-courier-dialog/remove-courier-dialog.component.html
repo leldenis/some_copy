@@ -1,0 +1,29 @@
+<div class="tw-flex tw-justify-between tw-items-center title">
+  <div class="tw-text-accent-coral-light">
+    {{ 'Modals.RemoveCourierFromFleet.Title' | translate }}
+  </div>
+
+  <button mat-icon-button (click)="handleCancelClick()">
+    <mat-icon class="!tw-align-sub">close</mat-icon>
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="tw-flex tw-flex-col content">
+  <div class="tw-text-base">
+    {{ 'Modals.RemoveCourierFromFleet.Description' | translate: { '0': data.placeholder } }}
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="footer">
+  <button mat-flat-button color="accent" (click)="handleCancelClick()">
+    {{ 'Common.Buttons.B_Cancel' | translate }}
+  </button>
+
+  <button mat-flat-button color="warn" (click)="handleAcceptClick()">
+    {{ 'Common.Buttons.B_Confirm' | translate }}
+  </button>
+</div>

@@ -1,0 +1,90 @@
+<div class="tw-mt-md tw-flex tw-gap-16">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    (filtersReset)="reportFiltersChange()"
+    class="tw-w-full"
+  >
+    <form [formGroup]="filtersForm" class="tw-grid tw-gap-md sm:tw-grid-cols-5">
+      <mat-form-field floatLabel="always" data-cy="trips-period-filter">
+        <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+        <upf-date-time-range-control formControlName="dateRange" [withDefaultTime]="true"></upf-date-time-range-control>
+      </mat-form-field>
+
+      <upf-drivers-autocomplete [fleetId]="fleetId" formControlName="driverId"></upf-drivers-autocomplete>
+
+      <mat-form-field>
+        <mat-label>
+          {{ 'Common.Filters.Status.Caption' | translate }}
+        </mat-label>
+
+        <mat-select data-cy="status-control" formControlName="status">
+          <mat-option [value]="''">
+            {{ 'Orders.Trips.Filter.OrderStatus.all' | translate }}
+          </mat-option>
+
+          @for (status of orderStatusList; track status) {
+            <mat-option data-cy="status-item" [value]="status">
+              {{ 'Orders.Trips.Filter.OrderStatus.' + status | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+        </mat-label>
+
+        <input
+          data-cy="license-plate-control"
+          matInput
+          autocomplete="off"
+          formControlName="licencePlate"
+          placeholder="{{ 'Common.Filters.LicencePlate.Placeholder' | translate }}"
+        />
+
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>
+          {{ 'Orders.Trips.Filter.ProductType' | translate }}
+        </mat-label>
+
+        <mat-select data-cy="product-type-control" formControlName="productType">
+          <mat-option [value]="''">
+            {{ 'Common.ProductTypes.all' | translate }}
+          </mat-option>
+
+          @for (productType of productTypeList; track productType) {
+            <mat-option data-cy="product-type-item" [value]="productType">
+              {{ 'Common.ProductTypes.' + (productType | normalizeString) | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <ng-template #actionBtn upfFiltersActionButton>
+        <upf-loader-button
+          class="tw-w-full sm:!tw-py-1"
+          [disabled]="disableCSVButton"
+          [loading]="isDownloading"
+          (handlerClick)="onExportCsv()"
+        >
+          <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center" data-cy="orders-list-upload-csv">
+            <mat-icon [svgIcon]="icons.csv"></mat-icon>
+            <span>{{ 'Common.Buttons.Export.CSV' | translate }}</span>
+          </div>
+        </upf-loader-button>
+      </ng-template>
+    </form>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block sm:tw-min-w-[140px]">
+    <ng-container [ngTemplateOutlet]="actionBtn"></ng-container>
+  </div>
+</div>

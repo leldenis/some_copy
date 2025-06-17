@@ -1,0 +1,51 @@
+<div class="tw-flex tw-flex-col tw-gap-md" data-cy="additional-options">
+  <div class="tw-font-medium tw-text-heading sm:tw-my-1">
+    {{ 'Drivers.Drivers.Details.DriverRideCondition.Title' | translate }}
+  </div>
+
+  <div class="tw-grid tw-gap-4">
+    @if (driverRideConditionOn.length > 0 || driverRideConditionOff.length > 0) {
+      @if (driverRideConditionOn.length > 0) {
+        <div class="tw-grid tw-gap-2" data-cy="enabled-ride-conditions">
+          <div class="tw-text-base tw-text-neutral-granit">
+            {{ 'Drivers.Drivers.Details.DriverRideCondition.AvailableSectionTitle' | translate }}
+          </div>
+
+          <div class="tw-flex tw-flex-wrap tw-gap-2 tw-col-span-12">
+            <ng-container *ngTemplateOutlet="conditionsTpl; context: { list: driverRideConditionOn }"></ng-container>
+          </div>
+        </div>
+      }
+
+      @if (driverRideConditionOff.length) {
+        <div class="tw-grid tw-gap-2" data-cy="disabled-ride-conditions">
+          <div class="tw-text-base tw-text-neutral-granit">
+            {{ 'Drivers.Drivers.Details.DriverRideCondition.NotAvailableSectionTitle' | translate }}
+          </div>
+
+          <div class="tw-flex tw-flex-wrap tw-gap-2 tw-col-span-12">
+            <ng-container
+              *ngTemplateOutlet="conditionsTpl; context: { list: driverRideConditionOff, disabled: true }"
+            ></ng-container>
+          </div>
+        </div>
+      }
+    } @else {
+      <span class="tw-text-neutral-granit tw-text-tmp">
+        {{ 'Drivers.Drivers.Details.DriverRideCondition.EmptyState' | translate }}
+      </span>
+    }
+  </div>
+</div>
+
+<ng-template let-list="list" let-disabled="disabled" #conditionsTpl>
+  @if (list?.length > 0) {
+    @for (item of list; track item.id) {
+      <div class="condition-badge" data-cy="condition-badge" [class.disabled]="disabled">
+        {{ 'Drivers.Drivers.Details.DriverRideCondition.Options.' + (item?.code | titlecase) | translate }}
+      </div>
+    }
+  } @else {
+    {{ 'EmptyStates.NoData.Title' | translate }}
+  }
+</ng-template>

@@ -1,0 +1,15 @@
+<div class="tw-flex tw-grow tw-items-end tw-justify-items-stretch max-sm:!tw-hidden">
+  <button mat-flat-button color="accent" class="tw-w-full warn" (click)="remove.emit()">
+    {{ btnName }}
+  </button>
+</div>
+
+<div class="tw-flex tw-flex-col tw-gap-md sm:tw-hidden">
+  <div class="tw-flex tw-items-center tw-justify-between">
+    <span>{{ btnName }}</span>
+
+    <button mat-icon-button (click)="remove.emit()">
+      <mat-icon class="tw-text-accent-coral-light outlined tw-text-xl">delete_outline</mat-icon>
+    </button>
+  </div>
+</div>

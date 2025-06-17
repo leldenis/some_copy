@@ -1,0 +1,15 @@
+:host {
+  @apply tw-text-neutral-graphite tw-flex tw-items-center tw-gap-md;
+}
+
+.mat-icon {
+  @apply tw-w-10 tw-h-10;
+
+
+}
+
+.divider-icon {
+  @apply tw-w-6 tw-h-6 tw-rounded-full tw-border-neutral-cloud tw-border tw-text-neutral-smoke;
+  @apply tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-bg-white;
+  @apply tw-grid tw-place-content-center;
+}

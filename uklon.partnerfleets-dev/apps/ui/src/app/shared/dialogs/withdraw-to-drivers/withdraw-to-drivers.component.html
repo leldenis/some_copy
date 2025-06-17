@@ -1,0 +1,45 @@
+<div data-cy="withdraw-to-drivers-modal" class="withdraw-to-drivers">
+  <div class="flex-row justify-content-between align-items-center">
+    <div class="withdraw-to-drivers__title">
+      {{ 'Modals.WithdrawToDrivers.Title' | translate }}
+    </div>
+
+    <button data-cy="close-modal" mat-icon-button (click)="onCancelClick()">
+      <mat-icon [svgIcon]="icons.close"></mat-icon>
+    </button>
+  </div>
+
+  <div class="flex-row justify-content-center">
+    <img src="/assets/icons/icon_withdraw_fleet.svg" class="withdraw-fleet-img" alt="icon withdraw" />
+  </div>
+
+  <div class="withdraw-to-drivers__description">
+    {{ 'Modals.WithdrawToDrivers.Description1' | translate }}
+    <span class="amount">{{ amount / 100 | upfMoney: data?.currency }}</span>
+    {{
+      (data.isCourier ? 'Modals.WithdrawToDrivers.CouriersDescription2' : 'Modals.WithdrawToDrivers.Description2')
+        | translate
+    }}
+  </div>
+
+  <div class="withdraw-to-drivers__list flex-row flex-wrap">
+    @for (change of changes; track change) {
+      <div class="driver-label" [attr.data-cy]="'driver-id-' + change.driver.driver_id">
+        {{ change.driver.last_name }} {{ change.driver.first_name }}
+        <span class="amount">
+          {{ change.amount / 100 | upfMoney: data?.currency }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="flex-row align-items-center justify-content-between withdraw-to-drivers__actions">
+    <button data-cy="continue-btn" mat-flat-button color="accent" (click)="onCancelClick()">
+      {{ 'Modals.WithdrawToDrivers.Cancel' | translate }}
+    </button>
+
+    <button data-cy="transfer-btn" mat-flat-button color="primary" (click)="onAcceptClick()">
+      {{ 'Modals.WithdrawToDrivers.TransferMoney' | translate }}
+    </button>
+  </div>
+</div>

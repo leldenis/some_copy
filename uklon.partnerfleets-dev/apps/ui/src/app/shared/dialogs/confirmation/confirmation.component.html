@@ -1,0 +1,41 @@
+<div
+  data-cy="confirmation-modal"
+  class="tw-p-md tw-grid tw-text-neutral-graphite"
+  [ngClass]="{
+    'tw-gap-4': confirmationData.content,
+    'tw-gap-12': !confirmationData.content,
+  }"
+>
+  <div class="tw-flex tw-justify-between tw-items-center tw-p-0">
+    <div class="tw-text-tmp" data-cy="confirmation-title">
+      {{ confirmationData.title | translate }}
+    </div>
+
+    <button
+      data-cy="close-modal"
+      class="!tw-absolute tw-top-1.5 tw-right-1.5"
+      mat-icon-button
+      (click)="onCancelClick()"
+    >
+      <mat-icon [svgIcon]="icons.close"></mat-icon>
+    </button>
+  </div>
+
+  @if (confirmationData.content) {
+    <mat-divider></mat-divider>
+    <div>
+      {{ confirmationData.content | translate }}
+    </div>
+    <mat-divider></mat-divider>
+  }
+
+  <div class="tw-flex tw-items-center tw-justify-between">
+    <button data-cy="decline-btn" mat-flat-button color="accent" class="col-4" (click)="onCancelClick()">
+      {{ confirmationData.declineBtn | translate }}
+    </button>
+
+    <button data-cy="accept-btn" mat-flat-button color="warn" class="col-4" (click)="onAcceptClick()">
+      {{ confirmationData.acceptBtn | translate }}
+    </button>
+  </div>
+</div>

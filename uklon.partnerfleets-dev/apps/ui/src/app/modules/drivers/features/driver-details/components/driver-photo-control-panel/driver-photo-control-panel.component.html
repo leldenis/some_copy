@@ -1,0 +1,107 @@
+<ng-container *upfLet="status() | panelStyling: photoControl()?.deadline_to_send as styling">
+  <upf-info-panel class="!tw-grid" [hideToggle]="!showPhotoControlReasons()" [expanded]="false" [color]="styling.color">
+    <ng-template upfInfoPanelIcon>
+      <mat-icon class="outlined">photo_camera</mat-icon>
+    </ng-template>
+
+    <ng-template upfInfoPanelTitle>
+      @if (status() !== ticketStatus.CLARIFICATION) {
+        {{ 'PhotoControl.Panel.Title' | translate }}
+      } @else {
+        {{ 'PhotoControl.Panel.ClarificationTitle' | translate }}
+      }
+    </ng-template>
+
+    @if ((!photoControl()?.block_immediately && photoControl()?.deadline_to_send) || hasImplicitStatuses()) {
+      <ng-template upfInfoPanelSubtitle>
+        @if (hasImplicitStatuses()) {
+          <span data-cy="driver-photo-control-panel-status">
+            {{ 'PhotoControl.TicketStatus.' + status() | translate }}
+          </span>
+        } @else {
+          <ng-container *upfLet="photoControl().deadline_to_send | photoControlDeadlineMessage as deadline">
+            <span data-cy="photo-control-deadline-msg">
+              {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+            </span>
+          </ng-container>
+        }
+      </ng-template>
+    }
+
+    @if (showPhotoControlReasons()) {
+      <div class="tw-grid tw-gap-2 -tw-ml-7 tw-overflow-hidden">
+        <div class="tw-pl-7 tw-grid">
+          @if (status() === ticketStatus.DRAFT && driverPhotoControl()?.reasons?.length > 0) {
+            <div>
+              <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.Reason' | translate }}:</span>
+              <span data-cy="photo-control-reason">
+                {{ 'DriverPhotoControl.TicketsList.Reasons.' + driverPhotoControl().reasons[0] | translate }}
+              </span>
+            </div>
+
+            @if (driverPhotoControl()?.reason_comment?.length > 0) {
+              <div class="tw-break-all">
+                <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.CustomComment' | translate }}:</span>
+                {{ driverPhotoControl().reason_comment }}
+              </div>
+            }
+          }
+
+          <div class="tw-mt-1" data-cy="photo-control-comment">
+            @if (status() === ticketStatus.CLARIFICATION) {
+              <div class="tw-mb-1">
+                @if (photoControlReason()?.comment) {
+                  <div>
+                    <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.Reason' | translate }}:</span>
+                    <span data-cy="photo-control-reason">
+                      {{ 'DriverPhotoControl.ClarificationReason.' + photoControlReason().comment | translate }}:
+                    </span>
+                  </div>
+
+                  @if (photoControlReason()?.clarification_details?.comment) {
+                    <div class="tw-break-all">
+                      <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.CustomComment' | translate }}:</span>
+                      {{ photoControlReason().clarification_details.comment }}
+                    </div>
+                  }
+                }
+              </div>
+            }
+
+            @if (status() === ticketStatus.REJECTED) {
+              {{ 'DriverPhotoControl.RejectionReason.' + photoControlReason()?.comment | translate }}
+              {{ 'PhotoControl.Panel.RejectedMessage' | translate }}
+            } @else {
+              {{ 'DriverPhotoControl.Panel.InstructionMessage' | translate }}
+            }
+          </div>
+        </div>
+
+        @if (status() !== ticketStatus.REJECTED) {
+          <ul class="tw-text-neutral-smoke tw-grid tw-gap-1" data-cy="photo-control-picture-types">
+            @for (type of photoControl().picture_types; track $index) {
+              <li
+                class="tw-flex tw-items-center tw-gap-2 tw-text-sm"
+                [attr.data-cy]="'photo-control-picture-' + $index"
+              >
+                <upf-dot-marker-icon [className]="styling.iconColor" />
+
+                {{ 'Common.PhotoTypeFull.' + type | translate }}
+              </li>
+            }
+          </ul>
+
+          <button
+            mat-flat-button
+            color="primary"
+            class="tw-w-full"
+            (click)="goToPhotoControl()"
+            data-cy="photo-control-btn"
+          >
+            {{ 'PhotoControl.Panel.PhotoControlButton' | translate }}
+          </button>
+        }
+      </div>
+    }
+  </upf-info-panel>
+</ng-container>

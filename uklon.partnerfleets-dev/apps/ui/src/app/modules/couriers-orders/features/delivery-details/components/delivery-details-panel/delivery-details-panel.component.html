@@ -1,0 +1,112 @@
+<div class="panel-header" (click)="isOpened = !isOpened">
+  <div
+    data-cy="order-details-panel-toggle"
+    class="tw-flex tw-self-start tw-items-center tw-justify-between tw-text-base tw-w-full"
+  >
+    <span class="tw-text-neutral-granit">
+      {{ 'Feedback.Table.Courier' | translate }}
+    </span>
+
+    <mat-icon class="tw-text-neutral-graphite expand-btn" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+  </div>
+
+  <div class="panel-info">
+    @let courier = delivery.courier;
+    <div class="data">
+      <a
+        [routerLink]="['/', path.WORKSPACE, path.COURIERS, courierPath.DETAILS, courier.id]"
+        (click)="$event.stopPropagation()"
+        class="tw-shrink-0"
+        data-cy="driver-avatar"
+      >
+        <img
+          upfDefaultImgSrc
+          [src]="courier.photos.courier_avatar_photo.url"
+          [defaultSrc]="courier.photos.courier_avatar_photo.fallback_url"
+          class="avatar"
+          alt="avatar"
+        />
+      </a>
+
+      <div class="details">
+        <a
+          [routerLink]="['/', path.WORKSPACE, path.COURIERS, courierPath.DETAILS, courier.id]"
+          data-cy="driver-fullName"
+        >
+          {{ courier.fullName }}
+        </a>
+
+        <small data-cy="driver-phone">{{ courier.phone }}</small>
+      </div>
+    </div>
+
+    <upf-status-badge [color]="statusColor[delivery.status]" data-cy="order-status">
+      {{ 'Orders.Trips.Filter.OrderStatus.' + delivery.status | translate }}
+    </upf-status-badge>
+  </div>
+</div>
+
+@if (isOpened) {
+  <section class="panel-content tw-grid tw-gap-md" data-cy="order-details-panel-data">
+    <mat-divider class="!tw-hidden sm:!tw-block"></mat-divider>
+
+    <div class="tw-text-base tw-grid tw-gap-2">
+      <div class="tw-text-neutral-granit tw-text-base">
+        {{ 'Orders.Trips.List.Route' | translate }}
+      </div>
+
+      <div class="tw-grid">
+        @for (route of delivery.route.points; track route) {
+          <div>
+            <div class="tw-flex tw-items-baseline tw-gap-md" [attr.data-cy]="'route-point-' + $index">
+              <mat-icon class="!tw-w-3 !tw-h-3 tw-text-sm tw-text-neutral-smoke tw-shrink-0">
+                {{ $last ? 'location_on' : 'trip_origin' }}
+              </mat-icon>
+
+              <span>{{ route.address }}</span>
+            </div>
+
+            @if (!$last) {
+              <div class="tw-w-3 tw-h-3 tw-leading-3 tw-grid tw-place-items-center tw-text-neutral-smoke">•</div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-grid tw-gap-md tw-text-base tw-grid-cols-2" data-cy="trip-info">
+      <div class="label">{{ 'Orders.Trips.Details.Date' | translate }}</div>
+      <div>
+        {{ delivery?.createdAt ? (delivery?.createdAt | seconds2Date) : '-' }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.List.PaymentType' | translate }}</div>
+      <div>
+        {{ 'Orders.Trips.List.Tooltip.' + (delivery.payment.feeType | titlecase) | translate }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.Details.Cost' | translate }}</div>
+      <div class="tw-flex tw-items-center tw-gap-2">
+        {{ delivery.payment.cost ? (delivery.payment.cost | upfMoney: delivery.payment.currency) : '-' }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.Details.Distance' | translate }}</div>
+      <div>
+        {{
+          delivery.payment?.distance ? delivery.payment?.distance?.toFixed(2) + ' ' + ('Common.Km' | translate) : '-'
+        }}
+      </div>
+
+      <div class="label">{{ 'Feedback.Table.Rate' | translate }}</div>
+      <div class="tw-flex tw-items-center tw-gap-2">
+        <mat-icon class="rating-icon">grade</mat-icon>
+
+        {{ delivery.courier?.rating ? (delivery.courier.rating / 100 | number: '1.2-2') : '-' }}
+      </div>
+    </div>
+
+    <mat-divider class="sm:!tw-hidden"></mat-divider>
+  </section>
+}

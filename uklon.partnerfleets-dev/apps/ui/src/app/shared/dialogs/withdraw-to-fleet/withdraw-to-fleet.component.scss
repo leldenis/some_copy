@@ -1,0 +1,43 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+.withdraw-to-fleet {
+  padding: 1rem;
+
+  &__title {
+    @include m.set-font(f.px2rem(16), f.px2rem(18), 400, var(--grey20-color));
+  }
+
+  &__actions {
+    margin-top: 1rem;
+
+    button {
+      &:first-child {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__description {
+    margin-bottom: 2rem;
+  }
+
+  .mat-mdc-form-field {
+    margin-bottom: 1.25rem;
+  }
+
+}
+
+.withdraw-fleet-img {
+  width: f.px2rem(120);
+  height: f.px2rem(90);
+  margin: 2rem 0;
+}
+
+.amount {
+  @include m.set-font(f.px2rem(14), f.px2rem(17), 600, var(--secondary-color));
+}
+
+button {
+  font-weight: 400;
+}

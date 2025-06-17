@@ -1,0 +1,55 @@
+@let reports = reports$ | async;
+
+<section class="sm:tw-flex sm:tw-items-center sm:tw-justify-between">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersGroup.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+  >
+    <form [formGroup]="filtersGroup" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+      <mat-form-field floatLabel="always">
+        <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+        <upf-date-time-range-control
+          formControlName="period"
+          [showTime]="false"
+          (rangeChange)="reportRangeChange($event)"
+        ></upf-date-time-range-control>
+      </mat-form-field>
+
+      <upf-vehicle-autocomplete
+        formControlName="vehicle_id"
+        [fleetId]="fleetId"
+        (vehicleChange)="reportVehicleChange($event)"
+      ></upf-vehicle-autocomplete>
+    </form>
+
+    <ng-template #exportBtn upfFiltersActionButton>
+      <upf-loader-button
+        class="tw-w-full sm:!tw-py-1"
+        [disabled]="!reports?.length"
+        [loading]="isDownloading$ | async"
+        (handlerClick)="handleExportClick()"
+      >
+        <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+          <mat-icon svgIcon="i-csv"></mat-icon>
+          <span>{{ 'Common.Buttons.Export.CSV' | translate }}</span>
+        </div>
+      </upf-loader-button>
+    </ng-template>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block sm:tw-min-w-[140px]">
+    <ng-template [ngTemplateOutlet]="exportBtn"></ng-template>
+  </div>
+</section>
+
+<section class="tw-flex tw-justify-center tw-flex-col tw-gap-md">
+  <upf-report-stats-explanation></upf-report-stats-explanation>
+
+  @if (reports?.length) {
+    <upf-vehicle-order-reports-list [reports]="reports" (cdkScrolled)="onLoadNext()"></upf-vehicle-order-reports-list>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+  }
+</section>

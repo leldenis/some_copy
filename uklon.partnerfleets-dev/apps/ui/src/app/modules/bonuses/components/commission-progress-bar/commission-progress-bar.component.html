@@ -1,0 +1,21 @@
+@if (byCurrentRange) {
+  <upf-progress-bar
+    [theme]="theme"
+    [size]="size"
+    [inactive]="inactive"
+    [value]="completedOrders | progressBarValue: (completedOrders | totalOfCurrentRange: commissions)"
+  ></upf-progress-bar>
+  <span class="tw-text-base" data-cy="progress-bar-by-current-range-value">
+    {{ completedOrders }}/{{ completedOrders | totalOfCurrentRange: commissions }}
+  </span>
+} @else {
+  <upf-progress-bar
+    [theme]="theme"
+    [size]="size"
+    [inactive]="inactive"
+    [value]="completedOrders | progressBarValue: (commissions | minTotalRangeCompletedOrders)"
+  ></upf-progress-bar>
+  <span class="tw-text-base" data-cy="progress-bar-whole-range-value">
+    {{ completedOrders }}/{{ commissions | minTotalRangeCompletedOrders }}
+  </span>
+}

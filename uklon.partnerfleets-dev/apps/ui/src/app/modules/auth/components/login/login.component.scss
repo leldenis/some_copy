@@ -1,0 +1,75 @@
+@use 'variables' as v;
+
+$header-height: 60px;
+
+.login-navbar {
+  @apply tw-absolute tw-inset-0 tw-bottom-auto tw-p-md;
+  @apply tw-flex tw-justify-between tw-w-full;
+  height: v.$login-navbar-height-desktop;
+}
+
+.uklon-icon {
+  @apply tw-w-[170px] tw-h-11;
+}
+
+.navbar-actions {
+  @apply tw-flex tw-items-center tw-relative tw-gap-md;
+
+  &__description {
+    @apply tw-text-xs tw-leading-3 tw-text-neutral-smoke tw-max-w-[80px];
+    @apply md:tw-text-base md:tw-text-black md:tw-max-w-full;
+  }
+}
+
+.uklon-preview {
+  @apply tw-bg-black;
+
+  &__description {
+    @apply tw-h-[40vh] tw-flex tw-flex-col tw-gap-5;
+    @apply tw-justify-end tw-items-center;
+
+    &-title {
+      @apply tw-text-5xl tw-text-white;
+    }
+
+    &-subtitle {
+      @apply tw-text-base tw-max-w-[50%] tw-min-w-[320px] tw-text-white;
+    }
+  }
+
+  &__vehicle {
+    @apply tw-relative tw-bg-contain tw-w-full tw-h-[60vh];
+  }
+}
+
+upf-support-widget {
+  @apply tw-fixed tw-right-0 tw-bottom-0;
+}
+
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .logo {
+    margin-top: calc($header-height + 19%);
+  }
+
+  .uklon-icon {
+    @apply tw-w-36 tw-h-9;
+  }
+
+  .login-navbar {
+    @apply tw-h-auto tw-flex tw-items-center tw-flex-col-reverse tw-px-md;
+  }
+
+  .navbar-actions {
+    @apply tw-absolute tw-inset-0 tw-bottom-auto tw-h-[60px];
+    @apply tw-bg-white tw-mb-5 tw-flex tw-justify-around tw-px-md tw-py-2;
+    filter: drop-shadow(0 2px 4px #E3E3E3);
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-sm-max) {
+  .logo {
+    margin-top: calc($header-height + 6%);
+  }
+}
+

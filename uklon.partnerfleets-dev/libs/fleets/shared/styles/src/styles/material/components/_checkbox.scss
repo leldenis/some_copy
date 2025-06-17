@@ -1,0 +1,33 @@
+$ripple-size: 36px;
+$label-padding: 8px;
+$inset: calc($ripple-size / 4 * -1) !important;
+
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-checkmark-color: white !important;
+  --mdc-checkbox-unselected-focus-icon-color: #73757E !important;
+  --mdc-checkbox-state-layer-size: #{$ripple-size};
+  padding: 0;
+  width: fit-content;
+
+  .mdc-checkbox {
+    padding: 0;
+
+    &__background {
+      inset: 0 !important;
+    }
+
+    &__native-control {
+      inset: $inset;
+    }
+
+    &__ripple {
+      width: $ripple-size;
+      height: $ripple-size;
+      inset: $inset;
+    }
+  }
+
+  .mdc-label {
+    padding-left: $label-padding;
+  }
+}

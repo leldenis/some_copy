@@ -1,0 +1,24 @@
+<upf-filters-container
+  direction="row"
+  [isOpened]="!isMobileView"
+  [filterKey]="filterKey"
+  [defaultFilters]="filterGroup.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <form [formGroup]="filterGroup" upfNotificationsQueryParams class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always" class="tw-w-full sm:tw-w-64">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control
+        formControlName="period"
+        (rangeChange)="reportRangeChange($event)"
+      ></upf-date-time-range-control>
+    </mat-form-field>
+
+    <upf-drivers-autocomplete
+      formControlName="driverId"
+      [fleetId]="fleetId"
+      (driverChange)="reportEvent(analyticsType.FEEDBACKS_DRIVERS_FILTER)"
+    ></upf-drivers-autocomplete>
+  </form>
+</upf-filters-container>

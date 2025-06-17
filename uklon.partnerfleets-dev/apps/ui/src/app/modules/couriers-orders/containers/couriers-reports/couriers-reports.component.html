@@ -1,0 +1,20 @@
+@if (fleetId$ | async; as fleetId) {
+  <upf-couriers-reports-filters
+    [fleetId]="fleetId"
+    (filtersChange)="onFiltersChange($event)"
+  ></upf-couriers-reports-filters>
+
+  @if (reports$ | async; as reports) {
+    @if (reports.length) {
+      <upf-couriers-reports-list
+        [isMobileView]="isMobileView$ | async"
+        [reports]="reports"
+        (cdkScrolled)="onLoadNext()"
+      ></upf-couriers-reports-list>
+    } @else {
+      <div class="tw-flex tw-h-full tw-justify-center">
+        <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+      </div>
+    }
+  }
+}

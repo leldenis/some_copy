@@ -1,0 +1,27 @@
+@use 'cell';
+@use 'row';
+@use 'table';
+
+@mixin core() {
+  .flt-table {
+    @include table.core();
+
+    .flt-table-row {
+      @include row.core();
+
+      &.flt-table-header-row {
+        @include row.header-row();
+
+        .flt-table-cell {
+          @include cell.header-cell();
+        }
+      }
+
+      .flt-table-cell {
+        @include cell.core();
+      }
+    }
+  }
+}
+
+@include core();

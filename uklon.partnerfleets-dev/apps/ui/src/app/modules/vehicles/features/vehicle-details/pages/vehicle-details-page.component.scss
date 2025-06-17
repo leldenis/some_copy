@@ -1,0 +1,8 @@
+:host {
+  // @apply tw-bg-inherit sm:tw-bg-neutral-silver;
+  @apply tw-flex tw-flex-col sm:tw-h-full;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+}

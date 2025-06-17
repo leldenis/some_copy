@@ -1,0 +1,38 @@
+{
+  "name": "@uklon/fleets/shared/styles",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/fleets/shared/styles/src",
+  "prefix": "stl",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/libs/fleets/shared/styles"],
+      "options": {
+        "project": "libs/fleets/shared/styles/ng-package.json",
+        "tailwindConfig": "libs/fleets/shared/styles/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/fleets/shared/styles/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/fleets/shared/styles/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/fleets/shared/styles"],
+      "options": {
+        "jestConfig": "libs/fleets/shared/styles/jest.config.ts",
+        "testTimeout": 20000
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": []
+}

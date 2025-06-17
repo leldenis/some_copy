@@ -1,0 +1,33 @@
+{
+  "name": "@uklon/fleets/shared/domains/user/data-access",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/fleets/shared/domains/user/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/fleets/shared/domains/user/data-access",
+        "main": "libs/fleets/shared/domains/user/data-access/src/index.ts",
+        "tsConfig": "libs/fleets/shared/domains/user/data-access/tsconfig.lib.json",
+        "assets": ["libs/fleets/shared/domains/user/data-access/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/fleets/shared/domains/user/data-access"
+      ],
+      "options": {
+        "jestConfig": "libs/fleets/shared/domains/user/data-access/jest.config.ts",
+        "testTimeout": 20000
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,114 @@
+@use "mixins" as m;
+@use "functions" as f;
+
+.leaflet-marker-icon.custom-marker {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--black10-color);
+  @include m.set-font(f.px2rem(10), f.px2rem(14), 500, var(--white-color));
+}
+
+.live-map {
+  cursor: move !important;
+
+  .leaflet-popup-content {
+    margin: 0;
+  }
+
+  .leaflet-tooltip {
+    @apply tw-bg-neutral-graphite tw-text-white tw-border-none;
+
+    &::before {
+      @apply tw-border-t-neutral-graphite;
+    }
+  }
+
+  .leaflet-control-attribution {
+    display: none;
+  }
+
+  .leaflet-control-zoom.leaflet-bar.leaflet-control {
+    display: grid;
+    gap: 0.5rem;
+    border: none;
+    outline: none;
+    margin: 1rem;
+
+    a {
+      width: f.px2rem(36);
+      height: f.px2rem(36);
+      line-height: f.px2rem(34);
+      border: none;
+      @apply tw-rounded-sm tw-text-neutral-graphite tw-shadow-sm;
+    }
+  }
+}
+
+@mixin map-panel($padding: 0, $gap: 0) {
+  @apply tw-absolute tw-z-[1001] tw-inset-x-2 tw-overflow-auto tw-cursor-auto tw-w-auto;
+  @apply tw-shadow-sm tw-rounded-lg tw-bg-white tw-p-md tw-bottom-12 tw-flex tw-flex-col;
+  padding: $padding;
+  gap: $gap;
+  max-height: calc(100% - 56px);
+
+
+  @screen sm {
+    @apply tw-left-md tw-top-md tw-bottom-auto tw-rounded-lg tw-w-96;
+    max-height: calc(100% - 32px);
+  }
+
+  .panel-header {
+    @apply tw-order-2 tw-flex tw-items-center tw-justify-between tw-cursor-pointer;
+
+    @screen sm {
+      @apply tw-order-1;
+    }
+
+    .expand-btn {
+      @apply tw-transition-transform;
+
+      &.opened {
+        @apply tw-rotate-180;
+      }
+    }
+  }
+
+  .panel-content {
+    @apply tw-order-1;
+
+    @screen sm {
+      @apply tw-order-2;
+    }
+  }
+
+  .back-btn {
+    @apply tw-w-11 tw-h-8 tw-bg-neutral-silver tw-rounded tw-leading-8;
+  }
+}
+
+@mixin map-panel-info() {
+  @apply tw-flex tw-items-center tw-justify-between tw-text-neutral-graphite tw-w-full tw-gap-2;
+
+  .data {
+    @apply tw-flex tw-items-center tw-gap-2;
+  }
+
+  .avatar {
+    @apply tw-w-12 tw-h-12 tw-rounded-full tw-shrink-0 tw-object-cover tw-cursor-pointer;
+  }
+
+  .details {
+    @apply tw-grid;
+
+    span, a {
+      @apply tw-text-base tw-font-medium tw-text-current;
+      word-break: break-word;
+    }
+
+    small {
+      @apply tw-text-sm;
+    }
+  }
+}

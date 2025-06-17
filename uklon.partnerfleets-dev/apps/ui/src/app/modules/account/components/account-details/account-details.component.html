@@ -1,0 +1,91 @@
+@if (accountInfo$ | async; as accountInfo) {
+  @if (userAuthMethod$ | async; as userAuthMethod) {
+    <div class="tw-grid tw-gap-md">
+      <div class="tw-flex tw-items-center tw-gap-md">
+        @let colors = accountInfo.user_id | id2Color;
+        <div
+          data-cy="user-placeholder"
+          class="tw-w tw-w-14 tw-h-14 tw-rounded-full tw-grid tw-place-items-center tw-text-2xl"
+          [style.background-color]="colors.back"
+          [style.color]="colors.fore"
+        >
+          {{ accountInfo.first_name.slice(0, 1) }}{{ accountInfo.last_name.slice(0, 1) }}
+        </div>
+
+        <div data-cy="user-name" class="tw tw-text-lg tw-font-medium">
+          {{ accountInfo.first_name }} {{ accountInfo.last_name }}
+        </div>
+      </div>
+
+      <div class="tw-max-w-lg tw-shadow-sm tw-rounded">
+        <div class="account-menu-item">
+          <div class="tw-grid tw-gap-1">
+            <span class="label">{{ 'Account.Details.Phone' | translate }}</span>
+            <div data-cy="user-phone">{{ accountInfo.phone }}</div>
+          </div>
+
+          <span></span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="account-menu-item">
+          <div class="tw-grid tw-gap-1">
+            <span class="label">{{ 'Account.Details.Email' | translate }}</span>
+            <div data-cy="user-email">{{ (selectedFleet$ | async).email || '-' }}</div>
+          </div>
+
+          <span></span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="account-menu-item">
+          <div class="tw-grid tw-gap-1">
+            <span class="label">{{ 'Account.Details.Password' | translate }}</span>
+
+            @if (userAuthMethod === authMethod.PASSWORD) {
+              <div data-cy="user-password">**************</div>
+            } @else {
+              <span
+                (click)="onChangePassword(userAuthMethod)"
+                role="button"
+                class="tw-text-accent-mint-light tw-text-base tw-font-medium tw-cursor-pointer"
+              >
+                {{ 'Account.Details.CreatePassword' | translate }}
+              </span>
+            }
+          </div>
+
+          @if (userAuthMethod === authMethod.PASSWORD) {
+            <button mat-icon-button class="settings-btn" (click)="onChangePassword(userAuthMethod)">
+              <mat-icon class="material-symbols-outlined">stylus</mat-icon>
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="tw-grid tw-gap-md tw-max-w-lg">
+        @if (userAuthMethod === authMethod.SMS) {
+          <upf-info-panel color="accent">
+            <div [innerHTML]="'Account.Details.SmsInfoPanel' | translate"></div>
+          </upf-info-panel>
+        }
+
+        <upf-info-panel color="warn">
+          <div [innerHTML]="'Account.Details.PasswordInfoPanel' | translate"></div>
+        </upf-info-panel>
+      </div>
+    </div>
+
+    <a
+      class="account__link-agreement"
+      target="_blank"
+      [href]="userAgreementLink$ | async | uklSafe: 'url'"
+      rel="noopener"
+    >
+      {{ 'Account.UserAgreementLink' | translate }}
+      <mat-icon class="tw-text-icon !tw-w-5 !tw-h-5 tw-items-center">open_in_new</mat-icon>
+    </a>
+  }
+}

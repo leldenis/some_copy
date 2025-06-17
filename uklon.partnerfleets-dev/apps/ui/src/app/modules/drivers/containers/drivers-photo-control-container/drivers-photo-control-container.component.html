@@ -1,0 +1,60 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersGroup.getRawValue()"
+  (filtersChange)="onFiltersChange($event)"
+  (filtersReset)="reportAnalytics(analyticsEventType.DRIVER_PHOTO_CONTROL_FILTER_CLEAR)"
+>
+  <form [formGroup]="filtersGroup" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always" data-cy="driver-photo-control-period">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control
+        formControlName="period"
+        (rangeChange)="reportPeriodFilter($event)"
+      ></upf-date-time-range-control>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>
+        {{ 'Common.Filters.Phone.Caption' | translate }}
+      </mat-label>
+
+      <input
+        matInput
+        formControlName="phone"
+        placeholder="{{ 'Common.Filters.Phone.Placeholder' | translate }}"
+        data-cy="driver-photo-control-phone"
+        (change)="reportByFilter('phone', '', $event)"
+      />
+
+      <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field data-cy="driver-photo-control-status">
+      <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+      <mat-select formControlName="status" (selectionChange)="reportByFilter('status', $event.value)">
+        @for (status of ticketStatus | keyvalue; track $index) {
+          @if (status.value !== ticketStatus.BLOCKED_BY_MANAGER) {
+            <mat-option [value]="status.value" data-cy="driver-photo-control-status-options">
+              {{ 'PhotoControl.TicketStatus.' + status.value | translate }}
+            </mat-option>
+          }
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>
+
+@if (tickets().length) {
+  <upf-driver-photo-control-list
+    data-cy="driver-photo-control-list"
+    [tickets]="tickets()"
+    [isMobileView]="isMobileView$ | async"
+    (goToPhotoControl)="reportAnalytics(analyticsEventType.DRIVER_PHOTO_CONTROL_CLICK_TO_TICKET, { ticketId: $event })"
+    (cdkScrolled)="onLoadNext()"
+  ></upf-driver-photo-control-list>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+}

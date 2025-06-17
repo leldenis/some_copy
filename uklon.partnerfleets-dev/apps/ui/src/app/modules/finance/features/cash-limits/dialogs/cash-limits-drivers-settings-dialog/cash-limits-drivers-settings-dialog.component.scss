@@ -1,0 +1,27 @@
+:host {
+  @apply tw-text-base tw-leading-5 tw-text-neutral-graphite;
+}
+
+.header {
+  @apply tw-border-b tw-border-neutral-fog tw-text-dialogTitle;
+  @apply tw-flex tw-gap-md tw-items-center tw-justify-between tw-p-2 tw-pl-md;
+}
+
+.content {
+  @apply tw-p-md tw-grid tw-gap-md;
+  max-height: calc(100dvh - 168px);
+}
+
+.footer {
+  @apply tw-flex tw-justify-between;
+  @apply tw-px-md tw-py-3.5 tw-text-right tw-border-t tw-border-neutral-silver;
+}
+
+.chips-container {
+  @apply tw-overflow-auto tw-overflow-x-hidden;
+  max-height: 25dvh;
+}
+
+.mat-mdc-chip {
+  @apply tw-opacity-100 tw-text-neutral-graphite tw-bg-neutral-silver #{!important};
+}

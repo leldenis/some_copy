@@ -1,0 +1,124 @@
+<ng-container
+  *upfLet="{
+    status: photoControl.status,
+    styling: photoControl.status | panelStyling: photoControl?.deadline_to_send,
+  } as state"
+>
+  <upf-info-panel
+    [color]="state.styling.color"
+    [hideToggle]="
+      state.status === ticketStatus.SENT ||
+      state.status === ticketStatus.REVIEW ||
+      state.status === ticketStatus.BLOCKED_BY_MANAGER
+    "
+    [expanded]="false"
+    data-cy="vehicle-photo-control-panel"
+  >
+    <ng-template upfInfoPanelIcon>
+      <mat-icon class="outlined">photo_camera</mat-icon>
+    </ng-template>
+
+    <ng-template upfInfoPanelTitle>
+      @if (state.status !== ticketStatus.CLARIFICATION) {
+        {{ 'PhotoControl.Panel.Title' | translate }}
+      } @else {
+        {{ 'PhotoControl.Panel.ClarificationTitle' | translate }}
+      }
+    </ng-template>
+
+    @if ((!photoControl?.block_immediately && photoControl?.deadline_to_send) || implicitStatuses.has(state.status)) {
+      <ng-template upfInfoPanelSubtitle>
+        @if (implicitStatuses.has(state.status)) {
+          <span data-cy="vehicle-photo-control-panel-status">
+            {{ 'PhotoControl.TicketStatus.' + state.status | translate }}
+          </span>
+        } @else {
+          <ng-container *upfLet="photoControl.deadline_to_send | photoControlDeadlineMessage as dedline">
+            {{ dedline.longTitle | translate: { till: dedline.till, days: dedline.days } }}
+          </ng-container>
+        }
+      </ng-template>
+    }
+
+    @if (
+      state.status !== ticketStatus.SENT &&
+      state.status !== ticketStatus.REVIEW &&
+      state.status !== ticketStatus.BLOCKED_BY_MANAGER
+    ) {
+      <div class="tw-grid tw-gap-2 -tw-ml-7 tw-overflow-hidden">
+        <div class="tw-pl-7 tw-grid">
+          @if (vehiclePhotoControl?.status === ticketStatus.DRAFT && vehiclePhotoControl?.reasons?.length > 0) {
+            <div data-cy="photo-control-reason">
+              <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.Reason' | translate }}:</span>
+              {{ 'PhotoControl.TicketsList.Reasons.' + vehiclePhotoControl?.reasons?.[0] | translate }}
+            </div>
+
+            @if (vehiclePhotoControl?.reason_comment?.length > 0) {
+              <div class="tw-break-all" data-cy="photo-control-comment">
+                <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.CustomComment' | translate }}:</span>
+                {{ vehiclePhotoControl.reason_comment }}
+              </div>
+            }
+          }
+
+          <div class="tw-mt-1">
+            @if (state.status === ticketStatus.CLARIFICATION) {
+              <div class="tw-mb-1">
+                @if (clarificationReason.length > 0) {
+                  <div data-cy="photo-control-reason">
+                    <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.Reason' | translate }}:</span>
+                    {{ ('PhotoControl.ClarificationReason.' + clarificationReason | translate) + '. ' }}
+                  </div>
+                }
+
+                @if (clarificationReasonCustomComment?.length > 0) {
+                  <div class="tw-break-all" data-cy="photo-control-comment">
+                    <span class="tw-font-medium">{{ 'PhotoControl.TicketsList.CustomComment' | translate }}:</span>
+                    {{ clarificationReasonCustomComment }}
+                  </div>
+                }
+              </div>
+            }
+
+            @if (state.status === ticketStatus.REJECTED) {
+              {{ ('PhotoControl.RejectionReason.' + rejectionReason | translate) + '. ' }}
+            }
+
+            @if (state.status === ticketStatus.REJECTED) {
+              {{ 'PhotoControl.Panel.RejectedMessage' | translate }}
+            } @else {
+              {{
+                isDesktop
+                  ? ('PhotoControl.Panel.InstructionMessageDesktop' | translate)
+                  : ('PhotoControl.Panel.InstructionMessageMobile' | translate)
+              }}
+            }
+          </div>
+        </div>
+
+        @if (photoControl.status !== ticketStatus.REJECTED) {
+          <ul class="tw-text-neutral-smoke tw-grid tw-gap-1">
+            @for (type of photoControl.picture_types; track $index) {
+              <li class="tw-flex tw-items-center tw-gap-2 tw-text-sm">
+                <upf-dot-marker-icon [className]="state.styling.iconColor" />
+
+                {{ 'Vehicles.Details.Photos.Categories.' + type | translate }}
+              </li>
+            }
+          </ul>
+
+          <div [ngxTippy]="isDesktop ? ('PhotoControl.Panel.DesktopTooltip' | translate) : null">
+            <button [disabled]="isDesktop" mat-flat-button color="primary" class="tw-w-full">
+              <a
+                [routerLink]="isDesktop ? null : ['../../', vehiclePaths.PHOTO_CONTROL, photoControl.id]"
+                (click)="reportPhotoControlNavigation(photoControl.vehicle_id)"
+              >
+                {{ 'PhotoControl.Panel.PhotoControlButton' | translate }}
+              </a>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </upf-info-panel>
+</ng-container>

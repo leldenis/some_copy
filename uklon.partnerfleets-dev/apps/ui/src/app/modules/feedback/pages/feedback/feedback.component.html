@@ -1,0 +1,18 @@
+@let isMobileView = isMobileView$ | async;
+@if (fleet$ | async; as fleet) {
+  <div class="feedback-wrap" infiniteScroll [scrollWindow]="false" (scrolled)="loadNext()">
+    <upf-feedback-filters
+      [fleetId]="fleet.id"
+      [isMobileView]="isMobileView"
+      (filtersChange)="onFiltersChange($event)"
+    ></upf-feedback-filters>
+
+    @if (feedbacks$ | async; as feedbacks) {
+      @if (feedbacks.length) {
+        <upf-feedback-list [feedbacks]="feedbacks" [isMobileView]="isMobileView"></upf-feedback-list>
+      } @else {
+        <upf-empty-state class="tw-flex tw-items-center tw-grow"></upf-empty-state>
+      }
+    }
+  </div>
+}

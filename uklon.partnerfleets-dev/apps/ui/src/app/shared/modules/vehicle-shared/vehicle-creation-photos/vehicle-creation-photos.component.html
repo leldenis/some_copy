@@ -1,0 +1,169 @@
+@if (categories?.length) {
+  <ng-container *upfLet="photos$ | async as photos">
+    <div *upfLet="isAllPhotosUploaded$ | async" class="flex-col flex-grow-1 photos-container">
+      <div class="row photos">
+        <div class="col-sm-12 col-6">
+          <div class="row">
+            <div class="photo-title text-overflow">
+              {{ 'Vehicles.Details.Photos.TechPassport' | translate }}
+            </div>
+
+            <div class="tw-px-3.5 tw-mb-4">
+              <upf-info-panel>
+                <span [innerHTML]="'Vehicles.Details.PhotoInfoFirstNew' | translate"></span>
+              </upf-info-panel>
+            </div>
+
+            @for (category of driverRegistrationPhotoCategories; track category) {
+              <upf-photo-card
+                class="col-6"
+                [attr.data-cy]="'photo-category-' + category"
+                [isCreation]="isCreation"
+                [isEdit]="isEdit | isEditPhotoCard: ticketStatus : category : images"
+                [category]="category"
+                [photoUrl]="photos?.[category]?.data?.url"
+                [defaultPhotoUrl]="photos?.[category]?.data?.fallback_url"
+                [hasWarning]="hasWarning"
+                (open)="onPhotoOpen($event, photos)"
+                (selectFile)="onPhotoSelect($event)"
+                (placeholderClick)="onPlaceholderClick($event)"
+              ></upf-photo-card>
+            }
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-6">
+          <div class="row">
+            <div class="photo-title text-overflow">
+              {{ 'Vehicles.Details.Photos.VehiclesPhotos' | translate }}
+            </div>
+
+            <div class="tw-px-3.5 tw-mb-4">
+              <upf-info-panel color="warn">
+                <ul class="tw-grid -tw-ml-2">
+                  <li class="tw-flex tw-items-center tw-gap-1">
+                    <upf-dot-marker-icon />
+                    <span [innerHTML]="'Vehicles.Details.Titles.1' | translate"></span>
+                  </li>
+                  <li class="tw-flex tw-items-center tw-gap-1">
+                    <upf-dot-marker-icon />
+                    <span [innerHTML]="'Vehicles.Details.Titles.2' | translate"></span>
+                  </li>
+                </ul>
+              </upf-info-panel>
+            </div>
+
+            @for (category of vehicleNewPhotoCategories; track category) {
+              <upf-photo-card
+                class="col-6"
+                [attr.data-cy]="'photo-category-' + category"
+                [isCreation]="isCreation"
+                [isEdit]="isEdit | isEditPhotoCard: ticketStatus : category : images"
+                [category]="category"
+                [photoUrl]="photos?.[category]?.data?.url"
+                [defaultPhotoUrl]="photos?.[category]?.data?.fallback_url"
+                [hasWarning]="hasWarning"
+                (open)="onPhotoOpen($event, photos)"
+                (selectFile)="onPhotoSelect($event)"
+                (placeholderClick)="onPlaceholderClick($event)"
+              ></upf-photo-card>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row photos">
+        <div class="col-sm-12 col-6">
+          @if (displayInsuranceCheckbox) {
+            <div class="row" data-cy="insurance-checkbox">
+              <mat-checkbox [formControl]="insuranceControl" class="tw-text-base tw-ml-4 tw-mb-md sm:tw-mb-2">
+                <div class="tw-ml-1">{{ 'Vehicles.Details.InsuranceConsent' | translate }}</div>
+              </mat-checkbox>
+            </div>
+          } @else {
+            @if (!isMobileView && additionalPhotoCategories.length > 0) {
+              <ng-container *ngTemplateOutlet="additionalPhotosTpl"></ng-container>
+            }
+          }
+        </div>
+
+        <div class="col-sm-12 col-6">
+          <div class="row">
+            <div class="tw-px-3.5 tw-mb-4">
+              <upf-info-panel color="warn">
+                <ul class="tw-grid -tw-ml-2">
+                  <li class="tw-flex tw-items-center tw-gap-1">
+                    <upf-dot-marker-icon />
+                    <span [innerHTML]="'Vehicles.Details.Titles.3' | translate"></span>
+                  </li>
+
+                  <li class="tw-flex tw-items-center tw-gap-1">
+                    <upf-dot-marker-icon />
+                    <span [innerHTML]="'Vehicles.Details.Titles.4' | translate"></span>
+                  </li>
+                </ul>
+              </upf-info-panel>
+            </div>
+
+            @for (category of interiorPhotoCategories; track category) {
+              <upf-photo-card
+                class="col-6"
+                [attr.data-cy]="'photo-category-' + category"
+                [isCreation]="isCreation"
+                [isEdit]="isEdit | isEditPhotoCard: ticketStatus : category : images"
+                [category]="category"
+                [photoUrl]="photos?.[category]?.data?.url"
+                [defaultPhotoUrl]="photos?.[category]?.data?.fallback_url"
+                [hasWarning]="hasWarning"
+                (open)="onPhotoOpen($event, photos)"
+                (selectFile)="onPhotoSelect($event)"
+                (placeholderClick)="onPlaceholderClick($event)"
+              ></upf-photo-card>
+            }
+          </div>
+        </div>
+
+        @if (isMobileView && additionalPhotoCategories.length > 0) {
+          <div class="col-12">
+            <ng-container *ngTemplateOutlet="additionalPhotosTpl"></ng-container>
+          </div>
+        }
+      </div>
+    </div>
+
+    <ng-template #additionalPhotosTpl>
+      <div class="row !-tw-mt-1.5">
+        <div class="photo-title text-overflow !tw-mb-1.5">
+          {{ 'Vehicles.Details.Photos.AdditionalPhotos' | translate }}
+        </div>
+
+        <div class="tw-px-3.5 tw-mb-4">
+          <upf-info-panel color="accent">
+            <span [innerHTML]="'Vehicles.Details.AdditionPhotosInfo' | translate"></span>
+          </upf-info-panel>
+        </div>
+
+        @for (category of additionalPhotoCategories; track category) {
+          <upf-photo-card
+            class="col-6"
+            [attr.data-cy]="'photo-category-' + category"
+            [isCreation]="isCreation"
+            [isEdit]="isEdit"
+            [category]="category"
+            [photoUrl]="photos?.[category]?.data?.url"
+            [defaultPhotoUrl]="photos?.[category]?.data?.fallback_url"
+            [hasWarning]="hasWarning"
+            [descriptionPath]="
+              additionalDescriptionCategories.includes(category)
+                ? 'Vehicles.Details.Photos.AdditionalCategories.'
+                : 'Vehicles.Details.Photos.Categories.'
+            "
+            (open)="onPhotoOpen($event, photos)"
+            (selectFile)="onPhotoSelect($event)"
+            (placeholderClick)="onPlaceholderClick($event)"
+          ></upf-photo-card>
+        }
+      </div>
+    </ng-template>
+  </ng-container>
+}

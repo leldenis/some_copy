@@ -1,0 +1,39 @@
+@if (!title && !subtitle) {
+  <div class="panel-icon">
+    <ng-container [ngTemplateOutlet]="icon || defaultIcon"></ng-container>
+  </div>
+}
+
+<div class="tw-grid tw-gap-1">
+  @if (title) {
+    <div class="title">
+      @if (!hideInfoIcon) {
+        <div class="panel-icon">
+          <ng-container [ngTemplateOutlet]="icon || defaultIcon"></ng-container>
+        </div>
+      }
+
+      <ng-container [ngTemplateOutlet]="title"></ng-container>
+    </div>
+  }
+
+  @if (subtitle) {
+    <div class="subtitle">
+      <ng-container [ngTemplateOutlet]="subtitle"></ng-container>
+    </div>
+  }
+
+  <div class="content" [ngClass]="{ 'tw-pl-7': !!title }">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+@if (!hideToggle) {
+  <div role="button" class="toggle-container" (click)="toggle()" data-cy="info-panel-btn">
+    <mat-icon class="tw-transition-transform" [ngClass]="{ 'tw-rotate-180': expanded }">expand_more</mat-icon>
+  </div>
+}
+
+<ng-template #defaultIcon>
+  <mat-icon class="outlined">info</mat-icon>
+</ng-template>

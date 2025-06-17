@@ -1,0 +1,48 @@
+@use 'mixins' as m;
+
+$z-index: 1000;
+
+:host {
+  @apply tw-bg-white sm:tw-shadow-sm tw-text-neutral-graphite;
+  z-index: $z-index;
+}
+
+header {
+  @apply tw-p-md tw-pr-5 tw-flex tw-items-center tw-justify-between tw-shrink-0;
+  @apply sm:tw-px-md sm:tw-py-1.5 sm:tw-pr-7 sm:tw-h-14;
+}
+
+.branding {
+  @apply tw-flex tw-justify-center tw-py-1 tw-border-b tw-border-neutral-cloud sm:tw-hidden;
+}
+
+.subtitle {
+  @apply tw-text-sm tw-leading-4 tw-text-neutral-granit sm:tw-text-base;
+}
+
+.notifications-container {
+  @apply tw-relative;
+
+  .notifications-btn {
+    @include m.icon-button(40px, 21px);
+  }
+
+  .counter {
+    @apply tw-grid tw-place-content-center tw-text-white tw-text-sm tw-bg-[#F99B58];
+    @apply tw-font-semibold tw-h-[18px] tw-min-w-[18px] tw-p-1 tw-rounded-full;
+    @apply tw-absolute tw-translate-x-[25px] -tw-translate-y-[42px] tw-transition-colors;
+
+    &.empty {
+      @apply tw-bg-neutral-fog;
+    }
+
+    &.has-custom {
+      @apply tw-bg-accent-blue-light;
+    }
+  }
+}
+
+.fullscreen-mode {
+  @apply tw-absolute tw-bg-transparent tw-p-2 tw-m-2 tw-rounded-full tw-backdrop-blur-[2px];
+  z-index: $z-index;
+}

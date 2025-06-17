@@ -1,0 +1,51 @@
+
+:host {
+  ::ng-deep {
+    .mat-expansion-panel-content {
+      @apply tw-bg-neutral-silver;
+    }
+
+    .mat-expansion-panel-body {
+      @apply tw-p-2;
+    }
+  }
+}
+
+.grid-row {
+  @apply tw-grid tw-items-center tw-h-14 tw-pl-md tw-w-full tw-gap-2.5;
+  @apply tw-text-neutral-graphite tw-text-base tw-cursor-default;
+  @apply tw-grid-cols-[auto_70px_40px];
+  @apply sm:tw-grid-cols-[2fr_3fr_2fr_4fr_4fr];
+
+  &.header {
+    @apply tw-text-neutral-smoke tw-text-sm tw-h-12 tw-hidden sm:tw-grid;
+  }
+}
+
+.grid-panel {
+  @apply tw-shadow-sm tw-rounded sm:tw-rounded-none;
+  @apply sm:tw-border-t sm:tw-border-neutral-silver;
+  @apply tw-shadow-sm #{!important};
+  @apply sm:tw-shadow-none #{!important};
+}
+
+.panel-header {
+  @apply tw-p-0 tw-m-0 tw-h-14;
+
+  &[aria-disabled="true"] {
+    @apply tw-text-current;
+  }
+}
+
+.mark {
+  @apply tw-flex tw-justify-end tw-items-center tw-gap-2 tw-text-yellow-500;
+  @apply sm:tw-justify-start;
+}
+
+.mark-icon {
+  @apply tw-w-md tw-h-md tw-text-tmp tw-leading-4;
+}
+
+.info-icon {
+  @apply tw-text-icon tw-w-5 tw-h-5 tw-text-current;
+}

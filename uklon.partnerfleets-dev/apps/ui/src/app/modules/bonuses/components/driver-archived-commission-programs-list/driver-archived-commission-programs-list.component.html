@@ -1,0 +1,359 @@
+@let isMobileView = isMobileView$ | async;
+
+<div class="sm:tw-shadow-sm tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    @if (!isMobileView) {
+      <div class="panel-header main">
+        <div class="tw-grid">
+          <span data-cy="full-name">{{ 'Bonuses.Commissions.List.FullName' | translate }}</span>
+          <span class="tw-text-neutral-granit" data-cy="signal">
+            {{ 'Bonuses.Commissions.List.Signal' | translate }}
+          </span>
+        </div>
+
+        <div data-cy="phone">{{ 'Bonuses.Commissions.List.Phone' | translate }}</div>
+        <div data-cy="program">{{ 'Bonuses.Commissions.List.Program' | translate }}</div>
+        <div data-cy="progress" class="tw-flex tw-gap-1 tw-items-center">
+          {{ 'Bonuses.Commissions.List.Progress' | translate }}
+          <upf-commission-programs-progress-icon></upf-commission-programs-progress-icon>
+        </div>
+        <div data-cy="period">{{ 'Bonuses.Commissions.List.Period' | translate }}</div>
+        <div data-cy="orders-completed">{{ 'Bonuses.Commissions.List.OrdersCompleted' | translate }}</div>
+        <div data-cy="min-rating">{{ 'Bonuses.Commissions.List.MinRating' | translate }}</div>
+        <div data-cy="min-commission">{{ 'Bonuses.Commissions.List.MinCommission' | translate }}</div>
+        <div class="tw-flex tw-flex-col">
+          <span data-cy="used-profit-budget">{{ 'Bonuses.Commissions.List.UsedProfitBudget' | translate }}</span>
+          <div class="tw-flex tw-gap-1 tw-items-center tw-text-neutral-granit" data-cy="profit-budget">
+            {{ 'Bonuses.Commissions.List.ProfitBudget' | translate }}
+            <div class="tw-text-accent-mint-light -tw-mt-4">
+              <mat-icon
+                [svgIcon]="icons.info"
+                [ngxTippy]="profitBudgetTooltipTpl"
+                data-cy="profit-budget-tooltip"
+              ></mat-icon>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    }
+
+    @for (item of programs(); track $index) {
+      <mat-expansion-panel
+        #panel
+        hideToggle
+        class="data-panel"
+        data-cy="archived-program-item"
+        (afterExpand)="reportAnalytics(analyticsEventType.ARCHIVED_COMMISSION_PROGRAM_TOGGLE, true, item)"
+        (afterCollapse)="reportAnalytics(analyticsEventType.ARCHIVED_COMMISSION_PROGRAM_TOGGLE, false, item)"
+      >
+        <mat-expansion-panel-header
+          class="!tw-p-0 !tw-py-2 tw-cursor-default hover:!tw-bg-white"
+          expandedHeight="56px"
+          collapsedHeight="56px"
+        >
+          <ng-container
+            [ngTemplateOutlet]="isMobileView ? mobileViewPanelHeader : desktopViewPanelHeader"
+            [ngTemplateOutletContext]="{ $implicit: item, expanded: panel.expanded }"
+          ></ng-container>
+        </mat-expansion-panel-header>
+
+        <ng-container
+          [ngTemplateOutlet]="isMobileView ? expandedViewMobileTpl : expandedViewDesktopTpl"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        ></ng-container>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>
+
+<ng-template #mobileViewPanelHeader let-item let-expanded="expanded">
+  <div class="mobile-panel-header">
+    <div class="tw-grid tw-gap-1">
+      @if (item.driver && (item.driver?.first_name || item.driver?.last_name)) {
+        <div class="tw-font-medium">
+          <a [routerLink]="['/', corePath.WORKSPACE, corePath.DRIVERS, driverPath.DETAILS, item.driver?.driver_id]">
+            {{ item.driver?.last_name }} {{ item.driver?.first_name }}
+          </a>
+
+          <span class="text-small">{{ item.driver?.signal }}</span>
+        </div>
+      } @else {
+        -
+      }
+    </div>
+
+    <div>
+      <div class="tw-flex tw-justify-end tw-gap-2">
+        <upf-commission-progress-bar
+          theme="black"
+          [byCurrentRange]="true"
+          [completedOrders]="item.current_completed_orders"
+          [commissions]="item.commissions"
+        ></upf-commission-progress-bar>
+      </div>
+
+      <div class="tw-text-end tw-text-sm">{{ 'Bonuses.Commissions.List.OrdersCompleted' | translate }}</div>
+    </div>
+
+    <div class="expand-icon" [ngClass]="{ expanded: expanded }">
+      <mat-icon>expand_more</mat-icon>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #desktopViewPanelHeader let-item let-expanded="expanded">
+  <div class="panel-header">
+    <div class="tw-grid">
+      <span class="tw-text-base tw-font-medium">
+        @if (item.driver && (item.driver?.first_name || item.driver?.last_name)) {
+          <a
+            data-cy="driver-full-name-link"
+            class="tw-font-medium hover:tw-underline focus:tw-underline tw-break-words"
+            [routerLink]="['/', corePath.WORKSPACE, corePath.DRIVERS, driverPath.DETAILS, item.driver?.driver_id]"
+          >
+            {{ item.driver?.last_name }} {{ item.driver?.first_name }}
+          </a>
+        } @else {
+          -
+        }
+      </span>
+      <span class="text-small">{{ item?.driver?.signal }}</span>
+    </div>
+
+    <div class="tw-break-words">{{ item?.driver?.phone ? item.driver.phone : '-' }}</div>
+    <div class="tw-break-words">{{ item.program_name }}</div>
+    <div class="tw-break-words" data-cy="progress-value">
+      {{
+        item?.always_add_progress_if_satisfied
+          ? ('Bonuses.Commissions.List.ProgressAlways' | translate)
+          : ('Bonuses.Commissions.List.ProgressActive' | translate)
+      }}
+    </div>
+    <upf-commission-program-period [programPeriod]="item.period"></upf-commission-program-period>
+    <div
+      class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-self-end sm:tw-self-center tw-w-auto lg:tw-w-[110px] tw-gap-1"
+    >
+      <upf-commission-progress-bar
+        theme="black"
+        [byCurrentRange]="true"
+        [completedOrders]="item.current_completed_orders"
+        [commissions]="item.commissions"
+      ></upf-commission-progress-bar>
+
+      @if (item?.driver?.rating | ratingLessRequirement: item.min_rating) {
+        <div class="tw-flex tw-items-center tw-text-accent-coral-light" data-cy="driver-rating">
+          <mat-icon
+            [svgIcon]="icons.info"
+            [ngxTippy]="'Bonuses.Commissions.Errors.RequirementsNotDone' | translate"
+          ></mat-icon>
+        </div>
+      } @else {
+        <div class="tw-w-[20px]"></div>
+      }
+    </div>
+
+    <div class="tw-flex tw-items-center">
+      <upf-rating size="sm"></upf-rating>
+      <span>
+        {{ item.min_rating | number: '1.2-2' }}
+      </span>
+    </div>
+
+    <div>{{ item.commissions | minCommission }}%</div>
+
+    <div class="tw-grid">
+      <div class="tw-text-accent-mint-light">{{ item.used_profit_budget | upfMoney: currency() }}</div>
+      <span class="text-small">
+        {{ item.profit_budget | upfMoney: currency() }}
+      </span>
+    </div>
+
+    <mat-panel-description [ngClass]="{ expanded: expanded }" data-cy="expanded-icon">
+      <mat-icon>expand_more</mat-icon>
+    </mat-panel-description>
+  </div>
+</ng-template>
+
+<ng-template #expandedViewMobileTpl let-item>
+  <div class="expanded-view">
+    <div class="tw-flex tw-gap-4">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.Phone' | translate }}
+        </div>
+        <div class="tw-text-base">
+          @if (item.driver?.phone) {
+            <a
+              [href]="'tel:+' + item.driver.phone"
+              class="tw-text-accent-mint-light hover:tw-underline focus:tw-underline flt-expanded-view-link"
+            >
+              {{ item.driver.phone }}
+            </a>
+          } @else {
+            -
+          }
+        </div>
+      </div>
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.Program' | translate }}
+        </div>
+        <div class="expanded-view-description">{{ item.program_name }}</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="expanded-view-title">
+        {{ 'Bonuses.Commissions.List.Period' | translate }}
+      </div>
+      <upf-commission-program-period [programPeriod]="item.period"></upf-commission-program-period>
+    </div>
+
+    <div class="tw-flex tw-gap-4">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.MinCommission' | translate }}
+        </div>
+        <div class="expanded-view-description">{{ item.commissions | minCommission }}%</div>
+      </div>
+
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">{{ 'Bonuses.Commissions.List.MinOrdersForMinCommission' | translate }}</div>
+        <div class="expanded-view-description">{{ item.commissions | minOrdersForMinCommission }}</div>
+      </div>
+    </div>
+
+    <div class="tw-flex tw-flex-wrap tw-gap-4">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.UsedProfitBudget' | translate }}
+        </div>
+        <div class="expanded-view-description !tw-text-accent-mint-light">
+          {{ item.used_profit_budget | upfMoney: currency() }}
+        </div>
+      </div>
+
+      <div class="tw-flex tw-gap-1">
+        <div class="expanded-view-col">
+          <div class="expanded-view-title">
+            {{ 'Bonuses.Commissions.List.ProfitBudget' | translate }}
+          </div>
+          <div class="expanded-view-description">{{ item.profit_budget | upfMoney: currency() }}</div>
+        </div>
+
+        <div class="tw-mt-1 tw-text-accent-mint-light">
+          <mat-icon
+            [svgIcon]="icons.info"
+            [ngxTippy]="profitBudgetTooltipTpl"
+            (click)="reportAnalytics(analyticsEventType.ARCHIVED_COMMISSION_PROGRAM_BUDGET_TOOLTIP_CLICK)"
+          ></mat-icon>
+        </div>
+      </div>
+
+      <div class="tw-flex tw-gap-1">
+        <div class="expanded-view-col">
+          <div class="expanded-view-title">{{ 'Bonuses.Commissions.List.Progress' | translate }}</div>
+          <div class="expanded-view-description tw-break-words">
+            {{
+              item?.always_add_progress_if_satisfied
+                ? ('Bonuses.Commissions.List.ProgressAlways' | translate)
+                : ('Bonuses.Commissions.List.ProgressActive' | translate)
+            }}
+          </div>
+        </div>
+        <upf-commission-programs-progress-icon class="tw-mt-1"></upf-commission-programs-progress-icon>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <div class="expanded-view-description">
+        {{ 'Bonuses.Commissions.List.OrdersCompleted' | translate }}: {{ item.current_completed_orders }}
+      </div>
+    </div>
+
+    <upf-commission-orders-progress-stepper
+      theme="black"
+      [completedOrders]="item.completed_orders"
+      [commissions]="item.commissions | sortCommissions"
+    ></upf-commission-orders-progress-stepper>
+
+    <div class="tw-flex tw-flex-row tw-gap-4 tw-items-center">
+      <upf-commission-progress-bar
+        theme="black"
+        size="md"
+        [byCurrentRange]="true"
+        [completedOrders]="item.current_completed_orders"
+        [commissions]="item.commissions"
+      ></upf-commission-progress-bar>
+    </div>
+
+    <div class="tw-flex tw-gap-4">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.Indicators' | translate }}
+        </div>
+        <div class="expanded-view-description">{{ 'Bonuses.Commissions.List.DriverRating' | translate }}</div>
+      </div>
+
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.Requirements' | translate }}
+        </div>
+        <div class="expanded-view-description">
+          {{ 'Bonuses.Commissions.List.RequirementsFrom' | translate }}
+          {{ item.min_rating | number: '1.2-2' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #expandedViewDesktopTpl let-item>
+  <div class="expanded-view" data-cy="expanded-view-desktop">
+    <div class="tw-flex tw-justify-between">
+      <div class="tw-text-base">
+        {{ 'Bonuses.Commissions.List.OrdersCompleted' | translate }}:
+        <span class="tw-text-neutral-graphite" data-cy="completed-orders">{{ item.current_completed_orders }}</span>
+      </div>
+
+      @if (item?.driver?.rating | ratingLessRequirement: item.min_rating) {
+        <upf-info-panel color="error" data-cy="requirement-panel">
+          {{ 'Bonuses.Commissions.Errors.RequirementsNotDone' | translate }}
+        </upf-info-panel>
+      }
+    </div>
+
+    <upf-commission-orders-progress-stepper
+      data-cy="orders-progress-stepper"
+      class="tw-max-w-[800px]"
+      theme="black"
+      [completedOrders]="item.current_completed_orders"
+      [commissions]="item.commissions | sortCommissions"
+    ></upf-commission-orders-progress-stepper>
+
+    <div class="tw-max-w-[800px] tw-flex tw-flex-row tw-gap-4 tw-items-center">
+      <upf-commission-progress-bar
+        data-cy="progress-bar"
+        theme="black"
+        size="md"
+        [byCurrentRange]="true"
+        [completedOrders]="item.current_completed_orders"
+        [commissions]="item.commissions"
+      ></upf-commission-progress-bar>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #profitBudgetTooltipTpl>
+  <div class="tw-flex tw-gap-2 tw-mb-2">
+    <span data-cy="profit-budget-tooltip-rule1">
+      {{ 'Bonuses.Commissions.List.Tooltip.UsedProfitBudget' | translate }}
+    </span>
+  </div>
+  <div class="tw-flex tw-gap-2">
+    <span data-cy="profit-budget-tooltip-rule2">{{ 'Bonuses.Commissions.List.Tooltip.ProfitBudget' | translate }}</span>
+  </div>
+</ng-template>

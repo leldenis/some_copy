@@ -1,0 +1,40 @@
+<div class="header">
+  {{ 'CashLimits.RemoveRestrictionDialog.Title' | translate }}
+
+  <button mat-icon-button matDialogClose data-cy="cash-limits-restriction-dialog-header-close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form class="content" [formGroup]="resetForm">
+  <div>{{ 'CashLimits.RemoveRestrictionDialog.OptionsLabel' | translate }}</div>
+
+  <mat-radio-group class="tw-grid tw-gap-md" formControlName="with_reset_limit" color="primary">
+    <mat-radio-button [value]="true" data-cy="cash-limits-restriction-dialog-reset-radio">
+      {{ 'CashLimits.RemoveRestrictionDialog.ResetLimitOption' | translate }}
+    </mat-radio-button>
+
+    <mat-radio-button [value]="false" data-cy="cash-limits-restriction-dialog-no-reset-radio">
+      {{ 'CashLimits.RemoveRestrictionDialog.KeepLimitOption' | translate }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <upf-info-panel color="accent">
+    {{ 'CashLimits.RemoveRestrictionDialog.Disclaimer' | translate }}
+  </upf-info-panel>
+</form>
+
+<div class="footer">
+  <button mat-flat-button color="accent" matDialogClose data-cy="cash-limits-restriction-dialog-footer-close-btn">
+    {{ 'Common.Buttons.B_Cancel' | translate }}
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    [matDialogClose]="resetForm.getRawValue()"
+    data-cy="cash-limits-restriction-dialog-submit-btn"
+  >
+    {{ 'CashLimits.RemoveRestrictionDialog.RemoveRestrictionBtn' | translate }}
+  </button>
+</div>

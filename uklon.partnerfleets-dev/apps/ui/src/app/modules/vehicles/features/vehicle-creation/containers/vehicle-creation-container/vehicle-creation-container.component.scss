@@ -1,0 +1,27 @@
+@use 'variables' as v;
+@use 'functions' as f;
+
+:host {
+  @apply tw-grid tw-px-4;
+}
+
+.create-container {
+  @apply tw-py-4 tw-px-4 sm:tw-px-6 sm:tw-shadow-sm sm:tw-rounded-md;
+}
+
+.footer {
+  &__btn-send {
+    height: f.px2rem(48);
+    width: f.px2rem(130);
+    letter-spacing: 0.0125em;
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  upf-vehicle-creation-info,
+  upf-vehicle-creation-photos {
+    display: block;
+    margin: 0 -16px -16px;
+  }
+}
+

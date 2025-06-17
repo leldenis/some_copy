@@ -1,0 +1,15 @@
+:host {
+  @apply tw-flex tw-grow tw-flex-col tw-w-full tw-gap-md tw-mt-md;
+}
+
+.mat-mdc-unelevated-button {
+  padding: 0 1rem;
+
+  &:hover {
+    background: var(--secondary-hover-color);
+  }
+}
+
+.mat-icon {
+  @apply tw-w-4 tw-h-4;
+}

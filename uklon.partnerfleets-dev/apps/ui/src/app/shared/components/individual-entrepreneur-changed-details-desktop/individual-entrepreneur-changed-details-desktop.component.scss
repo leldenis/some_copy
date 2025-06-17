@@ -1,0 +1,15 @@
+.history-item {
+  @apply tw-grid tw-gap-2 tw-text-neutral-graphite;
+
+  small {
+    @apply tw-text-body;
+  }
+
+  p {
+    @apply tw-text-base tw-m-0 tw-text-neutral-graphite;
+  }
+}
+
+.profile-divider:last-of-type {
+  @apply tw-hidden #{!important};
+}

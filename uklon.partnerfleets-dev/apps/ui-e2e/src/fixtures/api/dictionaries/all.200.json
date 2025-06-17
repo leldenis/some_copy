@@ -1,0 +1,1368 @@
+{
+  "regions": [
+    {
+      "id": 4,
+      "code": "Dnipro",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 501,
+      "code": "Tashkent",
+      "country_code": "UZ",
+      "currency": "UZS"
+    },
+    {
+      "id": 14,
+      "code": "Cherkasy",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 28,
+      "code": "Kamianske",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 6,
+      "code": "Zaporizhia",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 7,
+      "code": "Ivano-Frankivsk",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 3,
+      "code": "Kharkiv",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 23,
+      "code": "Lutsk",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 1,
+      "code": "Kyiv",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 5,
+      "code": "Lviv",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 11,
+      "code": "Vinnytsia",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 101,
+      "code": "Baku",
+      "country_code": "AZ",
+      "currency": "AZN"
+    },
+    {
+      "id": 12,
+      "code": "Sumy",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 13,
+      "code": "Poltava",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 15,
+      "code": "Chernivtsi",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 17,
+      "code": "Chernihiv",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 18,
+      "code": "Kryvyi Rih",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 16,
+      "code": "Uzhhorod",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 20,
+      "code": "Kremenchuk",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 21,
+      "code": "Mykolaiv",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 22,
+      "code": "Kropyvnytskyi",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 24,
+      "code": "Kherson",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 25,
+      "code": "Bila Tserkva",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 8,
+      "code": "Zhytomyr",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 9,
+      "code": "Rivne",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 10,
+      "code": "Khmelnytskyi",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 37,
+      "code": "Mukachevo",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 2,
+      "code": "Odesa",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 19,
+      "code": "Ternopil",
+      "country_code": "UA",
+      "currency": "UAH"
+    },
+    {
+      "id": 33,
+      "code": "Kamianets-Podilskyi",
+      "country_code": "UA",
+      "currency": "UAH"
+    }
+  ],
+  "colors": [
+    {
+      "hex_code": "ffffff",
+      "name": "Білий",
+      "code": "White"
+    },
+    {
+      "hex_code": "000000",
+      "name": "Чорний",
+      "code": "Black"
+    },
+    {
+      "hex_code": "ff3136",
+      "name": "Червоний",
+      "code": "Red"
+    },
+    {
+      "hex_code": "1c9d16",
+      "name": "Зелений",
+      "code": "Green"
+    },
+    {
+      "hex_code": "a4460e",
+      "name": "Коричневий",
+      "code": "Brown"
+    },
+    {
+      "hex_code": "f0cc94",
+      "name": "Бежевий",
+      "code": "Beige"
+    },
+    {
+      "hex_code": "7940b8",
+      "name": "Фіолетовий",
+      "code": "Purple"
+    },
+    {
+      "hex_code": "ff9536",
+      "name": "Помаранчевий",
+      "code": "Orange"
+    },
+    {
+      "hex_code": "a1a106",
+      "name": "Оливковий",
+      "code": "Olive"
+    },
+    {
+      "hex_code": "143c7d",
+      "name": "Темно-синій",
+      "code": "Navy"
+    },
+    {
+      "hex_code": "c4c4c4",
+      "name": "Сірий",
+      "code": "Silver"
+    },
+    {
+      "hex_code": "808080",
+      "name": "Темно-сірий",
+      "code": "Gray"
+    },
+    {
+      "hex_code": "ffe822",
+      "name": "Жовтий",
+      "code": "Yellow"
+    },
+    {
+      "hex_code": "0aa0a6",
+      "name": "Синьо-зелений",
+      "code": "Teal"
+    },
+    {
+      "hex_code": "f68af2",
+      "name": "Рожевий",
+      "code": "Fuchsia"
+    },
+    {
+      "hex_code": "77ff87",
+      "name": "Світло-зелений",
+      "code": "Lime"
+    },
+    {
+      "hex_code": "70deff",
+      "name": "Блакитний",
+      "code": "Aqua"
+    },
+    {
+      "hex_code": "8c1515",
+      "name": "Темно-червоний",
+      "code": "Maroon"
+    },
+    {
+      "hex_code": "2379ed",
+      "name": "Синій",
+      "code": "Blue"
+    }
+  ],
+  "body_types": [
+    {
+      "name": "Седан",
+      "code": "Sedan"
+    },
+    {
+      "name": "Хетчбек",
+      "code": "Hatchback"
+    },
+    {
+      "name": "Мінівен",
+      "code": "Minivan"
+    },
+    {
+      "name": "Кросовер",
+      "code": "Crossover"
+    },
+    {
+      "name": "Фургон",
+      "code": "Van"
+    },
+    {
+      "name": "Купе",
+      "code": "Coupe"
+    },
+    {
+      "name": "Пікап",
+      "code": "Pickup"
+    },
+    {
+      "name": "Універсал",
+      "code": "Estate"
+    },
+    {
+      "name": "Позашляховик",
+      "code": "SportVehicle"
+    },
+    {
+      "name": "Вантажівка",
+      "code": "Cargo"
+    },
+    {
+      "name": "Ліфтбек",
+      "code": "Liftback"
+    }
+  ],
+  "comfort_levels": [
+    {
+      "name": "Економ",
+      "code": "Econom"
+    },
+    {
+      "name": "Стандарт",
+      "code": "Standard"
+    },
+    {
+      "name": "Комфорт",
+      "code": "Comfort"
+    },
+    {
+      "name": "Бізнес",
+      "code": "Business"
+    },
+    {
+      "name": "Prime",
+      "code": "Prime"
+    },
+    {
+      "name": "Комфорт+",
+      "code": "ComfortPlus"
+    }
+  ],
+  "options": [
+    {
+      "code": "AirConditioner"
+    },
+    {
+      "code": "BabyChair"
+    },
+    {
+      "code": "BabyBoosterSeat"
+    },
+    {
+      "code": "CovidProtected"
+    },
+    {
+      "code": "ElectricEngine"
+    },
+    {
+      "code": "Licensed"
+    },
+    {
+      "code": "MarketingCampaign"
+    },
+    {
+      "code": "InclusiveEquipment"
+    }
+  ],
+  "makes": [
+    {
+      "is_active": true,
+      "id": "48c271a9-1eb3-4d94-be93-c68944a55503",
+      "name": "Abarth"
+    },
+    {
+      "is_active": true,
+      "id": "ac93181d-3519-4958-9b98-613591f218d6",
+      "name": "Acura"
+    },
+    {
+      "is_active": true,
+      "id": "d3a86123-2902-4092-9f16-2455e9fc2af9",
+      "name": "Adler"
+    },
+    {
+      "is_active": true,
+      "id": "936fe996-51fd-44a5-b91e-854e2b4c42ca",
+      "name": "Aero"
+    },
+    {
+      "is_active": true,
+      "id": "b325350a-e179-4b91-91ee-45138a49e03a",
+      "name": "AION"
+    },
+    {
+      "is_active": true,
+      "id": "aa7e220c-b3ba-436a-94d6-a259c64a03be",
+      "name": "Aixam"
+    },
+    {
+      "is_active": true,
+      "id": "2952e763-a914-422f-be4a-b0e201250f32",
+      "name": "Alfa Romeo"
+    },
+    {
+      "is_active": true,
+      "id": "f860c0fe-ca9d-42c5-8e6a-e9627f72a094",
+      "name": "Alpine"
+    },
+    {
+      "is_active": true,
+      "id": "5dff9628-2291-470e-8cc1-ac1f0535ab17",
+      "name": "AMC"
+    },
+    {
+      "is_active": true,
+      "id": "a85141b7-480e-4e5b-8052-680dd666c536",
+      "name": "Anaig"
+    },
+    {
+      "is_active": true,
+      "id": "b14609c8-6482-48e4-8c16-72b10fae048a",
+      "name": "Aro"
+    },
+    {
+      "is_active": true,
+      "id": "ea8e34e2-8ccb-4db5-9936-1f1658038b9d",
+      "name": "Asia"
+    },
+    {
+      "is_active": true,
+      "id": "9d383696-9e0f-4f59-8e11-5cb8a7f74bf2",
+      "name": "Aston Martin"
+    },
+    {
+      "is_active": true,
+      "id": "7ca0d3ad-631a-4a32-a848-3f12270324de",
+      "name": "ATS Corsa"
+    },
+    {
+      "is_active": true,
+      "id": "0593356d-a3a8-4447-875d-f5b932d55a1d",
+      "name": "Audi"
+    },
+    {
+      "is_active": true,
+      "id": "d74ff8d9-ab69-4b48-ab85-c287e28e7a50",
+      "name": "Austin"
+    },
+    {
+      "is_active": true,
+      "id": "b081a6ef-62a1-4ca0-ac61-b858500d7540",
+      "name": "BAIC"
+    },
+    {
+      "is_active": true,
+      "id": "546d4326-1b93-4958-aba1-f1ec11c3fb4e",
+      "name": "Baojun"
+    },
+    {
+      "is_active": true,
+      "id": "b661a334-783f-4e93-8886-3268674db705",
+      "name": "Barkas (Баркас)"
+    },
+    {
+      "is_active": true,
+      "id": "d6b883f0-d1fe-4559-9bee-873310738105",
+      "name": "Baw"
+    },
+    {
+      "is_active": true,
+      "id": "08ccce4d-24b7-49ca-a852-9411615a0ef5",
+      "name": "Beijing"
+    },
+    {
+      "is_active": true,
+      "id": "ed5fb264-abbd-416a-b715-01abf64d8333",
+      "name": "Bentley"
+    },
+    {
+      "is_active": true,
+      "id": "f1ebd635-3be4-481e-9ba8-24e1157d2344",
+      "name": "Bertone"
+    },
+    {
+      "is_active": true,
+      "id": "f13e49cc-bb4b-44e4-9192-923d5155fcae",
+      "name": "Bio Auto"
+    },
+    {
+      "is_active": true,
+      "id": "5ef75b89-7e83-4a46-84c4-d302fdda0f66",
+      "name": "BMW"
+    },
+    {
+      "is_active": true,
+      "id": "d4a00b75-d21f-476b-a023-1b1841ef593c",
+      "name": "BMW-Alpina"
+    },
+    {
+      "is_active": true,
+      "id": "cd331b0d-d2cf-4142-b375-7d1e5c24b424",
+      "name": "Bollinger"
+    },
+    {
+      "is_active": true,
+      "id": "0708c9d2-f819-4423-a0cc-7cdab0f2b71f",
+      "name": "Brilliance"
+    },
+    {
+      "is_active": true,
+      "id": "98c197c0-7247-4c30-aba7-69788f0f02ba",
+      "name": "Bristol"
+    },
+    {
+      "is_active": true,
+      "id": "062e29c2-77b1-42ea-8cfd-2fa491a0077e",
+      "name": "Buick"
+    },
+    {
+      "is_active": true,
+      "id": "c90adbab-77c0-4b19-a390-1d92109942c4",
+      "name": "BYD"
+    },
+    {
+      "is_active": true,
+      "id": "00ff39c8-5482-4bed-b523-30378b50ae48",
+      "name": "Byton"
+    },
+    {
+      "is_active": true,
+      "id": "3327da7b-5a97-4ec0-b84b-6fce2e5335b5",
+      "name": "Cadillac"
+    },
+    {
+      "is_active": true,
+      "id": "9172ff5f-5d04-470d-a033-29abdeee1bb4",
+      "name": "Chana"
+    },
+    {
+      "is_active": true,
+      "id": "badf46f0-19e9-4491-8706-6e87992ef3b8",
+      "name": "Changan"
+    },
+    {
+      "is_active": true,
+      "id": "023b7d12-2e07-4107-903b-53a8d0e3b4ee",
+      "name": "Changhe"
+    },
+    {
+      "is_active": true,
+      "id": "c17f618d-010e-49c8-947b-f1a85b9c9142",
+      "name": "Chery"
+    },
+    {
+      "is_active": true,
+      "id": "e934d39b-55ab-49da-b626-2f7e090439f2",
+      "name": "Chevrolet"
+    },
+    {
+      "is_active": true,
+      "id": "dc539761-9238-4e31-aa12-f25e3e1d57a4",
+      "name": "Chrysler"
+    },
+    {
+      "is_active": true,
+      "id": "6408fd23-dea2-47be-97bc-0ede39f20697",
+      "name": "Citroen"
+    },
+    {
+      "is_active": true,
+      "id": "e783fb9a-433c-46ba-9e07-7d06accbd377",
+      "name": "Dacia"
+    },
+    {
+      "is_active": true,
+      "id": "37a580da-bfe8-4e96-ae9a-75735f062429",
+      "name": "Dadi"
+    },
+    {
+      "is_active": true,
+      "id": "ed9ff141-707e-4b4a-97e9-711693c8959d",
+      "name": "Daewoo"
+    },
+    {
+      "is_active": true,
+      "id": "fafe9521-8d7a-4e7a-8758-2f5d3834c460",
+      "name": "DAF"
+    },
+    {
+      "is_active": true,
+      "id": "20083385-ecd9-4b6c-b9bc-15aee6f7ddcc",
+      "name": "DAF / VDL"
+    },
+    {
+      "is_active": true,
+      "id": "b2c331d7-5c08-4aa2-8116-03df3d71f2c1",
+      "name": "Daihatsu"
+    },
+    {
+      "is_active": true,
+      "id": "ab22f50e-b683-409f-9076-a269057b7556",
+      "name": "Daimler"
+    },
+    {
+      "is_active": true,
+      "id": "10446249-d1af-4ab2-a004-c222d40d45db",
+      "name": "Datsun"
+    },
+    {
+      "is_active": true,
+      "id": "82c3b23e-fb46-42b9-ad27-a94e24cf7cfb",
+      "name": "Dodge"
+    },
+    {
+      "is_active": true,
+      "id": "bcb6f954-7154-4278-a268-35828f4feda8",
+      "name": "Dongfeng"
+    },
+    {
+      "is_active": true,
+      "id": "74c941d4-bd28-4fec-91b3-4e997fa7fe9a",
+      "name": "DS"
+    },
+    {
+      "is_active": true,
+      "id": "672324f0-b08f-402a-93ab-8e59cfd2a8fa",
+      "name": "Eagle"
+    },
+    {
+      "is_active": true,
+      "id": "caf4d1f7-01ad-4461-ae63-52bafa7f0ad1",
+      "name": "FAW"
+    },
+    {
+      "is_active": true,
+      "id": "6742b861-8188-4b2f-a155-93f94929e9ac",
+      "name": "Ferrari"
+    },
+    {
+      "is_active": true,
+      "id": "9bc4ee21-e189-4794-a8d6-8b031ac30ce5",
+      "name": "Fiat"
+    },
+    {
+      "is_active": true,
+      "id": "693c3fb2-36aa-4065-a81e-b694e36a348e",
+      "name": "Fiat-Abarth"
+    },
+    {
+      "is_active": true,
+      "id": "bd60ab77-419d-42f5-b7ce-ef4f87cfd37b",
+      "name": "Fisker"
+    },
+    {
+      "is_active": true,
+      "id": "557d9245-e6f3-4606-8dd5-500cb9a83af1",
+      "name": "Ford"
+    },
+    {
+      "is_active": true,
+      "id": "419f71f8-11da-4566-98a2-0b4e76fd0f03",
+      "name": "FUQI"
+    },
+    {
+      "is_active": true,
+      "id": "39cf9450-8661-4fa3-8c1a-490d6f7f8559",
+      "name": "Gac"
+    },
+    {
+      "is_active": true,
+      "id": "469d5017-4157-4f1d-9d93-bdb590c7e94e",
+      "name": "Geely"
+    },
+    {
+      "is_active": true,
+      "id": "ba9ba118-fe61-4ce2-92e4-36595ea07cef",
+      "name": "Genesis"
+    },
+    {
+      "is_active": true,
+      "id": "6c1b51ab-9d12-4d2c-8a96-047c9aeb44fc",
+      "name": "GMC"
+    },
+    {
+      "is_active": true,
+      "id": "85fd86c1-21c5-4dda-af48-417345896f5b",
+      "name": "Golf Car"
+    },
+    {
+      "is_active": true,
+      "id": "9b10c067-53fe-43a1-abbd-92f9ce418234",
+      "name": "Gonow"
+    },
+    {
+      "is_active": true,
+      "id": "11e113df-fdde-41c7-9cc9-a8c5a192f69c",
+      "name": "Great Wall"
+    },
+    {
+      "is_active": true,
+      "id": "842b2a61-562a-455d-bbda-50a5726a3206",
+      "name": "Groz"
+    },
+    {
+      "is_active": true,
+      "id": "ced67350-dbf4-42ea-8258-554ad2cd7e56",
+      "name": "Hafei"
+    },
+    {
+      "is_active": true,
+      "id": "a63cdce2-6172-4155-b760-6d2713676a2c",
+      "name": "Hanomag"
+    },
+    {
+      "is_active": true,
+      "id": "9f003ac2-50c8-42b4-827b-2d937c1d26e0",
+      "name": "Haval"
+    },
+    {
+      "is_active": true,
+      "id": "c142baf2-6695-43cd-963a-ffe2a2915c4c",
+      "name": "Honda"
+    },
+    {
+      "is_active": true,
+      "id": "0815e63a-360a-489e-9f4a-6b916153dc97",
+      "name": "Huanghai"
+    },
+    {
+      "is_active": true,
+      "id": "db54a147-f75f-4816-9f74-a86f6050f947",
+      "name": "Hummer"
+    },
+    {
+      "is_active": true,
+      "id": "5b2962d4-1adf-4b52-af83-a0d23c389a49",
+      "name": "Hyundai"
+    },
+    {
+      "is_active": true,
+      "id": "acbde523-0f7e-4702-b18b-3018893b6fc9",
+      "name": "Infiniti"
+    },
+    {
+      "is_active": true,
+      "id": "b7f8203e-4d13-4c2d-a7e7-635bf560664b",
+      "name": "Iran Khodro"
+    },
+    {
+      "is_active": true,
+      "id": "cd82fb1b-b628-4e84-81b3-cfddfa9c0d76",
+      "name": "Isuzu"
+    },
+    {
+      "is_active": true,
+      "id": "7f022d62-30a8-4e4c-994d-a1c52e2d62eb",
+      "name": "Iveco"
+    },
+    {
+      "is_active": true,
+      "id": "3019a5fb-59f3-46a2-80ed-75f3002f049f",
+      "name": "JAC"
+    },
+    {
+      "is_active": true,
+      "id": "c8de84fb-0c38-4527-b1cc-953f88f368c6",
+      "name": "Jaguar"
+    },
+    {
+      "is_active": true,
+      "id": "8002992d-bdf4-4ced-bb31-7f82bda20176",
+      "name": "JCB"
+    },
+    {
+      "is_active": true,
+      "id": "4942b921-0c45-4268-8d6a-bbe90cb71647",
+      "name": "Jeep"
+    },
+    {
+      "is_active": true,
+      "id": "8a0cf8cc-a41c-48b0-9ca6-1ca1f8131c49",
+      "name": "Jonway"
+    },
+    {
+      "is_active": true,
+      "id": "e946b3b5-8b28-4e8f-86ff-2c5636817e77",
+      "name": "Karosa"
+    },
+    {
+      "is_active": true,
+      "id": "f440d4e2-b826-44ae-bc8c-3ec6af910290",
+      "name": "Kia"
+    },
+    {
+      "is_active": true,
+      "id": "0674e910-e20f-4dd8-8b33-3182cc90c444",
+      "name": "Lada"
+    },
+    {
+      "is_active": true,
+      "id": "59dbf0d1-5215-48f7-a735-5fd838b705d7",
+      "name": "Lamborghini"
+    },
+    {
+      "is_active": true,
+      "id": "2adcecbb-6678-49c0-af4b-f4ed74f877d0",
+      "name": "Lancia"
+    },
+    {
+      "is_active": true,
+      "id": "853ac5e1-67fa-4616-b144-1f1e4d1ed903",
+      "name": "Land Rover"
+    },
+    {
+      "is_active": true,
+      "id": "f13fcf31-cb4d-4dc9-8d20-8895f3ca4649",
+      "name": "Landwind"
+    },
+    {
+      "is_active": true,
+      "id": "db4bdf4b-6a2a-449b-a59d-d4c1d10819a6",
+      "name": "LDV"
+    },
+    {
+      "is_active": true,
+      "id": "eb46a180-62bc-45bd-9a10-f213a3aaf646",
+      "name": "Lexus"
+    },
+    {
+      "is_active": true,
+      "id": "6c732952-c05a-415b-ae70-cca8a1e30c2d",
+      "name": "Lifan"
+    },
+    {
+      "is_active": true,
+      "id": "664dcea3-3c3d-4af9-8c72-813cb42bbefd",
+      "name": "Lincoln"
+    },
+    {
+      "is_active": true,
+      "id": "89b427a1-a447-4d63-b25e-59199f048466",
+      "name": "Lotus"
+    },
+    {
+      "is_active": true,
+      "id": "ac24d00a-846e-4a6a-abf2-2f51c1f41301",
+      "name": "MAN"
+    },
+    {
+      "is_active": true,
+      "id": "e8fce680-5a10-439d-8dea-c9c74b20c6e6",
+      "name": "Maruti"
+    },
+    {
+      "is_active": true,
+      "id": "870edeb9-0485-4bd7-a17f-286b144939ab",
+      "name": "Maserati"
+    },
+    {
+      "is_active": true,
+      "id": "144b06e1-110b-4c7f-833a-c1066ff6831d",
+      "name": "Maybach"
+    },
+    {
+      "is_active": true,
+      "id": "030472a6-9814-4ea7-8932-d1328f1edbfc",
+      "name": "Mazda"
+    },
+    {
+      "is_active": true,
+      "id": "ca1980e4-34d1-40ec-9ac3-e6ed20042788",
+      "name": "McLaren"
+    },
+    {
+      "is_active": true,
+      "id": "cf645d13-74af-411b-945f-3cd296c87291",
+      "name": "MEGA"
+    },
+    {
+      "is_active": true,
+      "id": "dcdb05b6-888c-4e3d-b203-027c42ef1c8a",
+      "name": "Mercedes-Benz"
+    },
+    {
+      "is_active": true,
+      "id": "f3d2f1e2-a3f7-468f-8352-d5a612333271",
+      "name": "Mercury"
+    },
+    {
+      "is_active": true,
+      "id": "db643d28-0fd3-422a-af14-156031a442cd",
+      "name": "MG"
+    },
+    {
+      "is_active": true,
+      "id": "483a97db-1678-4438-ab7e-88846e0aab65",
+      "name": "MINI"
+    },
+    {
+      "is_active": true,
+      "id": "920a436e-9d11-4f52-88cd-a118d9756581",
+      "name": "Mitsubishi"
+    },
+    {
+      "is_active": true,
+      "id": "247179e5-c25e-44c4-8653-50b89753a675",
+      "name": "Mobility Ventures"
+    },
+    {
+      "is_active": true,
+      "id": "b1c81409-475f-4fcb-9d2e-f3679f13702f",
+      "name": "MPM Motors"
+    },
+    {
+      "is_active": true,
+      "id": "a6f4691c-8c07-4799-92bc-af648a0a4a6d",
+      "name": "MYBRO"
+    },
+    {
+      "is_active": true,
+      "id": "5fa81ea0-a3b8-4ba4-891e-003f952ed123",
+      "name": "NEO"
+    },
+    {
+      "is_active": true,
+      "id": "9acfea56-59cb-4354-888f-71385c0b36be",
+      "name": "NIO"
+    },
+    {
+      "is_active": true,
+      "id": "bfad74e5-327d-4a73-b1a3-1ff59d9d985c",
+      "name": "Nissan"
+    },
+    {
+      "is_active": true,
+      "id": "b6283a61-7f31-46f9-9a9b-342b8eecc001",
+      "name": "Nysa (Ныса)"
+    },
+    {
+      "is_active": true,
+      "id": "64619b48-14c3-46d7-9ab2-452a17369cd9",
+      "name": "Oldsmobile"
+    },
+    {
+      "is_active": true,
+      "id": "b390a45c-faf9-4edc-9c03-d7a673dca4cd",
+      "name": "Opel"
+    },
+    {
+      "is_active": true,
+      "id": "1e479c44-3d43-4e53-9bee-b2c5a499aa78",
+      "name": "Peugeot"
+    },
+    {
+      "is_active": true,
+      "id": "01f45b7d-b0ff-408b-9ed1-586baa94cfec",
+      "name": "Plymouth"
+    },
+    {
+      "is_active": true,
+      "id": "9bb994eb-fe08-4aae-93fc-73d637bb1cf3",
+      "name": "Pontiac"
+    },
+    {
+      "is_active": true,
+      "id": "ab5525d7-23ea-4728-a734-31c4c64882ec",
+      "name": "Porsche"
+    },
+    {
+      "is_active": true,
+      "id": "de9c9289-bf35-46ac-ba12-b29ae7504cf0",
+      "name": "Proton"
+    },
+    {
+      "is_active": true,
+      "id": "33458292-720f-447c-8858-4c4642ab310e",
+      "name": "Quicksilver"
+    },
+    {
+      "is_active": true,
+      "id": "6b9f4b16-833d-41a5-bf58-301c5e6e73a8",
+      "name": "Ram"
+    },
+    {
+      "is_active": true,
+      "id": "3c67ed1f-4647-44c2-b773-fe9128214438",
+      "name": "Ravon"
+    },
+    {
+      "is_active": true,
+      "id": "3345e43d-971a-46e9-a086-5cb64fba1b6f",
+      "name": "Renault"
+    },
+    {
+      "is_active": true,
+      "id": "8ccbf821-f15d-42db-89d6-0442de9b7010",
+      "name": "Renault Samsung Motors"
+    },
+    {
+      "is_active": true,
+      "id": "06462a7a-0c7e-48c8-a940-c39d826e3fcf",
+      "name": "Roewe"
+    },
+    {
+      "is_active": true,
+      "id": "9250279d-567c-484c-887e-7e1e025df004",
+      "name": "Rolls-Royce"
+    },
+    {
+      "is_active": true,
+      "id": "f50086ff-d22d-4d40-99b7-5e36182cf704",
+      "name": "Rover"
+    },
+    {
+      "is_active": true,
+      "id": "576cd0c0-837e-4b51-9759-11a694eb11b9",
+      "name": "Saab"
+    },
+    {
+      "is_active": true,
+      "id": "dbd2842c-b832-4471-b70c-f2fae556a2da",
+      "name": "Saipa"
+    },
+    {
+      "is_active": true,
+      "id": "7bf5fcff-7a66-4622-9120-41dbe6a5d269",
+      "name": "Samand"
+    },
+    {
+      "is_active": true,
+      "id": "22f6afcd-e7ef-4614-bf72-9c3c413c00bb",
+      "name": "Samson"
+    },
+    {
+      "is_active": true,
+      "id": "ac6b46a7-5a88-4823-9413-f362abcee468",
+      "name": "Samsung"
+    },
+    {
+      "is_active": true,
+      "id": "ca0290c0-8a94-4e17-a810-bdd05af12157",
+      "name": "Saturn"
+    },
+    {
+      "is_active": true,
+      "id": "a1b3e455-6c8a-4cb0-b01d-f9112602ae0f",
+      "name": "Scion"
+    },
+    {
+      "is_active": true,
+      "id": "c6657e93-3c36-41eb-b384-eda43e677258",
+      "name": "SEAT"
+    },
+    {
+      "is_active": true,
+      "id": "846358f5-c204-4426-a1cf-d05475cdd758",
+      "name": "Shuanghuan"
+    },
+    {
+      "is_active": true,
+      "id": "eb31cece-64d7-4bc6-b0b6-4a48faeb04da",
+      "name": "Skoda"
+    },
+    {
+      "is_active": true,
+      "id": "7db96f87-7fd8-4ad2-8513-80c60d73fe91",
+      "name": "SMA"
+    },
+    {
+      "is_active": true,
+      "id": "a40612ec-2cf8-4b70-a75d-49841c3f55a1",
+      "name": "Smart"
+    },
+    {
+      "is_active": true,
+      "id": "6faadde2-cf42-4483-b4f9-7d829514ad55",
+      "name": "SouEast"
+    },
+    {
+      "is_active": true,
+      "id": "24bb2fc5-e810-4943-929c-30089d5a0ff7",
+      "name": "SsangYong"
+    },
+    {
+      "is_active": true,
+      "id": "49839ecc-a3e1-46e5-8ccd-5ac640645244",
+      "name": "Subaru"
+    },
+    {
+      "is_active": true,
+      "id": "97f9880f-1bae-4db4-be0b-be0454d91657",
+      "name": "Suda"
+    },
+    {
+      "is_active": true,
+      "id": "9ac1d522-ff3a-4055-a17f-8b7f268e6a87",
+      "name": "Suzuki"
+    },
+    {
+      "is_active": true,
+      "id": "60d75c5a-43f0-46c1-96fe-cc1773dd03a5",
+      "name": "Talbot"
+    },
+    {
+      "is_active": true,
+      "id": "abcd3ed8-87d4-4b7d-b5d1-d5025dd095f4",
+      "name": "TATA"
+    },
+    {
+      "is_active": true,
+      "id": "c72e76ed-54ab-456d-9845-1d6cbb6966c6",
+      "name": "Tatra"
+    },
+    {
+      "is_active": true,
+      "id": "da105896-9a52-4d54-a956-bfa247e7575b",
+      "name": "Tesla"
+    },
+    {
+      "is_active": true,
+      "id": "c250f39c-c902-4bd0-8476-d7c224c825af",
+      "name": "Test_Make"
+    },
+    {
+      "is_active": true,
+      "id": "b09f884c-2427-4f29-8796-0c6e3ddd9957",
+      "name": "Think Global"
+    },
+    {
+      "is_active": true,
+      "id": "6516ceb2-266b-4b25-b2d8-d60b7e24bc6c",
+      "name": "Tiger"
+    },
+    {
+      "is_active": true,
+      "id": "54882817-e9cb-4504-845d-f54d4835558a",
+      "name": "Toyota"
+    },
+    {
+      "is_active": true,
+      "id": "77d72194-2d9b-4f14-9417-2f432c0f18af",
+      "name": "Trabant"
+    },
+    {
+      "is_active": true,
+      "id": "7484afc6-171c-4790-98de-c77a449e6361",
+      "name": "Triumph"
+    },
+    {
+      "is_active": true,
+      "id": "f299d5ae-a54b-4353-b820-18abd9229356",
+      "name": "Van Hool"
+    },
+    {
+      "is_active": true,
+      "id": "f3f3848e-3c41-4524-a4f9-fe06c7e67520",
+      "name": "Vauxhall"
+    },
+    {
+      "is_active": true,
+      "id": "3dec0cb9-aec1-4cd5-9124-9f53c199fe7f",
+      "name": "Venucia"
+    },
+    {
+      "is_active": true,
+      "id": "f9cec29c-5bbe-4330-ac12-9a1fc3d1d90e",
+      "name": "Volkswagen"
+    },
+    {
+      "is_active": true,
+      "id": "63a991ce-97b6-49ef-8e48-905893683240",
+      "name": "Volvo"
+    },
+    {
+      "is_active": true,
+      "id": "9c7edcb7-63b2-41fa-bb2e-8cc233d4e632",
+      "name": "Wanderer"
+    },
+    {
+      "is_active": true,
+      "id": "6d8668f1-c10d-4574-a8f5-065a2860439f",
+      "name": "Wanfeng"
+    },
+    {
+      "is_active": true,
+      "id": "facc3ba7-5001-4ef7-ac7b-9958e058e502",
+      "name": "Wartburg"
+    },
+    {
+      "is_active": true,
+      "id": "1ff372be-4693-4bca-b7e0-b12bd2439f46",
+      "name": "Weltmeister"
+    },
+    {
+      "is_active": true,
+      "id": "e9610cdc-5b5f-44d1-87b2-9b86c5505e23",
+      "name": "Willys"
+    },
+    {
+      "is_active": true,
+      "id": "1f8e294c-0d43-49c9-96e8-d4950f7cb1de",
+      "name": "Wuling"
+    },
+    {
+      "is_active": true,
+      "id": "9e343264-205f-49a5-843d-5165acd1e5ee",
+      "name": "Xin kai"
+    },
+    {
+      "is_active": true,
+      "id": "6465b8af-6f98-488e-bd91-e6bda34d4951",
+      "name": "Xpeng"
+    },
+    {
+      "is_active": true,
+      "id": "d7c021be-88eb-4e6f-b62a-55ef0efbe1be",
+      "name": "Zastava"
+    },
+    {
+      "is_active": true,
+      "id": "ff4bf3c3-15c9-4eff-bab2-af5201320f6b",
+      "name": "Zhidou"
+    },
+    {
+      "is_active": true,
+      "id": "219d51b7-3907-4e41-84cb-0dbcd4c381d7",
+      "name": "Zotye"
+    },
+    {
+      "is_active": true,
+      "id": "d254963f-0fa8-40de-bc27-ac6c51dfeabc",
+      "name": "Zuk"
+    },
+    {
+      "is_active": true,
+      "id": "04967f26-8731-44b8-9b65-acc553d8a86e",
+      "name": "ZX"
+    },
+    {
+      "is_active": true,
+      "id": "41687d9e-8c69-459e-91f3-a7c4c28ed283",
+      "name": "Богдан"
+    },
+    {
+      "is_active": true,
+      "id": "3478207b-2e86-4f9f-b392-dc559dc8c576",
+      "name": "ВАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "d660f142-428b-4342-96fc-ffa83e4dc1be",
+      "name": "ГАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "434bbb31-037c-4840-afa0-93a99c3958b4",
+      "name": "ЕРАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "25657a17-0a0e-453f-8425-b0b40f0fa16d",
+      "name": "ЗАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "59decd71-2b6c-4e92-8f2f-89d40ed68d53",
+      "name": "ЗИЛ"
+    },
+    {
+      "is_active": true,
+      "id": "7860d292-3a13-40b4-96b1-2be34b5d7efb",
+      "name": "ЗИМ"
+    },
+    {
+      "is_active": true,
+      "id": "ca225177-5d78-4bcf-9cc0-46aaf2dfc657",
+      "name": "ИЖ"
+    },
+    {
+      "is_active": true,
+      "id": "58ad041b-5d63-4c7b-8c0d-672bdc1e331b",
+      "name": "ЛуАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "cc62caed-92fa-49cd-8a7a-5eb7f7d83734",
+      "name": "Москвич/АЗЛК"
+    },
+    {
+      "is_active": true,
+      "id": "b44aeaff-9400-40ac-b1b4-f7d9e7e16422",
+      "name": "Прицеп"
+    },
+    {
+      "is_active": true,
+      "id": "f8ec40ac-737e-4d1b-9abe-7cf2665f2930",
+      "name": "РАФ"
+    },
+    {
+      "is_active": true,
+      "id": "448505cd-d242-493b-83e1-0b06499e68f1",
+      "name": "Ретро автомобили"
+    },
+    {
+      "is_active": true,
+      "id": "8be42803-dfd2-43e5-91d9-fd9ee387af02",
+      "name": "Самодельный"
+    },
+    {
+      "is_active": true,
+      "id": "f8fdfd5b-ab21-4f52-8ee1-4e5f3d92b6b3",
+      "name": "УАЗ"
+    },
+    {
+      "is_active": true,
+      "id": "a4fa8c3f-09a1-4128-8e10-2a0ed1e2d188",
+      "name": "Циклон"
+    }
+  ],
+  "years": [
+    2024,
+    2023,
+    2022,
+    2021,
+    2020,
+    2019,
+    2018,
+    2017,
+    2016,
+    2015,
+    2014,
+    2013,
+    2012,
+    2011,
+    2010,
+    2009,
+    2008,
+    2007,
+    2006,
+    2005,
+    2004,
+    2003,
+    2002,
+    2001,
+    2000,
+    1999,
+    1998,
+    1997,
+    1996,
+    1995,
+    1994,
+    1993,
+    1992,
+    1991,
+    1990
+  ]
+}

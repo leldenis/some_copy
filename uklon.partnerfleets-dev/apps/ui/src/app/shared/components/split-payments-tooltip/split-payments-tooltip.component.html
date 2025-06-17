@@ -1,0 +1,44 @@
+@if (groupedSplits) {
+  <upf-popover (popoverOpened)="onPopoverOpened($event)">
+    @for (entrepreneur of groupedSplits | keyvalue; track entrepreneur.key) {
+      <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+        <div class="tw-font-medium">{{ entrepreneur.key }}</div>
+
+        @for (split of entrepreneur.value; track split.split_payment_id) {
+          <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+            @if ($first) {
+              <div class="tw-grid tw-grid-cols-[2fr_1fr_1fr] tw-gap-md tw-text-neutral-fog">
+                <div data-cy="tooltip-merchat-title">{{ 'Orders.Trips.List.Merchant' | translate }}</div>
+                <div class="tw-text-end" data-cy="tooltip-cost-title">{{ 'Orders.Trips.List.Cost' | translate }}</div>
+                <div class="tw-text-end" data-cy="tooltip-commission-title">
+                  {{ 'Orders.Trips.List.Commission' | translate }}
+                </div>
+              </div>
+            }
+
+            <div
+              class="tw-grid tw-grid-cols-[2fr_1fr_1fr] tw-gap-md tw-font-medium"
+              [attr.data-cy]="'merchant-' + split.merchant_id"
+            >
+              <div data-cy="merchant-provider">{{ split?.payment_provider }} {{ split.merchant_id }}</div>
+              <upf-money
+                class="!tw-text-white !tw-text-sm tw-text-end"
+                data-cy="merchant-total"
+                [money]="split.total"
+              ></upf-money>
+              <upf-money
+                class="!tw-text-white !tw-text-sm tw-text-end"
+                data-cy="merchant-fee"
+                [money]="split.fee"
+              ></upf-money>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (!$last) {
+        <mat-divider class="tw-border-t-neutral-shale !tw-my-2"></mat-divider>
+      }
+    }
+  </upf-popover>
+}

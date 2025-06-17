@@ -1,0 +1,33 @@
+<div class="tw-grid tw-grid-cols-3 sm:tw-grid-cols-6 tw-gap-y-4 tw-gap-x-1.5 sm:tw-gap-x-4">
+  @for (item of steps(); track item) {
+    <div>
+      <div class="tw-flex tw-flex-row tw-items-center tw-gap-1 sm:tw-gap-2">
+        @if (stepCompleted(item, $last)) {
+          <mat-icon class="tw-text-accent-mint-light" [svgIcon]="icons.circleCompletedInactive"></mat-icon>
+        }
+
+        @if (stepInProgress(item, $last)) {
+          <mat-icon class="tw-text-accent-mint-light" [svgIcon]="icons.circleCompleted"></mat-icon>
+        }
+
+        @if (stepNotStarted(item)) {
+          <mat-icon [svgIcon]="icons.circleProcess" class="outlined"></mat-icon>
+        }
+
+        <div class="tw-flex tw-flex-col tw-gap-1">
+          <span class="tw-text-[16px]" [class.tw-text-neutral-granit]="stepNotStarted(item)">
+            {{ item.value | upfMoney: currency() }}
+          </span>
+
+          <span class="tw-text-sm tw-text-neutral-granit tw-hidden sm:tw-flex">
+            {{ item.range[0] }} + {{ 'Bonuses.VehicleList.Program.Orders' | translate }}
+          </span>
+
+          <span class="tw-text-sm tw-text-neutral-granit sm:tw-hidden">
+            {{ item.range[0] }}+ {{ 'Bonuses.VehicleList.Program.Orders' | translate }}
+          </span>
+        </div>
+      </div>
+    </div>
+  }
+</div>

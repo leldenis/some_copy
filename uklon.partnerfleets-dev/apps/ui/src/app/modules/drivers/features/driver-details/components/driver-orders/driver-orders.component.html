@@ -1,0 +1,80 @@
+<div class="tw-p-md">
+  <upf-filters-container
+    [filterKey]="filterKey"
+    [filterSubKey]="driverId"
+    [defaultFilters]="filtersGroup.getRawValue()"
+    (filtersChange)="getFleetOrders(false, $event)"
+  >
+    <section [formGroup]="filtersGroup" class="tw-flex tw-flex-col tw-gap-md sm:tw-grid sm:tw-grid-cols-4">
+      <mat-form-field appearance="outline" floatLabel="always" color="primary" data-cy="trips-period-filter">
+        <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+        <upf-date-time-range-control formControlName="date"></upf-date-time-range-control>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" floatLabel="always" color="primary" data-cy="trips-licensePlate-filter">
+        <mat-label>{{ 'Orders.Trips.Details.LicensePlate' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="licencePlate"
+          [placeholder]="'Orders.Trips.Details.LicensePlate' | translate"
+        />
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" floatLabel="always" color="primary" data-cy="trips-status-filter">
+        <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+        <mat-select formControlName="status">
+          <mat-option [value]="''">
+            {{ 'Orders.Trips.Filter.OrderStatus.all' | translate }}
+          </mat-option>
+
+          @for (status of driverOrderStatuses; track status) {
+            <mat-option [value]="status">
+              {{ driverOrderStatusIntl.get(status) | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" floatLabel="always" color="primary" data-cy="trips-productType-filter">
+        <mat-label>
+          {{ 'VehicleOrders.Filters.ProductType.Caption' | translate }}
+        </mat-label>
+
+        <mat-select formControlName="productType">
+          <mat-option [value]="''">
+            {{ 'Common.ProductTypes.all' | translate }}
+          </mat-option>
+
+          @for (productType of productTypes; track productType) {
+            <mat-option [value]="productType">
+              {{ 'Common.ProductTypes.' + (productType | normalizeString) | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </section>
+  </upf-filters-container>
+</div>
+
+@if (orders$ | async; as orders) {
+  @if (orders?.length) {
+    <div class="tw-p-md tw-pt-0 sm:tw-p-0 sm:tw-border-t sm:tw-border-neutral-200">
+      <upf-fleet-order-record-list
+        (cdkScrolled)="onLoadNext()"
+        [dataSource]="orders"
+        [columns]="columns"
+      ></upf-fleet-order-record-list>
+
+      @if (isLoading) {
+        <upf-progress-spinner></upf-progress-spinner>
+      }
+    </div>
+  } @else {
+    <div class="tw-flex tw-h-full tw-justify-center">
+      <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+    </div>
+  }
+}

@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use 'libs/fleets/shared/styles/src/styles/functions' as functions;
+@use 'libs/fleets/shared/styles/src/styles/variables' as variables;
+@use 'libs/fleets/shared/styles/src/styles/typography' as typography;
+
+:host {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  grid-row-gap: functions.remify(4);
+  padding: functions.remify(4) 0 0 0;
+  width: 100%;
+}
+
+.mat-mdc-raised-button {
+  @apply tw-text-base sm:tw-text-inherit;
+  @apply tw-h-auto sm:tw-h-11 sm:tw-w-auto;
+  @apply tw-text-neutral-white;
+
+  &.upf-has-icon {
+    padding: 0 functions.remify(4) 0 functions.remify(3);
+  }
+
+  &:hover {
+    background: linear-gradient(0deg, rgb(0 0 0 / 15%), rgb(0 0 0 / 15%)), map.get(variables.$accent-palette, accent-mint);
+  }
+}
+
+.mat-icon {
+  @apply tw-w-4 tw-h-4;
+}

@@ -1,0 +1,21 @@
+<div class="tw-flex tw-items-center tw-px-md tw-py-3.5 tw-justify-between tw-gap-md tw-text-neutral-graphite">
+  <div class="tw-text-dialogTitle">{{ 'VehicleBrandingPeriod.CancelVideoUploadDialog.Title' | translate }}</div>
+
+  <button mat-icon-button [matDialogClose]="false">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="tw-text-base tw-text-neutral-granit tw-px-md tw-pb-6">
+  {{ dialogData.message | translate }}
+</div>
+
+<div class="tw-flex tw-justify-between tw-p-md tw-border-t tw-border-neutral-silver">
+  <button [matDialogClose]="true" mat-flat-button color="accent">
+    <span class="tw-text-accent-coral-light">{{ 'Common.Buttons.B_Close' | translate }}</span>
+  </button>
+
+  <button [matDialogClose]="false" mat-flat-button color="primary">
+    {{ 'VehicleBrandingPeriod.CancelVideoUploadDialog.CancelBtn' | translate }}
+  </button>
+</div>

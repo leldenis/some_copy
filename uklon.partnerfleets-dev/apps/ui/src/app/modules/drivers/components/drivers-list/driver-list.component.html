@@ -1,0 +1,188 @@
+@let isMobileView = isMobileView$ | async;
+
+<mat-accordion displayMode="flat" class="tw-grid tw-gap-2 tw-mb-14 sm:tw-block sm:tw-mb-0" data-cy="table">
+  @if (!isMobileView) {
+    <div class="panel-header main" data-cy="header-row">
+      <div data-cy="header-cell-FullName">{{ 'DriverList.Header.FullName' | translate }}</div>
+      <div data-cy="header-cell-Filters">{{ 'DriverFilters.Title' | translate }}</div>
+      <div data-cy="header-cell-Phone">{{ 'DriverList.Header.Phone' | translate }}</div>
+      <div data-cy="header-cell-Signal">{{ 'DriverList.Header.Signal' | translate }}</div>
+      <div data-cy="header-cell-Rating">{{ 'DriverList.Header.Rating' | translate }}</div>
+      <div data-cy="header-cell-Karma" class="tw-flex tw-items-center tw-gap-1">
+        {{ 'DriverList.Header.Karma' | translate }}
+        <mat-icon
+          class="outlined tw-text-icon tw-text-accent-mint-light"
+          [ngxTippy]="'DriverList.KarmaTooltip' | translate"
+        >
+          info
+        </mat-icon>
+      </div>
+      <div data-cy="header-cell-Vehicle">{{ 'DriverList.Header.Vehicle' | translate }}</div>
+    </div>
+  }
+
+  @for (driver of drivers(); track $index) {
+    <mat-expansion-panel #panel hideToggle class="data-panel" [disabled]="!isMobileView">
+      <mat-expansion-panel-header
+        class="!tw-p-0 hover:!tw-bg-white"
+        expandedHeight="56px"
+        collapsedHeight="56px"
+        data-cy="orders-list-table"
+      >
+        @if (isMobileView) {
+          <div class="mobile-panel-header">
+            <ng-container *ngTemplateOutlet="driverName; context: { $implicit: driver }"></ng-container>
+
+            <div class="expand-icon" data-cy="expand-toggle" [ngClass]="{ expanded: panel.expanded }">
+              <mat-icon>expand_more</mat-icon>
+            </div>
+          </div>
+        } @else {
+          <div class="panel-header" [attr.data-cy]="'row-' + $index">
+            <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1" data-cy="cell-FullName">
+              <ng-container *ngTemplateOutlet="driverName; context: { $implicit: driver }"></ng-container>
+            </div>
+
+            @let driverFilters = driver.active_driver_filters | driverFilters: driver?.is_online | async;
+
+            <div data-cy="cell-Filters" [class.tw-text-neutral-granit]="!driver?.is_online">
+              @for (filter of driverFilters; track $index) {
+                <span
+                  [class.filter-link]="filter.isLink"
+                  (click)="onShowActiveFilters(driver.id, filter.isLink)"
+                  [attr.data-cy]="'active-filter' + (filter.isLink ? '-link' : '')"
+                >
+                  {{ filter.key | translate: { data: filter.data } }}
+                </span>
+
+                <span>
+                  {{ $last ? '' : ',' }}
+                </span>
+              }
+            </div>
+
+            <div data-cy="cell-Phone">
+              {{ driver.phone }}
+            </div>
+
+            <div data-cy="cell-Signal">
+              {{ driver.signal }}
+            </div>
+
+            <div data-cy="cell-Rating">
+              {{ driver.rating / 100 | number: '1.2-2' }}
+            </div>
+
+            <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1" data-cy="cell-Karma">
+              <span>{{ driver.karma?.value }}%</span>
+              <span class="tw-text-md tw-text-neutral-granit">
+                {{ 'Common.Enum.KarmaGroup.' + driver.karma?.group | translate }}
+              </span>
+            </div>
+
+            <div data-cy="cell-Vehicle">
+              @if (driver.selected_vehicle; as vehicle) {
+                <div class="tw-flex tw-items-center tw-justify-between tw-gap-1">
+                  <div class="tw-flex tw-flex-col">
+                    <span>{{ vehicle?.make }} {{ vehicle?.model }}</span>
+
+                    <a
+                      [routerLink]="[
+                        '/',
+                        corePaths.WORKSPACE,
+                        corePaths.VEHICLES,
+                        vehiclePaths.DETAILS,
+                        vehicle.vehicle_id,
+                      ]"
+                      class="tw-text-accent-mint-light hover:tw-underline focus:tw-underline"
+                      data-cy="vehiclePlate-Link"
+                    >
+                      {{ vehicle.license_plate }}
+                    </a>
+                  </div>
+
+                  <div>
+                    <button
+                      mat-icon-button
+                      [ngxTippy]="'Modals.UnlinkVehicle.Unlink' | translate"
+                      [tippyProps]="{ placement: 'left' }"
+                      (click)="unlink(driver)"
+                      class="unlink-btn"
+                      data-cy="cell-button-Unlink"
+                    >
+                      <mat-icon class="tw-text-icon">link_off</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              } @else {
+                <div class="tw-flex tw-items-center">
+                  <span class="tw-text-neutral-granit">
+                    {{ 'DriverList.NoVehicle' | translate }}
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </mat-expansion-panel-header>
+
+      <upf-driver-list-expanded-view [driver]="driver" (showActiveFilters)="showActiveFilters.emit($event)">
+        @if (driver.selected_vehicle) {
+          <button
+            mat-icon-button
+            [ngxTippy]="'Modals.UnlinkVehicle.Unlink' | translate"
+            (click)="unlink(driver)"
+            class="unlink-btn"
+            data-cy="unlink-btn"
+          >
+            <mat-icon class="tw-text-icon">link_off</mat-icon>
+          </button>
+        }
+      </upf-driver-list-expanded-view>
+    </mat-expansion-panel>
+  }
+</mat-accordion>
+
+<upf-pagination [totalCount]="total()" class="upf-pagination"></upf-pagination>
+
+<ng-template let-driver #driverName>
+  <div class="tw-text-base tw-font-medium">
+    <a
+      [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.id]"
+      class="tw-align-middle tw-font-medium hover:tw-underline focus:tw-underline"
+      data-cy="link"
+    >
+      {{ driver | fullName }}
+    </a>
+
+    @if (driver.is_online) {
+      <span class="tw-ml-0.5 icon-driver-online" [ngxTippy]="'DriverList.OnlineTooltip' | translate"></span>
+    }
+
+    @if (driver.block_status?.value === blockedStatus.BLOCKED) {
+      <mat-icon
+        class="tw-ml-1 icon-driver-blocked"
+        data-cy="icon-driver-blocked"
+        [ngxTippy]="'BlockedList.Blocked' | translate"
+        (click)="$event.stopPropagation()"
+      >
+        outlined_flag
+      </mat-icon>
+    }
+
+    @if (
+      appConfig?.showDriverPhotoControl &&
+      driver?.photo_control?.status &&
+      (driver.photo_control.status === ticketStatus.DRAFT || driver.photo_control.status === ticketStatus.CLARIFICATION)
+    ) {
+      <upf-photo-control-icon
+        class="icon-photo-control"
+        path="PhotoControl.Tooltips.DriversList"
+        [status]="driver.photo_control.status"
+        [blockImmediately]="driver?.photo_control.block_immediately ?? false"
+        [deadline]="driver?.photo_control?.deadline_to_send ?? 0"
+        [attr.data-cy]="'icon-photo-control-isBlocked-' + driver.photo_control.block_immediately"
+      ></upf-photo-control-icon>
+    }
+  </div>
+</ng-template>

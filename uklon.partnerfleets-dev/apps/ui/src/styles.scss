@@ -1,0 +1,76 @@
+@use "variables";
+@use "normalize";
+@use "flexbox";
+@use "grid";
+@use "material";
+@use "map";
+@use "icons";
+@use "fleets";
+@use "tooltip";
+@use "toast";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: var(--title-color);
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    white-space: normal;
+    text-overflow: unset;
+  }
+}
+
+.menu-toggle {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+
+  mat-icon {
+    width: px2rem(20);
+    height: px2rem(20);
+  }
+}
+
+.upf-phone-number-overlay {
+  @apply max-sm:tw-inset-0 max-sm:tw-min-h-screen #{!important};
+}
+
+@for $i from 1 through 10 {
+  .line-clamp-#{$i} {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+  }
+}

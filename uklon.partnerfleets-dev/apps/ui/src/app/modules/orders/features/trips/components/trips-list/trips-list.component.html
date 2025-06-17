@@ -1,0 +1,343 @@
+@let isMobileView = isMobileView$ | async;
+
+<div class="sm:tw-shadow-sm tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    @if (!isMobileView) {
+      <div class="panel-header main">
+        <div class="tw-grid">
+          <span>{{ 'Orders.Trips.List.Driver' | translate }}</span>
+          <span class="tw-text-neutral-granit">{{ 'Orders.Trips.List.LicensePlate' | translate }}</span>
+        </div>
+
+        <div>{{ 'Orders.Trips.List.PickUp' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.Route' | translate }}</div>
+        <div class="tw-grid">
+          <span>{{ 'Orders.Trips.List.OrderCost' | translate }}</span>
+          <span class="tw-text-neutral-granit">
+            {{ 'Orders.Trips.List.Distance' | translate }}
+          </span>
+        </div>
+        <div>{{ 'Orders.Trips.List.Merchant' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.PaymentType' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.ProductType' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.Status' | translate }}</div>
+        <div></div>
+      </div>
+    }
+
+    @for (order of orders; track order) {
+      <mat-expansion-panel
+        #panel
+        hideToggle
+        class="trip-panel"
+        [disabled]="!order.hasAdditionalIncome && !isMobileView"
+      >
+        <mat-expansion-panel-header
+          class="!tw-p-0 hover:!tw-bg-white"
+          expandedHeight="56px"
+          collapsedHeight="56px"
+          data-cy="orders-list-table"
+        >
+          @let canceledOrder = order.status === orderStatus.CANCELED;
+          @if (!isMobileView) {
+            <div (click)="$event.stopPropagation()" [ngClass]="{ canceled: canceledOrder }" class="panel-header">
+              <div class="tw-grid tw-gap-1">
+                <a
+                  class="hover:tw-underline tw-font-medium tw-w-fit"
+                  [routerLink]="['/', corePath.WORKSPACE, corePath.DRIVERS, driverPath.DETAILS, order.driver.id]"
+                >
+                  {{ order.driver.fullName }}
+                </a>
+
+                <div
+                  class="tw-text-sm tw-w-fit"
+                  [ngClass]="{
+                    'tw-text-accent-mint-light hover:tw-underline': order.vehicle.licencePlate,
+                    '!tw-text-neutral-granit': canceledOrder,
+                  }"
+                >
+                  <a
+                    [attr.data-cy]="'license-plate-' + order.vehicle.licencePlate"
+                    [routerLink]="
+                      !order.vehicle.licencePlate
+                        ? null
+                        : ['/', corePath.WORKSPACE, corePath.VEHICLES, vehiclePath.DETAILS, order.vehicle.id]
+                    "
+                  >
+                    {{ order.vehicle.licencePlate || ('RideList.VehicleNotAttached' | translate) }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="tw-grid">
+                {{ order.pickupTime | seconds2Date }}
+                <span class="tw-text-neutral-granit tw-text-sm">
+                  {{ order.pickupTime | seconds2Time }}
+                </span>
+              </div>
+
+              <a
+                [routerLink]="order.status === orderStatus.CANCELED ? null : [orderDetailsPath, order.id]"
+                [queryParams]="order?.driver?.id ? { driverId: order.driver?.id } : {}"
+              >
+                <upf-route-points
+                  [route]="order.route"
+                  [orderCanceled]="order.status === orderStatus.CANCELED"
+                  [isRouteLink]="true"
+                  [isMobile]="isMobileView"
+                ></upf-route-points>
+              </a>
+
+              <div>
+                <div class="tw-flex tw-gap-1.5">
+                  {{
+                    !canceledOrder
+                      ? (order.payment.cost | upfMoney: order.payment.currency)
+                      : (order.payment.currency | currencySymbol) + ' -'
+                  }}
+
+                  @if (order.isCorporateOrder) {
+                    <mat-icon
+                      ngxTippy="{{ 'Orders.Trips.List.Tooltip.ToBalance' | translate }}"
+                      class="!tw-w-5 !tw-h-5 -tw-mt-0.5 tw-text-neutral-graphite"
+                      svgIcon="i-charge-balance"
+                    ></mat-icon>
+                  }
+                </div>
+
+                <div class="tw-text-neutral-granit tw-text-sm">
+                  {{ !canceledOrder ? order.payment.distance : '- ' }}
+                  {{ 'Common.Km' | translate }}
+                </div>
+              </div>
+
+              <div class="tw-flex tw-gap-1.5 tw-items-center">
+                <upf-money [money]="order.merchantIncome"></upf-money>
+
+                @if (order.merchantIncome?.amount) {
+                  <upf-split-payments-tooltip [groupedSplits]="order.grouped_splits"></upf-split-payments-tooltip>
+                }
+              </div>
+
+              <div>
+                @if (!canceledOrder) {
+                  <span>
+                    {{ 'Orders.Trips.List.Tooltip.' + (order.payment.feeType | titlecase) | translate }}
+                  </span>
+                } @else {
+                  -
+                }
+              </div>
+
+              <upf-product-type-chip
+                [productType]="order.vehicle.productType"
+                [conditions]="order.vehicle.productConditions"
+              ></upf-product-type-chip>
+
+              <div class="tw-flex tw-items-center tw-gap-md">
+                @let statusTooltipMsg =
+                  'Orders.Trips.CancellationInitiator.' + order?.cancellation?.initiator | translate;
+
+                <upf-status-badge
+                  [color]="statusColor[order.status]"
+                  [ngxTippy]="order.status === orderStatus.CANCELED ? statusTooltipMsg : null"
+                >
+                  {{ 'Orders.Trips.Filter.OrderStatus.' + order?.status | translate }}
+                </upf-status-badge>
+
+                @if (order?.optional) {
+                  <mat-icon
+                    svgIcon="i-hand"
+                    class="tw-shrink-0 !tw-w-5 !tw-h-5"
+                    ngxTippy="{{ 'Orders.Trips.List.Tooltip.OptionalOrder' | translate }}"
+                  ></mat-icon>
+                }
+              </div>
+
+              @if (order.hasAdditionalIncome) {
+                <div
+                  class="expand-icon tw-text-neutral-graphite"
+                  (click)="togglePanel(panel)"
+                  [ngClass]="{ expanded: panel.expanded }"
+                >
+                  <mat-icon>expand_more</mat-icon>
+                </div>
+              }
+            </div>
+          }
+
+          @if (isMobileView) {
+            <div class="mobile-panel-header">
+              <div class="tw-grid tw-gap-1">
+                <div class="tw-font-medium">
+                  <a [routerLink]="['/', corePath.WORKSPACE, corePath.DRIVERS, driverPath.DETAILS, order.driver.id]">
+                    {{ order.driver.fullName }}
+                  </a>
+                </div>
+
+                <div class="tw-text-neutral-granit">
+                  <a
+                    [routerLink]="
+                      !order.vehicle.licencePlate
+                        ? null
+                        : ['/', corePath.WORKSPACE, corePath.VEHICLES, vehiclePath.DETAILS, order.vehicle.id]
+                    "
+                  >
+                    {{ order.vehicle.licencePlate || ('RideList.VehicleNotAttached' | translate) }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="tw-flex tw-items-center tw-justify-end tw-gap-md" (click)="$event.stopPropagation()">
+                @let statusTooltipMsg =
+                  'Orders.Trips.CancellationInitiator.' + order?.cancellation?.initiator | translate;
+
+                <upf-status-badge
+                  [color]="statusColor[order.status]"
+                  [ngxTippy]="order.status === orderStatus.CANCELED ? statusTooltipMsg : null"
+                >
+                  {{ 'Orders.Trips.Filter.OrderStatus.' + order?.status | translate }}
+                </upf-status-badge>
+
+                @if (order?.optional) {
+                  <mat-icon
+                    svgIcon="i-hand"
+                    class="tw-shrink-0 !tw-w-5 !tw-h-5"
+                    ngxTippy="{{ 'Orders.Trips.List.Tooltip.OptionalOrder' | translate }}"
+                  ></mat-icon>
+                }
+              </div>
+
+              <div class="expand-icon" [ngClass]="{ expanded: panel.expanded }">
+                <mat-icon>expand_more</mat-icon>
+              </div>
+            </div>
+          }
+        </mat-expansion-panel-header>
+
+        <ng-container
+          [ngTemplateOutlet]="isMobileView ? expandedViewMobileTpl : additionalIncomeTpl"
+          [ngTemplateOutletContext]="{
+            $implicit: order,
+            canceled: order.status === orderStatus.CANCELED,
+          }"
+        ></ng-container>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+
+  @if (!isLoaded) {
+    <upf-progress-spinner class="tw-static tw-w-full tw-bottom-0"></upf-progress-spinner>
+  }
+</div>
+
+<ng-template #expandedViewMobileTpl let-order let-canceled="canceled">
+  <div class="tw-p-2 tw-bg-neutral-silver tw-grid tw-gap-2 tw-text-neutral-graphite">
+    <div class="tw-grid tw-gap-1">
+      <a
+        [routerLink]="canceled ? null : [orderDetailsPath, order.id]"
+        [queryParams]="order?.driver?.id ? { driverId: order.driver?.id } : {}"
+      >
+        <upf-route-points
+          [route]="order.route"
+          [orderCanceled]="canceled"
+          [isRouteLink]="true"
+          [isMobile]="true"
+        ></upf-route-points>
+      </a>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="expanded-view">
+      <div class="tw-grid tw-gap-1">
+        <div class="title">{{ 'Orders.Trips.List.PickUp' | translate }}</div>
+        <div class="content">
+          {{ order.pickupTime | seconds2Date }}
+          {{ order.pickupTime | seconds2Time }}
+        </div>
+      </div>
+
+      <mat-divider vertical></mat-divider>
+
+      <div class="tw-grid tw-gap-1">
+        <div class="title">{{ 'Orders.Trips.List.Distance' | translate }}</div>
+        <div class="content">
+          {{ !canceled ? order.payment.distance : '- ' }}
+          {{ 'Common.Km' | translate }}
+        </div>
+      </div>
+
+      <mat-divider class="tw-col-span-full"></mat-divider>
+
+      <div class="tw-flex tw-gap-md tw-whitespace-nowrap">
+        <div class="tw-grid tw-gap-1">
+          <div class="title">{{ 'Orders.Trips.List.Cost' | translate }}</div>
+          <div class="content tw-flex tw-gap-1.5">
+            {{
+              !canceled
+                ? (order.payment.cost | upfMoney: order.payment.currency)
+                : (order.payment.currency | currencySymbol) + ' -'
+            }}
+
+            @if (order.isCorporateOrder) {
+              <mat-icon
+                ngxTippy="{{ 'Orders.Trips.List.Tooltip.ToBalance' | translate }}"
+                class="!tw-w-5 !tw-h-5 -tw-mt-0.5 tw-text-neutral-graphite"
+                svgIcon="i-charge-balance"
+              ></mat-icon>
+            }
+          </div>
+        </div>
+
+        <mat-divider vertical></mat-divider>
+
+        <div class="tw-grid tw-gap-1">
+          <div class="title">
+            {{ 'Orders.Trips.List.PaymentType' | translate }}
+          </div>
+
+          @if (!canceled) {
+            <div class="content">
+              {{ 'Orders.Trips.List.Tooltip.' + (order.payment.feeType | titlecase) | translate }}
+            </div>
+          } @else {
+            -
+          }
+        </div>
+      </div>
+
+      <mat-divider vertical></mat-divider>
+
+      <div class="tw-grid tw-gap-1">
+        <div class="title">
+          {{ 'Orders.Trips.List.ProductType' | translate }}
+        </div>
+
+        <div class="content">
+          {{ 'Common.ProductTypes.' + (order.vehicle.productType | normalizeString) | translate }}
+        </div>
+      </div>
+    </div>
+
+    <mat-divider class="tw-col-span-full"></mat-divider>
+
+    @if (order.hasAdditionalIncome) {
+      <ng-container
+        [ngTemplateOutlet]="additionalIncomeTpl"
+        [ngTemplateOutletContext]="{ $implicit: order }"
+      ></ng-container>
+
+      <mat-divider></mat-divider>
+    }
+
+    <upf-trips-split-payments-details
+      [groupedSplits]="order.grouped_splits"
+      [merchantsProfit]="order.merchantIncome"
+    ></upf-trips-split-payments-details>
+  </div>
+</ng-template>
+
+<ng-template #additionalIncomeTpl let-order>
+  <upf-order-additional-income-info [order]="order"></upf-order-additional-income-info>
+</ng-template>

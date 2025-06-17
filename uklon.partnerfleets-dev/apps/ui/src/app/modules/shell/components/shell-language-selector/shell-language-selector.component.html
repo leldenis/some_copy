@@ -1,0 +1,32 @@
+<div
+  class="navigation-item"
+  [ngClass]="{ opened: drawerOpened() }"
+  [matMenuTriggerFor]="languageMenu"
+  (click)="onLanguageSelectOpened()"
+>
+  <div class="icon-container">{{ languageToCountry[currentLanguage] }}</div>
+
+  <div class="tw-flex tw-justify-between tw-items-center tw-w-full tw-pr-md">
+    <div class="menu-item-name">{{ 'Common.Language' | translate }}</div>
+
+    <mat-icon class="tw-transition-transform" [ngClass]="{ 'tw-rotate-180': opened() }">expand_more</mat-icon>
+  </div>
+</div>
+
+<mat-menu #languageMenu yPosition="above" class="shell-menu language" (closed)="opened.set(false)">
+  @for (language of availableLanguages; track language) {
+    <button mat-menu-item (click)="onLanguageChange(language)">
+      <div class="language-option" [attr.data-cy]="'language-' + language">
+        <div class="language-avatar" [ngClass]="{ '!tw-text-accent-mint-light': language === currentLanguage }">
+          {{ languageToCountry[language] }}
+        </div>
+
+        {{ 'Common.LocaleName.' + (language | titlecase) | translate }}
+
+        @if (language === currentLanguage) {
+          <mat-icon class="!tw-text-accent-mint-light">done</mat-icon>
+        }
+      </div>
+    </button>
+  }
+</mat-menu>

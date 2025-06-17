@@ -1,0 +1,59 @@
+:host {
+  @apply tw-text-base;
+}
+
+.header {
+  @apply tw-flex tw-items-center tw-justify-between tw-text-dialogTitle;
+  @apply tw-px-md tw-py-2.5 tw-pr-2 tw-border-b tw-border-neutral-silver;
+  @apply tw-sticky tw-bg-white tw-top-0;
+}
+
+.content {
+  @apply tw-grid tw-gap-md tw-p-md tw-overflow-auto;
+  max-height: calc(100dvh - 114px);
+
+  @screen sm {
+    max-height: calc(100dvh - 168px);
+  }
+}
+
+.filter {
+  @apply tw-grid tw-gap-md tw-p-md tw-bg-neutral-silver tw-rounded;
+}
+
+.filter-name {
+  @apply tw-flex tw-items-center tw-gap-1;
+  @apply tw-px-md tw-py-1 tw-bg-neutral-white tw-rounded-full;
+}
+
+.properties {
+  @apply tw-grid tw-gap-3;
+
+  .property-container {
+    @apply tw-grid tw-grid-cols-2 tw-gap-6;
+
+    &:last-of-type + .mat-divider {
+      @apply tw-hidden;
+    }
+
+    &.new-filters {
+      @apply tw-grid-cols-3;
+    }
+  }
+
+  .property {
+    @apply tw-grid tw-gap-1;
+
+    :nth-child(odd) {
+      @apply tw-font-medium;
+    }
+
+    .mat-icon {
+      @apply tw-text-icon tw-w-5 tw-h-5;
+    }
+
+    &:last-of-type + .mat-divider {
+      @apply tw-hidden;
+    }
+  }
+}

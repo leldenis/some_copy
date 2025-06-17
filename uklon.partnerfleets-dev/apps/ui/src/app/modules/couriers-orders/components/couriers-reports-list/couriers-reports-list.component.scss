@@ -1,0 +1,65 @@
+:host {
+  ::ng-deep {
+    .mat-content {
+      @apply tw-flex-row-reverse tw-m-0;
+    }
+
+    .mat-expansion-panel-content {
+      @apply tw-bg-neutral-silver;
+    }
+
+    .mat-expansion-panel-body {
+      @apply tw-p-2 sm:tw-p-md;
+    }
+  }
+}
+
+.report-panel {
+  border-radius: 0.25rem !important;
+  @apply tw-shadow-sm;
+
+  @screen sm {
+    @apply tw-shadow-none tw-border-b tw-border-neutral-cloud;
+  }
+}
+
+.mat-expansion-panel-header-description {
+  @apply tw-m-0;
+
+  .mat-icon {
+    @apply tw-h-14 tw-leading-[56px] tw-w-9 tw-text-center tw-transition-transform;
+    @apply sm:tw-w-12;
+  }
+
+  &.expanded {
+    @apply tw-bg-neutral-silver;
+
+    .mat-icon {
+      @apply tw-rotate-180;
+    }
+  }
+}
+
+.grid-header {
+  @apply tw-grid tw-gap-2 tw-px-md tw-py-2.5 tw-w-full tw-min-h-[48px];
+  @apply tw-text-md tw-text-neutral-smoke tw-items-center tw-border-b tw-border-neutral-cloud;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 36px;
+
+  @screen sm {
+    @apply tw-pr-0;
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)) 40px;
+  }
+
+  &.panel-header {
+    @apply tw-text-neutral-graphite tw-p-0 tw-text-base tw-border-none;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+
+    @screen sm {
+      grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
+.info-icon {
+  @apply tw-w-5 tw-h-5 tw-text-icon tw-text-accent-mint-light;
+}

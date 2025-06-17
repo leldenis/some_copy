@@ -1,0 +1,9 @@
+<div class="dots">
+  @for (item of items; track item) {
+    <button
+      type="button"
+      class="dot {{ $index === currentIndex ? 'active' : '' }}"
+      (click)="selectItem.emit($index)"
+    ></button>
+  }
+</div>

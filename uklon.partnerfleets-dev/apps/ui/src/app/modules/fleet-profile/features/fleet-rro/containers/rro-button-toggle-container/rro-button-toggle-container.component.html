@@ -1,0 +1,40 @@
+<div class="tab-wraps">
+  <div class="tabs">
+    <button
+      class="tw-rounded-l-lg"
+      [class.active]="activeTabKeys"
+      (click)="handlerToggleTab(tabs.KEYS)"
+      data-cy="tab-keys"
+    >
+      {{ 'FleetProfile.RRO.UploadedKeys' | translate }}
+    </button>
+
+    <button
+      class="tw-rounded-r-lg"
+      [class.active]="!activeTabKeys"
+      (click)="handlerToggleTab(tabs.CARS)"
+      data-cy="tab-cars"
+    >
+      {{ 'FleetProfile.RRO.CarsFiscalization' | translate }}
+    </button>
+  </div>
+
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="handlerUploadKeyModal()"
+    class="upload-btn"
+    data-cy="upload-signature-key-btn"
+  >
+    <mat-icon class="!tw-w-6 !tw-h-6">
+      <span class="material-symbols-outlined">upload</span>
+    </mat-icon>
+    {{ 'FleetProfile.RRO.UploadKey' | translate }}
+  </button>
+</div>
+
+@if (activeTab === tabs.KEYS) {
+  <ng-content select="[tab-keys]"></ng-content>
+} @else {
+  <ng-content select="[tab-cars]"></ng-content>
+}

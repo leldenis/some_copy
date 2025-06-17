@@ -1,0 +1,118 @@
+<div class="expanded-view">
+  <div class="tw-flex tw-flex-wrap tw-gap-4">
+    @if (showDriverPhone()) {
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">
+          {{ 'Bonuses.Commissions.List.Phone' | translate }}
+        </div>
+        <div class="tw-text-base">
+          @if (program()?.driver?.phone) {
+            <a
+              [href]="'tel:+' + program().driver.phone"
+              class="tw-text-accent-mint-light hover:tw-underline focus:tw-underline flt-expanded-view-link"
+            >
+              {{ program().driver.phone }}
+            </a>
+          } @else {
+            -
+          }
+        </div>
+      </div>
+    }
+
+    <div class="expanded-view-col">
+      <div class="expanded-view-title">
+        {{ 'Bonuses.Commissions.List.Program' | translate }}
+      </div>
+      <div class="expanded-view-description">{{ program()?.program_name }}</div>
+    </div>
+
+    <div class="expanded-view-col">
+      <div class="expanded-view-title">
+        {{ 'Bonuses.Commissions.List.Period' | translate }}
+      </div>
+
+      <upf-commission-program-period [programPeriod]="program().period"></upf-commission-program-period>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-flex-wrap tw-gap-4">
+    <div class="tw-flex tw-gap-1">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title tw-whitespace-nowrap">
+          {{ 'Bonuses.Commissions.List.ProfitBudget' | translate }}
+        </div>
+        <div class="expanded-view-description">{{ program()?.profit_budget | upfMoney: currency() }}</div>
+      </div>
+
+      <mat-icon
+        class="tw-text-accent-mint-light tw-shrink-0 tw-mt-1"
+        [svgIcon]="icons.info"
+        [ngxTippy]="'Bonuses.Commissions.List.Tooltip.ProfitBudget' | translate"
+        (mousedown)="showProfitBudgetTooltip.emit()"
+      ></mat-icon>
+    </div>
+
+    <div class="tw-flex tw-gap-1">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">{{ 'Bonuses.Commissions.List.Progress' | translate }}</div>
+        <div class="expanded-view-description tw-break-words">
+          {{
+            program()?.always_add_progress_if_satisfied
+              ? ('Bonuses.Commissions.List.ProgressAlways' | translate)
+              : ('Bonuses.Commissions.List.ProgressActive' | translate)
+          }}
+        </div>
+      </div>
+      <upf-commission-programs-progress-icon
+        class="tw-mt-1"
+        (showTooltip)="showProgramProgressTooltip.emit()"
+      ></upf-commission-programs-progress-icon>
+    </div>
+
+    <div class="tw-flex tw-gap-4">
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">{{ 'Bonuses.Commissions.List.MinCommission' | translate }}</div>
+        <div class="expanded-view-description">{{ program().commissions | minCommission }}%</div>
+      </div>
+
+      <div class="expanded-view-col">
+        <div class="expanded-view-title">{{ 'Bonuses.Commissions.List.OrdersOfMinCommission' | translate }}</div>
+        <div class="expanded-view-description">{{ program().commissions | minOrdersForMinCommission }}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="tw-grid tw-gap-4">
+    <div class="tw-text-base">{{ 'Bonuses.Commissions.List.OrderExecutionLevel' | translate }}:</div>
+    <upf-commission-orders-progress-stepper
+      data-cy="orders-progress-stepper"
+      class="tw-max-w-[800px]"
+      [completedOrders]="program().current_completed_orders"
+      [commissions]="program().commissions | sortCommissions"
+      [skipActiveSteps]="true"
+    ></upf-commission-orders-progress-stepper>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="tw-flex tw-gap-4">
+    <div class="expanded-view-col">
+      <div class="expanded-view-title">
+        {{ 'Bonuses.Commissions.List.Indicators' | translate }}
+      </div>
+      <div class="expanded-view-description">{{ 'Bonuses.Commissions.List.DriverRating' | translate }}</div>
+    </div>
+
+    <div class="expanded-view-col">
+      <div class="expanded-view-title">
+        {{ 'Bonuses.Commissions.List.Requirements' | translate }}
+      </div>
+      <div class="expanded-view-description">
+        {{ 'Bonuses.Commissions.List.RequirementsFrom' | translate }}: {{ program()?.min_rating | number: '1.2-2' }}
+      </div>
+    </div>
+  </div>
+</div>

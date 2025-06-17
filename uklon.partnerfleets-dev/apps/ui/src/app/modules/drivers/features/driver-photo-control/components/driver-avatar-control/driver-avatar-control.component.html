@@ -1,0 +1,63 @@
+<div
+  *upfLet="!url() && !disabled() as active"
+  [ngClass]="{ 'photo-uploaded': !!url(), invalid: invalid, disabled: disabled() }"
+  [tabindex]="active ? 0 : -1"
+  (blur)="active ? onTouched() : null"
+  class="photo-container"
+>
+  @if (!url()) {
+    <div
+      (click)="fileInput.click()"
+      class="category"
+      [style.background-image]="'url(assets/images/driver_avatar_photo.svg)'"
+    ></div>
+  } @else {
+    <img (click)="photoClick.emit(category())" [ngSrc]="url()" [alt]="category()" fill priority />
+  }
+
+  @if (uploadProgress$ | async; as progress) {
+    <mat-spinner
+      class="buffer"
+      mode="determinate"
+      [diameter]="diameter$ | async"
+      [value]="100"
+      strokeWidth="8"
+    ></mat-spinner>
+    <mat-spinner mode="determinate" [diameter]="diameter$ | async" strokeWidth="8" [value]="progress"></mat-spinner>
+  }
+
+  @if (!uploading() && !disabled()) {
+    <button
+      [@fade]
+      [disableRipple]="true"
+      (click)="$event.stopPropagation(); fileInput.click()"
+      mat-mini-fab
+      type="button"
+    >
+      <mat-icon class="outlined">{{ url() ? 'edit' : 'add' }}</mat-icon>
+    </button>
+  }
+
+  <input
+    type="file"
+    #fileInput
+    hidden
+    [accept]="allowedExtensions()"
+    [attr.capture]="capture()"
+    (change)="onFileSelect($event)"
+  />
+</div>
+
+@if (errorMessages().length) {
+  <div [@fade] class="info-panel error">
+    @for (error of errorMessages(); track $index) {
+      <div>{{ error.message | translate: { data: error.data } }}</div>
+    }
+  </div>
+}
+
+@if (uploadSuccess$ | async) {
+  <div [@fade] class="info-panel success">
+    {{ 'Common.FileUpload.UploadSuccess' | translate }}
+  </div>
+}

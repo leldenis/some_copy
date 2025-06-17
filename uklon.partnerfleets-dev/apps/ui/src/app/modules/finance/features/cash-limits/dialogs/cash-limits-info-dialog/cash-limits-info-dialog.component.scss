@@ -1,0 +1,52 @@
+.header {
+  @apply tw-flex tw-items-center tw-justify-between tw-text-dialogTitle;
+  @apply tw-px-md tw-py-2.5 tw-pr-2 tw-border-b tw-border-neutral-silver;
+}
+
+.content {
+  @apply tw-p-md tw-pr-3 tw-pb-3 tw-overflow-auto tw-leading-6;
+  max-height: calc(100dvh - 168px);
+
+  ::ng-deep {
+    ul {
+      @apply tw-list-disc tw-px-md tw-grid tw-gap-2 sm:tw-gap-3;
+    }
+
+    .cash-limit-panel {
+      @apply tw-text-neutral-graphite tw-shadow-none;
+
+      &:not(:last-child) {
+        @apply tw-border-b tw-border-neutral-cloud;
+      }
+
+      .mat-expansion-panel-header {
+        @apply tw-p-0 tw-pr-1;
+
+        &:hover, &:focus, &:active {
+          @apply tw-bg-transparent #{!important};
+        }
+      }
+
+      .mat-expansion-panel-body {
+        @apply tw-p-0 tw-pb-3;
+      }
+
+      &.mat-expanded .mat-expansion-indicator::after {
+        @apply tw-border-neutral-graphite;
+      }
+
+      .mat-expansion-indicator::after {
+        @apply tw-border-neutral-granit;
+      }
+    }
+  }
+
+  @screen sm {
+    max-height: 540px;
+  }
+}
+
+.footer {
+  @apply tw-p-md tw-flex tw-justify-center tw-border-t tw-border-neutral-silver;
+}
+

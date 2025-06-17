@@ -1,0 +1,22 @@
+@use 'functions' as f;
+
+.code-group {
+  input {
+    font-size: 32px;
+    background-color: var(--white-color);
+    border: 1px solid var(--grey90-color);
+    outline: none;
+    border-radius: f.px2rem(10);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: f.px2rem(72);
+    width: 100%;
+  }
+}
+
+.error-code {
+  input {
+    border: 2px solid var(--danger-color) !important;
+  }
+}

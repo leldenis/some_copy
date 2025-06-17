@@ -1,0 +1,10 @@
+@if (totalCount && (pagination$ | async); as pagination) {
+  <mat-paginator
+    data-cy="mat-paginator"
+    [hidePageSize]="true"
+    [length]="totalCount"
+    [pageIndex]="pagination?.offset / pagination?.limit"
+    [pageSize]="pagination?.limit"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+}

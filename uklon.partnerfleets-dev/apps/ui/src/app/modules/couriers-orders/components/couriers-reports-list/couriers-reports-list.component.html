@@ -1,0 +1,53 @@
+<div class="sm:tw-shadow-sm sm:tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    @if (!isMobileView) {
+      <div class="grid-header">
+        <div>{{ 'OrderReportList.Courier' | translate }}</div>
+        <div>{{ 'Couriers.CourierDetails.Tabs.Deliveries' | translate }}</div>
+        <div>{{ 'OrderReportList.RidesTotalAmount.Title' | translate }}</div>
+        <div class="tw-flex tw-gap-2 tw-items-center">
+          {{ 'OrderReportList.TotalAmount.Title' | translate }}
+          <mat-icon class="outlined info-icon" [ngxTippy]="'OrderReportList.TotalAmount.Tooltip' | translate">
+            info
+          </mat-icon>
+        </div>
+      </div>
+    }
+
+    @for (report of reports; track report) {
+      <mat-expansion-panel hideToggle #panel class="report-panel">
+        <mat-expansion-panel-header
+          expandedHeight="56px"
+          collapsedHeight="56px"
+          class="!tw-pl-md !tw-pr-0 hover:!tw-bg-white"
+        >
+          <div class="grid-header panel-header">
+            <a
+              (click)="$event.stopPropagation()"
+              [routerLink]="['/', corePath.WORKSPACE, corePath.COURIERS, courierPath.DETAILS, report.courier.id]"
+              class="tw-font-medium tw-w-fit"
+            >
+              {{ report.courier.last_name }} {{ report.courier.first_name }}
+            </a>
+
+            @if (!isMobileView) {
+              <div>{{ report.total_orders_count }}</div>
+
+              <upf-money [money]="report.profit.order.total"></upf-money>
+            }
+
+            <div class="tw-text-right tw-mr-2 sm:tw-m-0 sm:tw-text-left">
+              <upf-money [money]="report.profit.total"></upf-money>
+            </div>
+          </div>
+
+          <mat-panel-description [ngClass]="{ expanded: panel.expanded }">
+            <mat-icon>expand_more</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <upf-courier-report-info [report]="report" [isMobileView]="isMobileView"></upf-courier-report-info>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>

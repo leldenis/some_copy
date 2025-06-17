@@ -1,0 +1,60 @@
+:root {
+  // colors
+  --black-color: #000000;
+  --black-color--rgb: 0, 0, 0;
+  --black10-color: #222426;
+  --white-color: #FFFFFF;
+  --success-color: #33CCA1;
+  --title-color: #454754;
+  --grey5-color: #FAFAFA;
+  --grey10-color: #33353d;
+  --grey20-color: #454754;
+  --grey30-color: #5C5E69;
+  --grey40-color: #73757e;
+  --grey50-color: #acacb2;
+  --grey60-color: #cfd0d2;
+  --grey85-color: #FDF3F3;
+  --grey90-color: #f2f2f2;
+  --grey95-color: #ACACB2;
+  --grey100-color: #E6E7E7;
+  --danger-color: #E97171;
+  --danger-dark-color: #C74444;
+  --secondary-color: #33CCA1;
+  --secondary-hover-color: #30B38F;
+  --additional-color: #FFE03B;
+  --light-color: #1BB0CE;
+  --lighter-color: #DCF5FA;
+  --alerts-bg-green-light: #D8F2EB;
+  --alerts-bg-green: #D4EEE2;
+  --alerts-bg-green--rgb: 212, 238, 226;
+  --alerts-text-green: #00783E;
+  --alerts-text-green--rgb: 0, 120, 62;
+  --alerts-bg-red-light: #FFE8E8;
+  --alerts-bg-red: #FAE2E2;
+  --alerts-bg-red--rgb: 250, 226, 226;
+  --alerts-text-red: #BF0E08;
+  --alerts-text-red--rgb: 191, 14, 8;
+  --alerts-bg-violet: #EBE8FF;
+  --alerts-text-violet: #5A40DE;
+  --alerts-bg-yellow-light: #FFF3CC;
+  --alerts-bg-yellow: #FBE6A2;
+  --alerts-text-yellow: #845700;
+  --custom-success: #4CAF50;
+  --custom-warning: #FB8C00;
+  --custom-warning-10: #F99B58;
+  --custom-lightgreen: #EBFAF6;
+  --custom-error: #FF5252;
+
+  // container padding
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+}
+
+$breakpoint-mobile-sm-max: 375px;
+$breakpoint-mobile-max: 767px;
+$breakpoint-tablet-min: 768px;
+$breakpoint-tablet-max: 1023px;
+$breakpoint-desktop-min: 1024px;
+
+$default-icon-size: 24px;
+$login-navbar-height-desktop: px2rem(80);

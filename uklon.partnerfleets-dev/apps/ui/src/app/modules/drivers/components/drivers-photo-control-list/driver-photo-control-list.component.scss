@@ -1,0 +1,73 @@
+:host {
+  ::ng-deep {
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+}
+
+.panel-header {
+  @apply tw-text-base tw-grid tw-gap-md tw-items-center tw-w-full;
+  @apply tw-px-md tw-text-neutral-graphite tw-cursor-auto;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 2fr))
+    minmax(0, 2fr)
+    minmax(0, 2fr)
+    minmax(0, 3fr)
+    minmax(0, 2fr)
+    20px;
+
+  &.main {
+    @apply tw-hidden tw-text-sm tw-text-neutral-smoke tw-h-12 sm:tw-grid;
+  }
+}
+
+.data-panel {
+  border-radius: 0.25rem !important;
+  @apply tw-shadow-sm #{!important};
+
+  @screen sm {
+    border-radius: 0 !important;
+    @apply tw-border-t tw-border-neutral-cloud;
+    @apply sm:tw-shadow-none #{!important};
+  }
+}
+
+.mobile-panel-header {
+  @apply tw-grid tw-gap-2 tw-pl-2 tw-items-center tw-w-full tw-h-14;
+  @apply tw-text-base tw-text-neutral-graphite;
+  grid-template-columns: 2fr 1fr 36px;
+}
+
+.expanded-view {
+  @apply tw-text-neutral-graphite tw-grid tw-gap-2 tw-bg-neutral-silver tw-p-2;
+
+  .title {
+    @apply tw-text-xs tw-text-neutral-granit tw-mb-2;
+  }
+
+  .description {
+    @apply tw-text-base tw-text-neutral-graphite;
+  }
+}
+
+.expand-icon {
+  @apply tw-grid tw-place-items-center tw-h-full tw-transition-transform;
+
+  .mat-icon {
+    @apply tw-transition-transform
+  }
+
+  &.expanded {
+    @apply tw-bg-neutral-silver;
+
+    .mat-icon {
+      @apply tw-rotate-180;
+    }
+  }
+}
+
+.driver-blocked-icon {
+  @apply tw-text-accent-coral-light tw-text-icon tw-w-5 tw-h-5 tw-align-middle;
+}

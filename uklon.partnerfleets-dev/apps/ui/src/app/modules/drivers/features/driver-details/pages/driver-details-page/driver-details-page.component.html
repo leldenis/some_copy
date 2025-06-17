@@ -1,0 +1,39 @@
+@if (fleet$ | async; as fleet) {
+  <div
+    infiniteScroll
+    [scrollWindow]="false"
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    class="tw-h-full tw-overflow-auto"
+    data-cy="driver-details-infinite-scroller"
+  >
+    @if (driver$ | async; as driver) {
+      <div class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-4 sm:tw-p-4 tw-grow">
+        <div class="tw-flex tw-flex-col tw-w-auto sm:tw-min-w-[412px] sm:tw-max-w-[412px]">
+          <div
+            class="tw-flex tw-flex-col sm:tw-min-h-[calc(100vh-72px-16px)] sm:tw-rounded-lg sm:tw-bg-neutral-white sm:tw-shadow-sm"
+          >
+            <upf-driver-details-info
+              [selectedFleet]="fleet"
+              [driver]="driver"
+              [isDriverBlocked]="driver.status.value === driverBlockedListStatus.BLOCKED"
+              [karmaGroupRanges]="karmaGroupRanges$ | async"
+              [photoControl]="photoControl$ | async"
+              (unlinkVehicle)="handleUnlinkVehicle()"
+              (deleteDriver)="handleDriverDelete(driver, fleet.id)"
+            ></upf-driver-details-info>
+          </div>
+        </div>
+
+        <upf-driver-details-tabs
+          [selectedFleet]="fleet"
+          [selectedDriver]="driver"
+          [isDriverBlocked]="driver.status.value === driverBlockedListStatus.BLOCKED"
+          [selectedVehicle]="driver?.selected_vehicle"
+          [isMobileView]="isMobileView$ | async"
+          class="tw-grow sm:tw-rounded-lg sm:tw-bg-neutral-white sm:tw-shadow-sm"
+        ></upf-driver-details-tabs>
+      </div>
+    }
+  </div>
+}

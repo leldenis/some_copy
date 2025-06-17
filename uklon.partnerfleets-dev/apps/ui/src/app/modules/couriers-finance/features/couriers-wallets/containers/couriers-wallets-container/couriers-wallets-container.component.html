@@ -1,0 +1,94 @@
+@if (fleetId$ | async; as fleetId) {
+  @let fleetBalance = fleetBalance$ | async;
+
+  @if (couriersWallets$ | async; as couriersWallets) {
+    <upf-couriers-balances-info
+      [withdrawalSum]="withdrawalSum"
+      [totalBalance]="couriersWallets?.totalBalance"
+    ></upf-couriers-balances-info>
+
+    <div class="tw-flex tw-justify-between tw-items-center">
+      <upf-driver-balances-filter
+        [fleetId]="fleetId"
+        [filterKey]="filterKey"
+        (sortChange)="onSortChange($event, couriersWallets.wallets.items)"
+        (filtersChange)="onFiltersChange($event, couriersWallets.wallets.items)"
+        class="tw-w-full"
+      ></upf-driver-balances-filter>
+
+      <div class="tw-gap-md tw-hidden sm:tw-flex">
+        <button
+          mat-flat-button
+          color="primary"
+          class="!tw-py-1"
+          [disabled]="!withdrawalSum || insufficientFunds || withdrawalSum > couriersWallets.totalBalance.amount / 100"
+          (click)="handleWithdrawToFleetClick(couriersWallets.totalBalance.amount, fleetId)"
+        >
+          {{ 'Finance.DriversBalances.Filter.TransferToFleet' | translate }}
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          class="!tw-py-1"
+          [disabled]="!withdrawalSum || withdrawalSum > fleetBalance || withdrawEverythingEnabled"
+          (click)="handleWithdrawToCouriersClick(fleetBalance, fleetId)"
+        >
+          {{ 'CourierFinance.CouriersWallets.TransferToCouriers' | translate }}
+        </button>
+      </div>
+    </div>
+
+    @let filteredWallets = filteredWallets$ | async;
+    @if (filteredWallets.length) {
+      <upf-couriers-wallets-list
+        [wallets]="filteredWallets"
+        [fleetCurrency]="fleetCurrency"
+        (totalSumChange)="withdrawalSum = $event"
+        (balancesChange)="onBalancesChange($event)"
+        (sortChange)="onSortChange($event, couriersWallets.wallets.items)"
+        (withdrawEverythingEnabled)="withdrawEverythingEnabled = $event"
+      ></upf-couriers-wallets-list>
+    } @else {
+      <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+    }
+
+    <div class="mobile-withdraw-btns">
+      <button
+        #toFleetBtn
+        mat-button
+        class="btn"
+        color="primary"
+        [disabled]="!withdrawalSum || insufficientFunds || withdrawalSum > couriersWallets.totalBalance.amount / 100"
+        (click)="handleWithdrawToFleetClick(couriersWallets.totalBalance.amount, fleetId)"
+      >
+        <div class="btn-content">
+          <mat-icon class="tw-flex-shrink-0" [svgIcon]="icons.withdrawalWallet"></mat-icon>
+
+          <span class="tw-text-md tw-text-left">
+            {{ 'Finance.DriversBalances.Filter.TransferToFleet' | translate }}
+          </span>
+        </div>
+      </button>
+
+      <mat-divider vertical class="tw-bg-neutral-silver"></mat-divider>
+
+      <button
+        #toCourierBtn
+        mat-button
+        class="btn"
+        color="primary"
+        [disabled]="!withdrawalSum || withdrawalSum > fleetBalance || withdrawEverythingEnabled"
+        (click)="handleWithdrawToCouriersClick(fleetBalance, fleetId)"
+      >
+        <div class="btn-content">
+          <mat-icon class="tw-flex-shrink-0" [svgIcon]="icons.topUpUser"></mat-icon>
+
+          <span class="tw-text-md tw-text-left">
+            {{ 'CourierFinance.CouriersWallets.TransferToCouriers' | translate }}
+          </span>
+        </div>
+      </button>
+    </div>
+  }
+}

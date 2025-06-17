@@ -1,0 +1,45 @@
+<div class="tw-hidden sm:tw-block">
+  <ng-container *ngTemplateOutlet="infoTpl"></ng-container>
+</div>
+
+<section class="sm:tw-flex sm:tw-items-center sm:tw-justify-between">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    (filtersReset)="resetFiltersForm()"
+  >
+    <form [formGroup]="filtersForm" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+      <upf-vehicle-autocomplete
+        formControlName="vehicle_id"
+        [fleetId]="fleetData().id"
+        data-cy="program-filter-by-vehicle"
+      ></upf-vehicle-autocomplete>
+    </form>
+  </upf-filters-container>
+
+  <div class="sm:tw-hidden tw-mt-4">
+    <ng-container *ngTemplateOutlet="infoTpl"></ng-container>
+  </div>
+</section>
+
+@if (archivedPrograms().length) {
+  <upf-vehicle-archived-commission-programs-list
+    data-cy="archived-commission-programs-list"
+    [programs]="archivedPrograms()"
+    [currency]="fleetData().currency"
+    (cdkScrolled)="onLoadNext()"
+  ></upf-vehicle-archived-commission-programs-list>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+}
+
+<ng-template #infoTpl>
+  <div class="tw-flex tw-items-center tw-gap-3 -tw-mb-1 sm:tw-mb-4 tw-text-neutral-smoke">
+    <mat-icon [svgIcon]="icons.info" class="tw-text-neutral-graphite tw-flex-shrink-0"></mat-icon>
+    <span data-cy="info-panel-program-period" class="tw-text-base sm:tw-text-heading">
+      {{ 'Bonuses.Commissions.Program.Archived.Title' | translate }}
+    </span>
+  </div>
+</ng-template>

@@ -1,0 +1,39 @@
+@use 'libs/fleets/shared/styles/src/styles/functions' as functions;
+
+:host {
+  @apply tw-relative;
+
+  display: grid;
+  grid-template-rows: max-content max-content 1fr;
+  gap: functions.remify(4);
+  width: 100%;
+  @apply tw-pt-md;
+}
+
+.mat-mdc-button {
+  @apply tw-text-md;
+  @apply tw-h-full tw-w-full tw-max-w-full;
+  @apply tw-rounded-none;
+  @apply tw-whitespace-normal;
+  @apply tw-text-start tw-transition-colors;
+
+  &:not(:disabled) {
+    @apply tw-bg-accent-mint-light tw-text-white;
+  }
+
+  .mat-icon {
+    @apply tw-h-5 tw-w-8;
+  }
+
+  &:first-child {
+    @apply tw-rounded-tl;
+  }
+
+  &:last-child {
+    @apply tw-rounded-tr;
+  }
+
+  &:nth-child(odd) {
+    @apply tw-border-0 tw-border-r tw-border-solid tw-border-neutral-silver;
+  }
+}

@@ -1,0 +1,47 @@
+<mat-tab-group
+  color="primary"
+  [selectedIndex]="selectedTabIndex$ | async"
+  (selectedIndexChange)="handleFragmentChange($event)"
+>
+  <mat-tab>
+    <span *matTabLabel>
+      {{ 'FleetProfile.Tabs.History' | translate }}
+    </span>
+
+    <upf-fleet-history-container [fleetId]="fleet.id"></upf-fleet-history-container>
+  </mat-tab>
+
+  <mat-tab>
+    <span *matTabLabel>
+      {{ 'FleetProfile.Tabs.Contacts' | translate }}
+    </span>
+
+    <upf-fleet-contacts *matTabContent [contacts]="fleet.users" [loggedInUser]="account"></upf-fleet-contacts>
+  </mat-tab>
+
+  @if (rroAvailable) {
+    <mat-tab [disabled]="!b2bActivated">
+      <div>
+        <span
+          *matTabLabel
+          [ngxTippy]="!b2bActivated ? ('FleetProfile.Tabs.RRO.Tooltip' | translate) : null"
+          class="tw-relative tw-pointer-events-auto"
+        >
+          {{ 'FleetProfile.Tabs.RRO.Name' | translate }}
+
+          @if (showIndicator) {
+            <upf-indicator class="indicator"></upf-indicator>
+          }
+        </span>
+
+        <upf-fleet-rro-container
+          *matTabContent
+          [fleetId]="fleet.id"
+          [settings]="settings"
+          [b2bActivated]="b2bActivated"
+          data-cy="fleet-rro-container"
+        ></upf-fleet-rro-container>
+      </div>
+    </mat-tab>
+  }
+</mat-tab-group>

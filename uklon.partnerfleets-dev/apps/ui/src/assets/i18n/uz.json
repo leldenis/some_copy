@@ -1,0 +1,4046 @@
+{
+  "Account": {
+    "Details": {
+      "CreatePassword": "Partol yaratish",
+      "Email": "Avtoparkning elektron pochta manzili",
+      "Language": "Interfeys tili",
+      "Mfa": {
+        "DisabledNotification": "Ikki omilli tekshirish o'chirilgan",
+        "EnabledNotification": "Ikki omilli tekshirish yoqilgan",
+        "Subtitle": "Avtopark ma'lumotlari va hisob qaydingiz uchun qo'shimcha himoya. Har safar parkka kirganingizda, parol va SMS-da olingan tasdiqlash kodini kiritishingiz kerak bo'ladi.",
+        "Title": "Ikki omilli tekshirish"
+      },
+      "Password": "Parol",
+      "PasswordInfoPanel": "<b>Muhim!</b> Yaratilgan parol Uklon Driver'ga kirish uchun ham amal qiladi",
+      "Phone": "Telefon raqami",
+      "SmsInfoPanel": "<b>Kabinetga kirish</b> telefon raqamiga <b>SMS-kod</b> orqali amalga oshiriladi. Parol yordamida tizimga kirish uchun parol yaratish kerak"
+    },
+    "MfaConfirmModal": {
+      "Disable": {
+        "Subtitle": "Ikki omilli tekshiruvni o'chirish, hisob qaydingizning xavfsizligini pasayishiga olib keladi.",
+        "Title": "Ikki omilli tekshirish o'chirilsinmi?",
+        "YesButton": "Ikki omilli tekshirish o'chirilsin",
+        "YesButtonShort": "O'chirish"
+      },
+      "Enable": {
+        "Subtitle": "Hisob qaydingizga yana bitta himoya darajasini qo'shing. Agar siz ushbu sozlamani yoqsangiz, biz kabinetingizga kirgayotganingizda sizga xavfsizlik kodini yuboramiz.",
+        "Title": "Ikki omilli tekshirishni yoqish",
+        "YesButton": "Ikki omilli tekshirishni yoqilsin",
+        "YesButtonShort": "Yoqish"
+      },
+      "NoButton": "Bekor qilish"
+    },
+    "Title": "Shaxsiy ma'lumotlar",
+    "UserAgreementLink": "Foydalanish shartlari"
+  },
+  "AddCard": {
+    "LegalNotice": "To'lov kartalari va to'lovlar ma'lumotlarini qayta ishlashning xavfsizligi, barcha ma'lumotlar xavfsiz ssl protokoli orqali uzatilishi va Visa va MasterCard to'lov tizimlari talablariga qo'yiladigan talablarga muvofiq saqlanishi bilan belgilanadi. Uklon taksi xizmati o'z tomonidan to'lov kartalari ma'lumotlarini qabul qilmaydi, saqlamaydi yoki qayta ishlamaydi, lekin banklar yoki boshqa to'lov tizimlaridan to'lov ma'lumotlarini kiritish uchun mahalliy interfeyslarni ko'rsatadi. Shunday qilib, o'zi tomonidan, sayt Ma'muriyati to'lovlarning mutlaq xavfsizligi va to'lov kartalari egalarining ma'lumotlarini saqlanishini kafolatlaydi."
+  },
+  "Auth": {
+    "Description": "Biznesni, sodiqlik dasturlarini va moliyaviy hisobotni rivojlantirish",
+    "Forbidden": {
+      "AccessDenied": "Ruxsat berilmadi",
+      "AccessDeniedDescriptionEnd": "avtoparkni rasmiylashtirish uchun",
+      "AccessDeniedDescriptionStart": "Sizda bu resursdan foydalanishga ruxsat yo‘q.",
+      "SendRequest": "Ariza bering"
+    },
+    "Login": {
+      "CredentialError": "Noto'g'ri login yoki parol",
+      "CredentialErrorOTC": "Noto'g'ri login yoki kod",
+      "EnterOTC": "{{ phone }} raqamiga yuborilgan 4 raqamli kodni kiriting",
+      "EnterPassword": "Kabinetingiz parolini kiriting",
+      "EnterPhone": "Kirish uchun telefon raqamingizni kiriting",
+      "Entrance": "Kirish",
+      "EntranceDescription": "Kirish uchun telefon raqami va parolni kiriting",
+      "LoggedOutError": "Kira olmadingiz, yana bir marta kiring",
+      "PasswordLabel": "Parol",
+      "PasswordMaxLength": "Siz juda uzun parol kiritdingiz",
+      "PasswordRecoveryLink": "Parolni unutdingizmi?",
+      "PhoneLabel": "Telefon raqami",
+      "PublicOfferAndPrivacyPolicy": "“Kirish” tugmasini bosish bilan, <a href=\"https://uz.uklon.eu/privacy-policy-uz/?tab=oferta\" class=\"tw-text-accent-mint-light\" target=\"_blank\">Siz Ommaviy oferta</a> shartlari, <a href=\"https://uz.uklon.eu/privacy-policy-uz/?tab=terms\" class=\"tw-text-accent-mint-light\" target=\"_blank\">shaxsiy maʼlumotlarni qayta ishlash va himoya qilish boʻyicha Nizom</a> bilan tanishganingizni va qabul qilganingizni hamda shaxsiy maʼlumotlaringizni qayta ishlashga roziligingizni tasdiqlaysiz.",
+      "RememberMe": "Meni eslab qoling",
+      "ResetPasswordDialog": {
+        "Message": "Sizning parolingiz o'chiriladi va kabinetingizga keyingi barcha kirishlar SMS kod yordamida amalga oshiriladi. Parol yordamida tizimga kirish shaxsiy kabinetda o'tnatishingiz mumkin.",
+        "Question": "Kabinetingizga kirish uchun SMS kod yuborilsinmi?",
+        "SendBtn": "Yuborish"
+      },
+      "ServerError": "Xizmat vaqtincha mavjud emas",
+      "ThrottlingError": "Urinishlar soni tugadi. Iltimos keyinroq qayta urinib ko'ring"
+    },
+    "NoAccount": "Hozirgacha hisob qaydi yo'qmi?",
+    "PasswordRecovery": {
+      "BackToAuthenticationLink": "Kirish sahifasiga qaytish",
+      "CodeControl": {
+        "Label": "SMS-da olingan tasdiqlash kodini kiriting",
+        "MobileLabel": "Tasdiqlash kodi"
+      },
+      "Errors": {
+        "HasNoAttemptsLeft": "Siz {{maxAttempts}} urinishdan foydalandingiz. Kira olamasangiz - Uklon menejeriga murojaat qiling",
+        "InvalidConfirmationCode": "Noto'g'ri kod (qolgan urinishlar: {{attemptsLeft}})",
+        "InvalidPhoneNumber": "Noto'g'ri telefon raqami",
+        "PasswordMissMatch": "Parollar mos kelmaydi",
+        "SomethingWentWrong": "Eh, xatolik yuz berdi, qayta urinib ko'ring. Takrorlangan holda, yordam uchun qo'llab-quvvatlash xizmatiga murojaat qiling"
+      },
+      "NavigateToPreviousStepLink": "Orqaga",
+      "Notifications": {
+        "PasswordRecoveryConfirmationSuccess": "Parol muvaffaqiyatli o'zgartirildi"
+      },
+      "PasswordConfirmationControl": {
+        "Label": "Parolni tasdiqlang"
+      },
+      "PasswordConfirmation": {
+        "Description": "Tizimga kirish uchun foydalanadigan yangi parolni kiriting"
+      },
+      "PasswordControl": {
+        "Label": "Yangi parol"
+      },
+      "PhoneNumberControl": {
+        "Label": "Telefon raqami",
+        "Timer": "{{time}} dan so'ng qayta jo'nating"
+      },
+      "ProceedButton": "Davom ettirish",
+      "ReceiveCode": {
+        "Description": "Ro'yxatdan o'tgan telefon raqamingizning raqamini kiriting, unga tasdiqlash kodi bilan SMS yuboriladi"
+      },
+      "ReceiveRecoveryCodeButton": "Kodni jo'natish",
+      "ReceiveRecoveryCodeButtonAgain": "Kodni qayta jo'natish",
+      "RecoverPasswordButton": "Parolni o'zgartirish",
+      "Title": "Parolni unutdingizmi?",
+      "ValidationCriterionMessage": {
+        "Digits": "Majburiy raqam",
+        "LowerCase": "Majburiy kichik harf (lotincha yoki kirilcha)",
+        "MinMaxLength": "Uzunligi, 8 tadan 36 belgigacha",
+        "UpperCase": "Majburiy katta harf (lotincha yoki kirilcha)"
+      }
+    },
+    "PasswordRecoveryError": {
+      "AccountNotFount": "Hisob qaydi topilmadi. Iltimos, qo'llab-quvvatlash xizmatiga murojaat qiling",
+      "IncorrectPassword": "Siz kiritgan parol xavfsizlik talablariga javob bermaydi. Murakkabroq parol kerak",
+      "InvalidContact": "Siz noto'g'ri telefon raqamini kiritdingiz. Tekshiring va yana bir marta urinib ko'ring",
+      "InvalidVerificationCode": "SMS-dagi tekshirish kodi noto'g'ri kiritilgan. Yana bir marta urinib ko'ring",
+      "PasswordDuplicateConflict": "Joriy paroldan foydalanish taqiqlangan. Qayta tiklash uchun yangi parolni kiriting",
+      "SendCodeRequestLimitReached": "Siz chegaraga yetdingiz. Keyinroq urinib ko'ring yoki qo'llab-quvvatlash xizmatiga murojaat qiling"
+    },
+    "Request": "So'rov berish",
+    "ResetPassword": {
+      "ConfirmPassword": "Parolni tasdiqlang",
+      "CreateSaveBtn": "Yaratish",
+      "CreateTitle": "Parol yaratish",
+      "NewPassword": "Yangi parol",
+      "Notifications": {
+        "Error": "Server mavjud emas",
+        "PasswordIsAlreadyUsed": "Siz hozir berilgan paroldan foydalanayapsiz",
+        "Success": "Parol muvaffaqiyatli o'zgartirildi",
+        "SuccessCreate": "Parol muvaffaqiyatli yaratildi"
+      },
+      "SaveBtn": "Parolni o'zgartirish",
+      "Subtitle": "Kuchli parolni tanlang va uni boshqa hisob qaydlari uchun ishlatmang",
+      "Title": "Parolni almashtirish",
+      "ValidationError": {
+        "digits": "Majburiy raqam",
+        "lowerCase": "Majburiy kichik harf (lotincha yoki kirilcha)",
+        "minMaxLength": "Uzunligi, 8 tadan 36 ta belgigacha",
+        "PasswordMismatch": "Parollar mos kelmaydi",
+        "upperCase": "Majburiy katta harf (lotincha yoki kirilcha)"
+      }
+    },
+    "Verify": {
+      "InvalidCode": "Afsuski kod noto'g'ri Yana bir marta urinib ko'ring",
+      "NoCode": "Kod kelmadimi?",
+      "SendAgain": "Qayta jo'natish",
+      "SendAgainIn": "dan so'ng yana bir marta jo'natish",
+      "Subtitle": "Biz {{contact}} raqamiga kod jo'natdik.<br> Telefonni tekshiring va kodni maydonga kiriting",
+      "Title": "Kirish"
+    }
+  },
+  "BlockedList": {
+    "AccessDenied": "Kirishga ruxsat berilmadi",
+    "Blocked": "Bloklangan",
+    "Blocking": "Bloklash",
+    "Cars": {
+      "CarBlocked": "Mashina bloklangan",
+      "CarUnblocked": "Mashina blokdan chiqarilgan",
+      "Filters": {
+        "All": "Barcha mashinalar",
+        "Blocked": "Bloklangan mashinalar"
+      }
+    },
+    "Contacts": {
+      "ContactBlocked": "Aloqa bloklangan",
+      "ContactUnblocked": "Aloqa blokdan chiqarilgan"
+    },
+    "Drivers": {
+      "DriverBlocked": "Haydovchi bloklangan",
+      "DriverUnblocked": "Haydovchi blokdan chiqarilgan",
+      "Filters": {
+        "All": "Barcha haydovchilar",
+        "Blocked": "Bloklangan haydovchilar"
+      }
+    },
+    "ProfileBlocked": "Profil bloklangan",
+    "Reason": "Sabab",
+    "Reasons": {
+      "AccountSharing": "Hisob qaydini ish uchun uchinchi shaxslarga taqdim etish",
+      "ActiveDeferredOrdersLimit": "Faol buyurtmalar soni oshib ketdi (rejalashtirilgan buyurtmalar)",
+      "BypassBlocking": "Bloklashni chetlab o'tish",
+      "ByPhotoControl": "Fotonazoratdan o'tilmadi",
+      "BySelfEmployment": "Yakka tartibdagi haydovchining belgisi yo'q",
+      "BySelfEmploymentOrUklonCollaboration": "Yakka tartibdagi haydovchining belgisi yo'q va Uklon komissioner tomonidan o'rnatilmagan",
+      "ByTaxiLicenseAbsence": "Avtoga litsenziya yo'q",
+      "ByUklonCollaboration": "Uklon komissioner tomonidan o'rnatilmagan",
+      "ByUserBlock": "Foydalanuvchi bloklangan",
+      "ConflictResolved": "Nizo hal qilindi",
+      "CriticalState": "Mashinaning tanqidiy holati",
+      "DriverProfileDataBlocked": "Profil ma'lumotlarini tahrirlash va bloklangan haydovchini avtoparkdan olib tashlash mavjud emas",
+      "FakePhotoshop": "Photoshop yordamida nosozliklarni bartaraf etish",
+      "ForgeryDocuments": "Hujjatlar/fotosuratlarni qalbakilashtirish",
+      "FraudActionClosed": "Firibgarlik masalasi yopildi",
+      "FraudActionResolved": "Firibgarlik masalasi yopildi",
+      "FraudActions": "Muntazam firibgarlik",
+      "FraudActionWithOrder": "Buyurtmalar bilan firibgarlik",
+      "LowRating": "Tanqidiy reyting va sharhlar",
+      "ManipulationsIssueClosed": "Firibgarlik masalasi yopildi",
+      "MissBlocking": "Xato bloklash",
+      "OtherBlocked": "Xizmat ko'rsatish qoidalarini buzish",
+      "OtherUnblocked": "Xizmatda ishlash talablariga mos keladi",
+      "PhotoControlPassed": "Fotonazoratdan o'tildi",
+      "SystematicManipulations": "Muntazam firibgarlik",
+      "VehicleProfileDataBlocked": "Profil ma'lumotlarini tahrirlash va bloklangan mashinani avtoparkdan olib tashlash mavjud emas",
+      "VehicleRepaired": "Mashina ta'mirlandi"
+    },
+    "Unblocking": "Blokdan chiqarish"
+  },
+  "Bonuses": {
+    "Commissions": {
+      "Errors": {
+        "RequirementsNotDone": "Dastur talablari bajarilmayapti"
+      },
+      "List": {
+        "CurrentCommission": "Joriy komissiya",
+        "CurrentValue": "Joriy ko'rsatkichlar",
+        "DriverRating": "Haydovchining reytingi",
+        "FullName": "Familiyasi va ismi",
+        "Indicators": "Ko'rsatkichlar",
+        "MinCommission": "Minimal komissiya",
+        "MinOrdersForMinCommission": "Buyurtmalar soni",
+        "MinRating": "Reyting talablari",
+        "OrdersCompleted": "Bajarilgan buyurtmalar",
+        "OrdersOfMinCommission": "Min.komissiya uchun buyurtmalar",
+        "Period": "Davr",
+        "Phone": "Telefon raqami",
+        "ProfitBudget": "Tejamkorlik byudjeti",
+        "Program": "Dasturning nomi",
+        "Progress": "Progressni hisobga olish",
+        "ProgressActive": "Dastur faol bo'lganda",
+        "ProgressAlways": "Doimo",
+        "RatingAndRequirements": "Reyting va talablar",
+        "Requirements": "Talablar",
+        "RequirementsFrom": "dan",
+        "Signal": "Laqabi",
+        "Tooltip": {
+          "ProfitBudget": "Tejamkorlik byudjeti - komissiya dasturi doirasida ajratilgan umumiy tejash miqdori",
+          "ProgressActive": "\"Dastur faol bo'lganda\" - bajarilgan buyurtmalar, agar u barcha dasturlar orasida drayver uchun eng foydali bo'lsa, dasturning progressiga qo'shiladi.",
+          "ProgressAlways": "\"Doimo\" - agar dastur buyurtma parametrlariga mos keladigan bo'lsa, boshqa dastur amalda bo'lsa ham, ular hisobga olinadi.",
+          "UsedProfitBudget": "Tejash summasi - komissiya dasturi doirasida saqlangan haqiqiy summa."
+        },
+        "UsedProfitBudget": "Tejash summasi"
+      },
+      "Program": {
+        "Archived": {
+          "Title": "Tugallangan komissiya dasturlari oxirgi 30 kunligi ko'rsatiladi"
+        },
+        "Tooltip": {
+          "Rule1": "Komissiya dasturlari - haydovchilar uchun kerakli miqdordagi buyurtmalarni bajargandan so'ng kamaytirilgan komissiya olish imkonini beruvchi dasturlardir",
+          "Rule2": "Dastur davomida buyurtmalarni bajarish orqali haydovchi dastur oxirigacha barcha buyurtmalar bo'yicha pastroq komissiya foizini oladi"
+        },
+        "WhatIsCommissionProgram": "Komissiya dasturlari nima?"
+      },
+      "Tabs": {
+        "Active": "Faollar",
+        "Archived": "Yakunlanganlari",
+        "Planned": "Rejalashtirilganlar"
+      }
+    },
+    "CSV": {
+      "Filename": "Avtoning bonuslari - {{today}}",
+      "HeaderRow": {
+        "CancellationPercentage": "Avto bo'yicha bekor qilishlar foizi",
+        "Car": "Avto",
+        "DriverOnCar": "Haydovchi avtoda",
+        "GuaranteedEarnings": "Erishildi",
+        "LicencePlate": "Davlat raqami",
+        "OrdersCompleted": "Hisobga olingan buyurtmalar",
+        "ProgramRequirements": "Brendlash dasturining talablari"
+      },
+      "Notification": {
+        "Error": "Maʼlumotlarni yuklab boʻlmadi, sahifani qayta yuklang va qaytadan urinib koʻring. Agar siz xatoni yana ko'rsayotgan bo'lsangiz, qo'llab-quvvatlash xizmatiga murojaat qiling.",
+        "Success": "Ma'lumotlar {{filename}} fayliga muvaffaqiyatli yuklandi"
+      },
+      "Row": {
+        "Program": {
+          "CancellationPercentage": "Bekor qilishlar foizi - {{0}} gacha",
+          "Days": "Hafta kunlari - {{days}}",
+          "Maximum": "Maksimum - {{value}} {{currency}}",
+          "Period": "Davr - {{from}} - {{to}}",
+          "Rating": "Reyting - {{value}} dan"
+        }
+      }
+    },
+    "Filters": {
+      "Period": {
+        "Label": "Davr"
+      }
+    },
+    "Program": {
+      "BrandingType": {
+        "Label": "Brendlash turi",
+        "Options": {
+          "All": "Barchasi",
+          "Business": "Biznes",
+          "ClassicOld": "Klassik eski / Eski brend",
+          "Green": "Green",
+          "Inclusive": "Inklyuziv",
+          "Marine": "Dengiz (qutqaruv chambaragi bilan)",
+          "Metalist": "Metalist",
+          "NewYear": "Yangi Yillik",
+          "NewYear2023": "2023 Yangi Yillik",
+          "Patriotic": "Vatanparvarlik",
+          "ThreeTrips70Persents": "Birinchi 3 ta buyurtmaga -70%",
+          "ValentineDay": "Sevishganlar kuni / 14 fevral",
+          "YourMove": "Klassik / Sizning harakatingiz"
+        }
+      },
+      "CancellationPercentage": "bekor",
+      "Days": "Hafta kunlari",
+      "Details": {
+        "CancellationPercentage": "Bekor qilishlar",
+        "CurrentValues": "Joriy ko'rsatkichlar",
+        "Requirement": "Talablar",
+        "Showcases": "Ko'rsatkichlar"
+      },
+      "Maximum": "Maksimal",
+      "Percent": {
+        "To": "{{value}} gacha"
+      },
+      "Period": "Davr",
+      "Rating": {
+        "DriverTitle": "Haydovchining reytingi",
+        "From": "{{value}} dan",
+        "Title": "Reyting"
+      },
+      "Requirements": {
+        "Subtitle": "Ma'lumotlar kuniga bir marta yangilanadi",
+        "Title": "Brendlash dasturining joriy talablari"
+      }
+    },
+    "Tabs": {
+      "CommissionPrograms": "Komissiya dasturlari",
+      "Vehicle": "Avto"
+    },
+    "VehicleList": {
+      "CancellationPercentage": "Haydovchining bekor qilishlari foizi",
+      "CancellationPercentageByCar": "Avto bo'yicha bekor qilishlar foizi",
+      "CancellationPercentageByCarTooltip": "Hisoblash ma'lum bir avto va dastur davri kontekstida amalga oshiriladi",
+      "CurrentOrdersCompleted": "Bajarilgan buyurtmalar",
+      "DriverOnCar": "Haydovchi",
+      "DriverRating": "Haydovchining joriy reytingi",
+      "GuaranteedEarnings": "Erishildi",
+      "LicencePlace": {
+        "Subtitle": "Avto",
+        "Title": "Davlat raqami"
+      },
+      "OrdersCompleted": "Hisobga olingan buyurtmalar",
+      "OrdersCompletedTooltip": "Buyurtmani bajarish vaqtida haydovchining parametrlari dastur talablariga javob beradigan buyurtmalargina hisobga olindi.",
+      "Program": {
+        "Orders": "buyurtmalar"
+      },
+      "Tooltips": {
+        "BrandedNotAvailable": "Hozircha avtoda brendlash yo'q"
+      }
+    }
+  },
+  "CannotRemoveDialog": {
+    "Courier": {
+      "Buttons": {
+        "NavigateToWithdraw": "Mablag'larni yechishga o'tish"
+      },
+      "NavigationPath": "Mablag'lar > Kuryerlar balansi",
+      "Text": "Nollik balansli kuryerni olib tashlab bo'lmaydi.  Avval, quyidagi sahifada kuryerning hamyonidan pul mablag'larini yechib oling:",
+      "Title": "Kuryerni olib tashlab bo'lmaydi"
+    },
+    "Driver": {
+      "Buttons": {
+        "NavigateToWithdraw": "Mablag' yechib olishga o'tish"
+      },
+      "NavigationPath": "Mablag'lar > Haydovchilar balansi",
+      "Text": "Nollik balansli haydovchini olib tashlab bo'lmaydi.  Avval, quyidagi sahifada haydovchining hamyonidan pul mablag'larini yechib oling:",
+      "Title": "Haydovchini olib tashlab bo'lmaydi"
+    }
+  },
+  "CannotRemoveDriverDialog": {
+    "Buttons": {
+      "NavigateToWithdraw": "Mablag'yechishga o'tish"
+    },
+    "NavigationPath": "Moliya > Haydovchilar balansi",
+    "Text": "Balansi nol bo'lmagan haydovchini olib tashlab bo'lmaydi Avval, sahifadagi haydovchining hamyonidan pul yechib oling:",
+    "Title": "Drayvni olib tashlab bo'lmadi"
+  },
+  "Common": {
+    "Abbreviation": {
+      "Hours": "{{hours}} s",
+      "Minutes": "{{minutes}} daq"
+    },
+    "Abbreviations": {
+      "Kilometers": "km"
+    },
+    "AdvancedOptions": {
+      "AirConditioner": "Konditsioner",
+      "BabyBoosterSeat": "Buster",
+      "BabyChair": "Bolalar o'rindig'i",
+      "BoosterCable": "Klemmalar",
+      "CovidProtected": "Covid himoya",
+      "ElectricEngine": "Elektromotor",
+      "InclusiveEquipment": "Inklyuziv jihoz",
+      "Licensed": "Taksi Litsenziyasi ",
+      "MarketingCampaign": "Marketing kompaniyasi",
+      "TyreCompressor": "Kompressor"
+    },
+    "All": "Barchasi",
+    "AvailableProduct": {
+      "business": "Biznes",
+      "buyoutcourier": "Sotib olish bilan",
+      "cargo": "",
+      "comfort": "Komfort",
+      "comfort+": "Comfort+",
+      "comfortplus": "Comfort+",
+      "courierbuyout": "Yetkazib berish (sotib olish bilan)",
+      "courierdelivery(todoor)": "Yetkazib berish (Eshikma-eshik)",
+      "covidprotected": "AntiCOVID",
+      "delivery(byaddress)": "Yetkazib berish (Manzil-manzil)",
+      "deliverycourier": "Eshiklar – eshiklar",
+      "delivery(extraweight)": "Qo'shimcha yuk",
+      "delivery(postpayment)": "Qabul qiluvchi tomonidan keyingi to'lov",
+      "delivery(todoor)": "Yetkazib berish (Eshik-eshik)",
+      "driver(auto)": "Drayver (Avtomat)",
+      "driver(manual)": "Drayver (Mexanika)",
+      "econom": "Layt",
+      "enginestart": "Sigaret tutatish uyasi",
+      "evacuation": "Shaharlararo",
+      "evacuationmd": "EvacuationMd",
+      "green": "Green",
+      "inclusive": "Inklyuziv",
+      "kids": "Bolalarniki (Buster)",
+      "kids(chair)": "Bolalarniki (Avtoo'rindiq)",
+      "minivan(6)": "Miniven ( 6 ta o'rindiq)",
+      "minivan(8)": "Mikroavtobus (8 ta o'rindiq)",
+      "premium": "Qulay",
+      "prime": "Prime",
+      "share": "Uklon Share",
+      "standard": "Standart",
+      "taxi": "Taksi",
+      "tyreinflation": "G'ildiraklarni tekislash",
+      "volunteer": "Ko'ngilli",
+      "wagon": "Universal"
+    },
+    "BodyTypes": {
+      "Cargo": "Yuk mashinasi",
+      "Coupe": "Kupe",
+      "Crossover": "Krossover",
+      "Estate": "Universal",
+      "Hatchback": "Hechbek",
+      "Minivan": "Miniven",
+      "Pickup": "Pikap",
+      "Sedan": "Sedan",
+      "SportVehicle": "Yo'ltanlamas",
+      "Van": "Furgon"
+    },
+    "Buttons": {
+      "Authenticate": "Kirish",
+      "B_Activate": "Faollashtirish",
+      "B_AddCourier": "Kuryerni qo'shish",
+      "B_AddVehicle": "Mashina qo'shish",
+      "B_Apply": "Qo'llash'llash",
+      "B_ApplyTicket": "So'rov berish",
+      "B_Back": "Orqaga",
+      "B_BackToList": "Orqaga qaytish",
+      "B_Cancel": "Bekor qilish",
+      "B_Clear": "Tozalash",
+      "B_Close": "Yopish",
+      "B_Confirm": "Tasdiqlash",
+      "B_Continue": "Davom ettirish",
+      "B_Deactivate": "O'chirish",
+      "B_Delete": "Olib tashlash",
+      "B_DeleteFromFleet": "Mashinani avtoparkdan olib tashlash",
+      "B_Enter": "Kirish",
+      "B_Filter": "Filtrlash",
+      "B_Hide": "Yashirish",
+      "B_Read": "Tanishib chiqish",
+      "B_Reject": "Bekor qilish",
+      "B_RejectApplication": "Rad etish",
+      "B_Remove": "Hamkorlikni tugatish",
+      "B_Save": "Saqlash",
+      "B_Send": "Jo'natish",
+      "B_ShowFilter": "Filtr",
+      "B_Unlink": "Aloqani uzish",
+      "B_Upload": "Yuklash",
+      "Export": {
+        "CSV": "CSV eksporti"
+      },
+      "WithdrawMoney": "Pul yechish"
+    },
+    "Colors": {
+      "Aqua": "Zangori",
+      "Beige": "Sarg'ish",
+      "Black": "Qora",
+      "Blue": "Ko'k",
+      "Brown": "Malla ",
+      "Fuchsia": "Pushti",
+      "Gray": "To'q kulrang",
+      "Green": "Yashil",
+      "Lime": "Och yashil",
+      "Maroon": "To'q qizil",
+      "Navy": "To' ko'k",
+      "Olive": "Zaytunrang",
+      "Orange": "To'q sariq",
+      "Purple": "Binafsharang",
+      "Red": "Qizil",
+      "Silver": "Kulrang",
+      "Teal": "Ko'k yashil",
+      "White": "Oq",
+      "Yellow": "Sariq"
+    },
+    "CountryCode": {
+      "AC": "Yuksalish oroli",
+      "AD": "Andorra",
+      "AE": "BAA",
+      "AF": "Afg'oniston",
+      "AG": "Antigua va Barbuda",
+      "AI": "Angiliya",
+      "AL": "Albaniya",
+      "AM": "Armaniston",
+      "AN": "Niderland Antil Orollari",
+      "AO": "Angola",
+      "AR": "Argentina",
+      "AS": "Amerika Samoasi",
+      "AT": "Avstriya",
+      "AU": "Avstraliya",
+      "AW": "Aruba",
+      "AX": "Aland Orollari",
+      "AZ": "Ozarbayjon",
+      "BA": "Bosniya va Gertsogovina",
+      "BB": "Barbados",
+      "BD": "Bangladesh",
+      "BE": "Belgiya",
+      "BF": "Burkina-faso",
+      "BG": "Bolgariya",
+      "BH": "Bahrayn",
+      "BI": "Burundi",
+      "BJ": "Benin",
+      "BL": "Sen-Bartelemi",
+      "BM": "Bermud orollari",
+      "BN": "Bruney",
+      "BO": "Boliviya",
+      "BQ": "Bonayre, Sint-Estatius va Saba",
+      "BR": "Braziliya",
+      "BS": "Bagam Orollari",
+      "BT": "Butan",
+      "BV": "Buve Oroli",
+      "BW": "Botsvana",
+      "BY": "Belorusiya",
+      "BZ": "Beliz",
+      "CA": "Kanada",
+      "CC": "Kokos Orollari",
+      "CD": "Kongo Demokratik Respublikasi",
+      "CF": "MAR",
+      "CG": "Kongo Respublikasi",
+      "CH": "Shveytsariya",
+      "CI": "Kot-d'Ivuar",
+      "CK": "Kuk Oroli",
+      "CL": "Chili",
+      "CM": "Kamerun",
+      "CN": "Xitoy Xalq Respublikasi",
+      "CO": "Kolumbiya",
+      "CR": "Kosta-Rika",
+      "CU": "Kuba",
+      "CV": "Kabo-verda",
+      "CW": "Kyurasao",
+      "CX": "Rojdestvo oroli",
+      "CY": "Kipr",
+      "CZ": "Chexiya",
+      "DE": "Germaniya",
+      "DJ": "Jibuti",
+      "DK": "Daniya",
+      "DM": "Dominika",
+      "DO": "Dominikan Respublikasi",
+      "DZ": "Jazoir",
+      "EC": "Ekvador",
+      "EE": "Estoniya",
+      "EG": "Misr",
+      "EH": "SADR",
+      "ER": "Eritreya",
+      "ES": "Ispaniya",
+      "ET": "Efiopiya",
+      "FI": "Finlyandiya",
+      "FJ": "Fiji",
+      "FK": "Folklend Orollari",
+      "FM": "Mikroneziya",
+      "FO": "Farer Orollari",
+      "FR": "Frantsiya",
+      "GA": "Gabon",
+      "GB": "Buyuk Britaniya",
+      "GD": "Grenada",
+      "GE": "Gruziya",
+      "GF": "Gviana",
+      "GG": "Gernsi",
+      "GH": "Gana",
+      "GI": "Gibraltar",
+      "GL": "Grenlandiya",
+      "GM": "Gambiya",
+      "GN": "Gvineya",
+      "GP": "Gvadelupa",
+      "GQ": "Ekvatorial gvineya",
+      "GR": "Gretsiya",
+      "GS": "Janubiy Georgiya va Janubiy Sandvich orollari ",
+      "GT": "Gvatemala",
+      "GU": "Guam",
+      "GW": "Gvineya-Bisau",
+      "GY": "Gayana",
+      "HK": "Gongkong",
+      "HM": "Xerd va Makdonald",
+      "HN": "Gonduras",
+      "HR": "Xorvatiya",
+      "HT": "Gaiti",
+      "HU": "Vengriya",
+      "ID": "Indoneziya",
+      "IE": "Irlandiya",
+      "IL": "Isroil",
+      "IM": "Men Oroli",
+      "IN": "Hindiston",
+      "IO": "Hind okeanidagi Britaniya hududi",
+      "IQ": "Iroq",
+      "IR": "Eron",
+      "IS": "Islandiya",
+      "IT": "Italiya",
+      "JE": "Jersi",
+      "JM": "Yamayka",
+      "JO": "Iordaniya",
+      "JP": "Yaponiya",
+      "KE": "Keniya",
+      "KG": "Qirg'iziston",
+      "KH": "Kamboja",
+      "KI": "Kiribati",
+      "KM": "Komor orollari",
+      "KN": "Sent-Kits va Nevis",
+      "KP": "KXDR",
+      "KR": "Koreya Respublikasi",
+      "KW": "Quvayt",
+      "KY": "Kayman Orollari",
+      "KZ": "Qozog'iston",
+      "LA": "Laos",
+      "LB": "Livan",
+      "LC": "Sent-Lyusiya",
+      "LI": "Lixtenshteyn",
+      "LK": "Shri-Lanka",
+      "LR": "Liberiya",
+      "LS": "Lesoto",
+      "LT": "Litva",
+      "LU": "Lyuksemburg",
+      "LV": "Latviya",
+      "LY": "Liviya",
+      "MA": "Marokash",
+      "MC": "Monako",
+      "MD": "Moldaviya",
+      "ME": "Chernogoriya",
+      "MF": "Sen-Marten",
+      "MG": "Madagaskar",
+      "MH": "Marshall Orollari",
+      "MK": "Shimoliy Makedoniya",
+      "ML": "Mali",
+      "MM": "Myanma",
+      "MN": "Mongoliya",
+      "MO": "Makao",
+      "MP": "Shimoliy Mariya Orollari",
+      "MQ": "Martinika",
+      "MR": "Mavritaniya",
+      "MS": "Montserrat",
+      "MT": "Malta",
+      "MU": "Mavrikiy",
+      "MV": "Maldiv Orollari",
+      "MW": "Malavi",
+      "MX": "Meksika",
+      "MY": "Malayziya",
+      "MZ": "Mozambik",
+      "NA": "Namibiya",
+      "NC": "Yangi Kaledoniya",
+      "NE": "Niger",
+      "NF": "Norfolk Oroli",
+      "NG": "Nigeriya",
+      "NI": "Nikaragua",
+      "NL": "Niderlandlar",
+      "NO": "Norvegiya",
+      "NP": "Nepal",
+      "NR": "Nauru",
+      "NU": "Niuey",
+      "NZ": "Yangi Zelandiya",
+      "OM": "Ummon",
+      "PA": "Panama",
+      "PE": "Peru",
+      "PF": "Frantsuz Polineziyasi",
+      "PG": "Papua - Yangi Gvineya",
+      "PH": "Filippin",
+      "PK": "Pokiston",
+      "PL": "Polsha",
+      "PM": "Sen-Pyer va Mikelon",
+      "PN": "Pitkern Orollari",
+      "PR": "Puerto-Riko",
+      "PS": "Falastin",
+      "PT": "Portugaliya",
+      "PW": "Palau",
+      "PY": "Paragvay",
+      "QA": "Qatar",
+      "RE": "Reyunion",
+      "RO": "Puminiya",
+      "RS": "Serbiya",
+      "RU": "Rossiya",
+      "RW": "Ruanda",
+      "SA": "Saudiya Arabistoni",
+      "SB": "Sulaymon Orollari",
+      "SC": "Seyshel Orollari",
+      "SD": "Sudan",
+      "SE": "Shvetsiya",
+      "SG": "Singapur",
+      "SH": "Avliyo Yelena, Ko'tarilish va Tristan da Kunya",
+      "SI": "Sloveniya",
+      "SJ": "Shpitsbergen va Yan-Mayen",
+      "SK": "Slovakiya",
+      "SL": "Syerra-Leone",
+      "SM": "San-Marino",
+      "SN": "Senegal",
+      "SO": "Somali",
+      "SR": "Surinam",
+      "SS": "Janubiy Sudan",
+      "ST": "San-Tome va Prinsipi",
+      "SV": "Salvador",
+      "SX": "Sint-Marten",
+      "SY": "Suriya",
+      "SZ": "Esvatini",
+      "TA": "Tristan-da-Kunya",
+      "TC": "Terks va Kaykos",
+      "TD": "Chad",
+      "TF": "Frantsiyaning Janubiy va Antarktika hududlari",
+      "TG": "Togo",
+      "TH": "Tailand",
+      "TJ": "Tojikiston",
+      "TK": "Tokelau",
+      "TL": "Sharqiy Timor",
+      "TM": "Turkmaniston",
+      "TN": "Tunis",
+      "TO": "Tongo",
+      "TR": "Turkiya",
+      "TT": "Trinidad va Tobago",
+      "TV": "Tuvalu",
+      "TW": "Tayvan",
+      "TZ": "Tanzaniya",
+      "UA": "Ukraina",
+      "UG": "Uganda",
+      "UM": "AQSH tashqi kichik orollari",
+      "US": "AQSh",
+      "UY": "Urugvay",
+      "UZ": "O'zbekiston",
+      "VA": "Vatikan",
+      "VC": "Sent-Vinsent va Grenadin",
+      "VE": "Venesuela",
+      "VG": "Britaniya Virgin orollari",
+      "VI": "Amerika Virgin Orollari",
+      "VN": "Vyetnam",
+      "VU": "Vanautu",
+      "WF": "Uollis va Futuna",
+      "WS": "Samoa",
+      "XK": "Kosovo",
+      "YE": "Yaman",
+      "YT": "Mayotta",
+      "ZA": "JAR",
+      "ZM": "Zambiya",
+      "ZW": "Zimbabve"
+    },
+    "DayOfWeek": {
+      "Friday": "Juma",
+      "FridayShort": "Jum",
+      "Monday": "Dushanba",
+      "MondayShort": "Dush",
+      "Saturday": "Shanba",
+      "SaturdayShort": "Shan",
+      "Sunday": "Yakshanba",
+      "SundayShort": "Yaksh",
+      "Thursday": "Payshanba",
+      "ThursdayShort": "Pay",
+      "Tuesday": "Seshanba",
+      "TuesdayShort": "Sesh",
+      "Wednesday": "Chorshanba",
+      "WednesdayShort": "Chor"
+    },
+    "DaysShort": {
+      "friday": "Jum",
+      "monday": "Dush",
+      "saturday": "Shan",
+      "sunday": "Yaks",
+      "thursday": "Paysh",
+      "tuesday": "Sesh",
+      "wednesday": "Chor"
+    },
+    "Enum": {
+      "BodyType": {
+        "CARGO": "Yuk mashinasi",
+        "COUPE": "Kupe",
+        "CROSSOVER": "Krossover",
+        "ESTATE": "Universal",
+        "HATCHBACK": "Hetchbek",
+        "MINIVAN": "Miniven",
+        "PICKUP": "Pikap",
+        "SEDAN": "Sedan",
+        "SPORT_VEHICLE": "Yo'ltanlamas",
+        "VAN": "Furgon"
+      },
+      "Currency": {
+        "AZN": "AZN",
+        "EUR": "EUR",
+        "GEL": "GEL",
+        "MDL": "MDL",
+        "TRY": "TRY",
+        "UAH": "UAH",
+        "USD": "USD"
+      },
+      "DriverRemovalReason": {
+        "BreakingCooperationRules": "Hamkorlik qoidalarini buzish",
+        "BreakingTrafficRules": "YHQ-ni buzish",
+        "CarAccident": "YTH",
+        "FiredFromFleet": "Hamkorlikni to'xtatish",
+        "Other": "Boshqasi"
+      },
+      "DriverStatus": {
+        "All": "Barcha holatlar",
+        "Blocked": "Bloklangan",
+        "Fired": "Bo'shatilgan",
+        "Working": "Ishlaydi"
+      },
+      "FleetType": {
+        "Commercial": "Tijoriy park",
+        "CourierFinanceMediator": "Vositachi (Kuryerlar)",
+        "Private": "Maxfiy park",
+        "PrivateCourier": "Maxfiy park",
+        "Rental": "Ijaradagi park"
+      },
+      "FleetVehicleColor": {
+        "Aqua": "Zangori",
+        "Beige": "Sarg'ish",
+        "Black": "Qora",
+        "Blue": "Ko'k",
+        "Brown": "Malla ",
+        "Fuchsia": "Pushti",
+        "Gray": "To'q kulrang",
+        "Green": "Yashil",
+        "Lime": "Och yashil",
+        "Maroon": "To'q qizil",
+        "Navy": "To' ko'k",
+        "Olive": "Zaytunrang",
+        "Orange": "To'q sariq",
+        "Purple": "Binafsharang",
+        "Red": "Qizil",
+        "Silver": "Kulrang",
+        "Teal": "Ko'k yashil",
+        "White": "Oq",
+        "Yellow": "Sariq"
+      },
+      "FleetVehicleComfortLevel": {
+        "Business": "Biznes",
+        "Comfort": "Komfort",
+        "Econom": "Ekonom",
+        "Prime": "Prime",
+        "Standard": "Standart"
+      },
+      "FleetVehicleOption": {
+        "AirConditioner": "Konditsioner",
+        "BabyBoosterSeat": "Buster",
+        "BabyChair": "Bolalar o'rindig'i",
+        "CovidProtected": "Covid himoya",
+        "ElectricEngine": "Elektromotor",
+        "InclusiveEquipment": "Inklyuziv jihoz",
+        "Licensed": "Taksi Litsenziyasi ",
+        "MarketingCampaign": "Marketing kompaniyasi"
+      },
+      "KarmaGroup": {
+        "Blocked": "Ish bloklangan",
+        "FirstPriority": "1- guruh",
+        "OffersBlocked": "Avto rejimi bloklangan",
+        "SecondPriority": "2-guruh"
+      },
+      "TransactionType": {
+        "Adjustment": "Kompensatsiya qiluvchi operatsiya",
+        "BalanceCharge": "Balansdan yechish",
+        "BalanceRecharge": "Balansni to'ldirish",
+        "ChargeCardTransferring": "Kartaga o'tkazish",
+        "ChargeCardTransferringCom": "Komissiyani yechish",
+        "ChargeCardTransferringReverse": "Pul o'tkazmasini kartaga qaytarish",
+        "ChargeComissionTransferringReverse": "Yechi olish komissiyasini qaytarish",
+        "ChargeCommissionFromDriver": "Buyurtma uchun komissiya hisoblangan",
+        "ChargeCommissionFromDriverReverse": "Buyurtma uchun komissiyani qaytarish",
+        "ChargeFeeFromDriver": "Abonent to‘lovini hisoblash",
+        "ChargeFeeFromDriverReverse": "Abonent to‘lovini qaytarish",
+        "ChargeIncomeFromDriverMiw": "Buyurtma qiymatini haydovchining balansidan qaytarish (MoneyInWay)",
+        "ChargeIncomeFromDriverMiwReverse": "Kartaga pul yechishga muvaffaqiyatsiz urinish ",
+        "CommissionProgram": "Komissiya dasturi",
+        "DriverAdjustment": "Balans sozlandi",
+        "DriverBalanceCharge": "Qarzni bekor qilish",
+        "DriverBalanceMove": "Mablag'larning balansdagi harakati",
+        "DriverBalanceRecharge": "Balans to'ldirildi",
+        "DriverBalanceRechargeViaTerminal": "Balansni terminal orqali to'ldirish",
+        "DriverBalanceRechargeViaTerminalReverse": "Terminal orqali balansni to'ldirishni qaytarish",
+        "DriverCompensationRecharge": "Balans to'ldirildi",
+        "DriverFineCharge": "Qarzni bekor qilish",
+        "MerchantWithdrawal": "Merchantga o'tkazmalar bo'yicha tuzatish",
+        "OrderBonusIncomeToDriver": "Buyurtma uchun bonuslar hisoblandi",
+        "OrderBonusIncomeToDriverReverse": "Buyurtma uchun hisoblangan bonuslarni qaytarish",
+        "OrderIncomeToDriver": "Buyurtmaning qiymati balansga hisoblandi",
+        "RechargeBonus": "Bonuslar hisoblandi",
+        "RechargeBonusReverse": "Bonuslarni hisoblashni bekor qilish",
+        "RechargeBonusToDriver": "Bonuslar hisobga o'tkazildi",
+        "RechargeDriverCardFromWallet": "Qarz hisoblandi",
+        "RechargeDriverWalletByCard": "Qarzni bekor qilish",
+        "RechargeFromCard": "Balansni kartadan to'ldirish",
+        "RechargeIncomeToDriverMiw": "Buyurtma narxini haydovchi balansiga o'tkazish (MoneyInWay)",
+        "RechargeIncomeToDriverMiwReverse": "Buyurtma narxini haydovchi balansiga o'tkazishni bekor qilish (MoneyInWay)",
+        "RechargeOrderBonusToDriver": "Balans to'ldirildi",
+        "RechargeOrderBonusToDriverReverse": "Mablag'larni qaytarish",
+        "ReturnChargeDebtToDriver": "Hisoblangan qarzni haydovchiga qaytarish",
+        "RiderToDriverCompensationRecharge": "Balans to'ldirildi",
+        "TipsIncomeToDriver": "Choychaqa olindi",
+        "vb_balance_charge": "Balansdan yechish",
+        "vb_balance_recharge": "Balansni to'ldirish"
+      },
+      "VehicleRemovalReason": {
+        "CarAccident": "YTH",
+        "CarCondition": "Mashinaning holati",
+        "CarSold": "Mashina sotilgan",
+        "MisRegistration": "Noto'g'ri ro'yxatga olish",
+        "Other": "Boshqasi"
+      }
+    },
+    "Enums": {
+      "CourierRestriction": {
+        "Description": {
+          "Cash": "Naqd pulga buyurtmalarni qabul qilish imkoniyatini tartibga soladi"
+        },
+        "Title": {
+          "Cash": "Naqd pulga buyurtmalar olish"
+        }
+      },
+      "Fuel": {
+        "Diesel": "Dizel",
+        "Electro": "Elektro",
+        "Gas": "Gaz",
+        "Gasoline": "Benzin",
+        "Hybrid": "Gibrid",
+        "MethaneGas": "Gaz metan",
+        "Other": "Boshqasi",
+        "PropaneButaneGas": "Gaz propan-butan"
+      },
+      "OrderStatus": {
+        "Canceled": "Bekor qilingan",
+        "Completed": "Bajarilgan",
+        "Running": "Bajarilmoqda"
+      },
+      "Restriction": {
+        "Description": {
+          "BroadCast": "Efir buyurtmalariga kirishga ta'sir qiladi",
+          "Cash": "Haydovchining naqd pul uchun buyurtmalarni qabul qilish imkoniyatiga ta'sir qiladi",
+          "FilterOffer": "Avtomatik ish rejimlari bilan ishlashga ruxsatga ta'sir qiladi "
+        },
+        "Title": {
+          "BroadCast": "Efir bilan ishlash",
+          "Cash": "Naqd pul bilan to'lanadigan buyurtmalar olish",
+          "FilterOffer": "Filtrlar bilan ishlash"
+        }
+      },
+      "RestrictionReason": {
+        "Title": {
+          "Fleet": "Avtopark",
+          "Manager": "Uklon menejeri"
+        }
+      }
+    },
+    "Error": {
+      "TemporarilyUnavailable": "Server vaqtincha mavjud emas, iltimos, keyinroq qayta urinib ko‘ring"
+    },
+    "Exit": "Chiqish",
+    "FileUpload": {
+      "ExtensionError": "",
+      "SizeError": "",
+      "TimeError": "",
+      "UploadError": "",
+      "UploadSuccess": ""
+    },
+    "Filters": {
+      "LicencePlate": {
+        "Caption": "Qidiruv",
+        "Placeholder": "Davlat raqami"
+      },
+      "Name": {
+        "Caption": "Qidiruv",
+        "Placeholder": "Familiyasi va ismi"
+      },
+      "NoMatch": "Hech narsa topilmadi",
+      "Period": {
+        "Label": "Davr"
+      },
+      "Phone": {
+        "Caption": "Qidiruv",
+        "Placeholder": "Telefon raqami"
+      },
+      "Status": {
+        "Caption": "Status"
+      }
+    },
+    "Hour": "soat",
+    "InfinityScroll": {
+      "Loading": "Ma'lumotlarni yuklash"
+    },
+    "Km": "km",
+    "Language": "Til",
+    "LoadingData": "Ma'lumotlarni yuklash",
+    "LocaleName": {
+      "Az": "Ozarbayjoncha",
+      "En": "Inglizcha",
+      "Ru": "Ruscha",
+      "Uk": "Ukraincha",
+      "Uz": "O'zbek"
+    },
+    "Months": {
+      "1": "Yanvar",
+      "2": "Fevral",
+      "3": "Mart",
+      "4": "Aprel",
+      "5": "May",
+      "6": "Iyun",
+      "7": "Iyul",
+      "8": "Avgust",
+      "9": "Sentyabr",
+      "10": "Oktyabr",
+      "11": "Noyabr",
+      "12": "Dekabr"
+    },
+    "Of": "dan",
+    "PhotoType": {
+      "combatant_status_certificate": "",
+      "criminal_record_certificate": "",
+      "driver_avatar_photo": "",
+      "driver_car_back_photo": "Orqadan ko'rinish",
+      "driver_car_front_photo": "Oldidan ko'rinish",
+      "driver_car_right_sight_photo": "Chapdan ko'rinish",
+      "driver_car_sight_photo": "O'ngdan ko'rinish",
+      "driver_insurance_front_copy": "Old tomoni",
+      "driver_insurance_reverse_copy": "Orqa tomoni",
+      "driver_license_front_copy": "Old tomoni",
+      "driver_license_reverse_copy": "Orqa tomoni",
+      "driver_taxi_license_front_copy": " Taksi litsenziyasi (Old tomoni)",
+      "driver_taxi_license_reverse_copy": "Taksi litsenziyasi (orqa tomoni)",
+      "driver_vehicle_registration_front_copy": "Old tomoni",
+      "driver_vehicle_registration_reverse_copy": "Orqa tomoni",
+      "id_card_front": "Old tomoni",
+      "id_card_reverse": "Orqa tomoni",
+      "residence": "Yashash guvohnomasi",
+      "vehicle_angled_back": "Orqa tomondan burchak ostida",
+      "vehicle_angled_front": "Old tomondan burchak ostida",
+      "vehicle_interior_back_photo": "Salon orqadan",
+      "vehicle_interior_front_photo": "Oldingi yo'lovchi o'rindig'i",
+      "vehicle_safety_belts": "Xavfsizlik kamarlari",
+      "vehicle_third_seats_row": "O'rindiqlarning uchinchi qatori",
+      "vehicle_trunk": "Yukxona",
+      "vehicle_wheels": "G'ildiraklar"
+    },
+    "PhotoTypeFull": {
+      "combatant_status_certificate": "",
+      "criminal_record_certificate": "",
+      "driver_avatar_photo": "",
+      "driver_car_back_photo": "Mashinaning fotosurati (Olidan ko'rinish)",
+      "driver_car_front_photo": "Mashinaning fotosurati (Orqadan ko'rinish)",
+      "driver_car_right_sight_photo": "Mashinaning fotosurati (O'ng tomonidan ko'rinish)",
+      "driver_car_sight_photo": "Mashinaning fotosurati (Chap tomonidan ko'rinish)",
+      "driver_insurance_front_copy": "AVEFJMS (Old tomoni)",
+      "driver_insurance_reverse_copy": "AVEFJMS (Orqa tomoni)",
+      "driver_license_front_copy": "Haydovchilik guvohnomasi (Old tomoni)",
+      "driver_license_reverse_copy": "Haydovchilik guvohnomasi (Orqa tomoni)",
+      "driver_taxi_license_front_copy": "Taksi litsenziyasi (Old tomoni)",
+      "driver_taxi_license_reverse_copy": "Taksi litsenziyasi (Orqa tomoni)",
+      "driver_vehicle_registration_front_copy": "Tex. pasport (Old tomon)",
+      "driver_vehicle_registration_reverse_copy": "Tex. pasport (Orqa tomon)",
+      "id_card_front": "Shaxsni tasdiqlovchi hujjat (Old tomoni )",
+      "id_card_reverse": "Shaxsni tasdiqlovchi hujjat (Orqa tomoni )",
+      "residence": "Yashash guvohnomasi",
+      "vehicle_angled_back": "Mashinaning fotosurati (orqa tomondan burchak ostida)",
+      "vehicle_angled_front": "Mashinaning fotosurati (old tomondan burchak ostida)",
+      "vehicle_interior_back_photo": "Salon orqadan",
+      "vehicle_interior_front_photo": "Oldingi yo'lovchi o'rindig'i",
+      "vehicle_safety_belts": "Xavfsizlik kamarlari",
+      "vehicle_third_seats_row": "O'rindiqlarning uchinchi qatori",
+      "vehicle_trunk": "Yukxona",
+      "vehicle_wheels": "G'ildiraklar"
+    },
+    "ProductConditions": {
+      "by_address": "Manzili-manzil yetkazib berish",
+      "cash": "Naqd pul to'lab sotib olish",
+      "extra_weight": "Qo'shimcha yuk",
+      "repurchase": "Naqd pul to'lab sotib olish",
+      "to_door": "Eshikdan-eshikka yetkazib berish"
+    },
+    "ProductTypes": {
+      "all": "Barchasi",
+      "business": "Biznes",
+      "comfortplus": "Comfort+",
+      "covidprotected": "Covid himoya",
+      "delivery": "Yetkazib berish",
+      "driver": "Haydovchi",
+      "econom": "Ekonom",
+      "enginestart": "Sigaret tutatish uyasi",
+      "evacuation": "Shaharlararo",
+      "evacuationmd": "EvacuationMd",
+      "green": "Green",
+      "kids": "Bolalarniki",
+      "minivan": "Mikroavtobus-6",
+      "pool": "Pool ",
+      "premium": "Komfort",
+      "prime": "Prime",
+      "share": "Uklon Share",
+      "standard": "Standart",
+      "standart": "Standart",
+      "taxi": "Taksi",
+      "tyreinflation": "G'ildiraklarni tekislash",
+      "van": "Mikroavtobus-8",
+      "volunteer": "Ko'ngilli",
+      "wagon": "Universal"
+    },
+    "Select": {
+      "ByEnum": {
+        "OrderStatus": {
+          "All": "Barchasi"
+        },
+        "ProductType": {
+          "All": "Barcha mahsulotlar"
+        }
+      }
+    }
+  },
+  "Const": {
+    "RestrictionReasonGroup": {
+      "Enum": {
+        "Restriction": {
+          "BroadCast": "Efir",
+          "Cash": "Naqd pul uchun buyurtmalar",
+          "Cashless": "Naqd pulsiz",
+          "FastSearch": "Zanjir",
+          "FilterOffer": "Filtrlar",
+          "FinancialVerification": "Tugallangan RNUCN (TIN) yo'qligi",
+          "SectorQueue": "Navbatli sektor"
+        }
+      },
+      "RestrictedBy": {
+        "RestrictionReason": {
+          "ActiveOrdersLimit": "Faol buyurtmalar soni tufayli ish cheklangan",
+          "Balance": "Balans yetarli emasligi sababli ish cheklangan",
+          "CancelFrequency": "Buyurtmalarning tez-tez bekor qilinishi tufayli ish cheklangan",
+          "Cashless": "Naqd pulsiz",
+          "Fleet": "Ish Uklon/Avtopark Menejri tomonidan qo'lda cheklangan",
+          "Karma": "Past karma tufayli ish cheklangan",
+          "Manager": "Ish Uklon/Avtopark Menejri tomonidan qo'lda cheklangan",
+          "Ticket": "Ish tizim tomonidan cheklangan"
+        }
+      },
+      "Type": {
+        "Restriction": {
+          "ActivityRate": "Kam faollik tufayli ish cheklangan",
+          "Cash": "Naqd pullik buyurtmalar bilan ishlash, Uklon/Avtopark Menejri tomonidan qo'lda cheklangan"
+        }
+      }
+    }
+  },
+  "Contacts": {
+    "ContactCard": {
+      "Email": "Elektron pochta manzili",
+      "PhoneNumber": "Telefon raqami"
+    },
+    "ContactsList": {
+      "FleetContacts": "Avtopark aloqalari",
+      "FleetManagers": "Avtopark menejerlari",
+      "FleetOwners": "Avtopark egalari"
+    }
+  },
+  "CourierFinance": {
+    "CouriersWallets": {
+      "Tooltip": "Pul yechib olingandan keyin ushbu miqdor har bir kuryerda qoladi",
+      "TotalWalletsSum": "Kuryerlar hamyonlarida",
+      "TransferToCouriers": "Kuryerning hamyonini to'ldirish"
+    },
+    "Tabs": {
+      "CouriersWallets": "Kuryerlar hamyonlari",
+      "CourierTransactions": "Kuryerlar operatsiyalari"
+    }
+  },
+  "CourierHistory": {
+    "ActivityProperties": {
+      "value": "Faollik"
+    },
+    "Author": "Muallif",
+    "ChangeType": {
+      "ActivityRateManuallyChanged": "Faollikni o'zgartirish",
+      "ActivityRateReseted": "Faollikni qaytarish",
+      "AddedToFleet": "Parkka qo'shilgan",
+      "All": "Barcha voqealar",
+      "Blocked": "Bloklangan",
+      "PhoneChanged": "Telefon raqami o'zgartirildi",
+      "PictureUploaded": "Fotosurat yuklandi",
+      "ProductAvailabilityChanged": "Mahsulotning mavjudligi",
+      "ProfileChanged": "Kuryer ma'lumotlarini almashtirish",
+      "Registered": "Ro'yxatdan o'tish",
+      "RemovedFromFleet": "Parkdan olib tashlandi",
+      "RestrictionsChanged": "Cheklovlar",
+      "Unblocked": "Blokdan chiqarilgan"
+    },
+    "EventType": "Voqea turi",
+    "NoAdditionalData": "Qo'shimcha ma'lumotlar yo'q",
+    "OccurrenceDate": "O'zgartirish sanasi",
+    "Pictures": {
+      "courier_avatar_photo": "Kuryerning fotosurati",
+      "id_card_front": "Shaxsni tasdiqlovchi hujjat (Old tomoni )",
+      "id_card_reverse": "Shaxsni tasdiqlovchi hujjat (Orqa tomoni )"
+    },
+    "ProductAvailabilityChanged": "Mahsulotlarning mavjudligi",
+    "ProfileChangeProperties": {
+      "date_of_birth": "Tug'ilgan sanasi",
+      "email": "Elektron pochta manzili",
+      "first_name": "Ismi",
+      "id_number": "ID raqami",
+      "last_name": "Familiyasi",
+      "locale": "Til",
+      "patronymic": "Otasining ismi",
+      "sex": "Jinsi"
+    },
+    "Role": "Roli",
+    "Roles": {
+      "FleetManager": "Avtopark menejeri",
+      "FleetOwner": "AP egasi",
+      "System": "Tizim",
+      "UklonManager": "Uklon menejeri"
+    },
+    "Titles": {
+      "AppliedRestrictions": "Qo'yilgan",
+      "CanceledRestrictions": "Olib tashlangan",
+      "DataTypes": "Ma'lumotlar turi",
+      "Disabled": "O'chirilgan",
+      "Enabled": "Yoqilgan",
+      "NewProperty": "Bo'ldi",
+      "OldProperty": "Bo'lgan edi",
+      "Photo": "Fotosurat nomi",
+      "Property": "Maydon"
+    }
+  },
+  "CourierRestriction": {
+    "Title": "Kuryerning ishiga cheklovlar ({{size}})",
+    "Tooltip": "Kuryerning ishiga cheklovlar"
+  },
+  "CouriersAutocomplete": {
+    "AllCouriers": "Barcha kuryerlar",
+    "Placeholder": "Kuryerni tanlang",
+    "Title": "Kuryer"
+  },
+  "Couriers": {
+    "ChangeType": {
+      "ActivityRateManuallyChanged": "Faollikni o'zgartirish"
+    },
+    "CourierDetails": {
+      "Activity": {
+        "ActivationDate": "Faollashtirish sanasi",
+        "ActivationDateAt": "{{ time }} {{ date }} da",
+        "CancelledOrders": "Jami bekor qilishlar",
+        "CompletedOrders": "Bajarilgan buyurtmalar",
+        "EstimatedData": "Hisoblash ma'lumotlari",
+        "NotActive": "Faol emas",
+        "RejectedOrders": "Jami qabul qilinmagan buyurtmalar",
+        "Title": "Faollik"
+      },
+      "Data": {
+        "AddedDate": "Qo'shish sanasi",
+        "Phone": "Telefon raqami",
+        "ThermalBag": {
+          "Desc": "Mavjud",
+          "Label": "Termosumka"
+        },
+        "Title": "Kuryer haqidagi ma'lumotlar"
+      },
+      "ExpandedFilters": {
+        "Title": "Buyurtmalar turlari"
+      },
+      "Rating": "Reyting",
+      "Restrictions": {
+        "OrderGroup": {
+          "Subtitle": "Sozlamani faollashtiruvchi",
+          "Title": "Buyurtmalar qabul qilish usullari"
+        },
+        "Title": "Kuryerni cheklash"
+      },
+      "Tabs": {
+        "Deliveries": "Yetkazib berishlar",
+        "ExpandedFilters": "Kengaytirilgan filtrlar",
+        "History": "O'zgarishlar tarixi",
+        "Reports": "Kuryerlar bo'yicha hisobot",
+        "Restrictions": "Cheklovlarni sozlash",
+        "Statistics": "Ish statistikasi"
+      },
+      "Title": "{{ last_name }} {{ first_name }} kuryerning sahifasi"
+    },
+    "Filters": {
+      "Name": {
+        "Caption": "Qidiruv",
+        "Placeholder": "Familiya va Ism bo'yicha qidirish"
+      },
+      "Phone": {
+        "Caption": "Telefon raqami",
+        "Placeholder": "Telefon raqami bo'yicha qidirish"
+      }
+    },
+    "List": {
+      "Header": {
+        "ActivityRate": "Faollik",
+        "FullName": "Familiyasi Ismi",
+        "Phone": "Telefoni",
+        "Rating": "Reyting"
+      },
+      "Row": {
+        "ActivityRate": "Faollik",
+        "Phone": "Telefon raqami",
+        "Rating": "Reyting"
+      }
+    },
+    "Tabs": {
+      "Couriers": "Kuryerlar ro'yxati",
+      "Tickets": "Ulanish uchun so'rovlar"
+    },
+    "Title": "Kuryerlar"
+  },
+  "CourierStatistic": {
+    "Filters": {
+      "Title": "Parkdagi maosh statistikasi"
+    }
+  },
+  "Dashboard": {
+    "Statistics": {
+      "AverageOrderCost": "O'rtacha chek",
+      "AveragePrice": "O'rtacha narx",
+      "Commission": "Uklon komissiyasi",
+      "DateRangeTitle": {
+        "CurrentWeek": "joriy haftada",
+        "LastWeek": "o'tgan haftada",
+        "Quarter": "{{ quarter }} chorakda"
+      },
+      "EarningForPeriod": "Uchun ish haqi",
+      "EarningsByProduct": "Mahsulotlar bo'yicha ish haqi",
+      "EarningsByProductTotal": "Hammasi",
+      "FulfilledOrders": "Bajarilgan buyurtmalar",
+      "IncomeType": {
+        "total_bonus": "Bonuslar",
+        "total_cash_earnings": "Naqd",
+        "total_cashless_earnings": "Naqd pulsiz",
+        "total_compensations": "Kompensatsiyalar",
+        "total_fee": "Uklon komissiyasi",
+        "total_penalties": "Jarimalar",
+        "total_tips": "Choychaqalar"
+      },
+      "Mileage": "Buyurtmalar bilan o'tilgan masofa",
+      "NetEarnings": "Toza",
+      "Subtitle": "15 daq.lik xatolik bilan ma'lumotlarning dolzarbligi",
+      "Title": "Avtopark statistikasi",
+      "TopDrivers": {
+        "CancelationCount": "Bekor qilishlar foizi",
+        "Driver": "Haydovchi",
+        "Karma": "Uklon Karma",
+        "OrderCancelationRatio": "Buyurtmalar/Bekor qilishlar",
+        "OrderCount": "Bajarilgan buyurtmalar",
+        "Rating": "Reyting",
+        "Title": "Ish haqi bo'yicha eng yaxshi 10 ta haydovchi",
+        "TotalIncome": "Ish haqi"
+      },
+      "TotalEarnings": "Umumiy ish haqi"
+    }
+  },
+  "DateRangeType": {
+    "Caption": {
+      "Custom": "Davrni tanlash",
+      "LastMonth": "O'tgan oy",
+      "LastQuarter": "Oldingi kvartal",
+      "LastWeek": "O'tgan hafta",
+      "ThisMonth": "Joriy oy",
+      "ThisQuarter": "Joriy kvartal",
+      "ThisWeek": "Joriy hafta",
+      "Today": "Bugun",
+      "Yesterday": "Kecha"
+    }
+  },
+  "DenyList": {
+    "ClearSuccess": "Qora ro'yxat tozalandi",
+    "Dialog": {
+      "CancelBtn": "Bekor qilish",
+      "Message": "Qora ro‘yxatni tozalash, haydovchiga avvalroq 1 deb baholagan yo‘lovchilardan buyurtma olishga olib keladi. Tozalamoqchimisiz?",
+      "Title": "Qora ro'yxatni tozalansinmi?"
+    },
+    "PassangesCount": "Yo'lovchilar: {{ count }}",
+    "Title": "Yo'lovchilar qora ro'yxati"
+  },
+  "Dialogs": {
+    "ApproveGarageApplication": {
+      "ApproveContent": "Ariza tasdiqlangach, haydovchi “Uklon” xizmatida ro‘yxatdan o‘tishni yakunlash zarurligi haqida xabarnoma oladi <br><br>Agar haydovchi Uklon xizmatida akkauntga ega bo'lsa, u avtomatik ravishda ushbu parkga qo'shiladi",
+      "ApproveTitle": "Ariza tasdiqlansinmi?",
+      "RejectContent": "Ariza rad etilgandan so'ng, haydovchi avtopark bilan hamkorlik qilishning mumkin emasligi haqida xabarnoma oladi.",
+      "RejectTitle": "Ariza rad etilsinmi?"
+    },
+    "BulkNotification": {
+      "ConfirmationCheckboxMessage": "Men ma’lumot bilan tanishib chiqdim  ",
+      "ConfirmBtn": "Tushunarli",
+      "ConfirmedMessage": "Siz tanishganingizni tasdiqladingiz",
+      "SkipBtn": "O‘tkazib yuborish"
+    },
+    "WithdrawToCard": {
+      "CloseDialogWarning": "Agar oynani yopsangiz, biz operatsiyaning holati haqida bildirishnomani ko'rsata olmaymiz",
+      "Notification": {
+        "Max": "bir martada: max {{ max }} {{ currency }}",
+        "MaxAmountPerCard": "1 ta kartaga yechishning maksimal miqdori - {{ maxAmountPerCard }} {{ currency }}",
+        "MaxAttempts": "urinishlar soni - {{ maxAttempts }}",
+        "Min": "bir martada: min {{ min }} {{ currency }}"
+      },
+      "PassportInfo": {
+        "LimitInfo": "Agar to'lov operatsiyalari miqdori har bir pasport raqami uchun 29 999 UZS dan oshsa",
+        "LimitInstruction": "Belgilangan pasport raqami bilan, identifikatsiyadan o'tish kerak bo'ladi",
+        "Title": "To'lov tizimining cheklanishi"
+      },
+      "PendingTransaction": {
+        "ConfirmBtn": "Yopish",
+        "Message": "Operatsiya toʻlov tizimi tomonida qayta ishlanmoqda. Agar u muvaffaqiyatli o'tsa, uni keyinroq operatsiyalar ro'yxatida ko'rasiz",
+        "Title": "Operatsiya qayta ishlanmoqda"
+      },
+      "ProcessingTransactionMessage": "<b>Diqqat!</b> Operatsiya tugamaguncha oynani yopmang",
+      "TINError": {
+        "Title": "Mablag'ni o'tkazish amali mumkin emas"
+      },
+      "TINInfo": {
+        "LimitInfo": "To'lov operatsiyalari miqdori bitta JSHSHIR (STIR) uchun oyiga 29 999 grivnadan, yiliga 400 000 grivnadan oshsa",
+        "LimitInstruction": "Ko'rsatilgan MKIBIMIXR (STIR) bo'yicha tasdiqdan o'tish kerak bo'ladi",
+        "Title": "To'lov tizimi cheklovi"
+      },
+      "Title": "Shaxsiy kartaga to'lov operatsiyasi",
+      "TransactionError": {
+        "CancelBtn": "",
+        "ConfirmBtn": "",
+        "PassportMessage": "<b>{{ tax_number }}</b> pasport raqami orqali pul o‘tkazish to‘lov tizimi tomonidan bloklangan. Siz 29 999 UZS chegarasidan oshib ketdingiz. Belgilangan pasport raqamiga pul o'tkazish uchun identifikatsiyadan o'tish kerak. Identifikatsiyadan so'ng sizning limitingiz 150 000 UZS gacha oshiriladi.",
+        "TINMessage": "<b>{{ tax_number }}</b> STIR orqali pul oʻtkazish toʻlov tizimi tomonidan bloklangan. Siz 29 999 UZS chegarasidan oshib ketdingiz. Belgilangan STIRga pul o'tkazmalarini amalga oshirish uchun identifikatsiyadan o'tish kerak. Identifikatsiyadan so'ng sizning limitingiz 150 000 UZS gacha oshiriladi."
+      },
+      "TransferButton": "O'tkazish",
+      "WithdrawInfo": {
+        "MaxAmountPerDay": "Kunlik maksimal to'lov miqdori: {{ maxAmountPerCard }} {{ currency }}.",
+        "MaxTransactionsPerDay": "Bir kunlik operatsiyalar soni: {{ maxAttempts }} dona.",
+        "SingleTransactionMaxAmount": "Yechib olish uchun mavjud miqdor: {{ min }} {{ currency }} – {{ max }} {{ currency }}."
+      }
+    }
+  },
+  "Dictionary": {
+    "Region": {
+      "Ukraine": {
+        "Berdiansk": "Berdyansk",
+        "Bila Tserkva": "Belaya Tserkov",
+        "Cherkasy": "Cherkassi",
+        "Chernihiv": "Chernigov",
+        "Chernivtsi": "Chernovtsi",
+        "Chervonohrad": "Chervonograd",
+        "Dnipro": "Dnepr",
+        "Drohobych": "Drogobich",
+        "Ivano-Frankivsk": "Ivanovo-Frankovsk",
+        "Kamianets-Podilskyi": "Kamenets-Podolskiy",
+        "Kamianske": "Kamenskoye",
+        "Kharkiv": "Xarkov",
+        "Kherson": "Xerson",
+        "Khmelnytskyi": "Xmelnitskiy",
+        "Konotop": "Konotop",
+        "Kremenchuk": "Kremenchug",
+        "Kropyvnytskyi": "Kropivnitskiy",
+        "Kryvyi Rih": "Krivoy Rog",
+        "Kyiv": "Kiyev",
+        "Kyshyniv": "Kishinyov",
+        "Lutsk": "Lutsk",
+        "Lviv": "Lvov",
+        "Malta": "Malta",
+        "Mariupol": "Mariupol",
+        "Melitopol": "Melitopol",
+        "Mukachevo": "Mukachyovo",
+        "Mykolaiv": "Nikolayev",
+        "Nikopol": "Nikopol",
+        "Odesa": "Odessa",
+        "Oleksandriia": "Aleksandriya",
+        "Pavlohrad": "Pavlograd",
+        "Poltava": "Poltava",
+        "Rivne": "Rovno",
+        "Rovenky": "Rovenki",
+        "Sumy": "Miqdorlar",
+        "Ternopil": "Ternopol",
+        "Tunisia": "Tunis",
+        "Uman": "Uman",
+        "Uzhhorod": "Ujgorod",
+        "Vinnytsia": "Vinnitsa",
+        "Zaporizhia": "Zaporojye",
+        "Zhytomyr": "Jitomir"
+      }
+    }
+  },
+  "Driver": {
+    "AllDrivers": "Barcha haydovchilar",
+    "Filters": {
+      "Driver": {
+        "Label": "Haydovchi"
+      },
+      "SelectDriver": "Haydovchini tanlang"
+    }
+  },
+  "DriverBalancesFilter": {
+    "Name": {
+      "Caption": "Qidiruv",
+      "Placeholder": "Familiya va Ismlar bo'yicha qidirish"
+    },
+    "Phone": {
+      "Caption": "Telefon raqami",
+      "Placeholder": "Raqam bo'yicha qidirish"
+    },
+    "Sort": {
+      "Caption": "Joriy balans bo'yicha saralash",
+      "Options": {
+        "Asc": "Kichikdan kattaga",
+        "Default": "Saralashsiz",
+        "Desc": "Kattadan kichikka"
+      }
+    }
+  },
+  "DriverBalancesInfo": {
+    "WithdrawalAmount": {
+      "Title": "O'tkazish miqdori"
+    }
+  },
+  "DriverBalancesList": {
+    "Remaining": {
+      "Caption": "Qoldiq miqdori"
+    }
+  },
+  "DriverDetailsInfo": {
+    "Tooltips": {
+      "KarmaGroups": {
+        "DriverHaveNoVehicle": "Haydovchi mashinani tanlaganda, guruh karmasi ko'rsatiladi"
+      }
+    }
+  },
+  "DriverFilter": {
+    "Name": {
+      "Caption": "Qidiruv",
+      "Placeholder": "Familiya va Ismlar bo'yicha qidirish"
+    },
+    "Phone": {
+      "Caption": "Telefon raqami",
+      "Placeholder": "Telefon raqami bo'yicha qidirish"
+    },
+    "Status": {
+      "Caption": "Maqomi"
+    }
+  },
+  "DriverFilters": {
+    "Broadcast": "Filtr (efir)",
+    "Chain": "Zanjir",
+    "NoFilters": "Tanlanmagan",
+    "Offer": "Filtr (avto)",
+    "Title": "Usul"
+  },
+  "DriverHistory": {
+    "Allowed": "Ruxsat etilgan",
+    "Author": "Muallif",
+    "AvailabilitySettings": {
+      "availability_rules_activations": "Mavjudlik mezonlari",
+      "driver_fleet_type_enabled": "Park mashinasi",
+      "editing_availability_rules_activations": "Tahrirlash mezonlari",
+      "min_completed_order_count_enabled": "Bajarilgan buyurtmalar soni",
+      "min_rating_enabled": "Reyting",
+      "min_work_time_days_enabled": "Kunlarda ifodalangan tajriba"
+    },
+    "ChangeType": {
+      "AddedToFleet": "Avtoparkka qo'shildi",
+      "All": "Barcha voqealar",
+      "B2BSplitAdjustmentChanged": "Tuzatish turini o'zgartirish",
+      "B2BSplitDistributionChanged": "Ajratish usulini o'zgartirish",
+      "BlackListCleared": "QR tozalandi",
+      "Blocked": "Bloklangan",
+      "FinanceProfileChanged": "Moliyaviy sozlamalar",
+      "IndividualEntrepreneurChanged": "To'lovlarni oluvchi (Qo'sh., Tahr., Olib tashlash)",
+      "KarmaReseted": "Karma olib tashlandi",
+      "PasswordChanged": "Parol o'zgartirildi",
+      "PasswordReset": "Parol qayta tiklandi",
+      "PaymentIdentificationStatusChanged": "Moliyaviy identifikatsiya holati yangilandi",
+      "PhoneChanged": "Telefon raqami o'zgartirildi",
+      "PictureUploaded": "Fotosurat yuklandi",
+      "ProductAvailabilityChanged": "Mahsulotning mavjudligi",
+      "ProductEditByDriverChanged": "Mahsulotni tahrirlashning mavjudligi",
+      "ProductRulesActivationsChanged": "Mahsulotlar mezonlari",
+      "ProfileChanged": "Haydovchi ma'lumotlarini almashtirish",
+      "Registered": "Ro'yxatdan o'tish",
+      "RemovedFromFleet": "Avtoparkdan olib tashlandi",
+      "RestrictionsChanged": "Cheklovlar",
+      "Unblocked": "Blokdan chiqarilgan",
+      "Unregistered": "Olib tashlash",
+      "WithdrawalTypeChanged": "To'lov oluvchi uchun toʻlovlar (Aktiv. / Deaktiv.)"
+    },
+    "Enums": {
+      "Deaf": "Eshitmaydi",
+      "HardOfHearing": "Yaxshi eshitmaydi",
+      "Individual": "Jismoniy shaxs",
+      "LegalEntity": "Yuridik shaxs",
+      "Nothing": "Xususiyatlarsiz"
+    },
+    "EventType": "Voqea turi",
+    "NoAdditionalData": "Qo'shimcha ma'lumotlar mavjud emas",
+    "NotAllowed": "Ta'qiqlangan",
+    "OccurrenceDate": "O'zgartirish sanasi",
+    "Pictures": {
+      "driver_avatar_photo": "Haydovchining fotosurati",
+      "driver_license_front_copy": "Haydovchilik guvohnomasi (Old tomoni)",
+      "driver_license_reverse_copy": "Haydovchilik guvohnomasi (Orqa tomoni)",
+      "id_card_front": "Shaxsni tasdiqlovchi hujjat (Old tomoni )",
+      "id_card_reverse": "Shaxsni tasdiqlovchi hujjat (Orqa tomoni )",
+      "residence": "Yashash guvohnomasi"
+    },
+    "ProfileChangeProperties": {
+      "B2BSplitBalance": {
+        "BalanceDependent": "balans qiymatiga ko'ra",
+        "PerSplit": "har bir buyurtmaga ko'ra (haydovchi balansiga ko'ra)",
+        "ProportionalToCommission": "buyurtmadagi komissiyaga ko'ra",
+        "TimeRange": "kuniga bir marta (park balansiga ko'ra)"
+      },
+      "date_of_birth": "Tug'ilgan sanasi",
+      "email": "Elektron pochta manzili",
+      "entrepreneur_name": "YaTT/MChJ nomi",
+      "feature_type": "Haydovchining xususiyatlari",
+      "first_name": "Ismi",
+      "has_citizenship": "Fuqarolik",
+      "id_number": "Identifikator raqami",
+      "last_name": "Familiyasi",
+      "license": "Haydovchilik guvohnomasi raqami №",
+      "license_till": "Haydovchilik guvohnomasining amal qilish muddati",
+      "locale": "Til",
+      "patronymic": "Otasining ismi",
+      "payment_details": "To'lov ma'lumotlari",
+      "PaymentDetails": {
+        "account_number": "Hisob raqami",
+        "account_owner": "Hisob egasining ismi",
+        "account_type": "Hisob turiob turi",
+        "address": "Manzil",
+        "bank_name_or_swift_code": "Bank nomi/SWIFT-kod ",
+        "company_name": "Kompaniya nomi",
+        "registration_number": "Ro'yxatga olish raqami",
+        "vat_payer_number": "QQS to'lovchisi raqami (STIR)"
+      },
+      "PaymentIdentificationStatusNotPassed": "identifikatsiya qilish muvaffaqiyatsiz tugadi",
+      "PaymentIdentificationStatusPassed": "identifikatsiya qilish muvaffaqiyatsiz tugadi",
+      "PaymentProviders": {
+        "Fondy": "Fondy merchanti",
+        "IPay": "IPay merchanti",
+        "Platon": "Platon merchanti"
+      },
+      "sex": "Jinsi"
+    },
+    "RideHailing": {
+      "Available": "Mavjud",
+      "NotAvailable": "Mavjud emas"
+    },
+    "Role": "Roli",
+    "Roles": {
+      "Driver": "Haydovchi",
+      "FleetManager": "Avtopark menejeri",
+      "FleetOwner": "Avtopark egasi",
+      "System": "Tizim",
+      "UklonManager": "Uklon menejeri"
+    },
+    "Titles": {
+      "Added": "Qo'shilgan",
+      "AppliedRestrictions": "Qo'yilgan",
+      "CanceledRestrictions": "Olib tashlangan",
+      "Comment": "Izoh",
+      "Disabled": "O'chirilgan",
+      "DriverEditability": "haydovchi tomonidan tahrirlashning mavjudligi",
+      "Enabled": "Yoqilgan",
+      "NewProperty": "Bo'ldi",
+      "OldProperty": "Bo'lgan edi",
+      "Photo": "Fotosurat nomi",
+      "ProductName": "Mahsulot nomi",
+      "Property": "Maydon",
+      "Removed": "Olib tashlangan"
+    },
+    "VehicleAccessType": {
+      "All": "Barcha uchun mavjud",
+      "Nobody": "Hech kimga mavjud emas",
+      "SpecificDrivers": "Tanlangan haydovchilar uchun mavjud:"
+    },
+    "VehicleChangeProperties": {
+      "body_type": "Kuzov turi",
+      "color": "Rangi",
+      "comfort_level": "Mashina sinfi",
+      "fuels": "Yoqilg'i",
+      "insurance_policy_actual_to": "AVEFJMS-ning amal qilish muddati",
+      "insurance_policy_number": "AVEFJMS raqami",
+      "load_capacity": "Yuk ko'tarish qobiliyati",
+      "model_details": "Modeli",
+      "passenger_seats_count": "O'rinlar soni",
+      "production_year": "Ishlab chiqarilgan yili"
+    },
+    "VehicleChangeType": {
+      "AccessToVehicleChanged": "Mashinaning mavjudligi o'zgartirildi",
+      "AddedToFleet": "Avtoparkka qo'shildi",
+      "All": "Barcha voqealar",
+      "Blocked": "Bloklangan",
+      "Created": "Yangi mashina qo'shildi",
+      "OptionsChanged": "Mashina belgilarini o'zgartirilishi",
+      "PhotoControlFailed": "Fotonazoratdan o'tilmadi",
+      "PhotoControlPassed": "Fotonazoratdan o'tildi",
+      "PhotoControlTicketCreationRejected": "Fotonazorat yaratilmadi",
+      "PictureUploaded": "Fotosurat yuklandi",
+      "ProductAvailabilityChanged": "Mahsulotning mavjudligi",
+      "ProfileChanged": "Mashina ma'lumotlarini o'zgartirish",
+      "RemovedFromFleet": "Avtoparkdan olib tashlandi",
+      "RideHailingEnabledChanged": "Avto uchun RideHailing mavjudligini o'zgartirish",
+      "Unblocked": "Blokdan chiqarilgan"
+    },
+    "VehiclePictures": {
+      "driver_car_back_photo": "Mashinaning fotosurati (Olidan ko'rinish)",
+      "driver_car_front_photo": "Mashinaning fotosurati (Orqadan ko'rinish)",
+      "driver_car_right_sight_photo": "Mashinaning fotosurati (Chap tomonidan ko'rinish)",
+      "driver_car_sight_photo": "Mashinaning fotosurati (O'ng tomonidan ko'rinish)",
+      "driver_insurance_front_copy": "AVEFJMS (Old tomoni)",
+      "driver_insurance_reverse_copy": "AVEFJMS (Orqa tomoni)",
+      "driver_taxi_license_front_copy": "Taksi litsenziyasi (Old tomoni)",
+      "driver_taxi_license_reverse_copy": "Taksi litsenziyasi (Orqa tomoni)",
+      "driver_vehicle_registration_front_copy": "Tex. pasport (Old tomon)",
+      "driver_vehicle_registration_reverse_copy": "Tex. pasport (Orqa tomon)",
+      "vehicle_interior_back_photo": "Salon orqadan",
+      "vehicle_interior_front_photo": "Oldingi yo'lovchi o'rindig'i",
+      "vehicle_safety_belts": "Xavfsizlik kamarlari",
+      "vehicle_third_seats_row": "O'rindiqlarning uchinchi qatori",
+      "vehicle_trunk": "Yukxona",
+      "vehicle_wheels": "G'ildiraklar"
+    },
+    "WithdrawalTypeChanged": {
+      "IndividualEntrepreneur": "Mablag'lar merchantlarga o'tkaziladi",
+      "None": "-",
+      "PaymentCard": "Naqd pulsiz pul mablag'larini olish kartada amalga oshiriladi"
+    }
+  },
+  "DriverListExpandedView": {
+    "Header": {
+      "Karma": "Uklon Karma",
+      "Phone": "Telefon",
+      "Rating": "Reyting",
+      "Signal": "Shartli nomi",
+      "Vehicle": "Mashinada"
+    },
+    "VehicleNotSelected": "Mashina tanlanmagan"
+  },
+  "DriverList": {
+    "Header": {
+      "FullName": "Familiyasi va ismi",
+      "Karma": "Uklon Karma",
+      "Phone": "Telefon",
+      "Rating": "Reyting",
+      "Signal": "Shartli nomi",
+      "Status": "Holati",
+      "Vehicle": "Mashinada"
+    },
+    "KarmaTooltip": "Faqat majburiy buyurtmalar bekor qilinsa, karmaga salbiy ta'sir qiladi",
+    "NoVehicle": "Mashina tanlanmagan",
+    "OnlineTooltip": "Haydovchi onlayn. Tafsilotlar Live map sahifasida"
+  },
+  "DriverPaymentInfo": {
+    "AccountNumber": "Hisob raqami",
+    "AccountOwner": "Hisob egasining ismi",
+    "AccountType": "Hisob turiob turi",
+    "Address": "Manzil",
+    "BankName": "Bank nomi/SWIFT-kod ",
+    "CompanyName": "Kompaniya nomi",
+    "Individual": "Jismoniy shaxs",
+    "LegalEntity": "Yuridik shaxs",
+    "RegistrationNumber": "Ro'yxatga olish raqami",
+    "Title": "To'lov ma'lumotlari",
+    "VATNumber": "QQS to'lovchisi raqami (STIR)",
+    "VATPayer": "Men QQS to'lovchisiman"
+  },
+  "DriverPhotoControl": {
+    "ClarificationReason": {
+      "document_damaged": "",
+      "document_expired": "",
+      "document_is_not_in_frame": "",
+      "low_quality_photo": "",
+      "mismatch_person_data": "",
+      "need_photo_without_glasses": "",
+      "need_portrait_photo": "",
+      "need_state_model_document": "",
+      "other": "",
+      "photo_has_poor_lighting": "",
+      "photo_is_duplicated": ""
+    },
+    "Panel": {
+      "InstructionMessage": "",
+      "DriverPhotoSharpnessInstruction": ""
+    },
+    "RejectionReason": {
+      "document_expired": "",
+      "driver_registration_deadline_expired": "",
+      "fraud": "",
+      "other": "",
+      "youcontrol": ""
+    },
+    "TicketsList": {
+      "Deadline": "Bajarish muddati",
+      "Name": "Familiyasi va ismi",
+      "Phone": "Telefon raqami",
+      "Reason": "Sababi",
+      "Reasons": {
+        "AdditionalDocumentsGathering": "Qo'shimcha hujjatlarni so'rash",
+        "AfterFirstOrders": "Birinchi N buyurtmalardan keyin",
+        "DocumentsActualization": "Muddati o'tgan hujjat",
+        "DocumentsOrPhotoAbsence": "Haydovchi fotosurati/hujjatlar yo'q",
+        "Other": "Boshqa",
+        "ProfileDataActualization": "Profil ma'lumotlarini yangilash"
+      },
+      "RequiredPhotos": "Kerakli fotosuratlar",
+      "Status": "Status"
+    },
+    "DriverLicenseTitle": "",
+    "PassportTitle": "",
+    "Title": ""
+  },
+  "DriverRestriction": {
+    "Reason": {
+      "ActiveOrdersLimit": "Faol buyurtmalar soni tufayli ish cheklangan",
+      "Balance": "Balans yetarli emasligi sababli ish cheklangan",
+      "CancelFrequency": "Buyurtmalarning tez-tez bekor qilinishi tufayli ish cheklangan",
+      "Karma": "Past karma tufayli ish cheklangan",
+      "Manager": "Ish Uklon/Avtopark Menejri tomonidan qo'lda cheklangan",
+      "Ticket": "Ish tizim tomonidan cheklangan"
+    },
+    "RestrictedByAccessabilityRules": "Mavjudlik mezonlari bajarilmayapti",
+    "Title": "Haydovchining ishiga cheklovlar ({{size}})",
+    "Type": {
+      "BroadCast": "Efir",
+      "Cash": "Naqd pul uchun buyurtmalar",
+      "FastSearch": "Zanjir",
+      "FilterOffer": "Avto olish",
+      "FinancialVerification": "Tugallangan RNUCN (TIN) yo'qligi",
+      "SectorQueue": "Navbatli sektor"
+    }
+  },
+  "Drivers": {
+    "AddDriverLink": "Haydovchi qo'shish",
+    "DriverDetails": {
+      "Title": "Haydovchi sahifasi{{ last_name }}{{ first_name }}"
+    },
+    "Drivers": {
+      "Details": {
+        "Autoblocked": "Avtorejim bloklangan",
+        "AvailabilityRules": "Mavjudlik mezonlari",
+        "AvailableForDriver": "Haydovchiga mavjudlari",
+        "Blocked": "Ish bloklangan",
+        "BlockEditing": "Mahsulotni tahrirlashni bloklash",
+        "CancelButton": "Bekor qilish",
+        "CancelledOrders": "Barcha bekor qilinganlar",
+        "CompletedOrders": "Bajarilgan buyurtmalar",
+        "DocumentsPictures": "Hujjatlarning fotosuratlari",
+        "DriverLicense": "Haydovchilik guvohnomasi",
+        "DriverRestrictions": "Haydovchining cheklovlari",
+        "DriverRideCondition": {
+          "AvailableSectionTitle": "Yoqilgan",
+          "EmptyState": "Qo'shimcha variantlar yo'q",
+          "NotAvailableSectionTitle": "O'chirilgan",
+          "Options": {
+            "Animal": "Hayvonni tashish",
+            "Babychair": "Bolalar o'rindig'i",
+            "Baggage": "Salondagi qo'shimcha bagaj",
+            "Conditioner": "Konditsioner",
+            "Courierdelivery": "Kuryer",
+            "Driverloader": "Yukni yuklashga yordamlashish",
+            "Englishspeaker": "Ingliz tilida so'zlashuvchi haydovchi",
+            "Nonsmoker": "Chekmaydigan haydovchi",
+            "Silence": "Salonda tinchlik",
+            "Smoker": "Chekish mumkin",
+            "Withsign": "Yozuvli taxtacha bilan kutib olish"
+          },
+          "Title": "Qo'shimcha optsiyalar"
+        },
+        "EstimatedData": "Hisob-kitob ma'lumotlari (oxirgi 100 ta safar)",
+        "ExperienceInDays": "Kunlarda ifodalangan tajriba",
+        "Form": {
+          "AddedDate": "Yangilanish sanasi",
+          "Phone": "Telefon raqami",
+          "Signal": "Shartli nomi"
+        },
+        "From": "dan",
+        "Group": "Guruh",
+        "GroupTypes": "Guruhlarni darajalash",
+        "Hint1": "Mezonlar bajarilganda, haydovchi uchun ushbu mahsulotga buyurtma olish imkoniyati mavjud bo'ladi.",
+        "Hint2": "Mezonlar bajarilganda, haydovchi uchun mahsulotlarni yoqish va o'chirish imkoniyati mavjud bo'ladi. Bloklash yoqilganda, haydovchiga tahrir qilish taqiqlanadi.",
+        "IdCard": "Shaxsni tasdiqlovchi hujjat",
+        "Karma": {
+          "OffersBlocked": "Avtorejim bloklangan",
+          "OffersBroadcastBlocked": "Ish bloklangan",
+          "Priority": "Ustuvorlik darajasi"
+        },
+        "LicensePhotos": "Hujjatlarning fotosuratlari",
+        "NoSelectedVehicle": "Mashina bog'lanmagan",
+        "OrdersCount": "Buyurtmalar soni",
+        "OrdersTillKarma": "Iklon Karma ta'sirigacha bo'lgan buyurtmalar",
+        "OrderType": "Buyurtmalar turi",
+        "Priority1": "1 ustuvorlik",
+        "Priority2": "2 ustuvorlik",
+        "Rating": "Reyting",
+        "RejectedOrders": "Barcha qabul qilinmagan buyurtmalar",
+        "ResetCount": "Qayta o'rnatishlar soni",
+        "Residence": "Fuqarolik guvohnomasi (chet el fuqarolari uchun):",
+        "SaveButton": "O'zgarishlarni saqlash",
+        "SelectedVehicle": "Joriy mashina",
+        "Tabs": {
+          "ExpandedFilters": "Kengaytirilgan filtrlar",
+          "History": "O'zgarishlar tarixi",
+          "Photo": "Fotosurat",
+          "Restrictions": "Cheklovlarni sozlash",
+          "Statistics": "Ish statistikasi",
+          "Trips": "Safarlar"
+        },
+        "Title": "Haydovchining ma'lumotlari",
+        "UklonKarma": "Uklon Karma",
+        "UklonKarmaLink": "Uklon Karma qanday ishlaydi",
+        "UnavailableForVehicle": "Mashina uchun mavjud emaslari",
+        "YourExperience": "Sizning tajribangiz",
+        "YourOrders": "Sizning buyurtmalaringiz",
+        "YourRating": "Sizning reytingingiz"
+      },
+      "DriverStatus": {
+        "All": "Barcha holatlar",
+        "Blocked": "Bloklangan",
+        "Fired": "Bo'shatilgan",
+        "Working": "Ishlaydi"
+      },
+      "KarmaGroup": {
+        "Blocked": "Ish bloklangan",
+        "FirstPriority": "1- guruh",
+        "OffersBlocked": "Avto rejimi bloklangan",
+        "SecondPriority": "2-guruh"
+      },
+      "List": {
+        "Condition": "Holati",
+        "Fullname": "Familiyasi va ismi",
+        "isVehicleSelected": "Mashinada",
+        "Karma": "Uklon Karma",
+        "Phone": "Telefon",
+        "Rating": "Reyting",
+        "SearchByName": "Xodimlar bo'yicha qidirish",
+        "SearchByPhone": "Telefon raqami bo'yicha qidirish",
+        "Signal": "Shartli nomi"
+      },
+      "PhotoCategories": {
+        "combatant_status_certificate": "JHI guvohnomasi",
+        "criminal_record_certificate": "Sudlanmaganlik to‘g‘risida ma’lumotnoma (to'liq)",
+        "driver_avatar_photo": "Profil rasmi",
+        "driver_license_front_copy": "Old tomoni",
+        "driver_license_reverse_copy": "Orqa tomoni",
+        "id_card_front": "Old tomoni",
+        "id_card_reverse": "Orqa tomoni",
+        "residence": "Yashash guvohnomasi"
+      },
+      "Restriction": {
+        "FinanceGroup": {
+          "ConfiguredByMap": {
+            "FleetOwner": "Avtopark",
+            "UklonManager": "Uklon menejeri"
+          },
+          "DisabledTooltip": "Tahrirlash mavjud emas",
+          "OrderPaymentToCard": {
+            "Subtitle": "Bog'langan kartaga naqd pulsiz buyurtmalar uchun   pul olishga ruxsat beradi",
+            "Title": "Kartaga pul olish"
+          },
+          "Title": "Moliyaviy sozlamalar",
+          "WalletToCardTransfer": {
+            "Subtitle": "Virtual balansdan bog'langan kartaga pul yechib olish imkonini beradi",
+            "Title": "Kartaga pul yechish"
+          }
+        },
+        "OrderGroup": {
+          "BroadCast": {
+            "Subtitle": "Efir buyurtmalariga kirishga ta'sir qiladi",
+            "Title": "Efir bilan ishlash"
+          },
+          "FilterOffer": {
+            "Subtitle": "Avtomatik ish rejimlari bilan ishlashga ruxsatga ta'sir qiladi ",
+            "Title": "Filtrlar bilan ishlash"
+          },
+          "RestrictedByMap": {
+            "ActiveOrdersLimit": "ActiveOrdersLimit",
+            "Balance": "Balans",
+            "CancelFrequency": "CancelFrequency",
+            "Karma": "Karma",
+            "Manager": "Menejer",
+            "Ticket": "Chipta"
+          },
+          "Subtitle": "Sozlamani faollashtiruvchi",
+          "Title": "Buyurtmalar qabul qilish usullari"
+        }
+      }
+    },
+    "Tabs": {
+      "Drivers": "Haydovchilar ro'yxati",
+      "DriversTickets": "Ulanish uchun arizalar",
+      "PhotoControl": "Haydovchilar fotonazorati",
+      "UklonGarage": "\"Avtoparklar uchun haydovchilar\" arizalari"
+    }
+  },
+  "DriverStatistic": {
+    "Courier": {
+      "Title": "Kuryer haqida"
+    },
+    "Data": {
+      "Accrual": "Hisobga o'tkazish",
+      "AdditionalFees": "Qo'shimcha hisoblash va yechib olishlar",
+      "AveragePricePerKm": {
+        "Label": "Bir kilometr uchun o'rtacha narx"
+      },
+      "CancellationPercentage": {
+        "Label": "Bekor qilish"
+      },
+      "CompletedOrders": {
+        "Label": "Bajarilgan safarlar"
+      },
+      "EarningsForPeriod": {
+        "Description": "Uklon komissiyasi va jarimalarni olib tashlaganda",
+        "Label": "Davr bo'yicha ish haqi"
+      },
+      "GrossIncome": {
+        "Description": "Komissiya va jarimani hisoblamaganda",
+        "Label": "Umumiy miqdor"
+      },
+      "Loss": {
+        "Order": {
+          "Total": {
+            "Label": "Uklon komissiyasi"
+          }
+        }
+      },
+      "Profit": {
+        "Bonus": {
+          "Label": "Bonuslar"
+        },
+        "Compensation": {
+          "Label": "Kompensatsiya"
+        },
+        "Fine": {
+          "Label": "Jarimalar"
+        },
+        "Order": {
+          "Card": {
+            "Label": "Kartaga"
+          },
+          "Cash": {
+            "Label": "Naqd"
+          },
+          "Wallet": {
+            "Label": "Hamyonga"
+          }
+        },
+        "Tips": {
+          "Label": "Choychaqalar"
+        }
+      },
+      "Rating": {
+        "Label": "Reyting"
+      },
+      "TotalDistanceMeters": {
+        "Label": "Buyurtmalar bo'yicha masofa"
+      },
+      "TotalExecutingTime": {
+        "Label": "Yurishlarning davomiyligi"
+      },
+      "Withdrawal": "Olib tashlash"
+    },
+    "Driver": {
+      "Title": "Haydovchi haqida ma'lumot"
+    },
+    "Filters": {
+      "DateTimeRange": {
+        "Label": "Davr"
+      },
+      "Title": "Avtoparkdagi ish haqi statistikasi"
+    },
+    "PieChart": {
+      "DriverOrderProfit": {
+        "Card": {
+          "Label": "Kartaga"
+        },
+        "Cash": {
+          "Label": "Naqd"
+        },
+        "Wallet": {
+          "Label": "Hamyonga"
+        }
+      }
+    }
+  },
+  "DriverTicket": {
+    "AddDriverLink": "Haydovchi qo'shish",
+    "Filter": {
+      "PhoneLabel": "Telefon raqami",
+      "PhonePlaceholder": "Telefon raqami bo'yicha qidirish",
+      "StatusLabel": "Maqomi"
+    },
+    "FromUklonGarageTooltip": "“Avtoparklar uchun haydovchilar” dan tasdiqlandi",
+    "Table": {
+      "Date": "Arizani qo'shish sanasi",
+      "Name": "Familiyasi va ismi",
+      "Phone": "Telefon",
+      "Status": "Maqomi"
+    },
+    "TicketStatusAll": "Barcha maqomlar",
+    "TicketStatus": {
+      "Clarification": "Qayta ishlashga jo'natilgan",
+      "Draft": "Qoralama",
+      "Rejected": "Rad etilgan",
+      "Review": "Menejer ko'rib chiqmoqda",
+      "Sent": "Jo'natilgan"
+    },
+    "UklonGarageApplicationStatus": {
+      "Approved": "Tasdiqlandi",
+      "ApprovedByManager": "Uklon menejeri tomonidan qayta ishlandi",
+      "ClosedByParallelRegistration": "Tasdiqlandi",
+      "New": "Yangi",
+      "Rejected": "Rad etildi"
+    }
+  },
+  "ED": {
+    "Requirements": {
+      "UZ": "Buyurtmalarni qabul qilish shartlari: yakka tartibdagi tadbirkor maqomi, Uklon komissioner belgisi va avtomobilga litsenziya"
+    }
+  },
+  "EmptyStates": {
+    "Bonus": {
+      "Subtitle": "Birinchi ma'lumotlar dastur boshlanganidan bir kun o'tgach mavjud bo'ladi",
+      "Title": "Hozircha bonuslar haqida ma'lumot yo'q"
+    },
+    "ChooseDriverForTx": {
+      "Title": "Operatsiyalari tarixini yuklab olish uchun haydovchini tanlang"
+    },
+    "ChoseCourier": {
+      "Title": "Operatsiyalarining tarixini yuklab olish uchun kuryerni tanlang"
+    },
+    "Error": {
+      "Title": "Xatolik yuz berdi"
+    },
+    "General": {
+      "Subtitle": "Shuningde, ular mavjud bo'lganda va  asosiy menyudan o'tish mumkin bo'lganda, biz boshqa bo'limlar va sahifalar ustida ham ishlaymiz. ",
+      "Title": "Tez orada foydali statistik ma'lumotlar va avtoparkingizning ishlashi haqidagi ma'lumotlarga ega informografika paydo bo'ladi."
+    },
+    "NoData": {
+      "Title": "Ko'rsatish uchun ma'lumotlar yo'q"
+    }
+  },
+  "Feedback": {
+    "FeedbackTemplate": {
+      "AnotherVehicle": "Boshqa mashina",
+      "AntiUkrainianPosition": "Ukrainaga qarshi qarashlar",
+      "Clean": "Toza va batartib",
+      "DamagedCar": "Haydovchi mashinaga zarar yetkazgan",
+      "DirtyInterior": "Salonda ifloslik",
+      "DirtyVehicle": "Iflos mashina",
+      "DriverBehaviour": "Muomala madaniyati",
+      "DriverSkills": "Haydash uslubi",
+      "DriverWasLate": "Haydovchi kechikdi",
+      "DriverWithoutMask": "Haydovcho niqob taqmagan",
+      "ExpertNavigation": "Shaharni biladi",
+      "GreatService": "Juda yaxshi xizmat",
+      "IncorrectCalculation": "Haydovchi tomonidan noto'g'ri hisoblash",
+      "NiceDriver": "Yaxshi haydovchi",
+      "NiceService": "Yaxshi servis xizmat",
+      "NiceVehicle": "Yaxshi mashina",
+      "NoBelts": "Xavfsizlik kamarlari yo'q",
+      "NoBootSpace": "Bagajda bo'sh joy yo'q edi",
+      "NoChange": "Qaytim yo'q",
+      "NoExpertNavigation": "Haydovchi shahar bo'ylab yo'lni bilmaydi",
+      "NoTools": "Haydovchining asboblari yo'q edi",
+      "NotSolveProblem": "Haydovchi mening muammomni hal qilmadi",
+      "Recommend": "Tavsiya qilaman",
+      "RussianLanguageMusic": "Rus musiqasi",
+      "RussianLanguage": "Rus tili",
+      "TrafficViolation": "Yo'l harakati qoidalarining buzilishi",
+      "SuboptimalRoute": "Maqbul bo'lmagan yo'nalish",
+      "UnpleasantConversations": "Nomaqbul gap-so'zlar",
+      "UnpleasantMusic": "Salonda nomaqbul musiqa",
+      "UnpleasantOdours": "Salonda begona hidlar",
+      "UnpleasantTemperature": "Salonda noqulay harorat",
+      "UnprofessionalBehavior": "Haydovchining xatti-harakati noprofessional edi",
+      "VehicleState": "Mashinaning holati",
+      "WonderfulCompanion": "Juda yaxshi hamsuhbat",
+      "WrongDriver": "Boshqa haydovchi keldi",
+      "WrongVehicleClass": "Avtomobil e’lon qilingan toifaga mos emas"
+    },
+    "Filter": {
+      "DriverLabel": "Haydovchi",
+      "DriverOptionAll": "Barchasi",
+      "PeriodLabel": "Davr"
+    },
+    "Table": {
+      "Comment": "Foydalanuvchi sharhi",
+      "Courier": "Kuryer",
+      "Date": "Sana",
+      "Driver": "Haydovchi",
+      "Rate": "Baholash",
+      "Template": "Andozali sharh",
+      "Time": "Vaqt"
+    },
+    "Title": "Haydovchilarning baholari",
+    "Tooltip": {
+      "AffectsRating": "Baholash reytingga ta'sir qiladi, u sifat nazorati bo'limi tomonidan qayta ishlanadi",
+      "NoAffectsRating": "Baho sifat nazorati bo'limi tomonidan qayta ishlandi va endi reytingga ta'sir qilmaydi"
+    }
+  },
+  "FilterGroup": {
+    "Caption": "Filtrlar"
+  },
+  "Finance": {
+    "DriversBalances": {
+      "Filter": {
+        "Fullname": "Familiyasi va ismi",
+        "SearchByName": "Xodimlar bo'yicha qidirish",
+        "SearchByPhone": "Telefon raqami bo'yicha qidirish",
+        "TransferToDrivers": "Haydovchining balansini to'ldirish",
+        "TransferToFleet": "Avtopark hamyoniga o'tkazish"
+      },
+      "Info": {
+        "Title": "Haydovchilar hamyonlarida"
+      },
+      "List": {
+        "Balance": "Joriy balansjoriy balans",
+        "Driver": "Haydovchi",
+        "EnterAmount": "Miqdorni kiriting",
+        "Signal": "Shartli nomi",
+        "Tooltip": "Pul yechib olingandan keyin ushbu miqdor har bir haydovchida qoladi",
+        "WithdrawUntil": "Qoldiq bilan hammasini yechib olish"
+      }
+    },
+    "FleetEntrepreneur": {
+      "ChangeRecipientBtn": "To'lovlarni oluvchini o'zgartirish",
+      "ChangeRecipientLabel": "YaTT/MChJ",
+      "CheckRecipientBtn": "Boshqa oluvchilarni tekshirish",
+      "CurrentRecipient": "To'lovlarni joriy oluvchisi",
+      "Dialog": {
+        "CheckMerchantDataMessage": "Moliyaviy muassasa bilan tuzilgan shartnomalar bo'yicha ma'lumotlarning to'g'riligini tekshiring, agar xatolik bo'lsa, Uklon menejeriga murojaat qiling. Siz asosiy to'lovlarni oluvchini tanlashingiz va saqlashingiz mumkin, ammo to'lovlar Uklon tomonida faollashtirilgandan so'ng boshlanadi.",
+        "Disclaimer": "Yangi oluvchini belgilash! O'zgartirishdan so'ng, barcha keyingi yaratilgan naqd pulsiz buyurtmalar uchun barcha mablag'lar tanlangan oluvchiga o'tkaziladi.",
+        "FinanceModel": "Moliyaviy model",
+        "SplitAdjustment": {
+          "Field": "Balansni tuzatish",
+          "PerSplitAdjustment": "har bir buyurtmaga ko'ra (haydovchi balansiga ko'ra)",
+          "TimeRangeSplitAdjustment": "kuniga bir marta (park balansiga ko'ra)"
+        },
+        "SplitDistribution": {
+          "Field": "To'lovni taqsimlash",
+          "FocusedOnWalletBalanceDistributionSplit": "balans qiymatiga ko'ra",
+          "IgnoreWalletBalanceDistributionSplit": "buyurtmadagi komissiyaga muvofiq"
+        },
+        "Title": "Joriy to'lovlarni oluvchini o'zgartirish"
+      },
+      "Merchant": "{{ merchant }} merchant",
+      "NoEntrepreneurs": "Qo'shilgan YaTTlar yo'q",
+      "Notifiactions": {
+        "Error": "Xatolik yuz berdi Oluvchini tanlash saqlanmagan",
+        "Success": "Yangi oluvchini belgilash. O'zgartirishdan so'ng, barcha keyingi yaratilgan naqd pulsiz buyurtmalar uchun barcha mablag'lar tanlangan oluvchiga o'tkaziladi.",
+        "SuccessB2BNotActive": "Yangi oluvchini belgilash. YaTT/MChJ-ga yechib olishni faollashtirishdan oldin siz hali ham kartaga pul yechib olishingiz mumkin"
+      },
+      "NumberOfMerchants": "Merchantlar",
+      "PaymentCardDisclaimer": "Muhim! Siz hali kartaga pul yechib olishingiz mumkin. Qabul qiluvchilaringiz bo'yicha merchantlarning kiritilgan ma'lumotlarining to'g'riligini tekshiring (YaTT/MChJ)",
+      "Settings": "Sozlamalar"
+    },
+    "Tabs": {
+      "DriversBalances": "Haydovchilar balansi",
+      "DriversTransactions": "Haydovchilar operatsiyalari",
+      "FleetWallet": "Avtopark hamyoni"
+    },
+    "TransactionTypes": {
+      "persplit_cashless_withdrawal": "Merchantga o'tkazish",
+      "vb_adjustment": "Kompensatsiya qiluvchi operatsiya",
+      "vb_b2b_fleet_adjustment": "Merchantga o'tkazmalar bo'yicha tuzatish",
+      "vb_b2b_persplit_adjustment": "Hisobga o'tkazish",
+      "vb_balance_charge": "Balansdan yechish",
+      "vb_balance_recharge": "Balansni to'ldirish",
+      "vb_charge_card_transfering": "Kartaga o'tkazish",
+      "vb_charge_card_transfering_com": "Komissiyani yechish",
+      "vb_charge_card_transfering_com_reverse": "Yechi olish komissiyasini qaytarish",
+      "vb_charge_card_transfering_reverse": "Pul o'tkazmasini kartaga qaytarish",
+      "vb_charge_commission_from_driver": "Buyurtma uchun komissiya hisoblangan",
+      "vb_charge_commission_from_driver_reverse": "Buyurtma uchun komissiyani qaytarish",
+      "vb_charge_fee_from_driver": "Abonent to‘lovini hisoblash",
+      "vb_charge_fee_from_driver_reverse": "Abonent to‘lovini qaytarish",
+      "vb_charge_income_from_driver_miw": "Buyurtma qiymatini haydovchining balansidan qaytarish (MoneyInWay)",
+      "vb_charge_income_from_driver_miw_reverse": "Kartaga pul yechishga muvaffaqiyatsiz urinish ",
+      "vb_customer_absence_order_compensation": "Yo'lovchining chiqmaganligi uchun buyurtma bo'yicha kompensatsiya",
+      "vb_driver_adjustment": "Balans sozlandi",
+      "vb_driver_balance_charge": "Qarzni bekor qilish",
+      "vb_driver_balance_move": "Mablag'larning balansdagi harakati",
+      "vb_driver_balance_recharge": "Balans to'ldirildi",
+      "vb_driver_balance_recharge_via_terminal": "Balansni terminal orqali to'ldirish",
+      "vb_driver_balance_recharge_via_terminal_reverse": "Terminal orqali balansni to'ldirishni qaytarish",
+      "vb_driver_compensation_recharge": "Balans to'ldirildi",
+      "vb_driver_fine_charge": "Qarzni bekor qilish",
+      "vb_order_bonus_income_to_driver": "Buyurtma uchun bonuslar hisoblandi",
+      "vb_order_bonus_income_to_driver_reverse": "Buyurtma uchun hisoblangan bonuslarni qaytarish",
+      "vb_order_income_to_driver": "Buyurtmaning qiymati balansga hisoblandi",
+      "vb_partner_commission_program_profit": "Komissiya dasturi",
+      "vb_recharge_bonus": "Bonuslar hisoblandi",
+      "vb_recharge_bonus_reverse": "Bonuslarni hisoblashni bekor qilish",
+      "vb_recharge_bonus_to_driver": "Bonuslar hisobga o'tkazildi",
+      "vb_recharge_driver_card_from_wallet": "Qarz hisoblandi",
+      "vb_recharge_driver_wallet_by_card": "Qarzni bekor qilish",
+      "vb_recharge_from_card": "Balansni kartadan to'ldirish",
+      "vb_recharge_income_to_driver_miw": "Buyurtma narxini haydovchi balansiga o'tkazish (MoneyInWay)",
+      "vb_recharge_income_to_driver_miw_reverse": "Buyurtma narxini haydovchi balansiga o'tkazishni bekor qilish (MoneyInWay)",
+      "vb_recharge_order_bonus_to_driver": "Balans to'ldirildi",
+      "vb_recharge_order_bonus_to_driver_reverse": "Mablag'larni qaytarish",
+      "vb_return_charge_debt_to_driver": "Hisoblangan qarzni haydovchiga qaytarish",
+      "vb_rider_to_driver_compensation_recharge": "Balans to'ldirildi",
+      "vb_tips_income_to_driver": "Choychaqa olindi"
+    },
+    "Wallet": {
+      "NegativeBalanceDisclaimer": "Hamyon balansi manfiy, haydovchilarning hamyonidan park hamyoniga pul o'tkazish kerak",
+      "Title": "Operatsiyalar ro'yxati",
+      "TransactionsList": {
+        "Amount": "Miqdori",
+        "Balance": "Balanslans",
+        "BalanceAfterTransaction": "Tranzaksiyadan keyingi balans",
+        "Date": "Sana",
+        "Delta": "O'zgartirish",
+        "Driver": "Haydovchi",
+        "Time": "Vaqt",
+        "TxType": "Operatsiya turi"
+      },
+      "WalletCard": {
+        "AddCard": "Qo'shish",
+        "NoCard": "Pul yechish uchun ulangan kartalar yo'q",
+        "RemoveCard": "Kartani olib tashlash",
+        "Title": "Maning kartalarim"
+      },
+      "WalletInfo": {
+        "Title": "Avtopark hamyonida",
+        "Withdraw": "Kartaga yechib olish"
+      }
+    }
+  },
+  "FleetMaintainer": {
+    "ContactBtn": "Menejer bilan bog'lanish",
+    "Messengers": "Messenjerlar",
+    "ReserveMaintainerTooltip": "Sizga vaqtinchalik menejer tayinlandi. Shaxsiy menejeringiz {{ date }}sanasidan boshlab ishlaydi",
+    "Title": "Uklon shaxsiy menejeri",
+    "WorkHours": "Menejerning ish vaqti: Du-Ju: 09:00-18:00"
+  },
+  "FleetOrderRecordList": {
+    "GoToTrip": "Safarga o'tish",
+    "Header": {
+      "PrimaryCaption": {
+        "Cost": "Miqdori",
+        "CostAndDistance": "Miqdori",
+        "CourierPickupTime": "Sana",
+        "Distance": "Yo'nalish bo'yicha masofa",
+        "Driver": "Haydovchi",
+        "ExpandedView": {
+          "PaymentType": "To'lov turi",
+          "PickupTime": "Qo'yish",
+          "ProductType": "Mahsulot turi"
+        },
+        "LicensePlate": "Davlat raqami",
+        "PaymentType": "To'lov turi",
+        "PickupTime": "Qo'yish",
+        "ProductType": "Mahsulot turi",
+        "Route": "Yo'nalishi",
+        "Status": "Maqomi"
+      },
+      "SecondaryCaption": {
+        "CostAndDistance": "Yo'nalish bo'yicha masofa",
+        "PickupTime": ""
+      }
+    },
+    "Row": {
+      "Messages": {
+        "DriverWasRemoved": "Haydovchi avtoparkdan olib tashlangan edi",
+        "VehicleWasRemoved": "Mashina avtoparkdan olib tashlangan edi"
+      }
+    }
+  },
+  "FleetProfile": {
+    "Contacts": {
+      "ContactInfo": {
+        "Email": "e-mail",
+        "Me": "men",
+        "PhoneNumber": "Telefon raqami"
+      },
+      "EmptyState": "Buparkda hali boshqaruvchilar yo'q",
+      "FleetManagersTitle": "Park menejerlari",
+      "FleetOwnersTitle": "Park egalari"
+    },
+    "FleetHistory": {
+      "ChangeType": {
+        "B2BSplitAdjustmentChanged": "Tuzatish turini o'zgartirish",
+        "B2BSplitDistributionChanged": "Ajratish usulini o'zgartirish",
+        "CommercialCreated": "Park yaratildi",
+        "DriverAdded": "Haydovchi qo'shildi",
+        "DriverRegistered": "Haydovchi ro'yxatga olindi",
+        "DriverRemoved": "Haydovchi olib tashlandi",
+        "FiscalizationDisabled": "Fiskalizatsiya o'chirildi",
+        "FiscalizationEnabled": "Fiskalizatsiyani faollashtirildi",
+        "FiscalizationFarePaymentType": "Buyurtmalar turlari",
+        "FiscalizationPosBinded": "Avtomobil kassaga bog'langan",
+        "FiscalizationPosUnbinded": "Avtomobil kassadan uzilgan",
+        "FiscalizationVatTypeChanged": "Fiskalizatsiya sozlamalarini o'zgartirish",
+        "IndividualEntrepreneurSelected": "To'lovlarni oluvchi – asosiy",
+        "IndividualEntrepreneurUpdated": "To'lovlarni oluvchi (Qo'sh., Tahr., Olib tashlash)",
+        "ManagerAdded": "Yangi park boshqaruvchisi qo'shildi",
+        "ManagerDeleted": "Park boshqaruvchisi olib tashlandi",
+        "OwnerAdded": "Yangi park egasi qo'shildi",
+        "OwnerDeleted": "Park egasi olib tashlandi",
+        "ProfileChanged": "Park ma'lumotlarini o'zgartirish",
+        "RegionChanged": "Ishlash hududi o'zgartirildi",
+        "Unregistered": "Park olib tashlandi",
+        "VehicleAdded": "Avto qo'shildi",
+        "VehicleRegistered": "Avto ro'yxatdan o'tkazildi",
+        "VehicleRemoved": "Avto olib tashlandi",
+        "WalletTransfersAllowedChanged": "Pul o'tkazish sozlamalarini o'zgartirish",
+        "WithdrawalTypeChanged": "B2B bo'yicha to'lovlar faollashtirilgan"
+      },
+      "NoHistory": "Bu parkning hali tarixi yo'q",
+      "ProfileChangeProperties": {
+        "B2BSplitBalance": {
+          "BalanceDependent": "balans qiymatiga ko'ra",
+          "PerSplit": "har bir buyurtmaga ko'ra (haydovchi balansiga ko'ra)",
+          "ProportionalToCommission": "buyurtmadagi komissiyaga muvofiq",
+          "TimeRange": "kuniga bir marta (park balansiga ko'ra)"
+        },
+        "email": "E-mail",
+        "entrepreneur_name": "YaTT/MChJ nomi",
+        "Fiscalization": {
+          "FarePayment": {
+            "Cash": "Naqd",
+            "Cashless": "Naqd pulsiz",
+            "Corporate": "Korporativ"
+          },
+          "Field": {
+            "CashierRegister": "Kassa",
+            "FarePayment": "Buyurtmalar turlari",
+            "VatType": "Soliq stavkasi",
+            "Vehicle": "Avtomobil"
+          },
+          "VatType": {
+            "Rate0": "QQS B 0%",
+            "Rate20": "QQS A 20%",
+            "TaxFree": "Soliq to'lashdan ozod qilingan",
+            "WithoutVat": "QQS-siz"
+          }
+        },
+        "fleet_type": "Park turi",
+        "id": "Hudud",
+        "merchant_id": "Merchant Fondy",
+        "name": "Park nomi",
+        "PaymentProviders": {
+          "Fondy": "Fondy merchanti",
+          "IPay": "IPay merchanti",
+          "Platon": "Platon merchanti"
+        },
+        "tax_number": "STIR",
+        "WalletTransfersAllowedChanged": {
+          "Allow": "Haydovchi va avtopark balanslari o'rtasida pul mablag'larini o'tkazishga <span class=\"tw-text-accent-mint-light\">ruxsat berilgan</span>",
+          "Disallow": "Haydovchi va avtopark balanslari o'rtasida pul mablag'larini o'tkazish <span class=\"tw-text-accent-coral-light\">taqiqlangan</span>"
+        }
+      },
+      "Type": "Ma'lumot turlari",
+      "WithdrawalTypeChanged": {
+        "IndividualEntrepreneur": "Mablag'lar merchantlarga o'tkaziladi",
+        "None": "-",
+        "PaymentCard": "Naqd pulsiz pul mablag'larini olish kartada amalga oshiriladi"
+      }
+    },
+    "FleetInfo": {
+      "City": "Shahar",
+      "CouriersCount": "Kuryerlar soni",
+      "CreatedAt": "Ulanish sanasi",
+      "DriversCount": "Haydovchilar soni",
+      "VehiclesCount": "Mashinalar soni"
+    },
+    "RRO": {
+      "CarsFiscalization": "Avtomobil fiskalizatsiyasi",
+      "HowActivate": "Fiskalizatsiyani qanday faollashtirish mumkin?",
+      "KeyList": {
+        "Header": {
+          "Actions": "Amallar",
+          "DRFO": "JSHSHIR",
+          "Key": "Kalit",
+          "LinkCasa": "Bog'langan kassa ",
+          "TimeCreateAt": "Kalitning amal qilishi boshlanish vaqti",
+          "TimeExpired": "Kalitning amal qilishi bitish vaqti"
+        },
+        "List": {
+          "Btn": {
+            "KeyDetails": "Kalit tafsilotlarni ko'rish",
+            "LinkCasa": "Kassani bog'lash ",
+            "RemoveKey": "Kalitni olib tashlash"
+          },
+          "Tooltip": {
+            "ExpirationTimeKey": "Kalitning amal qilish muddati yaqin orada tugaydi"
+          }
+        }
+      },
+      "Modals": {
+        "Confirmation": {
+          "Content": "O'zgarishlar saqlanmaydi",
+          "Title": "Haqiqatan ham yopmoqchimisiz?"
+        },
+        "Fiscalization": {
+          "Content": {
+            "Activate": "Haqiqatan ham fiskalizatsiyani faollashtirmoqchimisiz? Faollashtirishdan so'ng, sozlamalarga mos keladigan barcha buyurtmalar fiskalizatsiya qilinadi.",
+            "Deactivate": "Haqiqatan ham fiskalizatsiyani faolsizlantirmoqchimisiz?",
+            "Unavailable": "Faollashtirish uchun siz fiskalizatsiyani o'rnatishingiz va buyurtma turlarini tanlashingiz va soliqni belgilashingiz kerak."
+          },
+          "Notification": {
+            "Activate": {
+              "Error": "Fiskalizatsiyani faollashtirib bo‘lmadi",
+              "Success": "Fiskalizatsiyani faollashtirildi"
+            },
+            "Deactivate": {
+              "Error": "Fiskalizatsiyani o‘chirib bo‘lmadi",
+              "Success": "Fiskalizatsiya o'chirildi"
+            }
+          },
+          "Title": {
+            "Activate": "Fiskalizatsiyani faollashtirish",
+            "Deactivate": "Fiskalizatsiyani o'chirish",
+            "Unavailable": "Fiskalizatsiyani faollashtirib bo‘lmadi"
+          }
+        },
+        "HowToGetKey": {
+          "Period": {
+            "Item1": "ERI sertifikatlarining amal qilish muddati ikki yildan oshmaydi.",
+            "Item2": "Ushbu muddatdan keyin axborot xavfsizligi talablari tufayli ERI xizmatlarini qaytadan olish zarur.",
+            "Title": "Sertifikatlarning amal qilish muddati: "
+          },
+          "Services": {
+            "Item1": "Jismoniy yoki yuridik shaxs ERI xizmatlarini Ukrainadagi 24 ta akkreditatsiyalangan kalit sertifikatlashtirish markazlaridan (АЦСК) birida olishi mumkin.",
+            "Item2": "Ushbu markazlar haqida ma'lumotni Ukraina Adliya vazirligining Markaziy sertifikatlashtirish organi saytidagi sub'ektlarning elektron reestrida topish mumkin.",
+            "Title": "ERI xizmatlarini olish:"
+          },
+          "Title": "CAP/ERI kalitini qanday olish mumkin?"
+        },
+        "KeyInfo": {
+          "DRFO": "JSHSHIR:",
+          "Expired": "Kalitning amal qilishi bitish vaqti:",
+          "KeyId": "ERI kalitining noyob identifikatori:",
+          "PublicKey": "Ochiq kalit:",
+          "Serial": "Sertifikatning seriya raqami:",
+          "Title": "Tafsilotlar {{ name }}"
+        },
+        "LinkCashToKey": {
+          "Notification": {
+            "Success": "Kassa kalitga muvaffaqiyatli bog'landi"
+          },
+          "Select": {
+            "Label": "Kassalar ro'yxati",
+            "Placeholder": "Kassani tanlang"
+          },
+          "Title": "Kerakli kassani tanlang"
+        },
+        "LinkCashToVehicle": {
+          "Notification": {
+            "Success": "Kassa avtomobilga muvaffaqiyatli bog'landi"
+          },
+          "SelectedCar": "Tanlangan avtomobil",
+          "Select": {
+            "Label": "Kassalar ro'yxati",
+            "Placeholder": "Kassani tanlang"
+          },
+          "Title": "Avtomobilni kassaga bog'lash"
+        },
+        "RemoveKey": {
+          "Content": "Siz chindan ham kalitni olib tashlamoqchimisiz: {{name}} ?",
+          "Notification": {
+            "Success": "Kalit muvaffaqiyatli o'chirildi"
+          },
+          "Title": "Kalitni olib tashlash"
+        },
+        "Settings": {
+          "FarePayment": {
+            "Description": "Fiskalizatsiya qilinadigan buyurtmalar:",
+            "Label": "Buyurtmalar turi",
+            "Placeholder": "Buyurtma turlarini tanlang",
+            "Type": {
+              "cash": "Naqd",
+              "cashless": "Naqd pulsiz",
+              "corporate": "Korporativ"
+            }
+          },
+          "Notification": {
+            "Error": "Fiskalizatsiya sozlamalarini o‘zgartirib bo‘lmadi",
+            "Success": "Fiskalizatsiya sozlamalari o‘zgartirildi"
+          },
+          "ServiceProductName": {
+            "Description": "Fiskal chek tavsifi matni",
+            "Label": "Chek matni"
+          },
+          "Title": "Fiskalizatsiya sozlamalari",
+          "VatType": {
+            "Description": "Avtopark uchun cheklarni yaratishda foydalaniladigan soliq stavkasi:",
+            "Label": "Korporativ",
+            "Placeholder": "Stavkani tanlang",
+            "Type": {
+              "rate0": "QQS B 0%",
+              "rate20": "QQS A 20%",
+              "tax_free": "Soliq to'lashdan ozod qilingan",
+              "without_vat": "QQS-siz"
+            }
+          }
+        },
+        "UnLinkCashFromVehicle": {
+          "Cashier": "Kassa",
+          "Notification": {
+            "Success": "Kassa avtomobildan muvaffaqiyatli uzildi "
+          },
+          "SelectedCar": "Tanlangan avtomobil",
+          "Title": "Avtomobil bilan aloqa uzilsinmi?"
+        },
+        "UploadKey": {
+          "Btn": {
+            "UploadAgain": {
+              "Label": "Yuklangan kalit",
+              "Name": "Boshqa kalitni tanlash"
+            },
+            "Upload": {
+              "Error": {
+                "FileExtension": "Fayl turi yaroqsiz. Ruxsat etilgan turlar: dat, zs2, sk, jks, pk8, pfx.",
+                "FileMaxSize": "Fayl hajmi maksimal 5 MB chegarasidan oshib ketdi.",
+                "FileUpload": "Kalitni yuklab bo'lmadi Yana bir marta urinib ko'ring",
+                "IncorrectPasswordOrInvalidKey": "Yaroqsiz parol yoki kalit shikastlangan"
+              },
+              "Label": "CAP/ERI kalitini yuklang",
+              "Name": "Kalitni kompyuterdan yuklash"
+            }
+          },
+          "HowToUse": "CAP/ERI kalitini qanday olish mumkin?",
+          "Info": "Bu Ukrainadagi har qanday АЦСК'dan olingan kalit bo'lishi mumkin, masalan, soliq hisob-fakturalarini imzolash uchun foydalanadigan kalit. Odatda, bu kengaytmali fayllar: dat (key-6.dat), zs2, sk, jks, pk8, pfx",
+          "Input": {
+            "KeyName": {
+              "Label": "Kalit nomi",
+              "Placeholder": "Kalit nomini kiriting"
+            },
+            "Password": {
+              "Label": "Parol",
+              "Placeholder": "Kalit parolini kiriting"
+            }
+          },
+          "Notification": {
+            "Success": "Kalit muvaffaqiyatli qo‘shildi"
+          },
+          "Title": "Kalit yuklanishi"
+        }
+      },
+      "PartnerLink": "Hamkor saytiga o'tish",
+      "Settings": "Sozlamalar",
+      "Title": "Fiskalizatsiya",
+      "Toggle": {
+        "Active": "faollashtirildi",
+        "Inactive": "faollashtirilmadi"
+      },
+      "UploadedKeys": "Yuklangan kalitlar",
+      "UploadKey": "Kalitni yuklash",
+      "Vehicles": {
+        "Header": {
+          "Car": "Avtomobil",
+          "Cashier": "Kassa",
+          "Status": "Status"
+        },
+        "List": {
+          "Status": {
+            "Active": "Fiskallashmoqda",
+            "ShiftClosed": "Smena yopildi",
+            "ShiftOpened": "Kassa yo'q"
+          }
+        }
+      }
+    },
+    "Tabs": {
+      "Contacts": "Aloqalar",
+      "History": "O'zgarishlar tarixi",
+      "RRO": {
+        "Name": "RRO",
+        "Tooltip": "Faqat YaTT uchun mavjud"
+      }
+    }
+  },
+  "FleetWalletCard": {
+    "AddCard": "Qo'shish",
+    "DeleteCard": "Kartani olib tashlash",
+    "NoCardAttached": "Karta qo'shilmagan",
+    "Title": "Maning kartalarim"
+  },
+  "FleetWalletInfo": {
+    "Buttons": {
+      "Withdrawal": "Kartaga yechib olish",
+      "WithdrawalTooltip": "Ulangan kartalar yo'q",
+      "WithdrawalTooltipNoBalance": "Hamyon balansida mablag‘lar mavjud emas"
+    },
+    "Title": "Avtopark hamyonida"
+  },
+  "FleetWalletTransactionsList": {
+    "Header": {
+      "Balance": "Balanslans",
+      "BalanceDelta": "O'zgartirishlar",
+      "Date": "Sana",
+      "Time": "Vaqt",
+      "TransactionType": "Operatsiya turi"
+    }
+  },
+  "Header": {
+    "Title": {
+      "CourierDeliveryDetails": "Yetkazib berish tafsilotlari",
+      "CourierDetails": "Kuryer sahifasi",
+      "DriverDetails": "Haydovchi sahifasi",
+      "OrderTripsDetails": "Safar tafsilotlari",
+      "VehicleCreate": "Mashina qo'shish uchun so'rov",
+      "VehicleDetails": "Mashina sahifasi"
+    }
+  },
+  "LiveMap": {
+    "ActiveOrderStatus": {
+      "Accepted": "Qabul qilingani",
+      "Arrived": "Yetib keldi",
+      "Running": "Bajarilmoqda"
+    },
+    "AllDriversTitle": "Mashinadagi haydovchilar ({{ count }})",
+    "Car": "Mashina",
+    "Couriers": {
+      "AllCouriersTitle": "Onlayn kuryerlar soni ({{ count }})",
+      "CourierTitle": "Kuryer",
+      "GoToDelivery": "Yetkazib berishga o'tish",
+      "GroupStatus": {
+        "Active": "Bo'sh kuryerlar soni ({{ count }})",
+        "Blocked": "Bloklangan kuryerlar soni ({{ count }})",
+        "Inactive": "Faol bo'lmagan kuryerlar soni ({{ count }})",
+        "OrderExecution": "Buyurtmadagi kuryerlar soni ({{ count }})"
+      },
+      "NoCouriersTitle": "Kuryerlar topilmadi",
+      "Search": {
+        "CouriersTitle": "Kureyerlarni qidirish"
+      },
+      "Tooltips": {
+        "Active": "Buyurtmalarni o'zlarida mavjud usullardan foydalangan holda bajara oladigan kuryerlar.",
+        "Blocked": "Kuryerlarda barcha turdagi buyurtmalarni olish bloklangan",
+        "Inactive": "Biz GPS koordinatalarini olmaydigan kuryerlar, lekin ular ilovada mashina tanlaganlar.",
+        "OrderExecution": "Faol buyurtmali kuryerlar"
+      }
+    },
+    "DriverStatus": {
+      "Active": "Bo'sh",
+      "Blocked": "Cheklovlar bilan ",
+      "Inactive": "Faol emas",
+      "OrderExecution": "Buyurtmada"
+    },
+    "GroupStatus": {
+      "Active": "Bo'sh haydovchilar ({{ count }}) ",
+      "Blocked": "Bloklangan haydovchilar ({{ count }})",
+      "Inactive": "Faol bo'lmagan haydovchilar ({{ count }})",
+      "OrderExecution": "Buyurtmadagi haydovchilar ({{ count }})"
+    },
+    "LastUpdated": "{{ time }} marta yangilangan",
+    "LocationTitle": "Joylashuvi",
+    "MapDisclaimer": "Geolokatsiya xatolik bilan uzatilishi mumkin va uni GPS treker sifatida ishlatib bo'lmaydi",
+    "NoDriversTitle": "Haydovchilar topilmadi",
+    "OrderDetailsTitle": "Детали доставки",
+    "RefreshBtn": "Yangilash",
+    "RefreshCounterBtn": "{{ time }} dan so'ng yangilang",
+    "RefreshTimeDisclaimer": "Xarita har {{ time }} soniyada bir marta yangilanadi",
+    "Search": {
+      "CarPlaceholder": "Davlat raqami",
+      "CarTitle": "Mashinani qidirish",
+      "DriverPlaceholder": "Familiyasi, Ismi",
+      "DriverTitle": "Haydovchilarni qidirish",
+      "LicensePlateError": "Lotin harflaridan foydalaning",
+      "NoMatch": "Hech narsa topilmadi",
+      "Results": "Qidiruv natijalari"
+    },
+    "Subtitle": " ma'lumotlarning 15 daq.lik xatolik bilan dolzarbligi",
+    "Title": "Live map",
+    "Tooltips": {
+      "Active": "Mashina haydovchilari buyurtmalarni o'zlarida mavjud usullardan foydalangan holda bajarishlari mumkin.",
+      "Blocked": "Haydovchilarda barcha turdagi buyurtmalarni olish bloklandi",
+      "Inactive": "Biz GPS koordinatalarini olmaydigan haydovchilar, lekin ular ilovada mashina tanlaganlar.",
+      "NoGeolocation": "Geolokatsiya vaqtincha aniq emas",
+      "OrderExecution": "Faol buyurtmali haydovchilar"
+    },
+    "UnknownGeolocation": "Geolokatsiya aniq emas"
+  },
+  "Locale": {
+    "Long": {
+      "en": "Inglizcha",
+      "ro": "Rumincha",
+      "ru": "Ruscha",
+      "uk": "Ukraincha"
+    },
+    "Short": {
+      "en": "ingl",
+      "ro": "rum",
+      "ru": "rus",
+      "uk": "ukr"
+    }
+  },
+  "Modals": {
+    "AddCard": {
+      "Step1": {
+        "CardNumber": "Karta raqami",
+        "InvalidDate": "Kartaning amal qilish muddati tugadi",
+        "InvalidFormat": "Noto'g'ri format",
+        "Required": "Majburiy maydon",
+        "ValidTo": "Amal qilish muddati"
+      },
+      "Step2": {
+        "AddCard": "Karta qo'shish",
+        "InvalidCode": "Afsuski kod noto'g'ri Yana bir marta urinib ko'ring",
+        "NoCode": "Kod kelmadimi?",
+        "Notification": "Sizning {{0}} raqamingizga tasdiqlash kodi bilan xabarnoma jo'natildi",
+        "SendAgain": "Qayta jo'natish",
+        "SendAgainIn": "dan so'ng yana bir marta jo'natish"
+      },
+      "Title": "Yangi karta qo'shish"
+    },
+    "Confirmation": {
+      "Accept": "Ha ",
+      "Decline": "Yo'q",
+      "Title": "Sizning so'rovingiz olib tashlanadi, davom ettirilsinmi?"
+    },
+    "DeleteCard": {
+      "Cancel": "Bekor qilish",
+      "Delete": "Olib tashlash",
+      "Notification": "Sizning kartangizning ma'lumotlari bizning ma'lumotlar bazamizdan olib tashlanadi.",
+      "Title": "Kartani olib tashlash"
+    },
+    "PhotoCard": {
+      "FormatError": "Mavjud formatlar ({{0}})",
+      "SizeError": "Fayl hajmi {{data}} mb dan oshmasligi kerak",
+      "UploadError": "Yuklashdagi xatolik",
+      "UploadSuccess": "Tasvir muvaffaqiyatli yuklandi"
+    },
+    "RemoveCourierFromFleet": {
+      "Description": "Siz chindan ham {{0}} ni parkdan olib tashlamoqchimisiz?",
+      "Title": "Kuryer bilan hamkorlikni to'xtatishni tasdiqlash"
+    },
+    "RemoveFromFleet": {
+      "CommentLabel": "Izoh",
+      "CommentPlaceholder": "Siz tafsilotlarni qo'shishingiz mumkin, ular siz va Uklon menejeri uchun mavjud bo'ladi",
+      "Description": "Avtoparkingizdagi safarlar va haydovchining ish haqi to'g'risidagi ma'lumotlar hamkorlik tugaganidan keyin ham mavjud bo'lib qoladi",
+      "Driver": "{{0}} bilan hamkorlik to'xtatilsinmi?",
+      "ReasonLabel": "Sababni ko'rsating",
+      "Reasons": {
+        "Accident": "YTH",
+        "Fraud": "Tovlamachilik",
+        "Misregistration": "Noto'g'ri ro'yxatga olish",
+        "Other": "Boshqasi",
+        "Released": "Haydovchi bilan ish to'xtatilgan (AP-dan bo'shatilgan)",
+        "Sold": "Mashina sotilgan",
+        "TrafficRulesViolation": "YHQ-ni buzish",
+        "VehicleCondition": "Mashinaning holati",
+        "VehicleRequirementsMissmatch": "Mashina xizmat ko'rsatish talablariga javob bermaydi",
+        "ViolationOfCooperationRules": "Hamkorlik qoidalarini buzish"
+      },
+      "Vehicle": "{{0}} avtoparkdan olib tashlansinmi?"
+    },
+    "SelectPeriod": {
+      "DatePlaceholder": "ss.oo.yyyy",
+      "DateRangeLabel": "Dan gacha sana",
+      "Errors": {
+        "CurrentTime": "“gacha vaqti” joriy vaqtdan kattaroq bo‘lishi mumkin emas",
+        "DateRange": "Davr 92 kundan oshmasligi kerak",
+        "FromTime": "\"dan vaqti\" \"gacha vaqti\" dan katta bo'lmasligi kerak",
+        "ToTime": "\"gacha vaqti\" \"dan vaqti\" dan katta bo'lishi kerak"
+      },
+      "FromTimeLabel": "Dan vaqti",
+      "Title": "Davrni tanlang",
+      "ToTimeLabel": "Gacha vaqti"
+    },
+    "UnlinkVehicle": {
+      "Cancel": "Bekor qilish",
+      "DescriptionDriver": "Avtopark kabinetidan haydovchi bilan aloqani tiklay olmaysiz. Avtomobil bilan aloqani tiklash, faqat Driver ilovasidagi haydovchi uchun mavjud.",
+      "DescriptionVehicle": "Avtopark kabinetidan hmashina bilan aloqani tiklay olmaysiz. Avtomobil bilan aloqani tiklash, faqat Driver ilovasidagi haydovchi uchun mavjud.",
+      "TitleDriver": "{{0}} haydovchi bilan aloqa uzilsinmi?",
+      "TitleVehicle": "{{0}} mashina bilan aloqa uzilsinmi?",
+      "Unlink": "Aloqa uzilsin"
+    },
+    "WithdrawToCard": {
+      "Amount": "Miqdori",
+      "AmountError": "Noto'g'ri miqdor",
+      "ITNError": "Noto'g'ri STIR kiritilgan",
+      "Notification": "Bu yerda pul mablag'larini olish shartlarini, ular qancha vaqtda hisobga o'tishini, mb - maksimal miqdor borligini yozish kerak",
+      "Passport": "Pasport raqami",
+      "Required": "Majburiy maydon",
+      "Title": "Shaxsiy kartaga pul yechish",
+      "VAT": "STIR",
+      "VATError": "STIR 10 ta raqamdan iborat bo'lishi kerak"
+    },
+    "WithdrawToDrivers": {
+      "Cancel": "Bekor qilish",
+      "CouriersDescription2": "kuryerlar balansiga?",
+      "Description1": "Siz chindan ham avtopark",
+      "Description2": "balansiga o'tkazmoqchimisiz?",
+      "Title": "Pul o'tkazishni tasdiqlash",
+      "TransferMoney": "Pul o'tkazish"
+    },
+    "WithdrawToFleet": {
+      "Cancel": "Bekor qilish",
+      "Description1": "Siz chindan ham avtopark",
+      "Description2": "hamyoniga o'tkazmoqchimisiz?",
+      "Title": "Avtopark hamyoniga pul o'tkazish",
+      "TransferMoney": "Pul o'tkazish"
+    }
+  },
+  "NotificationCenter": {
+    "CloseBtn": "Yopish",
+    "EmptyState": "Sizda yangi bildirishnomalar yo‘q",
+    "Indicator": {
+      "MarkAsRead": "O'qilgan deb belgilash",
+      "MarkAsUnread": "O'qilmagan deb belgilash"
+    },
+    "ReadAll": "Hammasini o'qish",
+    "Title": "Bildirishnomalar",
+    "Today": "Bugun",
+    "UnreadCount": "Bildirishnomalar: {{ count }}",
+    "Yesterday": "Kecha"
+  },
+  "Notification": {
+    "Courier": {
+      "RemoveCourierError": "Kuryer bilan hamkorlikni to'xtatib bo'lmadi Keyinroq urinib ko'ring.",
+      "RemoveCourierSuccess": "Kuryer bilan hamkorlik to'xtatildi"
+    },
+    "Drivers": {
+      "DriverHasSelectedVehicle": "Olib tashlash, mashina bilan faol aloqa sababli mavjud emas",
+      "RemoveDriverError": "Server vaqtincha mavjud emas, iltimos, keyinroq qayta urinib ko‘ring",
+      "RemoveDriverSuccess": "Haydovchi bilan hamkorlik to'xtatilgan"
+    },
+    "Finance": {
+      "AddCardFailed": "Kartani qo'shib bo'lmadi",
+      "AddCardSuccess": "To'lov kartasi muvaffaqiyatli qo'shildi",
+      "AddDeleteCardNotAllowed": "Sizga karta qo'shish/olib tashlash taqiqlangan. Iltimos, qo'llab-quvvatlash xizmatiga murojaat qiling",
+      "DeleteCardFailed": "Kartani olib tashlab bo'lmadi",
+      "DeleteCardSuccess": "To'lov kartasi olib tashlandi",
+      "FondyID": "<b class='tw-font-medium'>Pul mablag'larini to'siqsiz olish imkoniyatiga ega bo'lish uchun Fondy ID to'lov xizmatida identifikatsiya qilish</b>. <b class='tw-font-medium'>Havola orqali ro'yxatdan o'tish – <a class='tw-underline' href='https://id.fondy.ua/account/registration' target='_blank'>Fondy ID</a></b>.</br> Identifikatsiyadan so'ng, sizning mablag' olish limitingiz oyiga 150 000 UAH gacha oshiriladi. <b class='tw-text-[#845700] tw-font-medium'>Toʻliq koʻrsatmalar havolada – <a class='tw-underline' href='https://docs.google.com/presentation/d/1N7GJxK2-Ai4OdCDzMIemdSgnrYMPcoTLxBBhtpr1CwQ/edit#slide=id.g29dbbbad725_0_7' target='_blank'>Verifikatsiya bo'yicha ko'rsatmalari</a><b>",
+      "WithdrawFailed": "Pullarni shaxsiy kartaga yechib bo'lmadi",
+      "WithdrawSuccess": "Pul shaxsiy kartaga muvaffaqiyatli yechib olindi"
+    },
+    "ReleaseVehicle": {
+      "Error": "Seansni buzish imkoni yo'q, xizmat vaqtincha mavjud emas",
+      "InvalidError": "Seansni buzish imkoni yo'q, chunki haydovchi buyurtmani bajarmoqda",
+      "Success": "\"Haydovchi-Mashina\"aloqasi muvaffaqiyatli uzildi"
+    },
+    "SomethingWentWrong": "Eh, xatolik yuz berdi, qayta urinib ko'ring. Takrorlangan holda, yordam uchun qo'llab-quvvatlash xizmatiga murojaat qiling",
+    "UklonGarage": {
+      "ApplicationAlreadyApproved": "Ushbu haydovchini avtomatik ravishda parkga qo'shib bo'lmaydi, yordam uchun Uklon menejeriga murojaat qiling",
+      "CannotApproveApplication": "Ushbu haydovchini avtomatik ravishda parkga qo'shib bo'lmaydi, yordam uchun Uklon menejeriga murojaat qiling"
+    },
+    "Vehicles": {
+      "RemoveVehicleError": "Olib tashlash, bu mashinada haydovchi borligi sababli mavjud emas",
+      "RemoveVehicleSuccess": "Mashina avtoparkdan olib tashlangan"
+    },
+    "WithdrawToCard": {
+      "Error": "Mablag'larni shaxsiy kartaga yechib bo'lmadi",
+      "MonthLimitError": "Oylik pul chiqarib olish limiti oshib ketdi",
+      "Success": "To'lov operatsiyasi muvaffaqiyatli o'tdi"
+    }
+  },
+  "NPS": {
+    "CloseBtn": "Yopish",
+    "Comment": {
+      "Label": "Qanday qilib yaxshilashimiz mumkin?",
+      "Placeholder": "Takliflaringizni shu yerga yozing",
+      "Title": "Sizning umidlaringizni qondirish uchun nimani o'zgartirishimiz kerak? (shart emas)"
+    },
+    "LaterBtn": "Keyinroq",
+    "Mark": {
+      "Negative": "Juda noroziman",
+      "Positive": "Juda mamnunman",
+      "Title": "Park egasining kabinet ishi sizni qanchalik qoniqtiradi?"
+    },
+    "RespondBtn": "Javob berish",
+    "SkipSurvey": "Boshqa ko'rsatilmasin",
+    "Subtitle": "Fikringizni baham ko'rish orqali bizni yaxshilanishimizga yordam bering",
+    "SuccessNotification": "Fikr-mulohazangiz uchun tashakkur! Sizning sharhlaringiz kabinetni yaxshilash uchun muhimdir",
+    "Title": "Sizga xizmatimiz yoqadimi?",
+    "Tooltip": "Yuborish uchun baholashni tanlang"
+  },
+  "OrderReportInformation": {
+    "Data": {
+      "Activity": {
+        "Broadcast": "Filtr (efir)",
+        "Chain": "Zanjir",
+        "Label": "Faollik",
+        "Offer": "Filtr (avto)",
+        "Passenger": "Yo'lovchi bilan"
+      },
+      "AdditionalIncome": {
+        "Bonus": {
+          "BrandingBonus": "Brendlash uchun",
+          "GuaranteedBonus": "Kafolatlangan daromad",
+          "IndividualBonus": "Individual",
+          "Label": "Bonuslar",
+          "OrderBonus": "Buyurtma uchun",
+          "WeekBonus": "Haftalik"
+        },
+        "Label": "Qo'shimcha kirimlar",
+        "Promotion": {
+          "Label": "Zararni qoplash",
+          "PassengerAbsence": "Yo'lovchi chiqmaganligi uchun",
+          "Support": "Qo'llab-quvvatlash orqali"
+        },
+        "Tips": {
+          "Label": "Choychaqalar"
+        }
+      },
+      "Expenses": {
+        "Commission": {
+          "Label": "Uklon komissiyasi",
+          "Tooltip": "Bu yerda tanlangan davr uchun Uklon xizmatiga to'langan komissiya yig'iladi."
+        },
+        "CommissionProgram": {
+          "Tooltip": "Komissiya dasturlarida ishtirok etishda asl komissiya va chegirma"
+        },
+        "Fine": {
+          "Label": "Jarima"
+        },
+        "Label": "Xarajatlar"
+      },
+      "Refill": {
+        "Balance": "Park balansidan",
+        "Label": "Haydovchini to'ldirish",
+        "Self": "O'zicha"
+      },
+      "TotalCost": {
+        "Card": {
+          "Label": "Kartaga"
+        },
+        "Cash": {
+          "Label": "Naqd"
+        },
+        "Label": "Umumiy narx",
+        "Wallet": {
+          "Label": "Hamyon"
+        }
+      }
+    }
+  },
+  "OrderReportList": {
+    "Courier": "Kuryer",
+    "Driver": {
+      "Subtitle": "Haydovchi",
+      "Title": "Shartli nomi"
+    },
+    "OnlineTime": {
+      "Title": "Onlayn vaqt"
+    },
+    "OrdersPerHour": {
+      "Title": "Soatiga buyurtmalar"
+    },
+    "Rides": {
+      "Title": "Safarlar"
+    },
+    "RidesTotalAmount": {
+      "Title": "Umumiy narx"
+    },
+    "TotalAmount": {
+      "Title": "Jami",
+      "Tooltip": "Jami = (Umumiy narx + Kompensatsiya + Choychaqa + Bonuslar) - (Jarimalar + Uklon komissiyasi)"
+    },
+    "TotalDistance": {
+      "PickUp": "Yurgan masofasi: yetkazib berish",
+      "Title": "Yurgan masofasi: buyurtmalar bo'yicha"
+    },
+    "TotalExecutingTime": {
+      "Title": "Buyurtmalarni bajarish vaqti"
+    }
+  },
+  "Orders": {
+    "Csv": {
+      "ColumnName": {
+        "Activity": {
+          "Broadcast": "Filtr (efir), soat",
+          "Chain": "Zanjir, soat",
+          "Offer": "Filtr (avto), soat",
+          "Passenger": "Yo'lovchi bilan, soat"
+        },
+        "AveragePricePerHour": "",
+        "AveragePricePerKm": "{{ currency }}/km",
+        "Bonus": "Bonuslar, {{currency}}",
+        "BonusDetails": {
+          "BrandingBonus": "Brendlash uchun bonuslar, {{currency}}",
+          "GuaranteedBonus": "Kafolatlangan daromad Bonuslari, {{currency}}",
+          "IndividualBonus": "Shaxsiy bonuslar, {{currency}}",
+          "OrderBonus": "Buyurtma bo'yicha bonuslar, {{currency}}",
+          "WeekBonus": "Haftalik bonuslar, {{currency}}"
+        },
+        "Card": "Kartaga, {{currency}}",
+        "Cash": "Naqd, {{currency}}",
+        "Commission": "Uklon komissiyasi, {{currency}}",
+        "CommissionDiscount": "Komissiya chegirmasi, {{currency}}",
+        "Compensation": "Kompensatsiyalar, {{ currency }}",
+        "Distance": "Yurgan masofasi: buyurtmalar bo'yicha, km",
+        "Driver": "Haydovchi",
+        "Fine": "Jarima, {{currency}}",
+        "Merchant": "Merchant {{ merchant }}, {{currency}}",
+        "MerchantsTotal": "Jami merchantlar, {{ currency }}",
+        "OnlineTime": "Onlayn vaqt, soat",
+        "PickUp": "Yurgan masofasi: yetkazib berish, km",
+        "Promotion": {
+          "PassengerAbsence": "Yo'lovchining chiqmaganligi uchun kompensatsiya, {{currency}}",
+          "Support": "Qo'llab-quvvatlash orqali kompensatsiya, {{currency}}"
+        },
+        "Refill": {
+          "Balance": "Park balansidan to'ldirish, {{currency}}",
+          "Self": "Mustaqil to'ldirishlar, {{currency}}"
+        },
+        "RidesCount": "Safarlar soni",
+        "RidesPerHour": "Soatiga buyurtmalar",
+        "Signal": "Shartli nomi",
+        "Tips": "Choychaqa, {{currency}}",
+        "Total": "Jami, {{currency}}",
+        "TotalExecutingTime": "Yurishlarning davomiyligi",
+        "TotalProfit": "Umumiy narx, {{currency}}",
+        "Wallet": "Hamyonga, {{currency}}"
+      },
+      "Filename": "Safarlar bo'yicha hisobot - {{from}} - {{to}}",
+      "Notification": {
+        "Error": "Maʼlumotlarni yuklab boʻlmadi, sahifani qayta yuklang va qaytadan urinib koʻring. Agar siz xatoni yana ko'rsayotgan bo'lsangiz, qo'llab-quvvatlash xizmatiga murojaat qiling.",
+        "Success": "Ma'lumotlar {{filename}} fayliga muvaffaqiyatli yuklandi"
+      }
+    },
+    "NoData": {
+      "Subtitle": "Ma'lumotlar izsiz o'g'irlangan. So'rovni o'zgartirib ko'ring",
+      "Title": "Afsus, biz hech narsa topmadik :("
+    },
+    "Tabs": {
+      "Trips": "Safarlar",
+      "TripsReports": "Safarlar bo'yicha hisobot",
+      "VehicleReports": "Avto bo'yicha hisobot"
+    },
+    "Trips": {
+      "CancellationInitiator": {
+        "Courier": "Kuryer tomonidan bekor qilingan",
+        "Dispatcher": "Dispetcher tomonidan bekor qilingan",
+        "Driver": "Haydovchi tomonidan bekor qilingan",
+        "Rider": "Mijoz tomonidan bekor qilingan",
+        "System": "Tizim tomonidan bekor qilingan"
+      },
+      "Details": {
+        "CompletedAt": "Yopish",
+        "Cost": "Narxi",
+        "CreatedAt": "Olish",
+        "Date": "Sana",
+        "DeliveryPeriods": "Olish - Qo'yish - Yopish",
+        "Distance": "Yo'lning uzunligi",
+        "Driver": "Haydovchi",
+        "LicensePlate": "Davlat raqami",
+        "MakeModel": "Mashina markasi",
+        "Name": "Ismi",
+        "Phone": "Telefon raqami",
+        "PickupTime": "Qo'yish",
+        "Rating": "Haydovchini baholash",
+        "Routing": "buyurtma bo'yicha yo'nalish",
+        "Signal": "Shartli nomi",
+        "Surname": "Familiyasi",
+        "TimeInTravel": "Yo'ldagi vaqt",
+        "Title": "Safar tafsilotlari",
+        "Vehicle": "Mashina"
+      },
+      "Filter": {
+        "DateRangeLabel": {
+          "ChoosePeriod": "Davrni tanlash",
+          "CurrentMonth": "Joriy oy",
+          "CurrentQuarter": "Joriy kvartal",
+          "CurrentWeek": "Joriy hafta",
+          "LastMonth": "O'tgan oy",
+          "LastQuarter": "Oldingi kvartal",
+          "LastWeek": "O'tgan hafta",
+          "Today": "Bugun",
+          "Yesterday": "Kecha"
+        },
+        "Driver": "Haydovchi",
+        "LicensePlate": "Davlat raqami",
+        "OrderStatus": {
+          "accepted": "Qabul qilingani",
+          "all": "Barchasi",
+          "arrived": "Yetib keldi",
+          "canceled": "Bekor qilingan",
+          "completed": "Bajarilgan",
+          "running": "Bajarilmoqda"
+        },
+        "ProductType": "Mahsulot turi",
+        "Status": "Maqomi"
+      },
+      "List": {
+        "Cost": "Miqdori",
+        "Distance": "Yo'nalish bo'yicha masofa",
+        "Driver": "Haydovchi",
+        "LicensePlate": "Davlat raqami",
+        "Merchant": "Merchant",
+        "OrderCost": "Buyurtmaning narxi",
+        "PaymentType": "To'lov turi",
+        "PickUp": "Qo'yish",
+        "ProductType": "Mahsulot turi",
+        "Route": "Yo'nalishi",
+        "Status": "Maqomi",
+        "Tooltip": {
+          "Cash": "Naqd",
+          "Cashless": "Naqd pulsiz",
+          "Mixed": "Aralashlash",
+          "OptionalOrder": "Ixtiyoriy buyurtma",
+          "ToBalance": "Mablag'lar balansga o'tkazildi"
+        }
+      }
+    }
+  },
+  "PhoneInput": {
+    "AllCountries": "Barcha mamlakatlar",
+    "CountryCode": "Mamlakat yoki mamlakat kodi",
+    "NoMatch": "Topilmadi",
+    "PopularCountries": "Mashhurlari",
+    "Search": "Mamlakatlar bo'yicha qidiruv"
+  },
+  "PhotoControl": {
+    "ClarificationReason": {
+      "cleaning_seats": "O'rindiqlarni tozalash",
+      "damaged_seats": "O'rindiqlar shikastlangan",
+      "dirty_vehicle": "Iflos mashina",
+      "extraneous_things": "O'rindiqda buyumlar",
+      "install_covers": "G'iloflarni o'rnatish kerak",
+      "low_quality_photo": "Past sifatli fotosurat",
+      "missed_headrests": "Bosh qo'ygichlar yo'q",
+      "missed_vehicle_licence": "Avtotransport vositasini ro'yxatdan o'tkazish to'g'risidagi guvohnoma (texpasport) yo'q.",
+      "need_outside_photos": "Ko'chada mashinani suratga olish",
+      "other_car": "Fotosuratda boshqa mashina ",
+      "other_car_documents": "Boshqa avtomobilga hujjatlar",
+      "photo_dont_match_angle": "Fotosurat rakursga mos kelmaydi",
+      "photo_has_poor_lighting": "Fotouratdagi yoritish yomon ",
+      "photo_is_duplicated": "Qo'shaloq fotosurat (bitta rasm ikki marta yuklangan)",
+      "photo_not_relevant": "Fotosurat haqiqiy emas",
+      "required_photos": "Mashinaning fotosuratlari yo'q",
+      "safety_belt_required": "Xavfsizlik kamarlari o'rnatilgan o'rindiqlarning fotosuratlari kerak"
+    },
+    "Form": {
+      "ClarificationReason": "Qo'shimcha ishlov berish zaruratining sababi:",
+      "InvalidPhotoMessage": "{{ type }} fotosurat haqiqiy emas Iltimos, telefoningizning kamerasidan suratga oling",
+      "PhotosInstruction": "Barcha fotosuratlar aniq va kunduz kuni olingan bo'lishi kerak",
+      "PhotosInstruction1": "Mashina chekkalari kesilmasdan <b>ramkaga to'liq mos kelishi kerak</b>",
+      "PhotosInstruction2": "O'rindiqlardan <b>barcha keraksiz narsalarni</b> olib tashlang",
+      "PhotosInstruction3": "Suratda <b>xavfsizlik kamarlari va ularning mahkamlagichlari</b> ko'rsatilishi kerak",
+      "SubmitButton": "Tekshirishga jo'natish",
+      "SuccessSubTitle": "Keyingi bir necha soat ichida ish vaqtida javob beramiz",
+      "SuccessTitle": "Fotosuratlar tekshirish uchun muvafaqiyatli jo'natildi!",
+      "VehicleButton": "Mashina sahifasiga o'tish"
+    },
+    "Panel": {
+      "ClarificationReason": "Qo'shimcha ishlov berish zaruratining sababi:",
+      "ClarificationTitle": "Fotonazorat. Ma'lumotlarni aniqlashtirish",
+      "DaysRemaining": "kun qoldi",
+      "DeadlinePassed": "{{ till }} gacha (muddat tugadi)",
+      "DesktopTooltip": "Fotonazoratdan faqat mobil telefondan o'tish mumkin. ",
+      "Expired": "muddati o'tgan",
+      "InstructionMessageDesktop": "Fotonazoratdan faqat mobil telefondan o'tish mumkin. Mashina bilan ishlashni davom ettirish uchun quyidagi fotosuratlarni olish kerak:",
+      "InstructionMessageMobile": "Mashina bilan ishlashni davom ettirish uchun quyidagi fotosuratlarni olish kerak:",
+      "PassedDeadline": "{{ till }} gacha (kechikkan kunlar: {{ days }})",
+      "PassedDeadlineShort": "Kechikkan kunlar: {{ days }}",
+      "PhotoControlButton": "Fotonazoratdan o'tish",
+      "RejectedMessage": "Fotonazoratdan qayta o'tish uchun Uklon menejeriga murojaat qiling.",
+      "Till": "gacha",
+      "TillDeadline": "{{ till }} gacha (qolgan kunlar: {{ days }})",
+      "TillDeadlineShort": "Qolgan kunlar: {{ days }}",
+      "Title": "Fotonazorat"
+    },
+    "RejectionReason": {
+      "car_doesnt_pass_uklon_requirements": "Mashina xizmat ko'rsatish talablariga javob bermaydi",
+      "closed_automatically": "To'ldirish muddati o'tdi",
+      "damaged_paintwork": "Lak-bo'yoq qoplamining shikastlanishi",
+      "damaged_seats": "O'rindiqlar shikastlangan",
+      "different_colors": "Turli ranglardagi kuzov",
+      "dirty_seats": "Iflos o'rindiqlar",
+      "dirty_vehicle": "Iflos mashina",
+      "driver_registration_deadline_expired": "To'ldirish muddati o'tdi",
+      "extraneous_things": "O'rindiqda buyumlar",
+      "mechanical_damage": "Kuzovning mexanik shikastlanishilari",
+      "missed_headrests": "Bosh qo'ygichlar yo'q",
+      "missed_seat_belts": "Xavfsizlik kamarlari yo'q",
+      "not_matched_rubber": "Rezina mavsumga mos kelmaydi",
+      "other_car": "Fotosuratda boshqa mashina ",
+      "poor_body_condition": "Mashinaning qoniqarsiz ahvoli",
+      "replace_covers": "G'iloflarni almashtirish"
+    },
+    "TicketsList": {
+      "CustomComment": "Izoh",
+      "Deadline": "Bajarish muddati",
+      "LicensePlate": "Davlat raqami",
+      "Reason": "Sababi",
+      "Reasons": {
+        "AfterFirstOrders": "Ro'yxatdan o'tgandan keyin mashinaning fotosuratlari talab qilinadi",
+        "ByVehicleModel": "Servisda avtomobil modelini tekshirish",
+        "Complaint": "Haydovchi chaqirilgandan keyin mashinaning holatini tekshirish",
+        "Other": "Avtomobil fotosuratini yangilash",
+        "Regular": "Avtomobil holatini muntazam tekshirish"
+      },
+      "RequiredPhotos": "Zarur fotosuratlar",
+      "Status": "Maqomi",
+      "Vehicle": "Mashina"
+    },
+    "TicketStatus": {
+      "All": "Barchasi",
+      "Approved": "Tasdiqlangan",
+      "Clarification": "Ma'lumotlarni aniqlashtiring",
+      "Draft": "FN ni kutmoqda",
+      "Rejected": "Rad etilgan",
+      "Review": "Tekshirishda",
+      "Sent": "Jo'natilgan"
+    },
+    "Tooltips": {
+      "LiveMap": {
+        "BlockImmediately": "Bu mashina foto nazoratdan o'tishi kerak. Safar oxirida mashina bloklanadi",
+        "BlockMessage": "Safar oxirida mashina bloklanadi Fotonazoratdan mobil telefondan o'tish mumkin.",
+        "ClarificationAfterDeadline": "Bu mashina bo'yicha fotonazorat aniqlashtirishni talab qiladi Safar oxirida mashina bloklanadi",
+        "ClarificationBeforeDeadline": "Bu mashina bo'yicha fotonazorat aniqlashtirishni talab qiladi",
+        "DraftAfterDeadline": "Fotonazoratni amalga oshirish muddati tugagan. Safar oxirida mashina bloklanadi",
+        "DraftBeforeDeadline": "Bu mashina foto nazoratdan o'tishi kerak. ",
+        "DraftMessage": "Fotonazoratdan mobil telefondan o'tish mumkin.",
+        "DriverVehicleLink": "mashina profili sahifalari",
+        "Rejected": "Ushbu mashina fotonazoratdan o'tmadi Safar oxirida mashina bloklanadi",
+        "RejectedMessage": "Ushbu mashina fotonazoratdan o'tmadi U joriy buyurtmani bajarganidan so'ng bloklanadi"
+      },
+      "VehiclesList": {
+        "ClarificationTitle": "Bu mashina bo'yicha fotonazorat aniqlashtirishni talab qiladi",
+        "DraftTitle": "Bu mashina foto nazoratdan o'tishi kerak."
+      }
+    }
+  },
+  "ProductAccessibility": {
+    "Metric": {
+      "Title": {
+        "DriverExperience": "Sizning tajribangiz",
+        "DriverOrders": "Sizning buyurtmalaringiz",
+        "DriverRating": "Sizning reytingingiz"
+      },
+      "Value": {
+        "DriverExperience": "{{ metric }}",
+        "DriverOrders": "{{ metric }}",
+        "DriverRating": "{{ metric }} dan"
+      }
+    },
+    "Rule": {
+      "Title": {
+        "DriverExperience": "Kunlarda ifodalangan tajriba",
+        "DriverOrders": "Buyurtmalar soni",
+        "DriverRating": "Reyting"
+      },
+      "Value": {
+        "DriverExperience": "{{ rule }} dan",
+        "DriverOrders": "{{ rule }} dan",
+        "DriverRating": "{{ rule }} dan"
+      }
+    }
+  },
+  "ProductConfiguration": {
+    "Hint": "Ko'rsatkichlarni tahrirlash uchun ba'zi talablar bajarilmaypti. Ular bajarilsa, tahrirlash mavjud bo'ladi."
+  },
+  "ProfileLocaleMenu": {
+    "Caption": "Til:"
+  },
+  "ProfileLogout": {
+    "Caption": "Chiqish"
+  },
+  "ProfileMenu": {
+    "Actions": {
+      "EditProfile": {
+        "Caption": "Profilni tahrirlash"
+      }
+    },
+    "Caption": "Avtoparklar",
+    "FleetOption": {
+      "Actions": {
+        "Tooltip": {
+          "Copied": "Nusxalandi",
+          "Copy": "Nusxalang"
+        }
+      }
+    }
+  },
+  "Regions": {
+    "Baku": "Boku",
+    "Berdiansk": "Berdyansk",
+    "Bila Tserkva": "Belaya Tserkov",
+    "Cherkasy": "Cherkassi",
+    "Chernihiv": "Chernigov",
+    "Chernivtsi": "Chernovtsi",
+    "Chervonohrad": "Chervonograd",
+    "Dnipro": "Dnepr",
+    "Drohobych": "Drogobich",
+    "Ivano-Frankivsk": "Ivanovo-Frankovsk",
+    "Kamianets-Podilskyi": "Kamenets-Podolskiy",
+    "Kamianske": "Kamenskoye",
+    "Kharkiv": "Xarkov",
+    "Kherson": "Xerson",
+    "Khmelnytskyi": "Xmelnitskiy",
+    "Konotop": "Konotop",
+    "Kremenchuk": "Kremenchug",
+    "Kropyvnytskyi": "Kropivnitskiy",
+    "Kryvyi Rih": "Krivoy Rog",
+    "Kyiv": "Kiyev",
+    "Kyshyniv": "Kishinyov",
+    "Lutsk": "Lutsk",
+    "Lviv": "Lvov",
+    "Malta": "Malta",
+    "Mariupol": "Mariupol",
+    "Melitopol": "Melitopol",
+    "Mukachevo": "Mukachyovo",
+    "Mykolaiv": "Nikolayev",
+    "Nikopol": "Nikopol",
+    "Odesa": "Odessa",
+    "Oleksandriia": "Aleksandriya",
+    "Pavlohrad": "Pavlograd",
+    "Poltava": "Poltava",
+    "Rivne": "Rovno",
+    "Rovenky": "Rovenki",
+    "Sumy": "Miqdorlar",
+    "Tashkent": "Toshkent",
+    "Ternopil": "Ternopol",
+    "Tunisia": "Tunis",
+    "Uman": "Uman",
+    "Uzhhorod": "Ujgorod",
+    "Vinnytsia": "Vinnitsa",
+    "Zaporizhia": "Zaporojye",
+    "Zhytomyr": "Jitomir"
+  },
+  "RideList": {
+    "VehicleNotAttached": "Mashina avtoparkdan olib tashlangan"
+  },
+  "SecondaryCaptionFleetOrderRecordList": {
+    "Header": {
+      "PickupTime": "Vaqti"
+    }
+  },
+  "SidebarProfile": {
+    "Description": "{{ fleetName }},{{ region }} avtopark"
+  },
+  "SideNav": {
+    "AccountInfo": {
+      "CodeCopied": "Kod nusxalangan",
+      "CopyCode": "Avtopark kodini nusxalash",
+      "EditProfile": "Profilni tahrirlash",
+      "Fleet": "Avtopark",
+      "Fleets": "Avtoparklar",
+      "FleetShort": "AP"
+    },
+    "Menu": {
+      "Bonus": "Bonuslar",
+      "Contacts": "Aloqalar",
+      "Dashboard": "Asosiy",
+      "Drivers": "Haydovchilar",
+      "Finance": "Mablag'lar",
+      "Orders": "Statistika va buyurtmalar",
+      "Rating": "Haydovchilarning baholari",
+      "Vehicles": "Mashinalar"
+    }
+  },
+  "Support": {
+    "Messenger": "Messenjerda qo'llab-quvvatlash chati",
+    "Messengers": "Messenjerlarda qo'llab-quvvatlash chatlari",
+    "Phone": "Qo'llab-quvvatlash telefoni",
+    "Phones": "Qo'llab-quvvatlash telefonlari",
+    "Type": {
+      "FleetDriver": "Avtoparka haydovchilar",
+      "Fleets": "Avtoparklar",
+      "Messengers": "Chatlar va qo'ng'iroqlar",
+      "PrivateDriverAndCourier": "Avtomobilga haydovchilar va kuryerlar",
+      "Tickets": "Talabnomalarni ko'rib chiqish"
+    }
+  },
+  "SupportWidget": {
+    "Capital": {
+      "AZ": "Boku",
+      "UA": "Kiyev",
+      "UZ": "Tashkent"
+    },
+    "Country": "Butun Ukraina",
+    "Header": "Qo'llab-quvvatlash xizmati",
+    "PhoneTitle": "Raqamlar Telegram va Viberda mavjud",
+    "Regions": "Mintaqalar",
+    "ScheduleTitle": "Ish jadvali"
+  },
+  "VehicleDetailsInfo": {
+    "Driver": {
+      "Caption": "Joriy haydovchi"
+    },
+    "Fields": {
+      "AddedAt": "Yangilanish sanasi",
+      "BodyType": "Kuzov turi",
+      "Color": "Rangi",
+      "ComfortLevel": "Sinfi",
+      "Fiscalization": "Fiskalizatsiya",
+      "LoadCapacity": "Yuk ko'tarish qobiliyati",
+      "Options": "Uskuna",
+      "PassengerSeatsCount": "O'rinlar soni",
+      "TaxiLicense": "Taksi litsenziyasi",
+      "VINCode": "VIN kodi"
+    },
+    "FiscalizationStatus": {
+      "NoFiscalization": "Fiskallashtirilmaydi",
+      "ShiftClosed": "Smena yopildi"
+    },
+    "Menu": {
+      "RemoveVehicle": {
+        "Caption": "Mashinani olib tashlash"
+      }
+    },
+    "NoDriver": "Haydovchsiz mashina",
+    "RemoveFromFleet": {
+      "Caption": "Avtoparkdan olib tashlash"
+    },
+    "TaxiLicenseOptions": {
+      "NoLicense": "Litsenziya yo'q",
+      "WithLicense": "Litsenziya bor"
+    },
+    "Title": "Mashinaning ma'lumotlari"
+  },
+  "VehicleDetails": {
+    "Title": "Mashina sahifasi {{ make }}{{ model }}{{ license_plate }}"
+  },
+  "VehicleList": {
+    "HasPriority": "Faol",
+    "Header": {
+      "Availability": "Mavjudlik",
+      "Branding": "Brendlash",
+      "Driver": "Haydovchi",
+      "LicencePlate": "Davlat raqami",
+      "Priority": "Ustuvorlik",
+      "Vehicle": "Mashina",
+      "VehicleClass": "Qulaylik sinfi"
+    },
+    "NoDriver": "Haydovchsiz mashina",
+    "NoPriority": "Faol emas",
+    "Tooltips": {
+      "All": "Barcha uchun mavjud",
+      "Nobody": "Hech kimga mavjud emas",
+      "SpecificDrivers": "Tanlangan haydovchilarga"
+    }
+  },
+  "VehicleOrderReport": {
+    "Details": {
+      "AdditionalIncome": {
+        "Bonuses": "Bonuslar",
+        "Compensation": "Kompensatsiya",
+        "Tips": "Choychaqalar",
+        "Title": "Qo'shimcha tushumlar"
+      },
+      "AverageCostOrder": {
+        "Cash": "Naqd",
+        "Cashless": "Naqd pulsiz",
+        "CostPerKm": "Km narxi",
+        "Title": "Buyurtmaning o'rtacha narxi",
+        "Total": "Umumiy"
+      },
+      "EarningPerOrders": {
+        "Cash": "Naqd pul",
+        "Cashless": "Naqdsiz",
+        "Title": "Buyurtma bo'yicha daromad"
+      },
+      "Expenses": {
+        "Commission": "Uklon komissiyasi",
+        "Penalties": "Jarimalar",
+        "Title": "Xarajatlar"
+      }
+    },
+    "LicencePlace": {
+      "Subtitle": "Avto",
+      "Title": "Davlat raqami",
+      "Tooltip": {
+        "Branded": {
+          "Description": "Brendlangan: {{ days }}",
+          "Text": "Brendlangan avtomobil"
+        },
+        "BrandedWithPriority": {
+          "Description": "Brendlangan: {{ days }}, ustuvorlik: {{ additionalDays }}",
+          "Text": "Ustuvorlikka ega brendlangan avtomobil"
+        },
+        "Priority": {
+          "Description": "Ustuvorlik: {{ days }} kun",
+          "Text": "Ustuvorlikka ega avto"
+        }
+      }
+    },
+    "NetEarning": {
+      "Title": "Toza daromad",
+      "Tooltip": "Avto bajargan buyurtmadan barcha tushumlar, jarimalar va Uklon komissiyasi bundan mustasno"
+    },
+    "Orders": {
+      "Completed": "Bajarilgan buyurtmalar",
+      "Distance": "Masofa (buyurtma bo'yicha)"
+    },
+    "TotalEarning": {
+      "Title": "Umumiy daromad"
+    }
+  },
+  "VehicleOrderReportList": {
+    "Csv": {
+      "Filename": "Avtomobil hisoboti - {{from}} - {{to}}",
+      "Header": {
+        "GroupRow": {
+          "AdditionalIncome": "Qo'shimcha tushumlar",
+          "AverageOrderCost": "Buyurtmaning o'rtacha narxi",
+          "Expenses": "Xarajatlar",
+          "Orders": "Umumiy ma'lumotlar",
+          "TotalEarning": "Umumiy daromad",
+          "VehicleInfo": "Avtoning ma'lumotlari"
+        },
+        "Row": {
+          "AverageCashlessOrderCost": "Naqd pulsiz, {{currency}}",
+          "AverageCashOrderCost": "Naqd, {{currency}}",
+          "AverageOrderCost": "Umumiy, {{currency}}",
+          "AveragePricePerKilometer": "Narxi {{km}}",
+          "BrandedAndPriority": "Branding and priority",
+          "FeeAmount": "Uklon komissiyasi, {{currency}}",
+          "GrossIncome": "Jami daromad, {{currency}}",
+          "LicensePlate": "Avtoning davlat raqami",
+          "Make": "Rusumi",
+          "Model": "Modeli",
+          "OnlineTime": "",
+          "OrdersExecutionTime": "",
+          "OrdersPerHour": "",
+          "ProfitAmount": "Toza daromad, {{currency}}",
+          "TotalBonus": "Bonuslar, {{currency}}",
+          "TotalCashEarnings": "Naqd, {{currency}}",
+          "TotalCashlessEarnings": "Naqd pulsiz, {{currency}}",
+          "TotalCompensations": "Kompensatsiya, {{currency}}",
+          "TotalDistanceMeters": "Buyurtma bo'yicha masofa, {{km}}",
+          "TotalOrdersCount": "Bajarilgan buyurtmalar soni",
+          "TotalPenalties": "Jarimalar, {{currency}}",
+          "TotalTips": "Choychaqa, {{currency}}"
+        }
+      },
+      "Notification": {
+        "Error": "Maʼlumotlarni yuklab boʻlmadi, sahifani qayta ishga tushiring va qaytadan urinib koʻring. Agar siz xatoni yana ko'rayotgan bo'lsangiz, qo'llab-quvvatlash xizmatiga murojaat qiling.",
+        "Success": "Maʼlumotlar {{filename}} fayliga muvaffaqiyatli yuklandi"
+      }
+    },
+    "Details": {
+      "AdditionalIncome": {
+        "Bonuses": "Bonuslar",
+        "Compensation": "Kompensatsiya",
+        "Idle": "Turib qolish",
+        "Promo": "Promo",
+        "Tips": "Choychaqalar",
+        "Title": "Qo'shimcha tushumlar"
+      },
+      "AverageCostOrder": {
+        "Cash": "Naqd",
+        "Cashless": "Naqd pulsiz",
+        "CostPerKm": "Km narxi",
+        "Title": "Buyurtmaning o'rtacha narxi",
+        "Total": "Umumiy"
+      },
+      "EarningPerOrders": {
+        "Cash": "Naqd pul",
+        "Cashless": "Naqd pulsiz",
+        "Title": "Buyurtma bo'yicha daromad"
+      },
+      "Expenses": {
+        "Commission": "Uklon komissiyasi",
+        "Penalties": "Jarimalar",
+        "Title": "Xarajatlar"
+      },
+      "OrdersExecutionTime": {
+        "Title": ""
+      },
+      "OrdersPerHour": {
+        "Title": ""
+      }
+    },
+    "LicencePlace": {
+      "Subtitle": "Avto",
+      "Title": "Davlat raqami",
+      "Tooltip": {
+        "Branded": {
+          "Description": "Brendlangan: {{ days }}",
+          "Text": "Brendlangan avtomobil"
+        },
+        "BrandedWithPriority": {
+          "Description": "Brendlangan: {{ days }}, ustuvorlik: {{ additionalDays }}",
+          "Text": "Ustuvorlikka ega brendlangan avtomobil"
+        },
+        "Priority": {
+          "Description": "Ustuvorlik: {{ days }} kun",
+          "Text": "Ustuvorlikka ega avto"
+        }
+      }
+    },
+    "NetEarning": {
+      "Title": "Toza daromad",
+      "Tooltip": "Avto bajargan buyurtmadan barcha tushumlar. Jarimalar va Uklon komissiyasi bundan mustasno."
+    },
+    "OnlineTime": {
+      "Title": ""
+    },
+    "Orders": {
+      "Completed": "Bajarilgan buyurtmalar",
+      "Distance": "Masofa (buyurtma bo'yicha)"
+    },
+    "TotalEarning": {
+      "Title": "Umumiy daromad"
+    }
+  },
+  "VehicleOrders": {
+    "Filters": {
+      "ProductType": {
+        "Caption": "Mahsulot"
+      },
+      "Status": {
+        "Caption": "Maqomi"
+      }
+    }
+  },
+  "Vehicles": {
+    "Creation": {
+      "AddCar": "Yangi mashina qo'shish",
+      "AdvancedOptions": "Qo'shimcha optsiyalar",
+      "BodyType": "Kuzov turi",
+      "Color": "Rangi",
+      "HeaderTitle": "Mashina qo'shish uchun so'rov",
+      "Info": {
+        "Cargo": "Faqat yukni tashish mavjud (yetkazib berish va kargo)"
+      },
+      "InfoPanel": {
+        "GoToTicket": "O'tish",
+        "Message": "Siz faqat shaxsiy parkingizga mashinalarni qo'shishingiz mumkin.",
+        "TicketExistsMessage": "Bunday davlat raqamli mashinani qo'shish uchun so'rov allaqachon yaratilgan",
+        "Title": "E'tibor bering!"
+      },
+      "LicensePlate": "Davlat raqami",
+      "LicensePlateFull": "Davlat raqami",
+      "Model": "Modeli",
+      "Notify": {
+        "Error": "Siz kiritgan ma'lumotlar saqlanmaydi",
+        "SimpleTicketSuccess": "Avtomobilni qo'shish uchun ariza muvaffaqiyatli yaratildi",
+        "Success": "{{ carNumber }}mashinasini qo'shish uchun so'rov muvaffaqiyatli yaratildi",
+        "Warning": "Menejer sizning arizangizni ishga olishi uchun barcha fotosuratlarni yuklashingiz kerak"
+      },
+      "Product": "Rusumi",
+      "Stepper": {
+        "StepFirst": "Mashina haqida ma'lumotlarni qo'shing",
+        "StepSecond": "Hujjatlar va mashinaning fotosuratini qo'shing",
+        "Title": "{{ step }} qadam"
+      },
+      "TicketReason": {
+        "CustomCommentOwner": "Menejerning izohi",
+        "Title": "Sababi"
+      },
+      "Title": "Mashinaning ma'lumotlari",
+      "TransportType": {
+        "Cargo": "Kargo",
+        "Passenger": "Yo'lovchi tashishlar"
+      },
+      "VehiclesDocumentsAndPhotos": "Hujjatlar va mashinaning fotosurati",
+      "VehicleTicketActiveLogs": {
+        "cleaning_seats": "Ichki/o'rindiqlar tozalashga muhtoj",
+        "damaged_seats": "O'rindiqlar shikastlangan",
+        "dirty_vehicle": "Avto iflos",
+        "extraneous_things": "O'rindiqlardan begona narsalarni olib tashlash",
+        "inappropriate_angle": "Avtoning fotosurati rakursga mos kelmaydi",
+        "invalid_insurance_policy": "Yaroqsiz sug'urta polisi",
+        "low_quality_photo": "Past sifatli fotosurat",
+        "missed_headrests": "Bosh qo'ygichlar yo'q",
+        "missed_vehicle_licence": "Avtotransport vositasini ro'yxatdan o'tkazish to'g'risidagi guvohnoma (texpasport) yo'q.",
+        "need_outside_photos": "Ko'chada mashinani suratga olish",
+        "other": "Tafsilotlar, Uklon menejerida",
+        "other_car_documents": "Boshqa avtomobilga hujjatlar",
+        "photo_has_poor_lighting": "Fotouratdagi yoritish yomon ",
+        "photo_is_duplicated": "Qo'shaloq fotosurat (bitta rasm ikki marta yuklangan)",
+        "photo_not_match_requirements": "Mashinaning fotosuratlari talablarga javob bermaydi",
+        "photo_not_relevant": "Avtomobilning joriy fotosuratlarini oliыр",
+        "safety_belt_required": "Xavfsizlik kamarlari bilan o'rindiqlarning fotosuratlari"
+      },
+      "VehicleTicketActiveLogsTitle": "Yaxshilash bo'yicha izohlar",
+      "VehicleTicketStatus": {
+        "All": "Barcha holatlar",
+        "Approved": "Tasdiqlangan",
+        "Clarification": "Qayta ishlashga jo'natilgan",
+        "Draft": "Qoralama",
+        "Rejected": "Rad etilgan",
+        "Review": "Menejer ko'rib chiqmoqda",
+        "Sent": "Jo'natilgan",
+        "Status": "Maqomi"
+      },
+      "VehicleTicketStatusHint": {
+        "Clarification": "menejer sizning talabnomangizni aniqlashtirish uchun yubordi, tekshirishni yakunlashimiz uchun yangi fotosuratlarni yuklang",
+        "Draft": "talabnomangizni menejerga tekshirishga yuborish uchun barcha ma'lumotlarni to'ldiring",
+        "Review": "sizning talabnomangiz menejer tomonidan tekshirilmoqda",
+        "Sent": "sizning talabnomangiz ko'rib chiqish uchun menejerga yuborildi"
+      },
+      "Year": "Yil"
+    },
+    "Details": {
+      "AddedDate": "Yangilanish sanasi",
+      "AdditionPhotosInfo": "Arizangizni tasdiqlash uchun qo'shimcha fotosuratlarni yuklash kerak",
+      "BodyType": "Kuzov turi - o'rindiqlar soni",
+      "Classes": "Qulaylik sinfi",
+      "Color": "Rangi",
+      "Equipment": "Uskuna",
+      "InsuranceConsent": "Menda amaldagi OSAGO (avtograjdanka) borligini tasdiqlayman",
+      "InteriorInfo": "O'rindiqdan ortiqcha narsalarni oling",
+      "LicensePlate": "Davlat raqami",
+      "NotSelectedByDriver": "Haydovchi bog'lanmagan",
+      "PhotoInfoFirst": "Menejer talabnomani ishlash uchun olishi uchun mashina hujjatlarning fotosuratini qo'shing.",
+      "PhotoInfoFirstNew": "<br>Menejer ishlovga arizani qabul qilishi uchun avtomobil hujjatlarning fotosuratini joylashtiring.",
+      "PhotoInfoSecond": "Barcha fotosuratlar aniq, kun davomida, biroq bir haftadan kech bo'lmagan vaqtda olingan bo'lishi kerak",
+      "Photos": {
+        "AdditionalCategories": {
+          "driver_insurance_front_copy": "Avtofuqarolik",
+          "driver_taxi_license_front_copy": "Taksi litsenziyasi (old tomoni)",
+          "driver_taxi_license_reverse_copy": "Taksi litsenziyasi (orqa tomoni)"
+        },
+        "AdditionalPhotos": "Qo'shimcha fotosuratlar",
+        "Categories": {
+          "driver_car_back_photo": "Orqadan ko'rinish",
+          "driver_car_front_photo": "Oldidan ko'rinish",
+          "driver_car_right_sight_photo": "Chapdan ko'rinish",
+          "driver_car_sight_photo": "O'ngdan ko'rinish",
+          "driver_insurance_front_copy": "Old tomoni",
+          "driver_insurance_reverse_copy": "Orqa tomoni",
+          "driver_taxi_license_front_copy": "Old tomoni",
+          "driver_taxi_license_reverse_copy": "Orqa tomoni",
+          "driver_vehicle_registration_front_copy": "Old tomoni",
+          "driver_vehicle_registration_reverse_copy": "Orqa tomoni",
+          "vehicle_angled_back": "",
+          "vehicle_angled_front": "",
+          "vehicle_interior_back": "Salon orqadan",
+          "vehicle_interior_back_photo": "Salon orqadan",
+          "vehicle_interior_front_photo": "Oldingi yo'lovchi o'rindig'i",
+          "vehicle_safety_belts": "Xavfsizlik kamarlari",
+          "vehicle_third_seats_row": "O'rindiqlarning uchinchi qatori",
+          "vehicle_trunk": "Yukxona",
+          "vehicle_wheels": "G'ildiraklar"
+        },
+        "License": "Taksi litsenziyasi ",
+        "LimitSize": "Fayl o'lchami 25 mb-dan oshmasligi kerak",
+        "Osago": "Avefjms (fuqarolik majburiyati)",
+        "TechPassport": "Tex. pasport",
+        "VehiclesPhotos": "Mashinaning fotosurati"
+      },
+      "Products": {
+        "Description": "Mahsulotni yoqish yoki o‘chirib qo‘yish orqali siz haydovchining ushbu transport vositasida ushbu mahsulot bo'yicha buyurtmalarni bajara olish imkoniyatini tartibga solasiz.",
+        "Title": "Mashina uchun mavjud bo'lgan mahsulot turlari"
+      },
+      "SelectedByDriver": "Joriy haydovchi",
+      "Tabs": {
+        "Access": "Kirishga ruxsat",
+        "ChangesHistory": "O'zgarishlar tarixi",
+        "Drivers": "Haydovchilar",
+        "History": "O'zgarishlar tarixi",
+        "Marks": "Baholar",
+        "Photo": "Fotosurat",
+        "Products": "Mahsulotlar",
+        "Settings": "Sozlamalar",
+        "Trips": "Safarlar"
+      },
+      "Title": "Mashinaning ma'lumotlari",
+      "Titles": {
+        "1": "Barcha fotosuratlar <b>aniq</b>, <b>kunduz</b> va <b>bir haftadan kechiktirmasdan</b> olingan bo'lishi kerak",
+        "2": "Mashina chekkalari kesilmasdan <b>ramkaga to'liq mos kelishi kerak</b>",
+        "3": "O'rindiqlardan <b>barcha keraksiz narsalarni</b> olib tashlang",
+        "4": "Suratda <b>xavfsizlik kamarlari va ularning mahkamlagichlari</b> ko'rsatilishi kerak"
+      },
+      "Vehicle": "Markasi-modeli-yili"
+    },
+    "DriverAccess": {
+      "Accessibility": "Mavjudlik",
+      "AccessTitle": "Sizga qaysi mashinalarga kirishga ruxsat berish kerak?",
+      "AccessType": {
+        "All": "Barcha mashinalar",
+        "Nobody": "Mashinalar mavjud emas",
+        "SpecificVehicles": "Tanlangan mashinalar"
+      },
+      "AllCars": "Barcha mashinalar",
+      "AvaliableCars": "Mavjud mashinalar",
+      "Nobody": "Barcha mashinalarga kirishni taqiqlash",
+      "SaveButton": "O'zgarishlarni saqlash",
+      "SearchForCars": {
+        "Caption": "Mashinani qidirish",
+        "NoVehicleSelectedError": "Saqlash uchun kamida bitta mashinani tanlashingiz kerak."
+      },
+      "SelectedVehicles": "Tanlangan mashinalar",
+      "Tooltips": {
+        "NobodyAccess": "Haydovchi mashinada \"Barcha avtomashinalarga kirishni taqiqlash\" rejimidan foydalanishi uchun - mashina bilan aloqani uzing",
+        "RemoveAccess": "Haydovchi mashinada, unga kirishga ruxsatni cheklash - haydovchi bilan aloqani uzing"
+      },
+      "UpdateAccessSuccess": "Haydovchi uchun mashinaning mavjudligi sozlamalari muvaffaqiyatli saqlandi"
+    },
+    "Filters": {
+      "Availability": {
+        "All": "Barcha uchun mavjud",
+        "AllTypes": "Barcha turlar",
+        "Caption": "Mavjudlik turi",
+        "Nobody": "Hech kimga mavjud emas",
+        "Placeholder": "Barcha turlar",
+        "SpecificDrivers": "Tanlangan haydovchilarga"
+      },
+      "BodyType": {
+        "All": "Barchasi",
+        "Caption": "Kuzov turi",
+        "Placeholder": "Barcha kuzov turlari"
+      },
+      "HasBranding": {
+        "All": "Barcha mashinalar",
+        "Caption": "Brendlash",
+        "False": "Brendlashsiz",
+        "Placeholder": "Barcha mashinalar",
+        "True": "Brendlash bilan"
+      },
+      "HasPriority": {
+        "All": "Barchasi",
+        "Caption": "Ustuvorlik",
+        "False": "Faol emas",
+        "Placeholder": "Barchasi",
+        "True": "Faol"
+      },
+      "LicencePlate": {
+        "Caption": "Qidiruv",
+        "Placeholder": "Davlat raqami"
+      }
+    },
+    "List": {
+      "Filter": {
+        "LicensePlate": "Davlat raqami"
+      },
+      "MobileView": {
+        "Branding": "Brend belgisi",
+        "Vehicle": "Mashina"
+      },
+      "Table": {
+        "Brand": "Brend.",
+        "Condition": "Holati",
+        "Driver": "Haydovchi",
+        "LicensePlate": "Davlat raqami",
+        "ProductTypes": "Sinflar",
+        "Status": "Maqomi",
+        "Vehicle": "Mashina"
+      }
+    },
+    "LoadCapacity": {
+      "Description": {
+        "Large": "380×180×180 sm, 1400 kg",
+        "Medium": "260×130×150 sm, 700 kg",
+        "Small": "170×100×90 sm, 300 kg"
+      },
+      "Name": {
+        "Large": "Katta kuzov",
+        "Medium": "O'rtacha kuzov",
+        "Small": "Kichik kuzov"
+      }
+    },
+    "Tabs": {
+      "Map": "Mashina xaritada",
+      "Tickets": "Ulanish uchun talabnomalar",
+      "VehicleList": "Mashinalar ro'yxati"
+    },
+    "Tickets": {
+      "List": {
+        "AddedDate": "Qo'yish sanasi",
+        "ColorAndYear": "Rang va yil",
+        "LicensePlate": "Davlat raqami",
+        "LicensePlateAbsent": "Mavjud emas",
+        "LicensePlateAbsentMobile": "Davlat raqami yoq",
+        "MakeModel": "Rusumi",
+        "RemoveTicket": "So'rovni olib tashlash",
+        "Status": "Maqomi",
+        "Vehicle": "Mashina"
+      },
+      "NoData": {
+        "Subtitle": "Mashinalar ro'yxati sahifasida talabnomani qo'shing!",
+        "Title": "Sizda hozir mashina qo'shish uchun ochiq arizalar yo'q!"
+      }
+    },
+    "VehicleAccess": {
+      "AccessTitle": "Kimga mashinaga ruxsat berilsin?",
+      "AccessType": {
+        "All": "Barcha haydovchilarga",
+        "Nobody": "Hech kimga",
+        "SpecificDrivers": "Tanlangan haydovchilarga"
+      },
+      "AvaliableCars": "Mavjud mashinalar",
+      "ConfirmButton": "Tasdiqlash",
+      "RemoveAccessComment": {
+        "Caption": "Mashinaning mavjud emasligi sababini ko'rsating",
+        "Placeholder": "Siz mavjud bo'lmaslik sababi, masalan mashinaning buzilishini qo'shishingiz mumkin."
+      },
+      "SaveButton": "O'zgarishlarni saqlash",
+      "SearchForDrivers": {
+        "Caption": "Haydovchilarni qidirish",
+        "NoDriverSelectedError": "Saqlash uchun kamida bitta haydovchini tanlash kerak."
+      },
+      "Tooltips": {
+        "NobodyAccess": "Haydovchi mashinada, \"Hech kimga\" rejimidan foydalanishi uchun - haydovchi bilan aloqani uzing",
+        "RemoveAccess": "Haydovchi mashinada, uning mavjudligini cheklash uchun - haydovchi bilan aloqani uzing"
+      },
+      "UpdateAccessSuccess": "Mashinaning mavjudligi sozlamalari muvaffaqiyatli saqlandi"
+    }
+  },
+  "WhatIsMerchant": {
+    "Examples": {
+      "1": "Buyurtmada promokod yo'q. Buyurtma miqdori = 100 UZS. Taqsimlanishi kerak bo'lgan miqdor 100 UZS. 100 UZS (minus Uklon komissiyasi va to'lov tizimi komissiyasi) parkning hisobiga tushadigan miqdorga teng.",
+      "2": "Promokod bor. Buyurtma miqdori = 100 UZS, shundan 30 UZS promokod. Taqsimlanishi kerak bo'lgan miqdor 70 UZS (rayderdan to'lov). 70 UZS (minus to'lov tizimi komissiyasi) parkning hisobiga tushadigan miqdorga teng.",
+      "3": "Promokod va puli turib qolish mavjud. Buyurtma miqdori 100 UZS va turib qolish miqdori esa 10 UZS. Taqsimlanishi kerak bo'lgan miqdor 100 UZS + 10 UZS. 110 UZS (minus Uklon komissiyasi va to'lov tizimi komissiyasi) parkning hisobiga tushadigan miqdorga teng. <br><br> Kuniga bir marta park balansi* korrektirovka qilinadi: Merchantga* tushgan barcha o'tkazmalar va oldingi kun uchun toʻlangan Uklon komissiyasining barcha summalari jamlanadi va shunga mos ravishda balans korrektirovka qilinadi. <br><br> Ba'zi buyurtmalar uchun to'liq miqdor haydovchining balansiga kiritilishi mumkin.",
+      "Title": "{{ example }} Misol"
+    },
+    "Glossary": {
+      "Balance": "<b>Balansni korrektirovka qilish</b> - bu Uklon komissiyasi to'lovlarini hisobga olgan holda merchantga o'tkazilgan barcha o'tkazmalar summasini park balansida qayd etish/ko'rsatish. ",
+      "Merchant": "<b>Merchant-hisobi (Merchant)</b> - asosiy (bank) joriy hisob bilan bog'langan oraliq hisob. Avvalo, xizmatlar uchun to'lov uchun olingan mablag'lar merchantda to'planadi, so'ngra parkning ko'rsatilgan bank hisob raqamiga (h/r) o'tkaziladi.",
+      "Rider": "<b>Rayder</b> – parkning transport va/yoki kuryerlik yetkazib berish xizmatlariga yoki bunday shaxs “Uklon” xizmatidan foydalanuvchi sifatida parkda buyurtma berishi mumkin bo‘lgan boshqa xizmatlarga buyurtma beruvchi shaxs.",
+      "Title": "Qiymatlar:"
+    },
+    "InfoPanel": {
+      "Message1": "Tugallangan buyurtma uchun rayderdan* olingan to'lov miqdori taqsimlanadi xolos. Agar promokod mavjud bo'lsa, to'lov tizimi komissiyasidan tashqari to'lovning hammasi parkning hisobiga tushadi.",
+      "Message2": "Uklon komissiyasini to'lagandan keyin summa parkning joriy hisobvarag'iga kiritilgan summaga teng emas, chunki moliyaviy provayder o'z komissiyasini ushlab qoladi.",
+      "Title": "E'tibor bering!"
+    },
+    "Splits": {
+      "1": "<b>1. To‘lov taqsimoti nima?</b><br>To'lovni taqsimlash - bu merchantning* egasi nomidan Uklon kompaniyasiga bunday merchant* uchun olgan mablag'lardan moliyaviy kompaniya tomonidan komissiya to'lashi. Uklon komissiyasini to'lagandan so'ng, buyurtmani bajarish uchun olingan mablag'lar qoldig'i parkning hisob raqamiga o'tkaziladi. ",
+      "2": "<b>2. Qaysi buyurtmalar uchun to'lov taqsimlanadi?</b><br> Taqsimlash buyurtmalarni naqd pulsiz to'lagandagina amalga oshiriladi. Taqsimlash sodir bo'lmagan va buyurtmaning to'liq miqdori balansda ko'rsatilgan istisnolar mavjud. ",
+      "3": "<b>3. Tarqsimlash qanday amalga oshiriladi?</b><br> Merchant* tomonidan olingan to'lov summasi va undan to'langan Uklon komissiyasi o'rtasidagi farq avtomatik ravishda (kuniga bir marta) oldingi ish kuni uchun parkning joriy hisob raqamiga o'tkaziladi. ",
+      "4": "<b>4. Nima uchun balansda minus/plyus shakllanadi?</b><br> To'lovlarni taqsimlash va balansni* korrektirovkalash natijasida park balansida minus yoki plyus shakllanishi mumkin.<br><br> Nega balans manfiy bo'lishi mumkin? Park balansi haydovchilar balansidan to'ldirilmaydi. Ya'ni, mablag'lar haydovchilar balansida to'planadi, avtopark balansida esa minus to'planadi.<br><br> Naqd pul buyurtmalari uchun ushlab qolingan komissiya balansni to'ldirish orqali qoplanishi kutiladi. "
+    },
+    "Title": "Merchant nima?"
+  },
+  "Workspace": {
+    "Navigation": {
+      "Bonuses": "Bonuslar",
+      "Contacts": "Aloqalar",
+      "Couriers": "Kuryerlar",
+      "CouriersFeedbacks": "Kuryerlar baholari",
+      "Dashboard": "Avtopark statistikasi",
+      "Drivers": "Haydovchilar",
+      "Feedbacks": "Haydovchilarning baholari",
+      "Finance": "Mablag'lar",
+      "FleetProfile": "Park sahifasi",
+      "Forbidden": "Profil bloklangan",
+      "Orders": "Statistika va buyurtmalar",
+      "Vehicles": "Mashinalar"
+    }
+  }
+}

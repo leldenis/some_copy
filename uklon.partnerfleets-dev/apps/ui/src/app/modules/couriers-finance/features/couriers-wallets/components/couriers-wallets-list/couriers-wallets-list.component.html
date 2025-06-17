@@ -1,0 +1,154 @@
+<div
+  matSort
+  matSortStart="desc"
+  (matSortChange)="sortChange.emit($event)"
+  class="tw-grid tw-gap-md sm:tw-gap-0 sm:tw-shadow-sm sm:tw-rounded"
+>
+  <div class="grid-row grid-header !tw-hidden sm:!tw-grid">
+    <div>{{ 'CouriersAutocomplete.Title' | translate }}</div>
+
+    <div mat-sort-header="Balance">
+      <div class="tw-flex tw-items-center tw-gap-1">
+        <span>{{ 'Finance.DriversBalances.List.Balance' | translate }}</span>
+        <upf-sort-icon [direction]="sort.direction"></upf-sort-icon>
+      </div>
+    </div>
+
+    <div>{{ 'Finance.DriversBalances.List.EnterAmount' | translate }}</div>
+  </div>
+
+  <ng-container [formGroup]="withdrawalForm">
+    <div class="grid-row tw-h-14">
+      <mat-checkbox formControlName="withdrawEverythin" color="primary">
+        <span class="tw-text-base tw-font-medium sm:tw-font-normal">
+          {{ 'Finance.DriversBalances.List.WithdrawUntil' | translate }}
+        </span>
+      </mat-checkbox>
+
+      <div class="tw-hidden sm:tw-block"></div>
+
+      <div class="tw-flex tw-items-center tw-gap-2 -tw-ml-8 sm:tw-gap-md">
+        <mat-icon class="outlined tw-z-10" ngxTippy="{{ 'CourierFinance.CouriersWallets.Tooltip' | translate }}">
+          info
+        </mat-icon>
+
+        <mat-form-field
+          class="tw-w-28 sm:tw-w-full auto-width"
+          floatLabel="always"
+          [ngClass]="{ 'disabled-control': withdrawInput.disabled }"
+        >
+          <mat-label class="sm:tw-hidden">
+            {{ 'DriverBalancesList.Remaining.Caption' | translate }}
+          </mat-label>
+
+          <input
+            #withdrawInput
+            matInput
+            formControlName="withdrawAmount"
+            [mask]="'separator.2'"
+            placeholder="0.00"
+            type="tel"
+          />
+
+          @if (!rtlCurrencies[fleetCurrency]) {
+            <span class="tw-pr-1" matTextPrefix>
+              {{ fleetCurrency | currencySymbol }}
+            </span>
+          }
+
+          @if (rtlCurrencies[fleetCurrency]) {
+            <span matTextSuffix>
+              {{ fleetCurrency | currencySymbol }}
+            </span>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <ng-container formArrayName="wallets">
+      @for (control of walletsArray.controls; track control) {
+        <div
+          class="grid-row tw-h-14"
+          [ngClass]="{
+            'tw-border !tw-border-accent-mint-light':
+              walletsArray.value[$index] && walletsArray.value[$index] <= couriersWallets[$index].wallet.balance.amount / 100,
+          }"
+        >
+          <ng-container
+            *upfLet="{
+              courier: couriersWallets[$index],
+              balance: couriersWallets[$index]?.wallet?.balance,
+              withdrawSum: withdrawalForm.get('withdrawEverythin').value,
+            } as data"
+          >
+            <div class="tw-grid tw-gap-1">
+              <a
+                class="tw-font-medium hover:tw-underline tw-w-fit"
+                [routerLink]="[
+                  '/',
+                  corePath.WORKSPACE,
+                  corePath.COURIERS,
+                  courierPath.DETAILS,
+                  data?.courier?.employee_id,
+                ]"
+              >
+                {{ data?.courier?.last_name }} {{ data?.courier?.first_name }}
+              </a>
+
+              <a class="phone-link" href="tel:{{ data?.courier?.phone }}">
+                {{ data?.courier?.phone }}
+              </a>
+            </div>
+
+            <div class="tw-grid tw-gap-1">
+              <span class="tw-text-md tw-text-neutral-granit sm:tw-hidden">
+                {{ 'Finance.DriversBalances.List.Balance' | translate }}
+              </span>
+
+              <span
+                [ngClass]="{
+                  'tw-text-accent-coral-light': data?.balance?.amount < 0,
+                }"
+              >
+                {{ data?.balance?.amount / 100 | upfMoney: data?.balance?.currency }}
+              </span>
+            </div>
+
+            <mat-divider class="sm:!tw-hidden tw-col-span-full"></mat-divider>
+
+            <mat-form-field
+              class="max-sm:tw-w-28 max-sm:tw-col-start-2 auto-width"
+              floatLabel="always"
+              [ngClass]="{ 'disabled-control': input.disabled }"
+            >
+              <mat-label class="sm:tw-hidden">
+                {{ 'Finance.DriversBalances.List.EnterAmount' | translate }}
+              </mat-label>
+
+              <input
+                #input
+                matInput
+                [formControlName]="$index"
+                [mask]="'separator.2'"
+                [prefix]="data?.withdrawSum && data?.balance?.amount && walletsArray.value[$index] ? '-' : ''"
+                placeholder="0.00"
+                type="tel"
+              />
+
+              @if (!rtlCurrencies[fleetCurrency]) {
+                <span class="tw-pr-1" matTextPrefix>
+                  {{ fleetCurrency | currencySymbol }}
+                </span>
+              }
+              @if (rtlCurrencies[fleetCurrency]) {
+                <span matTextSuffix>
+                  {{ fleetCurrency | currencySymbol }}
+                </span>
+              }
+            </mat-form-field>
+          </ng-container>
+        </div>
+      }
+    </ng-container>
+  </ng-container>
+</div>

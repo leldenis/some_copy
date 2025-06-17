@@ -1,0 +1,9 @@
+.avatar {
+  &-placeholder {
+    @apply tw-rounded-full tw-object-center tw-object-cover tw-grid tw-place-items-center tw-text-[28px];
+  }
+}
+
+.rounded {
+  @apply tw-rounded-full tw-object-center tw-object-cover;
+}

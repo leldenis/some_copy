@@ -1,0 +1,14 @@
+.general-container {
+  @apply tw-min-h-screen tw-flex tw-flex-col tw-relative;
+  @apply sm:tw-grid sm:tw-auto-rows-max sm:tw-gap-8 sm:tw-p-6;
+}
+
+.header {
+  @apply tw-flex tw-flex-col tw-p-md tw-gap-5 tw-pb-0;
+  @apply sm:tw-items-center sm:tw-flex-row sm:tw-gap-md sm:tw-p-0 sm:tw-shrink-0;
+}
+
+.stats {
+  @apply tw-flex tw-flex-col;
+  @apply sm:tw-grid sm:tw-gap-md sm:tw-auto-rows-auto sm:tw-grid-cols-[3fr_1fr]
+}

@@ -1,0 +1,40 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+.unlink-driver-vehicle {
+  padding: 1rem;
+
+  &__title {
+    @include m.set-font(f.px2rem(16), f.px2rem(18), 400, var(--danger-color));
+  }
+
+  &__actions {
+    margin-top: 1rem;
+
+    button {
+      &:first-child {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .description {
+    @include m.set-font(f.px2rem(14), f.px2rem(17), 400, var(--grey20-color));
+    margin-bottom: 1rem;
+  }
+
+  .mat-mdc-form-field {
+    margin-bottom: 1.25rem;
+  }
+
+}
+
+.link-img {
+  width: f.px2rem(120);
+  height: f.px2rem(90);
+  margin: 2rem 0;
+}
+
+button {
+  font-weight: 400;
+}

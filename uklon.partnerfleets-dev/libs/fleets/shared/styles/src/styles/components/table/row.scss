@@ -1,0 +1,40 @@
+@use '../../modifiers/toggleable';
+
+@mixin header-row() {
+  @apply tw-hidden sm:tw-grid;
+}
+
+@mixin core() {
+  @include toggleable.core();
+
+  @apply tw-grid tw-grid-cols-12 tw-col-span-12;
+  @apply tw-gap-x-2 sm:tw-gap-0;
+  @apply tw-shadow-sm sm:tw-shadow-none;
+  @apply tw-rounded sm:tw-rounded-none;
+  @apply sm:tw-border-b sm:tw-border-neutral-cloud;
+
+  &.flt-grid-24 {
+    @apply tw-grid tw-grid-cols-24 tw-col-span-24;
+  }
+
+  .flt-table-cell.flt-toggleable {
+    @apply tw-p-0;
+  }
+
+  &--opened {
+    .flt-table-cell {
+      &.flt-toggleable {
+        @apply tw-h-fit;
+        @apply [display:inherit];
+      }
+    }
+  }
+
+  &--closed {
+    .flt-table-cell {
+      &.flt-toggleable {
+        @apply tw-hidden;
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+<div class="header" [class.cancel]="state() === dialogState.CANCEL">
+  <div class="tw-text-dialogTitle">
+    @if (state() !== dialogState.CANCEL) {
+      {{ 'VehicleBrandingPeriod.Form.Title' | translate }} {{ data.licensePlate }}
+    } @else {
+      {{ 'VehicleBrandingPeriod.CancelVideoUploadDialog.Title' | translate }}
+    }
+  </div>
+
+  @if (state() !== dialogState.CANCEL) {
+    <button mat-icon-button (click)="onCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</div>
+
+<div [class.tw-hidden]="state() !== dialogState.FORM">
+  <div class="tw-grid tw-gap-md tw-p-md tw-pb-6">
+    @if (data.ticket?.status === ticketStatus.CLARIFICATION) {
+      <upf-ticket-status-reasons
+        reasonPath="VehicleBrandingPeriod.ClarificationReason."
+        [activeLogs]="clarificationReason()"
+      ></upf-ticket-status-reasons>
+    }
+
+    <upf-vehicle-branding-period-video-upload
+      [ticket]="data.ticket"
+      [monthlyCode]="data.code"
+      (fileUploaded)="fileUploaded.set($event)"
+      (uploadInProgress)="uploadInProgress.set($event)"
+    ></upf-vehicle-branding-period-video-upload>
+  </div>
+
+  <div class="tw-grid tw-gap-6">
+    @if (sendFailed()) {
+      <div class="tw-text-accent-coral-light tw-font-medium tw-text-base tw-px-md">
+        {{ 'VehicleBrandingPeriod.Form.SubmitError' | translate }}
+      </div>
+    }
+
+    <div class="footer">
+      <button mat-flat-button color="accent" (click)="onCloseDialog()">
+        {{ 'Common.Buttons.B_Cancel' | translate }}
+      </button>
+
+      <button mat-flat-button color="primary" [disabled]="!fileUploaded()" (click)="onSubmit()">
+        {{ 'PhotoControl.Form.SubmitButton' | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div [class.tw-hidden]="state() !== dialogState.SUCCESS" class="tw-py-14">
+  <div class="tw-grid tw-gap-6">
+    <div class="tw-flex tw-justify-center">
+      <mat-icon class="outlined success-icon">check_circle</mat-icon>
+    </div>
+
+    <div class="tw-grid tw-gap-3 tw-text-center">
+      <div class="tw-text-neutral-graphite tw-font-medium tw-text-lg">
+        {{ 'VehicleBrandingPeriod.Form.SuccessTitle' | translate }}
+      </div>
+      <div class="tw-text-neutral-smoke">{{ 'PhotoControl.Form.SuccessSubTitle' | translate }}</div>
+    </div>
+  </div>
+</div>
+
+<div [class.tw-hidden]="state() !== dialogState.CANCEL">
+  <div class="tw-text-base tw-text-neutral-granit tw-px-md tw-pb-6">
+    {{ 'VehicleBrandingPeriod.CancelVideoUploadDialog.MessageSingle' | translate }}
+  </div>
+
+  <div class="tw-flex tw-justify-between tw-p-md tw-border-t tw-border-neutral-silver">
+    <button mat-flat-button color="accent" (click)="onCancelUpload(true)">
+      <span class="tw-text-accent-coral-light">{{ 'Common.Buttons.B_Close' | translate }}</span>
+    </button>
+
+    <button mat-flat-button color="primary" (click)="onCancelUpload(false)">
+      {{ 'VehicleBrandingPeriod.CancelVideoUploadDialog.CancelBtn' | translate }}
+    </button>
+  </div>
+</div>

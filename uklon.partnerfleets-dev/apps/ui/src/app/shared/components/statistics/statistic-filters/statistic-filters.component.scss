@@ -1,0 +1,12 @@
+
+.upf-filter-section {
+  @apply tw-flex tw-flex-col tw-gap-md sm:tw-gap-8;
+
+  .upf-filters-title {
+    @apply tw-text-tmp tw-leading-4 tw-my-1 tw-font-medium tw-text-xl;
+  }
+
+  .upf-filter-form-field {
+    @apply tw-w-full sm:tw-w-72;
+  }
+}

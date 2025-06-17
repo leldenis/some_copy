@@ -1,0 +1,43 @@
+@use 'functions' as f;
+@use 'mixins' as m;
+
+:host {
+  ::ng-deep {
+    .mat-button-toggle-appearance-standard.cdk-keyboard-focused:not(.mat-button-toggle-disabled) .mat-button-toggle-focus-overlay {
+      opacity: 0;
+    }
+
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+      line-height: f.px2rem(32);
+    }
+
+    .mat-button-toggle-disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+.vehicle-type {
+  border: none;
+
+  .mat-button-toggle {
+    @include m.set-font(f.px2rem(14), f.px2rem(16), 400, var(--title-color));
+    letter-spacing: 0.0025em;
+    border-radius: f.px2rem(40);
+    background-color: var(--grey100-color);
+    min-width: f.px2rem(62);
+
+    &:not(:last-child) {
+      margin-right: f.px2rem(16);
+    }
+  }
+
+  .mat-button-toggle + .mat-button-toggle {
+    border: none;
+  }
+
+  mat-button-toggle.mat-button-toggle-checked {
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+  }
+}

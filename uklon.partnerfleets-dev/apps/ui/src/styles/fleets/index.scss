@@ -1,0 +1,16 @@
+@use "libs/fleets/shared/styles/src/styles/components/table" as table;
+@use "libs/fleets/shared/styles/src/styles/components/data-group" as d;
+@use "libs/fleets/shared/styles/src/styles/components/table-deprecated" as td;
+@use "libs/fleets/shared/styles/src/styles/components/filter-group" as f;
+@use "libs/fleets/shared/styles/src/styles/components/grid" as g;
+@use "libs/fleets/shared/styles/src/styles/typography" as t;
+@use "libs/fleets/shared/styles/src/styles/colors" as c;
+
+.upf-styles {
+  @include d.upfDataGroup;
+  @include g.upfColumnGrid(12);
+  @include t.upfTypography;
+  @include td.upfTable;
+  @include f.upfFilterFormGroup;
+  @include c.upf-colors;
+}

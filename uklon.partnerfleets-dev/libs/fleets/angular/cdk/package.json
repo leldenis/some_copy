@@ -1,0 +1,11 @@
+{
+  "name": "@uklon/fleets/angular/cdk",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^17.1.2",
+    "@angular/core": "^17.1.2"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
+}

@@ -1,0 +1,40 @@
+@use 'variables' as v;
+
+:host {
+  @apply tw-p-md tw-pt-0 tw-flex tw-flex-col tw-justify-between tw-h-full sm:tw-pt-md;
+
+  @media (max-width: v.$breakpoint-mobile-max) {
+    @apply tw-justify-start;
+
+    .account__link-agreement {
+      @apply tw-justify-between tw-max-w-lg;
+    }
+  }
+}
+
+.account-menu-item {
+  @apply tw-px-md tw-py-3 tw-flex tw-items-center tw-justify-between;
+
+  .label {
+    @apply tw-text-label tw-text-neutral-granit;
+  }
+
+  div {
+    @apply tw-text-base tw-text-neutral-graphite;
+  }
+}
+
+.account {
+  &__link-agreement {
+    @apply tw-flex tw-p-2 tw-items-center tw-bg-green-50 tw-rounded tw-text-base tw-gap-2;
+    @apply tw-mt-4 tw-max-w-fit tw-text-accent-mint-light;
+  }
+}
+
+.settings-btn {
+  @apply tw-w-8 tw-h-8 tw-leading-8;
+
+  .mat-icon {
+    @apply tw-text-neutral-smoke tw-text-icon tw-w-5 tw-h-5 tw-leading-5;
+  }
+}

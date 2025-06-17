@@ -1,0 +1,75 @@
+@let progress = uploadState()?.uploadProgress();
+@let error = uploadState()?.errorMessage();
+@let success = uploadState()?.uploadSuccess();
+@let pending = uploadState()?.pending();
+
+@if (progress) {
+  <div class="tw-flex tw-gap-md tw-items-center">
+    <mat-progress-bar
+      color="primary"
+      data-cy="vehicle-branding-progress-bar"
+      [value]="progress"
+      [style.width.px]="70"
+    ></mat-progress-bar>
+
+    <div class="tw-flex tw-gap-1 tw-items-center">
+      <div data-cy="vehicle-branding-progress-percent" class="tw-flex tw-shrink-0 tw-gap-0.5">{{ progress }} %</div>
+
+      <button data-cy="vehicle-branding-cancel-upload-btn" mat-icon-button (click)="onCancelUpload()">
+        <mat-icon class="icon-size-md">close</mat-icon>
+      </button>
+    </div>
+  </div>
+} @else if (error) {
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <button
+      mat-icon-button
+      color="accent"
+      class="small upload-btn"
+      data-cy="vehicle-branding-re-upload-btn"
+      (click)="fileSelect.click()"
+    >
+      <mat-icon class="icon-size-md tw-text-neutral-graphite" [svgIcon]="icons.upload"></mat-icon>
+    </button>
+
+    <div
+      data-cy="vehicle-branding-upload-error"
+      class="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-accent-coral-light tw-w-min"
+    >
+      {{ 'Common.FileUpload.UploadError' | translate }}
+      <mat-icon [ngxTippy]="error | translate: { data: maxSizeMb() }" class="outlined icon-size-md">info</mat-icon>
+    </div>
+  </div>
+} @else if (success) {
+  <div data-cy="vehicle-branding-upload-success" class="tw-flex tw-items-center tw-gap-2">
+    {{ 'VehicleBrandingPeriod.TicketStatus.Sent' | translate }}
+    <mat-icon class="outlined icon-size-md">check_circle</mat-icon>
+  </div>
+} @else if (pending) {
+  <mat-progress-spinner
+    diameter="20"
+    color="primary"
+    mode="indeterminate"
+    data-cy="vehicle-branding-pending-spinner"
+  ></mat-progress-spinner>
+} @else {
+  <button
+    mat-flat-button
+    color="accent"
+    class="small"
+    data-cy="vehicle-branding-upload-btn"
+    (click)="fileSelect.click()"
+  >
+    <mat-icon class="icon-size-md tw-text-neutral-graphite" [svgIcon]="icons.upload"></mat-icon>
+    {{ 'VehicleBrandingPeriod.TicketsList.Upload' | translate }}
+  </button>
+}
+
+<input
+  #fileSelect
+  hidden
+  type="file"
+  data-cy="vehicle-branding-file-input"
+  (change)="onFileSelect($event)"
+  [accept]="allowedExtensions()"
+/>

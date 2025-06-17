@@ -1,0 +1,37 @@
+:host {
+  ::ng-deep .mat-sort-header-arrow {
+    display: none;
+  }
+}
+
+.disabled-control {
+  @apply tw-bg-neutral-silver tw-rounded;
+}
+
+.grid-header {
+  @apply tw-text-base tw-grid tw-gap-md tw-items-center tw-w-full;
+  @apply tw-text-neutral-graphite tw-cursor-auto;
+  @apply tw-hidden tw-text-sm tw-text-neutral-smoke tw-h-12 sm:tw-grid;
+}
+
+.grid-row {
+  @apply tw-grid tw-gap-md tw-px-md tw-items-center tw-text-base tw-text-neutral-graphite;
+  @apply tw-border tw-border-transparent;
+  grid-template-columns:
+    minmax(0, 4fr) repeat(2, minmax(0, 2fr));
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #e0e0e0;
+    @apply max-sm:tw-border-none;
+  }
+
+  @apply max-sm:tw-shadow max-sm:tw-rounded max-sm:tw-h-auto max-sm:tw-p-2 max-sm:tw-grid-cols-[1fr_112px] max-sm:tw-gap-y-2;
+}
+
+.phone-link {
+  @apply tw-text-accent-mint-light tw-text-md sm:tw-text-neutral-granit sm:tw-text-base hover:tw-underline tw-w-fit;
+}
+
+.mat-icon {
+  @apply tw-text-accent-mint-light tw-w-5 tw-h-5 tw-leading-5 tw-text-icon;
+}

@@ -1,0 +1,47 @@
+:host {
+  @apply tw-text-neutral-graphite tw-text-base;
+}
+
+.header {
+  @apply tw-px-md tw-py-2.5 tw-flex tw-justify-between tw-items-center tw-border-b tw-border-neutral-silver;
+}
+
+.content {
+  @apply tw-text-neutral-graphite tw-text-base tw-leading-[22px];
+  @apply tw-grid tw-gap-md tw-py-md tw-pl-md tw-pr-3 tw-overflow-auto;
+  max-height: calc(100dvh - 168px);
+
+  .instruction-panel {
+    @apply tw-shadow-none tw-text-neutral-graphite;
+
+    &:not(:last-child) {
+      @apply tw-border-b tw-border-neutral-cloud;
+    }
+
+    .mat-expansion-panel-header {
+      @apply tw-p-0 tw-pr-1;
+
+      &:hover {
+        @apply tw-bg-white;
+      }
+    }
+
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        @apply tw-p-0 tw-pb-3;
+      }
+
+      &.mat-expanded .mat-expansion-indicator::after {
+        @apply tw-border-neutral-graphite;
+      }
+
+      .mat-expansion-indicator::after {
+        @apply tw-border-neutral-granit;
+      }
+    }
+  }
+
+  @screen sm {
+    max-height: 540px;
+  }
+}

@@ -1,0 +1,61 @@
+<mat-form-field floatLabel="always" class="tw-w-full sm:tw-w-auto">
+  <mat-label>
+    {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+  </mat-label>
+
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="autoVehicle"
+    [formControl]="filterControl"
+    [placeholder]="'Common.Filters.LicencePlate.Placeholder' | translate"
+    (keyup)="handleChange($event)"
+  />
+
+  @if (!selectedVehicleId) {
+    <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+  }
+  @if (selectedVehicleId) {
+    <mat-icon matIconSuffix class="tw-cursor-pointer" (click)="resetControl()">close</mat-icon>
+  }
+
+  <mat-autocomplete #autoVehicle="matAutocomplete" [displayWith]="displayWithFn">
+    <cdk-virtual-scroll-viewport
+      #scroller
+      [itemSize]="itemHeightPx"
+      [minBufferPx]="itemHeightPx * itemsPerPage"
+      [maxBufferPx]="panelHeightPx"
+      [style.height.px]="panelHeight$ | async"
+      (scrolledIndexChange)="handleScroll($event)"
+      class="autocomplete-viewport"
+    >
+      <mat-option
+        *cdkVirtualFor="let vehicle of filteredVehicles$ | async; trackBy: trackByFn"
+        class="!tw-p-0"
+        [value]="vehicle"
+        (onSelectionChange)="onSelectionChange($event)"
+        [attr.data-cy]="'vehicle-option-{{ vehicle.licencePlate }}'"
+      >
+        <div
+          *upfLet="vehicle.licencePlate as licencePlate"
+          class="tw-text-base tw-px-4 tw-truncate"
+          [innerHTML]="licencePlate | searchHighlight: (selectedVehicleId ? null : filterControl.value)"
+        >
+          {{ licencePlate }}
+        </div>
+      </mat-option>
+
+      @if (!vehicles$.value.length && !selectedVehicleId && filterControl.value) {
+        <mat-option disabled class="!tw-p-0">
+          <div class="tw-text-base tw-px-4 tw-truncate">
+            {{ 'Common.Filters.NoMatch' | translate }}
+          </div>
+        </mat-option>
+      }
+
+      @if (isLoading) {
+        <upf-progress-spinner></upf-progress-spinner>
+      }
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+</mat-form-field>

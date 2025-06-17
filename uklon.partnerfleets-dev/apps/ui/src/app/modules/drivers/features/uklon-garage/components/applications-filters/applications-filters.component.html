@@ -1,0 +1,48 @@
+<upf-filters-container
+  direction="row"
+  class="tw-w-full"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <form [formGroup]="filtersForm" upfNotificationsQueryParams class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always">
+      <mat-label>
+        {{ 'Common.Filters.Phone.Caption' | translate }}
+      </mat-label>
+
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="phone"
+        mask="000 (00) 000 00 00"
+        data-cy="driver-ticket-filter-Phone"
+        type="tel"
+        placeholder="{{ 'Common.Filters.Phone.Placeholder' | translate }}"
+      />
+
+      <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field data-cy="drivers-ticket-filter-Status">
+      <mat-label>{{ 'Drivers.Drivers.List.Condition' | translate }}</mat-label>
+
+      <mat-select formControlName="status" data-cy="drivers-tickets-Status">
+        <mat-option id="mat-option-0" [value]="''">
+          {{ 'DriverTicket.TicketStatusAll' | translate }}
+        </mat-option>
+
+        @for (status of applicationStatus | keyvalue; track status) {
+          <mat-option [value]="status.value" id="mat-option-{{ $index }}">
+            {{
+              'DriverTicket.UklonGarageApplicationStatus.' +
+                (status.value === applicationStatus.CLOSED_BY_PARALLEL_REGISTRATION
+                  ? 'ApprovedByManager'
+                  : status.value) | translate
+            }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>

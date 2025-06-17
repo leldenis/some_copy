@@ -1,0 +1,36 @@
+@let data = data$ | async;
+
+<ng-template #headerTpl>
+  <div class="tw-flex tw-items-center tw-gap-2">
+    <div class="tw-text-title">{{ 'PhotoControl.Panel.Title' | translate }} {{ data.license_plate }}</div>
+
+    <upf-status-badge color="primary">
+      {{ 'PhotoControl.TicketStatus.Sent' | translate }}
+    </upf-status-badge>
+  </div>
+</ng-template>
+
+<div class="tw-grow tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-3">
+  <img src="assets/images/photo_control_success.svg" alt="" />
+
+  <div class="tw-font-medium tw-text-lg tw-text-center">
+    {{ 'PhotoControl.Form.SuccessTitle' | translate }}
+  </div>
+
+  <upf-info-panel color="accent">
+    <ng-template upfInfoPanelSubtitle>
+      <span class="tw-text-neutral-graphite">{{ 'PhotoControl.Form.SuccessSubTitle' | translate }}</span>
+    </ng-template>
+  </upf-info-panel>
+</div>
+
+<div>
+  <a
+    [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, data.vehicle_id]"
+    mat-flat-button
+    color="accent"
+    class="tw-w-full !tw-py-1 tw-text-center"
+  >
+    {{ 'PhotoControl.Form.VehicleButton' | translate }}
+  </a>
+</div>

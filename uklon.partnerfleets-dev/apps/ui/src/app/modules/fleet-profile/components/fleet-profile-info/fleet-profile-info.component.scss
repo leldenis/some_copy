@@ -1,0 +1,24 @@
+:host {
+  @apply tw-p-md tw-pb-8 sm:tw-shadow-sm sm:tw-w-[412px] sm:tw-rounded-lg tw-h-fit tw-bg-white;
+
+  @screen sm {
+    min-height: calc(100vh - 88px);
+  }
+}
+
+.avatar {
+  @apply tw-rounded-full tw-text-2xl tw-leading-7;
+  @apply tw-w-[60px] tw-h-[60px] tw-grid tw-place-content-center tw-relative;
+
+  @screen sm {
+    @apply tw-w-[108px] tw-h-[108px] tw-text-4xl;
+  }
+}
+
+.flag {
+  @apply tw-rounded tw-absolute -tw-bottom-2 tw-left-1/2 -tw-translate-x-1/2;
+}
+
+.fleet-name {
+  @apply tw-font-medium tw-text-dialogTitle sm:tw-text-title;
+}

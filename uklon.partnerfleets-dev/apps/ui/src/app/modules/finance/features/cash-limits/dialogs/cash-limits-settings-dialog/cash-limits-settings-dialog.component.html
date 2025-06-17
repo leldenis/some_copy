@@ -1,0 +1,145 @@
+<div class="header" data-cy="cash-limits-dialog-title">
+  {{
+    (driversCouldBeBlocked() ? 'CashLimits.DriversSettingsDialog.ConfirmTitle' : 'CashLimits.SettingsDialog.Title')
+      | translate
+  }}
+
+  <button mat-icon-button (click)="onCloseDialog()" data-cy="cash-limits-dialog-close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+@if (driversCouldBeBlocked()) {
+  <div class="content tw-gap-3" data-cy="cash-limits-dialog-confirmation-message">
+    <div>
+      {{
+        (driverToBeBlocked().length === 1
+          ? 'CashLimits.DriversSettingsDialog.ConfirmMessageSingle'
+          : 'CashLimits.DriversSettingsDialog.ConfirmMessagePlural'
+        ) | translate
+      }}
+    </div>
+
+    <div class="chips-container">
+      <mat-chip-listbox>
+        @for (driver of driverToBeBlocked(); track $index) {
+          <mat-chip data-cy="cash-limits-dialog-driver-chip">{{ driver | fullName }}</mat-chip>
+        }
+      </mat-chip-listbox>
+    </div>
+  </div>
+} @else {
+  <form class="content tw-gap-6" [formGroup]="cashLimitsForm">
+    <div class="tw-grid tw-gap-md">
+      <div>{{ 'CashLimits.SettingsDialog.PeriodTitle' | translate }}</div>
+
+      <mat-radio-group
+        class="tw-grid tw-gap-3"
+        color="primary"
+        formControlName="period"
+        (change)="reportPeriodChange($event.value)"
+      >
+        @for (option of periodsOptions; track $index) {
+          <mat-radio-button [value]="option" [attr.data-cy]="'cash-limits-dialog-period-radio-' + option">
+            {{ 'CashLimits.Period.' + option | translate }}
+          </mat-radio-button>
+        }
+      </mat-radio-group>
+
+      <upf-info-panel color="accent">
+        {{ 'CashLimits.SettingsDialog.PeriodDisclaimer' | translate }}
+      </upf-info-panel>
+    </div>
+
+    <div class="tw-grid tw-gap-md">
+      <div>{{ 'CashLimits.SettingsDialog.LimitTitle' | translate }}</div>
+
+      <mat-radio-group
+        class="tw-grid tw-gap-3"
+        color="primary"
+        formControlName="enabled"
+        (change)="reportTypeChange($event.value)"
+      >
+        @for (option of limitsOptions; track $index) {
+          <mat-radio-button [value]="option.value" [attr.data-cy]="'cash-limits-dialog-limit-radio-' + option.value">
+            <div>
+              <div class="tw-font-medium">
+                {{
+                  option.value
+                    ? ('CashLimits.Limit.FleetLimit' | translate) +
+                      ' (' +
+                      ('CashLimits.SettingsDialog.SetLimit' | translate) +
+                      ')'
+                    : ('CashLimits.Limit.NoLimit' | translate)
+                }}
+              </div>
+
+              <div class="tw-text-sm tw-leading-4">{{ option.description | translate }}</div>
+            </div>
+          </mat-radio-button>
+        }
+      </mat-radio-group>
+
+      @if (currency(); as fleetCurrency) {
+        @let currency = fleetCurrency | currencySymbol;
+
+        @if (cashLimitsForm.value.enabled) {
+          <div class="tw-grid tw-gap-1" [@growVertical]>
+            <mat-form-field class="tw-w-[180px]" floatLabel="always" subscriptSizing="fixed">
+              <mat-label>{{ 'CashLimits.SettingsDialog.LimitAmountLabel' | translate }}</mat-label>
+
+              <span class="tw-pl-md" matPrefix>{{ currency }}</span>
+
+              <input matInput mask="0*" formControlName="amount" data-cy="cash-limits-dialog-amount-input" />
+
+              <mat-error>
+                {{ 'Modals.WithdrawToCard.Required' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <upf-info-panel color="accent">
+              @let period =
+                (cashLimitsForm.value.period === limitPeriod.WEEK
+                  ? 'CashLimits.SettingsDialog.PeriodDisclaimerWeek'
+                  : 'CashLimits.Period.Day'
+                )
+                  | translate
+                  | lowercase;
+
+              {{
+                'CashLimits.SettingsDialog.LimitDisclaimer'
+                  | translate
+                    : {
+                        period,
+                        currency,
+                        amount: cashLimitsForm.value.amount ?? '',
+                      }
+              }}
+            </upf-info-panel>
+          </div>
+        }
+      }
+    </div>
+  </form>
+}
+
+<div class="footer" [class.!tw-justify-between]="driversCouldBeBlocked()">
+  @if (driversCouldBeBlocked()) {
+    <button mat-flat-button data-cy="cash-limits-dialog-cancel-btn" color="accent" (click)="onCloseDialog()">
+      {{ 'Common.Buttons.B_Cancel' | translate }}
+    </button>
+  }
+
+  <button
+    mat-flat-button
+    data-cy="cash-limits-dialog-save-btn"
+    class="tw-justify-self-end"
+    [color]="driversCouldBeBlocked() ? 'accent' : 'primary'"
+    [disabled]="!cashLimitsForm.valid"
+    (click)="onSubmit(driversCouldBeBlocked())"
+  >
+    <span [class.tw-text-accent-coral-light]="driversCouldBeBlocked()">
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </span>
+  </button>
+</div>

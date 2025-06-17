@@ -1,0 +1,36 @@
+<div class="tw-flex tw-flex-col tw-gap-2">
+  <div class="tw-text-title tw-font-medium">
+    {{ 'VehicleBrandingPeriod.Form.Title' | translate }} {{ licensePlate }}
+  </div>
+
+  <upf-status-badge color="accent">
+    {{ 'PhotoControl.TicketStatus.Sent' | translate }}
+  </upf-status-badge>
+</div>
+
+<div class="tw-grow tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-3">
+  <img ngSrc="assets/images/photo_control_success.svg" width="234" height="162" alt="" priority />
+
+  <div class="tw-font-medium tw-text-lg tw-text-center">
+    {{ 'VehicleBrandingPeriod.Form.SuccessTitle' | translate }}
+  </div>
+
+  <upf-info-panel color="accent">
+    <ng-template upfInfoPanelSubtitle>
+      <div class="tw-text-neutral-graphite -tw-ml-7 tw-text-center tw-px-md">
+        {{ 'PhotoControl.Form.SuccessSubTitle' | translate }}
+      </div>
+    </ng-template>
+  </upf-info-panel>
+</div>
+
+<footer>
+  <a
+    [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, vehicleId]"
+    mat-flat-button
+    color="accent"
+    class="tw-w-full !tw-py-1 tw-text-center"
+  >
+    {{ 'PhotoControl.Form.VehicleButton' | translate }}
+  </a>
+</footer>

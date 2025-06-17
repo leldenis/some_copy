@@ -1,0 +1,23 @@
+{
+  "id":"1fad966a-b2f4-427b-a0da-4b04be5f871f",
+  "first_name":"Aqadpilu404",
+  "last_name":"Aqaafeyh404",
+  "phone":"380506326599",
+  "license":"abkix",
+  "signal":500265,
+  "email":"404linct@uklon.aqa",
+  "rating":500,
+  "karma":{
+    "calculation_metrics":{
+      "completed_count":0,
+      "rejected_count":0,
+      "canceled_count":0
+    },
+    "calculated_at":1666359379,
+    "orders_to_calculation":0,
+    "reset_count":0,
+    "group":"FirstPriority",
+    "value":100
+  },
+  "employed_from":1666359379
+}

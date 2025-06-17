@@ -1,0 +1,34 @@
+{
+  "name": "@uklon/gateways/data-access/identity",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gateways/data-access/identity/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gateways/data-access/identity",
+        "tsConfig": "libs/gateways/data-access/identity/tsconfig.lib.json",
+        "packageJson": "libs/gateways/data-access/identity/package.json",
+        "main": "libs/gateways/data-access/identity/src/index.ts",
+        "assets": ["libs/gateways/data-access/identity/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/gateways/data-access/identity"
+      ],
+      "options": {
+        "jestConfig": "libs/gateways/data-access/identity/jest.config.ts",
+        "testTimeout": 20000
+      }
+    }
+  },
+  "tags": []
+}

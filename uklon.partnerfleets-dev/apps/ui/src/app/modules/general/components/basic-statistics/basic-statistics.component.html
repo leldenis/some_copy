@@ -1,0 +1,73 @@
+<div class="tw-grid tw-justify-items-center tw-gap sm:tw-block">
+  <section class="statistics-scroller">
+    <article class="statistics-block" #scrollItem data-index="1">
+      <span class="tw-text-base title">
+        {{ 'Dashboard.Statistics.TotalEarnings' | translate }}
+      </span>
+
+      <span class="info">
+        {{ stats()?.gross_income?.amount / 100 | upfMoney: stats()?.gross_income?.currency }}
+      </span>
+
+      <p class="additional-info tw-flex tw-gap-md tw-items-center">
+        <span>
+          {{ 'Dashboard.Statistics.Commission' | translate }}:
+          <b>{{ stats()?.fee_amount?.amount / 100 | upfMoney: stats()?.fee_amount?.currency }}</b>
+        </span>
+
+        <span>
+          {{ 'Dashboard.Statistics.NetEarnings' | translate }}:
+          <b>{{ stats()?.profit_amount?.amount / 100 | upfMoney: stats()?.profit_amount?.currency }}</b>
+        </span>
+      </p>
+    </article>
+
+    <mat-divider vertical></mat-divider>
+
+    <article class="statistics-block" #scrollItem data-index="2">
+      <span class="tw-text-base title">
+        {{ 'Dashboard.Statistics.FulfilledOrders' | translate }}
+      </span>
+
+      <span class="info">{{ stats()?.total_orders_count || 0 }}</span>
+
+      <p class="additional-info">
+        {{ 'Dashboard.Statistics.Mileage' | translate }}:
+        <b>{{ stats()?.total_distance_meters | metersToDistance }} {{ 'Common.Km' | translate }}</b>
+      </p>
+    </article>
+
+    <mat-divider vertical></mat-divider>
+
+    <article class="statistics-block" #scrollItem data-index="3">
+      <span class="tw-text-base title">
+        {{ 'Dashboard.Statistics.AverageOrderCost' | translate }}
+      </span>
+
+      <span class="info">
+        {{ stats()?.average_order_cost?.amount / 100 | upfMoney: stats()?.average_order_cost?.currency }}
+      </span>
+
+      <p class="additional-info">
+        {{ 'Dashboard.Statistics.AveragePrice' | translate }}:
+        <b>
+          {{
+            stats()?.average_price_per_kilometer?.amount / 100
+              | upfMoney: stats()?.average_price_per_kilometer?.currency
+          }}/{{ 'Common.Km' | translate }}
+        </b>
+      </p>
+    </article>
+  </section>
+
+  @if (scrollIndex$ | async; as scrollIndex) {
+    <div class="tw-flex tw-gap-1.5 sm:tw-hidden">
+      @for (dot of navigationDots; track $index) {
+        <span
+          class="tw-inline-block tw-w-2 tw-h-2 tw-bg-neutral-300 tw-rounded-full tw-transition-colors"
+          [ngClass]="{ '!tw-bg-accent-mint-light': scrollIndex === $index + 1 }"
+        ></span>
+      }
+    </div>
+  }
+</div>

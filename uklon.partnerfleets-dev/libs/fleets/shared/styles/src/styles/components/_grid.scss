@@ -1,0 +1,7 @@
+@mixin upfColumnGrid($numberOfColumns) {
+  @for $columnNumber from 1 to $numberOfColumns + 1 {
+    .upf-grid-#{$columnNumber}-cols {
+      grid-column: span $columnNumber;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@if (form) {
+  <div class="courier-restriction">
+    <div class="tw-text-heading tw-font-medium tw-my-1">
+      {{ 'Couriers.CourierDetails.Restrictions.Title' | translate }}
+    </div>
+
+    <form [formGroup]="form" class="restriction-group tw-gap-2 tw-flex tw-flex-col">
+      <div class="tw-text-neutral-granit tw-text-sm tw-flex tw-justify-between sm:tw-text-base">
+        <div>
+          {{ 'Couriers.CourierDetails.Restrictions.OrderGroup.Title' | translate }}
+        </div>
+        <div>
+          {{ 'Couriers.CourierDetails.Restrictions.OrderGroup.Subtitle' | translate }}
+        </div>
+      </div>
+
+      <div class="restriction-group__list">
+        <div class="restriction-group__item">
+          <div class="restriction-item">
+            <div class="restriction-item__toggle">
+              <mat-slide-toggle
+                (change)="changeRestriction($event.checked, restrictionType.CASH)"
+                formControlName="cash"
+              ></mat-slide-toggle>
+            </div>
+
+            <div class="restriction-item__description">
+              <div class="description-title">
+                {{ 'Common.Enums.CourierRestriction.Title.Cash' | translate }}
+              </div>
+
+              <div class="description-subtitle">
+                {{ 'Common.Enums.CourierRestriction.Description.Cash' | translate }}
+              </div>
+            </div>
+
+            @if (restrictionReasonMap.get(cashRestrictionSettings?.restricted_by)) {
+              <upf-status-badge
+                [color]="restrictionReasonBadgeMap.get(cashRestrictionSettings.restricted_by) ? 'warn' : 'success'"
+              >
+                {{ restrictionReasonMap.get(cashRestrictionSettings.restricted_by) | translate }}
+              </upf-status-badge>
+            }
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="tw-text-neutral-granit tw-text-sm tw-flex tw-justify-between sm:tw-text-base">
+      {{ 'Drivers.Drivers.Restriction.FinanceGroup.Title' | translate }}
+    </div>
+
+    <form [formGroup]="form" class="restriction-group tw-gap-2 tw-flex tw-flex-col">
+      <div class="restriction-group__list">
+        <div class="restriction-group__item">
+          <div class="restriction-item">
+            <div class="restriction-item__toggle">
+              <mat-slide-toggle [disabled]="true"></mat-slide-toggle>
+            </div>
+
+            <div class="restriction-item__description">
+              <div class="description-title">
+                {{ 'Drivers.Drivers.Restriction.FinanceGroup.OrderPaymentToCard.Title' | translate }}
+              </div>
+
+              <div class="description-subtitle">
+                {{ 'Drivers.Drivers.Restriction.FinanceGroup.OrderPaymentToCard.Subtitle' | translate }}
+              </div>
+            </div>
+
+            <upf-status-badge color="warn">
+              {{ 'Common.Enums.RestrictionReason.Title.Manager' | translate }}
+            </upf-status-badge>
+          </div>
+        </div>
+
+        <div class="restriction-group__item">
+          <div class="restriction-item">
+            <div class="restriction-item__toggle">
+              <mat-slide-toggle [disabled]="true"></mat-slide-toggle>
+            </div>
+
+            <div class="restriction-item__description">
+              <div class="description-title">
+                {{ 'Drivers.Drivers.Restriction.FinanceGroup.WalletToCardTransfer.Title' | translate }}
+              </div>
+
+              <div class="description-subtitle">
+                {{ 'Drivers.Drivers.Restriction.FinanceGroup.WalletToCardTransfer.Subtitle' | translate }}
+              </div>
+            </div>
+
+            <upf-status-badge color="warn">
+              {{ 'Common.Enums.RestrictionReason.Title.Manager' | translate }}
+            </upf-status-badge>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+}

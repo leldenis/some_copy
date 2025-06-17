@@ -1,0 +1,64 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+@use 'variables' as v;
+
+:host {
+  @apply tw-flex tw-flex-wrap;
+}
+
+.progress-stepper {
+  @apply tw-flex tw-w-1/2 tw-pt-4 tw-pb-4;
+
+  &__icon-wrapper {
+    @apply tw-flex tw-justify-center tw-items-center tw-w-10 tw-h-10 tw-rounded-full tw-bg-white tw-mr-3;
+
+    &.active {
+      background-color: var(--alerts-bg-green);
+    }
+
+    &.completed {
+      background-color: var(--success-color);
+    }
+  }
+
+  &__icon {
+    @apply tw-h-4 tw-w-3;
+
+    &-md {
+      @apply tw-h-4 tw-w-5;
+    }
+  }
+
+  &__title {
+    @include m.set-font(f.px2rem(10), f.px2rem(14), 500, var(--grey50-color));
+  }
+
+  &__description {
+    @apply tw-text-tmp;
+    color: var(--grey20-color);
+  }
+
+  &:not(:first-child) {
+    padding-left: f.px2rem(24);
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .progress-stepper {
+    &:not(:first-child) {
+      padding-left: 1rem;
+    }
+
+    &__content {
+      max-width: f.px2rem(120);
+
+      &:last-child {
+        max-width: f.px2rem(100);
+      }
+    }
+
+    &__description {
+      @apply tw-text-base;
+    }
+  }
+}

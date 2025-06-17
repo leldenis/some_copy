@@ -1,0 +1,672 @@
+@switch (info.change_type) {
+  <!-- PictureUploaded -->
+  @case (changeType.PICTURE_UPLOADED) {
+    <div class="history-item">
+      <small class="tw-text-body">{{ 'DriverHistory.Titles.Photo' | translate }}</small>
+
+      <p>{{ 'DriverHistory.Pictures.' + info.details.type | translate }}</p>
+    </div>
+  }
+  @case (changeType.WITHDRAWAL_TYPE_CHANGED) {
+    <div class="history-item">
+      <p>
+        {{ 'DriverHistory.WithdrawalTypeChanged.' + info.details['withdrawal_type'] | translate }}
+      </p>
+    </div>
+  }
+  @case (changeType.B2B_SPLIT_ADJUSTMENT_CHANGED) {
+    <div>
+      <ng-container *ngTemplateOutlet="b2bBalanceSplitTpl; context: { $implicit: info }"></ng-container>
+    </div>
+  }
+  @case (changeType.B2B_SPLIT_DISTRIBUTION_CHANGED) {
+    <div>
+      <ng-container *ngTemplateOutlet="b2bBalanceSplitTpl; context: { $implicit: info }"></ng-container>
+    </div>
+  }
+  @case (changeType.INDIVIDUAL_ENTREPRENEUR_CHANGED) {
+    @if (parseIndividualEntrepreneurUpdatedDetails(info?.details); as details) {
+      @switch (details.updateType) {
+        @case ('Changed') {
+          @if (isMobileView$ | async) {
+            <upf-individual-entrepreneur-changed-details-mobile
+              [oldName]="details.oldName"
+              [newName]="details.newName"
+              [oldPaymentProviders]="details.oldPaymentProviders"
+              [newPaymentProviders]="details.newPaymentProviders"
+            ></upf-individual-entrepreneur-changed-details-mobile>
+          } @else {
+            <upf-individual-entrepreneur-changed-details-desktop
+              [oldName]="details.oldName"
+              [newName]="details.newName"
+              [oldPaymentProviders]="details.oldPaymentProviders"
+              [newPaymentProviders]="details.newPaymentProviders"
+            ></upf-individual-entrepreneur-changed-details-desktop>
+          }
+        }
+        @case ('Added') {
+          <upf-individual-entrepreneur-updated-details
+            [changeType]="details.updateType"
+            [name]="details.newName"
+            [paymentProviders]="details.newPaymentProviders"
+          ></upf-individual-entrepreneur-updated-details>
+        }
+        @case ('Deleted') {
+          <upf-individual-entrepreneur-updated-details
+            [changeType]="details.updateType"
+            [name]="details.oldName"
+            [paymentProviders]="details.oldPaymentProviders"
+          ></upf-individual-entrepreneur-updated-details>
+        }
+        @case ('Recovered') {
+          <upf-individual-entrepreneur-updated-details
+            [changeType]="details.updateType"
+            [name]="details.newName"
+            [paymentProviders]="details.newPaymentProviders"
+          ></upf-individual-entrepreneur-updated-details>
+        }
+      }
+    }
+  }
+  @case (changeType.PAYMENT_IDENTIFICATION_STATUS_CHANGED) {
+    <div class="history-item">
+      <ng-container *ngTemplateOutlet="paymentIdentificationStatusTpl; context: { $implicit: info }"></ng-container>
+    </div>
+  }
+
+  <!-- RestrictionsChanged -->
+  @case (changeType.RESTRICTIONS_CHANGED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.added?.length) {
+        <div class="history-item">
+          <small class="tw-text-accent-coral-light">
+            {{ 'DriverHistory.Titles.AppliedRestrictions' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (item of info.details.added; track item) {
+              <span>
+                {{ 'Const.RestrictionReasonGroup.Enum.Restriction.' + item | translate }}
+
+                @if (info.details?.context?.['cash_limit_exceeded']) {
+                  {{ '/ ' + ('DriverHistory.Context.RestrictionReason.CashLimitExceeded' | translate) }}
+                }
+              </span>
+            }
+          </p>
+        </div>
+      }
+
+      @if (info.details?.removed?.length && info.details?.added?.length) {
+        <mat-divider vertical class="tw-shrink-0"></mat-divider>
+      }
+
+      @if (info.details?.removed?.length) {
+        <div class="history-item">
+          <small class="tw-text-accent-mint-light">
+            {{ 'DriverHistory.Titles.CanceledRestrictions' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (item of info.details.removed; track item) {
+              <span>
+                {{ 'Const.RestrictionReasonGroup.Enum.Restriction.' + item | translate }}
+
+                @if (info?.details?.context && info?.details?.context?.['cash_limit_counter_was_reset'] !== undefined) {
+                  {{
+                    '/ ' +
+                      ((info?.details?.context?.['cash_limit_counter_was_reset']
+                        ? 'DriverHistory.Context.RestrictionReason.CashLimitWasReset'
+                        : 'DriverHistory.Context.RestrictionReason.CashLimitWasNotReset'
+                      ) | translate)
+                  }}
+                }
+              </span>
+            }
+          </p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- FinanceProfileChanged -->
+  @case (changeType.FINANCE_PROFILE_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-md">
+        @if (info.details?.new_order_payment_to_card || info.details?.new_wallet_to_card_transfer) {
+          <div class="history-item">
+            <small class="tw-text-accent-mint-light">{{ 'DriverHistory.Titles.Enabled' | translate }}</small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (profile of financeProfileIntl | keyvalue; track profile) {
+                @if ($any(info.details)[profile.key] !== undefined && $any(info.details)[profile.key]) {
+                  <span>
+                    {{ profile.value | translate }}
+                  </span>
+                }
+              }
+            </p>
+          </div>
+        }
+
+        <!-- Have to check against false, coz it might me undefined -->
+        @if (info.details?.new_order_payment_to_card === false || info.details?.new_wallet_to_card_transfer === false) {
+          <div class="history-item">
+            <small class="tw-text-accent-coral-light" data-cy="history-details-disabled">
+              {{ 'DriverHistory.Titles.Disabled' | translate }}
+            </small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (profile of financeProfileIntl | keyvalue; track profile) {
+                @if ($any(info.details)[profile.key] !== undefined && !$any(info.details)[profile.key]) {
+                  <span data-cy="history-details-value">
+                    {{ profile.value | translate }}
+                  </span>
+                }
+              }
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ProfileChanged -->
+  @case (changeType.PROFILE_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-2">
+        @for (prop of profileChangeProps; track prop) {
+          @if (profileHistoryPropsMap[prop]; as props) {
+            @if (!!info.details && (info.details[props.new] || info.details[props.old])) {
+              @if (prop !== 'payment_details') {
+                <div class="tw-flex tw-gap-1 sm:tw-gap-md">
+                  <div class="history-item history-item-col">
+                    <small data-cy="history-changed-field-label">
+                      {{ 'DriverHistory.Titles.Property' | translate }}
+                    </small>
+                    <p>{{ 'DriverHistory.ProfileChangeProperties.' + prop | translate }}</p>
+                  </div>
+
+                  <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+                  <div class="history-item history-item-col">
+                    <small class="tw-text-accent-coral-light" data-cy="history-old-value-label">
+                      {{ 'DriverHistory.Titles.OldProperty' | translate }}
+                    </small>
+
+                    <div data-cy="history-old-value">
+                      <ng-container
+                        [ngTemplateOutlet]="changedProfileProp"
+                        [ngTemplateOutletContext]="{ $implicit: info.details[props.old], prop }"
+                      ></ng-container>
+                    </div>
+                  </div>
+
+                  <div class="history-item history-item-col">
+                    <small class="tw-text-accent-mint-light" data-cy="history-new-value-label">
+                      {{ 'DriverHistory.Titles.NewProperty' | translate }}
+                    </small>
+
+                    <div data-cy="history-new-value">
+                      <ng-container
+                        [ngTemplateOutlet]="changedProfileProp"
+                        [ngTemplateOutletContext]="{ $implicit: info.details[props.new], prop }"
+                      ></ng-container>
+                    </div>
+                  </div>
+                </div>
+              } @else {
+                @if (profileHistoryPropsMap['payment_details']; as props) {
+                  <div class="tw-grid tw-gap-2">
+                    @for (item of paymentDetailsMap | keyvalue; track item) {
+                      <div class="tw-flex tw-gap-md">
+                        <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+                          <small data-cy="history-new-value">{{ 'DriverHistory.Titles.Property' | translate }}</small>
+
+                          <p>{{ 'DriverHistory.ProfileChangeProperties.PaymentDetails.' + item.key | translate }}</p>
+                        </div>
+
+                        <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+                        <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+                          <small class="tw-text-accent-coral-light" data-cy="history-old-value">
+                            {{ 'DriverHistory.Titles.OldProperty' | translate }}
+                          </small>
+
+                          @if ($any(info.details.old_payment_details)[$any(item.key)]; as changedValue) {
+                            <p>
+                              <ng-container
+                                [ngTemplateOutlet]="changedPaymentProp"
+                                [ngTemplateOutletContext]="{ $implicit: item.key, value: changedValue }"
+                              ></ng-container>
+                            </p>
+                          } @else {
+                            <p>-</p>
+                          }
+                        </div>
+
+                        <div class="history-item tw-basis- sm:tw-w-36">
+                          <small class="tw-text-accent-mint-light">
+                            {{ 'DriverHistory.Titles.NewProperty' | translate }}
+                          </small>
+
+                          @if ($any(info.details.new_payment_details)[$any(item.key)]; as changedValue) {
+                            <p>
+                              <ng-container
+                                [ngTemplateOutlet]="changedPaymentProp"
+                                [ngTemplateOutletContext]="{ $implicit: item.key, value: changedValue }"
+                              ></ng-container>
+                            </p>
+                          } @else {
+                            <p>-</p>
+                          }
+                        </div>
+                      </div>
+
+                      @if (!$last) {
+                        <mat-divider></mat-divider>
+                      }
+                    }
+                  </div>
+                }
+              }
+
+              <mat-divider class="profile-divider"></mat-divider>
+            }
+          }
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ProductRulesActivationsChanged -->
+  @case (changeType.PRODUCT_RULES_ACTIVATIONS_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-md">
+        @for (productType of productActivationRules | keyvalue; track productType) {
+          <div class="tw-flex tw-flex-col tw-gap-md tw-text-neutral-graphite sm:tw-flex-row">
+            <span class="tw-text-base">
+              {{ 'Common.AvailableProduct.' + ($any(productType.key) | normalizeString) | translate }}
+            </span>
+
+            <mat-divider vertical class="!tw-hidden tw-flex-shrink-0 sm:tw-block"></mat-divider>
+
+            <div class="tw-grid tw-gap-3">
+              <div class="tw-grid tw-grid-cols-2 tw-gap-md tw-text-base">
+                <span class="tw-text-accent-coral-light">{{ 'DriverHistory.Titles.OldProperty' | translate }}</span>
+                <span class="tw-text-accent-mint-light">{{ 'DriverHistory.Titles.NewProperty' | translate }}</span>
+              </div>
+
+              @for (ruleType of productType.value | keyvalue; track ruleType) {
+                <div class="tw-grid tw-grid-cols-2 tw-gap-y-1 tw-gap-x-md">
+                  <span class="tw-col-start-1 tw-col-end-3 tw-text-body tw-text-neutral-granit">
+                    {{ 'DriverHistory.AvailabilitySettings.' + ruleType.key | translate }}
+                  </span>
+
+                  @for (property of ruleType.value | keyvalue; track property) {
+                    <div class="tw-flex tw-gap-md">
+                      <div class="tw-grid tw-gap-1">
+                        @for (type of $any(property.value) | keyvalue; track type) {
+                          <span>
+                            <span
+                              class="tw-text-accent-coral-light tw-w-8 tw-font-bold"
+                              [ngClass]="{ 'tw-text-accent-mint-light': type.value }"
+                            >
+                              {{ type.value ? 'on' : 'off' }} •
+                            </span>
+
+                            {{ 'DriverHistory.AvailabilitySettings.' + type.key | translate }}
+                          </span>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ProductEditByDriverChanged -->
+  @case (changeType.PRODUCT_EDIT_BY_DRIVER_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-2">
+        @for (product of productEditableByDriverMap | keyvalue; track product) {
+          <div class="tw-flex tw-gap-md">
+            <div class="history-item">
+              <small>{{ 'DriverHistory.Titles.ProductName' | translate }}</small>
+
+              <p>{{ 'Common.AvailableProduct.' + (product.key | normalizeString) | translate }}</p>
+            </div>
+
+            <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+            <div class="history-item">
+              <small>{{ 'DriverHistory.Titles.DriverEditability' | translate }}</small>
+
+              <p>{{ (product.value ? 'DriverHistory.Allowed' : 'DriverHistory.NotAllowed') | translate }}</p>
+            </div>
+          </div>
+
+          @if (!$last) {
+            <mat-divider></mat-divider>
+          }
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ProductAvailabilityChanged -->
+  @case (changeType.PRODUCT_AVAILABILITY_CHANGED) {
+    <div>
+      <div class="tw-flex tw-gap-md">
+        @if (info.details?.became_available?.length) {
+          <div class="history-item">
+            <small class="tw-text-accent-mint-light" data-cy="history-product-enabled-label">
+              {{ 'DriverHistory.Titles.Enabled' | translate }}
+            </small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (product of info.details.became_available; track product) {
+                <span>
+                  {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                </span>
+              }
+            </p>
+          </div>
+        }
+
+        @if (info.details?.became_available?.length && info.details?.became_unavailable?.length) {
+          <mat-divider vertical class="tw-shrink-0"></mat-divider>
+        }
+
+        @if (info.details?.became_unavailable?.length) {
+          <div class="history-item">
+            <small class="tw-text-accent-coral-light" data-cy="history-product-disabled-label">
+              {{ 'DriverHistory.Titles.Disabled' | translate }}
+            </small>
+
+            <p class="tw-flex tw-gap-md">
+              @for (product of info.details.became_unavailable; track product) {
+                <span>
+                  {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                </span>
+              }
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Blocked list - Blocked Reason -->
+  @case (changeType.BLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.reason) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details.reason, changeType: changeType.BLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+  <!-- / Blocked list - Blocked Reason -->
+
+  <!-- Blocked list - Unblocked Reason -->
+  @case (changeType.UNBLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details?.reason) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details.reason, changeType: changeType.UNBLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+  <!-- / Blocked list - Unblocked Reason -->
+
+  <!-- Cash Limit Change -->
+  @case (changeType.CASH_LIMIT) {
+    <div>
+      <ng-container *ngTemplateOutlet="cashLimitChangedTpl; context: { $implicit: info }"></ng-container>
+    </div>
+  }
+}
+
+<ng-template #blockedListTpl let-reason let-changeType="changeType">
+  <div class="history-item">
+    <small class="tw-text-accent-coral-light" data-cy="history-product-disabled-label">
+      {{ 'BlockedList.Reason' | translate }}
+    </small>
+
+    <p class="tw-flex tw-gap-md" data-cy="history-product-disabled-reason">
+      {{
+        (reason === statusReason.OTHER ? 'BlockedList.Reasons.' + reason + changeType : 'BlockedList.Reasons.' + reason)
+          | translate
+      }}
+    </p>
+  </div>
+</ng-template>
+
+<!-- Templates -->
+
+<ng-template #changedPaymentProp let-key let-value="value">
+  @if (key === 'account_type') {
+    {{ 'DriverHistory.Enums.' + value | translate }}
+  }
+  @if (key !== 'account_type') {
+    {{ value }}
+  }
+</ng-template>
+
+<ng-template #changedProfileProp let-data let-prop="prop">
+  @if (prop === 'date_of_birth' || prop === 'license_till') {
+    <p>
+      {{ (data | seconds2Date) || '-' }}
+    </p>
+  }
+
+  @if (prop !== 'date_of_birth' && prop !== 'license_till' && prop !== 'disability_types') {
+    <p>
+      {{ data || '-' }}
+    </p>
+  }
+
+  @if (prop === 'disability_types') {
+    @if (data?.length > 0) {
+      @for (item of data; track $index) {
+        <p>{{ 'DriverHistory.DisabilityType.' + item | translate }}</p>
+      }
+    } @else {
+      <p>{{ 'DriverHistory.DisabilityType.Nothing' | translate }}</p>
+    }
+  }
+</ng-template>
+
+<ng-template #b2bBalanceSplitTpl let-info>
+  <div class="tw-grid tw-gap-2">
+    <div class="tw-flex tw-gap-md">
+      <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+        <small class="tw-text-accent-coral-light" data-cy="history-old-value-label">
+          {{ 'CourierHistory.Titles.OldProperty' | translate }}
+        </small>
+
+        <p data-cy="history-old-value">
+          {{
+            info.details.old_value
+              ? ('DriverHistory.ProfileChangeProperties.B2BSplitBalance.' + info.details.old_value | translate)
+              : '-'
+          }}
+        </p>
+      </div>
+
+      <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+      <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+        <small class="tw-text-accent-mint-light" data-cy="history-new-value-label">
+          {{ 'CourierHistory.Titles.NewProperty' | translate }}
+        </small>
+
+        <p data-cy="history-new-value">
+          {{
+            info?.details?.current_value
+              ? ('DriverHistory.ProfileChangeProperties.B2BSplitBalance.' + info.details.current_value | translate)
+              : '-'
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #paymentIdentificationStatusTpl let-info>
+  <div class="tw-flex tw-flex-col tw-gap-2">
+    @for (item of info.details?.payment_provider_identification_statuses; track $index) {
+      <div class="tw-flex tw-flex-row tw-gap-2">
+        <div class="text-base tw-min-w-[110px]">
+          {{ 'DriverHistory.ProfileChangeProperties.PaymentProviders.' + item.payment_provider_type | translate }}
+        </div>
+
+        @if (item.is_identified) {
+          <p class="tw-text-accent-mint-light">
+            {{ 'DriverHistory.ProfileChangeProperties.PaymentIdentificationStatusPassed' | translate }}
+          </p>
+        }
+
+        @if (!item.is_identified) {
+          <p class="tw-text-accent-coral-light">
+            {{ 'DriverHistory.ProfileChangeProperties.PaymentIdentificationStatusNotPassed' | translate }}
+          </p>
+        }
+      </div>
+
+      @if (!$last) {
+        <mat-divider class="sm:!tw-hidden"></mat-divider>
+      }
+    }
+  </div>
+</ng-template>
+
+<ng-template #cashLimitChangedTpl let-info>
+  @let details = info.details;
+  @let noValue = 'CashLimits.LimitType.NoLimits' | translate;
+  @let currency = fleetData()?.currency ?? defaultCurrency;
+
+  <div class="tw-grid tw-gap-2">
+    @if (details?.new_cash_limit_amount !== details?.old_cash_limit_amount) {
+      <div class="history-item-container">
+        <div class="history-item was-is header">
+          <small class="text-title-small">{{ 'CourierHistory.Titles.DataTypes' | translate }}</small>
+          <p>{{ 'CashLimits.SettingsDialog.LimitAmountLabel' | translate }}</p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !tw-hidden sm:!tw-block"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-coral-light">{{ 'CourierHistory.Titles.OldProperty' | translate }}</small>
+          <p>
+            @if (details?.old_cash_limit_amount) {
+              {{ details?.old_cash_limit_amount / 100 | upfMoney: currency }}
+            } @else {
+              {{ noValue }}
+            }
+          </p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !sm:tw-hidden"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-mint-light">{{ 'CourierHistory.Titles.NewProperty' | translate }}</small>
+          <p>
+            @if (details?.new_cash_limit_amount) {
+              {{ details?.new_cash_limit_amount / 100 | upfMoney: currency }}
+            } @else {
+              {{ noValue }}
+            }
+          </p>
+        </div>
+      </div>
+
+      <mat-divider class="profile-divider tw-mt-2"></mat-divider>
+    }
+
+    @if (details?.new_cash_limit_period !== details?.old_cash_limit_period) {
+      <div class="history-item-container">
+        <div class="history-item was-is header">
+          <small class="text-title-small">{{ 'CourierHistory.Titles.DataTypes' | translate }}</small>
+          <p data-cy="history-title-label">{{ 'CashLimits.PeriodTitle' | translate }}</p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !tw-hidden sm:!tw-block"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-coral-light">{{ 'CourierHistory.Titles.OldProperty' | translate }}</small>
+          <p data-cy="history-old-value-label">
+            {{
+              details?.old_cash_limit_period
+                ? ('CashLimits.Period.' + details?.old_cash_limit_period | translate)
+                : noValue
+            }}
+          </p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !sm:tw-hidden"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-mint-light" data-cy="history-new-value-label">
+            {{ 'CourierHistory.Titles.NewProperty' | translate }}
+          </small>
+          <p data-cy="history-new-value-label">
+            {{
+              details?.new_cash_limit_period
+                ? ('CashLimits.Period.' + details?.new_cash_limit_period | translate)
+                : noValue
+            }}
+          </p>
+        </div>
+      </div>
+
+      <mat-divider class="profile-divider tw-mt-2"></mat-divider>
+    }
+
+    @if (details?.new_cash_limit_type !== details?.old_cash_limit_type) {
+      <div class="history-item-container">
+        <div class="history-item was-is header">
+          <small class="text-title-small">{{ 'CourierHistory.Titles.DataTypes' | translate }}</small>
+          <p>{{ 'CashLimits.List.LimitType' | translate }}</p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !tw-hidden sm:!tw-block"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-coral-light">{{ 'CourierHistory.Titles.OldProperty' | translate }}</small>
+          <p>
+            {{
+              details?.old_cash_limit_type
+                ? ('CashLimits.LimitType.' + details?.old_cash_limit_type | translate)
+                : noValue
+            }}
+          </p>
+        </div>
+
+        <mat-divider vertical class="tw-shrink-0 !sm:tw-hidden"></mat-divider>
+
+        <div class="history-item was-is">
+          <small class="tw-text-accent-mint-light">{{ 'CourierHistory.Titles.NewProperty' | translate }}</small>
+          <p>
+            {{
+              details?.new_cash_limit_type
+                ? ('CashLimits.LimitType.' + details?.new_cash_limit_type | translate)
+                : noValue
+            }}
+          </p>
+        </div>
+      </div>
+
+      <mat-divider class="profile-divider tw-mt-2"></mat-divider>
+    }
+  </div>
+</ng-template>

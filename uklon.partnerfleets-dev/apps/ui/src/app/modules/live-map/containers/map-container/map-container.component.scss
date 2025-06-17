@@ -1,0 +1,27 @@
+:host {
+  @apply tw-flex tw-flex-col tw-w-full tw-h-full tw-gap-4;
+  @apply sm:tw-pt-6 tw-px-md;
+}
+
+.map-header {
+  @apply tw-flex tw-flex-col tw-justify-between tw-gap-md;
+
+  @screen sm {
+    @apply tw-flex-row tw-items-end;
+  }
+
+  .map-title {
+    @apply tw-m-0 tw-text-title tw-font-normal tw-text-neutral-graphite;
+  }
+}
+
+.indicator {
+  @apply tw-shrink-0 tw-w-2 tw-h-2 tw-rounded-full tw-bg-accent-mint-light tw-transition-colors;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  30% {
+    opacity: 0;
+  }
+}

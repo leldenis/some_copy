@@ -1,0 +1,15 @@
+<mat-icon
+  data-cy="progress-tooltip"
+  class="tw-text-accent-mint-light tw-shrink-0"
+  [svgIcon]="icons.info"
+  [ngxTippy]="commissionProgressTpl"
+  [tippyProps]="{ maxWidth: '265px' }"
+  (mousedown)="showTooltip.emit()"
+></mat-icon>
+
+<ng-template #commissionProgressTpl>
+  <p class="tw-mb-2" data-cy="progress-tooltip-rule1">
+    {{ 'Bonuses.Commissions.List.Tooltip.ProgressActive' | translate }}
+  </p>
+  <p data-cy="progress-tooltip-rule2">{{ 'Bonuses.Commissions.List.Tooltip.ProgressAlways' | translate }}</p>
+</ng-template>

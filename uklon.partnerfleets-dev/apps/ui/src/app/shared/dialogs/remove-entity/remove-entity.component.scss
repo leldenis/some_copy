@@ -1,0 +1,31 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+.remove-from-fleet {
+  padding: 1rem;
+
+  &__header {
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    @include m.set-font(f.px2rem(16), f.px2rem(18), 400, var(--danger-color));
+  }
+
+  .reason-field {
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    @include m.set-font(f.px2rem(14), f.px2rem(17), 400, var(--grey20-color));
+    margin-bottom: 1rem;
+  }
+
+  &__actions {
+    margin-top: 3.5rem;
+
+    button {
+      max-width: 200px;
+    }
+  }
+}

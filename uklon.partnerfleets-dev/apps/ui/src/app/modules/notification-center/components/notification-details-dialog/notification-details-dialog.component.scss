@@ -1,0 +1,68 @@
+.notification-details {
+  @apply tw-flex tw-flex-col;
+  max-height: calc(100dvh - 32px);
+
+  @screen sm {
+    max-height: calc(100dvh - 64px);
+  }
+
+  &-header {
+    @apply tw-px-md tw-py-2 tw-flex tw-justify-end tw-border-b tw-border-neutral-silver sm:tw-hidden;
+  }
+
+  &-img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &-content {
+    max-height: 545px;
+    @apply tw-overflow-auto tw-p-md sm:tw-py-8 sm:tw-px-4;
+    @apply tw-grid tw-gap-3;
+
+    ul {
+      @apply tw-list-disc tw-pl-10 tw-mt-3 tw-mb-3;
+      @apply tw-text-base tw-text-neutral-graphite;
+
+      li {
+        @apply tw-leading-5;
+      }
+    }
+
+    p {
+      @apply tw-mb-2;
+    }
+
+    a {
+      @apply tw-text-accent-mint-light tw-underline tw-font-medium;
+    }
+  }
+
+  &-content-title {
+    p {
+      @apply tw-align-middle tw-leading-6;
+
+      img {
+        @apply tw-inline-block;
+        width: 20px;
+      }
+    }
+  }
+
+  &-checkbox-label {
+    @apply tw-text-base tw-font-medium tw-pl-1;
+  }
+
+  .footer {
+    @apply tw-flex tw-justify-end tw-items-start tw-p-md tw-flex-col tw-gap-md;
+    @apply sm:tw-border-t sm:tw-border-neutral-silver sm:tw-flex-row sm:tw-items-center;
+
+    &.acceptance-required {
+      @apply tw-justify-between;
+    }
+
+    .mdc-button {
+      @apply tw-w-full sm:tw-w-fit;
+    }
+  }
+}

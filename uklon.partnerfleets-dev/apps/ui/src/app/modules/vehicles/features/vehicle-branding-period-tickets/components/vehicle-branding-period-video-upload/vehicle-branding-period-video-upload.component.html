@@ -1,0 +1,90 @@
+@let fileName = file$.getValue()?.name;
+
+@if (ticket(); as ticket) {
+  <div class="tw-text-base tw-text-neutral-smoke">
+    <div>
+      {{ 'VehicleBrandingPeriod.Panel.MonthlyCode' | translate }}:
+      <span class="tw-text-neutral-graphite tw-font-medium">{{ monthlyCode() }}</span>
+    </div>
+
+    @if (ticket.status | showDeadline: ticket?.deadline_to_send ?? 0) {
+      @if (ticket?.deadline_to_send ?? 0 | photoControlDeadlineMessage; as deadline) {
+        @if (deadline.passedDeadline) {
+          <div class="tw-text-accent-coral-light tw-font-medium">({{ 'PhotoControl.Panel.Expired' | translate }})</div>
+        } @else {
+          <div>
+            {{ 'VehicleBrandingPeriod.Form.DeadlineDisclaimer' | translate }}
+            <span class="tw-text-neutral-graphite tw-font-medium">
+              {{ deadline.till }}
+            </span>
+          </div>
+        }
+      }
+    }
+  </div>
+
+  <div class="upload-container" [class.upload-in-progress]="uploading()">
+    <div class="tw-leading-5 tw-font-medium tw-w-full">
+      @if (errorMessage()) {
+        <div class="error">
+          {{ errorMessage() | translate: { data: maxSizeMb } }}
+        </div>
+      } @else if (uploading()) {
+        <div class="tw-grid tw-gap-1">
+          <div class="tw-text-tmp tw-font-medium text-overflow">{{ fileName }}</div>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <mat-progress-bar [value]="uploadProgress$ | async" color="primary"></mat-progress-bar>
+
+              <span>{{ uploadProgress$ | async }}%</span>
+            </div>
+
+            <button mat-icon-button (click)="onCancelUpload()">
+              <mat-icon class="icon-size-md tw-text-neutral-granit">close</mat-icon>
+            </button>
+          </div>
+        </div>
+      } @else {
+        @if (videoUrl()) {
+          <div class="tw-grid tw-gap-1">
+            <div class="tw-text-tmp tw-font-medium text-overflow">
+              {{ fileName ?? ('VehicleBrandingPeriod.Form.FileUploadSuccess' | translate) }}
+            </div>
+
+            @if (fileName) {
+              <div class="tw-font-normal tw-text-neutral-granit">
+                {{ 'VehicleBrandingPeriod.Form.FileUploadSuccess' | translate }}
+              </div>
+            }
+          </div>
+        } @else {
+          {{
+            'VehicleBrandingPeriod.Tooltips.FileRequirements'
+              | translate: { extensions: allowedExtensions, size: maxSizeMb }
+          }}
+        }
+      }
+    </div>
+
+    @if (!uploading()) {
+      @if (videoUrl()) {
+        <div class="tw-flex">
+          <button class="action-btn" mat-icon-button (click)="fileInput.click()">
+            <mat-icon class="outlined tw-text-neutral-smoke">sync</mat-icon>
+          </button>
+
+          <button class="action-btn" mat-icon-button (click)="onDeleteVideo()">
+            <mat-icon class="outlined tw-text-neutral-smoke">delete</mat-icon>
+          </button>
+        </div>
+      } @else {
+        <button mat-fab color="primary" (click)="fileInput.click()">
+          <mat-icon class="icon-size-md tw-text-white" [svgIcon]="icons.upload"></mat-icon>
+        </button>
+      }
+    }
+
+    <input #fileInput type="file" hidden [accept]="allowedExtensions" (change)="onFileSelect($event)" />
+  </div>
+}

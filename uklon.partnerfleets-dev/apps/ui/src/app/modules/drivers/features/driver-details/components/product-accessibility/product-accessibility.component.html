@@ -1,0 +1,25 @@
+<ng-content></ng-content>
+
+<div class="upf-styles tw-grid tw-grid-cols-2 tw-grid-flow-row-dense tw-gap-x-4 tw-px-4" data-cy="product-rules">
+  @for (viewModel of viewModels; track viewModel) {
+    <div [ngClass]="{ 'tw-border-r': $even }" class="upf-color-neutral-fog tw-grid tw-gap-y-1 tw-border-current">
+      <span [ngClass]="viewModel.ngClass" class="upf-secondary-text-sm" [attr.data-cy]="'item-title-' + $index">
+        {{ viewModel.title | translate }}
+      </span>
+
+      <span [ngClass]="viewModel.ngClass" class="upf-primary-text" [attr.data-cy]="'item-value-' + $index">
+        @if ($even) {
+          {{ viewModel.value | translate: viewModel.valueParams }}
+        } @else {
+          @for (param of viewModel.valueParams | keyvalue; track param.key) {
+            {{ param.value }}
+          }
+        }
+      </span>
+    </div>
+
+    @if ($even) {
+      <div class="upf-color-neutral-fog tw-col-span-2 tw-my-2 tw-border-t tw-border-current"></div>
+    }
+  }
+</div>

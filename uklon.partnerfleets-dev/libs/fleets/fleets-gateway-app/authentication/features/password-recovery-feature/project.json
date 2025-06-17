@@ -1,0 +1,36 @@
+{
+  "name": "@uklon/fleets/fleets-gateway-app/authentication/password-recovery-feature",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature",
+        "tsConfig": "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/tsconfig.lib.json",
+        "packageJson": "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/package.json",
+        "main": "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/src/index.ts",
+        "assets": [
+          "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature"
+      ],
+      "options": {
+        "jestConfig": "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/jest.config.ts",
+        "testTimeout": 20000
+      }
+    }
+  },
+  "tags": []
+}

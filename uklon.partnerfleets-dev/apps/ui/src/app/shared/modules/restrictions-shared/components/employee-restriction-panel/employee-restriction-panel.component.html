@@ -1,0 +1,43 @@
+<upf-info-panel color="error" [hideToggle]="false" [expanded]="false">
+  <ng-template upfInfoPanelIcon>
+    <mat-icon class="outlined">lock</mat-icon>
+  </ng-template>
+
+  <ng-template upfInfoPanelTitle>
+    {{ restrictionTitleKey() | translate: { size: restrictions()?.length } }}
+  </ng-template>
+
+  <ul class="tw-grid tw-gap-2 -tw-ml-7">
+    @for (restriction of restrictions(); track restriction) {
+      <li class="tw-flex tw-gap-2">
+        <upf-dot-marker-icon className="tw-text-accent-coral-light" />
+
+        @if (restriction.restricted_by === restrictionReason.CASH_LIMIT) {
+          <span class="tw-grid" data-cy="cash-limit-restriction">
+            {{ 'Const.RestrictionReasonGroup.RestrictedBy.RestrictionReason.CashLimit' | translate }}
+
+            <span
+              class="tw-underline tw-font-medium tw-cursor-pointer"
+              data-cy="cash-limit-restriction-btn"
+              (click)="removeCashLimitRestriction.emit()"
+            >
+              {{ 'CashLimits.RemoveRestrictionDialog.RemoveRestrictionBtn' | translate }}
+            </span>
+          </span>
+        } @else {
+          <span>
+            {{ restrictionReasonIntl.get(restriction.restricted_by) | translate }}
+
+            (
+            @for (item of restriction.restriction_items; track item) {
+              <span>
+                {{ (restrictionTypeIntl.get(item.type) | translate) + ($last ? '' : ', ') }}
+              </span>
+            }
+            )
+          </span>
+        }
+      </li>
+    }
+  </ul>
+</upf-info-panel>

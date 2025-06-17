@@ -1,0 +1,12 @@
+{
+  "name": "@uklon/fleets/fleets-app/authentication/domain",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^14.1.0",
+    "@angular/http": "^14.1.0",
+    "@angular/core": "^14.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

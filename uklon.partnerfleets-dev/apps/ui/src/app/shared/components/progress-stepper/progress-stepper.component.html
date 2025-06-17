@@ -1,0 +1,28 @@
+@for (item of steps; track item) {
+  <div class="progress-stepper">
+    <div
+      class="progress-stepper__icon-wrapper"
+      [class.active]="activeStep === $index"
+      [class.completed]="activeStep === $index + 1"
+    >
+      @if (activeStep === $index) {
+        <mat-icon
+          [svgIcon]="item.iconActive || item.icon"
+          class="progress-stepper__icon progress-stepper__icon-{{ item.size }}"
+        ></mat-icon>
+      } @else {
+        <mat-icon
+          [svgIcon]="activeStep === $index + 1 ? completedIcon : item.icon"
+          class="progress-stepper__icon progress-stepper__icon-{{ item.size }}"
+        ></mat-icon>
+      }
+    </div>
+
+    <div class="tw-flex tw-flex-col tw-justify-around progress-stepper__content">
+      <div class="progress-stepper__title">{{ item.title | translate: { step: $index + 1 } }}</div>
+      <div class="progress-stepper__description">{{ item.description | translate }}</div>
+    </div>
+  </div>
+}
+
+<upf-progress-bar [value]="progressPercentage" theme="custom" size="md"></upf-progress-bar>

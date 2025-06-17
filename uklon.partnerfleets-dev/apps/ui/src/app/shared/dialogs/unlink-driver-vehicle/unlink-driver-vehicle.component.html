@@ -1,0 +1,45 @@
+<div data-cy="unlink-driver-vehicle-modal" class="unlink-driver-vehicle">
+  <div class="flex-row justify-content-between align-items-center">
+    @if (data.type === 'vehicle') {
+      <div class="unlink-driver-vehicle__title">
+        {{ 'Modals.UnlinkVehicle.TitleVehicle' | translate: { '0': data.placeholder } }}
+      </div>
+    }
+
+    @if (data.type === 'driver') {
+      <div class="unlink-driver-vehicle__title">
+        {{ 'Modals.UnlinkVehicle.TitleDriver' | translate: { '0': data.placeholder } }}
+      </div>
+    }
+
+    <button data-cy="close-modal" mat-icon-button (click)="onCancelClick()">
+      <mat-icon [svgIcon]="icons.close"></mat-icon>
+    </button>
+  </div>
+
+  <div class="flex-row justify-content-center">
+    <img src="/assets/icons/icon_link-big.svg" class="link-img" alt="icon link" />
+  </div>
+
+  @if (data.type === 'vehicle') {
+    <div class="unlink-driver-vehicle__description">
+      {{ 'Modals.UnlinkVehicle.DescriptionVehicle' | translate }}
+    </div>
+  }
+
+  @if (data.type === 'driver') {
+    <div class="unlink-driver-vehicle__description">
+      {{ 'Modals.UnlinkVehicle.DescriptionDriver' | translate }}
+    </div>
+  }
+
+  <div class="flex-row align-items-center tw-justify-between unlink-driver-vehicle__actions">
+    <button data-cy="continue-btn" mat-flat-button color="accent" (click)="onCancelClick()">
+      {{ 'Modals.UnlinkVehicle.Cancel' | translate }}
+    </button>
+
+    <button data-cy="unlink-btn" mat-flat-button color="warn" (click)="onAcceptClick()">
+      {{ 'Modals.UnlinkVehicle.Unlink' | translate }}
+    </button>
+  </div>
+</div>

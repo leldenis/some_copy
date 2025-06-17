@@ -1,0 +1,74 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header collapsedHeight="48px" expandedHeight="48">
+      <mat-panel-title class="tw-flex tw-items-center tw-gap-2 tw-text-base">
+        <mat-icon class="tw-text-yellow-400 !tw-w-4 !tw-h-4 !tw-leading-4" svgIcon="i-star"></mat-icon>
+        {{ 'Couriers.CourierDetails.Rating' | translate }}:
+        <span>{{ rating / 100 }}</span>
+      </mat-panel-title>
+
+      <mat-panel-description class="tw-flex tw-items-center tw-gap-2 tw-text-base">
+        <mat-icon class="tw-w-6 tw-h-6" svgIcon="i-karma"></mat-icon>
+        {{ 'Couriers.CourierDetails.Activity.Title' | translate }}:
+        <span>{{ activity.value }}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="tw-flex tw-flex-col tw-gap-2">
+      <div class="tw-flex tw-justify-between tw-text-base">
+        <div class="tw-flex tw-items-center tw-text-neutral-smoke">
+          <mat-icon class="tw-w-6 tw-h-6" svgIcon="i-karma"></mat-icon>
+          <span class="tw-ml-0.5">{{ 'Couriers.CourierDetails.Activity.Title' | translate }}:</span>
+        </div>
+        <span class="tw-content-center">{{ activity.value }}</span>
+      </div>
+
+      <div class="tw-text-neutral-smoke tw-text-md tw-font-medium">
+        {{ 'Couriers.CourierDetails.Activity.EstimatedData' | translate }}
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Couriers.CourierDetails.Activity.ActivationDate' | translate }}:
+
+        @if (activitySettings.is_active) {
+          <span
+            class="tw-text-neutral-graphite"
+            *upfLet="[registeredAt, activitySettings.activated_at] | max as activationDate"
+          >
+            {{
+              'Couriers.CourierDetails.Activity.ActivationDateAt'
+                | translate
+                  : {
+                      date: activationDate | seconds2Date,
+                      time: activationDate | seconds2Time,
+                    }
+            }}
+          </span>
+        } @else {
+          <span class="tw-text-neutral-graphite">{{ 'Couriers.CourierDetails.Activity.NotActive' | translate }}</span>
+        }
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Couriers.CourierDetails.Activity.CompletedOrders' | translate }}:
+        <span class="tw-text-neutral-graphite">
+          {{ activity.calculated_by_orders.completed_count }}
+        </span>
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Couriers.CourierDetails.Activity.RejectedOrders' | translate }}:
+        <span class="tw-text-neutral-graphite">
+          {{ activity.calculated_by_orders.rejected_count }}
+        </span>
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Couriers.CourierDetails.Activity.CancelledOrders' | translate }}:
+        <span class="tw-text-neutral-graphite">
+          {{ activity.calculated_by_orders.canceled_count }}
+        </span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,47 @@
+<div class="tw-grid tw-gap-md tw-text-neutral-graphite">
+  <div class="tw-grid tw-gap-7 tw-justify-items-center">
+    @let colors = fleet().id | id2Color;
+    @let isCourierFleet = courierFleetTypes.has(fleet().type);
+
+    <div class="avatar" [style.background-color]="colors.back" [style.color]="colors.fore">
+      {{ fleet().name[0] }}
+      <img
+        class="flag"
+        ngSrc="assets/icons/flags/{{ region().country_code }}.svg"
+        [width]="24"
+        height="16"
+        alt="{{ region().country_code }} flag"
+      />
+    </div>
+
+    <div class="fleet-name">{{ fleet().name }}</div>
+  </div>
+
+  <div class="tw-grid tw-gap-md tw-text-base">
+    <div class="tw-grid tw-grid-cols-2">
+      <div class="tw-text-neutral-granit">{{ 'FleetProfile.FleetInfo.CreatedAt' | translate }}</div>
+      <div>{{ fleet().created_at | seconds2Date }}</div>
+    </div>
+
+    <div class="tw-grid tw-grid-cols-2">
+      <div class="tw-text-neutral-granit">{{ 'FleetProfile.FleetInfo.City' | translate }}</div>
+      <div>{{ 'Regions.' + region().code | translate }}</div>
+    </div>
+
+    @if (!isCourierFleet) {
+      <div class="tw-grid tw-grid-cols-2">
+        <div class="tw-text-neutral-granit">{{ 'FleetProfile.FleetInfo.VehiclesCount' | translate }}</div>
+        <div>{{ fleet().vehicle_count }}</div>
+      </div>
+    }
+
+    <div class="tw-grid tw-grid-cols-2">
+      <div class="tw-text-neutral-granit">
+        {{
+          (isCourierFleet ? 'FleetProfile.FleetInfo.CouriersCount' : 'FleetProfile.FleetInfo.DriversCount') | translate
+        }}
+      </div>
+      <div>{{ fleet().employee_count }}</div>
+    </div>
+  </div>
+</div>

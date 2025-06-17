@@ -1,0 +1,18 @@
+<div class="tw-p-md">
+  <upf-fleet-history-filters (filtersChange)="onFiltersChange($event)"></upf-fleet-history-filters>
+</div>
+
+@if (history().length) {
+  <upf-fleet-history-list
+    data-cy="fleet-history-list"
+    (cdkScrolled)="onLoadNext()"
+    [history]="history()"
+    [isLoading]="isLoading()"
+    [additionalInfo]="additionalInfo"
+    (getFullInfo)="onGetFullInfo($event)"
+  ></upf-fleet-history-list>
+} @else {
+  <upf-empty-state [state]="!filters?.changeType ? emptyState.NO_DATA_CUSTOM : emptyState.NO_DATA">
+    {{ 'FleetProfile.FleetHistory.NoHistory' | translate }}
+  </upf-empty-state>
+}

@@ -1,0 +1,68 @@
+<div class="employee-info">
+  <h3>{{ titleKey() | translate }}</h3>
+
+  <div class="employee-info-item" data-cy="rating-card">
+    <span class="employee-info-item-label">{{ 'DriverStatistic.Data.Rating.Label' | translate }}</span>
+    <div class="employee-info-item-value tw-relative">
+      <mat-icon
+        class="tw-absolute -tw-left-5 tw-text-yellow-400 !tw-w-4 !tw-h-4 !tw-leading-4 tw-align-top"
+        svgIcon="i-star"
+      ></mat-icon>
+      {{ statistic().rating || '&mdash;' }}
+    </div>
+  </div>
+
+  <div class="employee-info-item" data-cy="cancelation-card">
+    <span class="employee-info-item-label">{{ 'DriverStatistic.Data.CancellationPercentage.Label' | translate }}</span>
+    <span class="employee-info-item-value">
+      {{
+        statistic().cancellation_percentage ? (statistic().cancellation_percentage | number: '1.0-2') + ' %' : '&mdash;'
+      }}
+    </span>
+  </div>
+
+  <div class="employee-info-item" data-cy="orders-card">
+    <span class="employee-info-item-label">{{ 'DriverStatistic.Data.CompletedOrders.Label' | translate }}</span>
+    <span class="employee-info-item-value">
+      {{ statistic().completed_orders ? statistic().completed_orders : '&mdash;' }}
+    </span>
+  </div>
+
+  @if (statistic().average_price_per_kilometer) {
+    <div class="employee-info-item">
+      <span class="employee-info-item-label">{{ 'DriverStatistic.Data.AveragePricePerKm.Label' | translate }}</span>
+      <span class="employee-info-item-value">
+        {{ statistic().average_price_per_kilometer.amount / 100 | upfMoney: currency() }}
+      </span>
+    </div>
+  }
+
+  <div class="employee-info-item" data-cy="distance-card">
+    <span class="employee-info-item-label">{{ 'DriverStatistic.Data.TotalDistanceMeters.Label' | translate }}</span>
+    <span class="employee-info-item-value">
+      @if (statistic().total_distance_meters) {
+        {{ statistic().total_distance_meters | metersToDistance }} {{ 'Common.Km' | translate }}
+      } @else {
+        &mdash;
+      }
+    </span>
+  </div>
+
+  @if (statistic().total_executing_time && statistic().total_executing_time > 0) {
+    <div class="employee-info-item">
+      <span class="employee-info-item-label">{{ 'DriverStatistic.Data.TotalExecutingTime.Label' | translate }}</span>
+      <span class="employee-info-item-value">
+        <div class="tw-flex tw-items-center">
+          @if (statistic().total_executing_time | duration; as time) {
+            <span>
+              @if (time.hours) {
+                {{ 'Common.Abbreviation.Hours' | translate: time }}
+              }
+              {{ 'Common.Abbreviation.Minutes' | translate: time }}
+            </span>
+          }
+        </div>
+      </span>
+    </div>
+  }
+</div>

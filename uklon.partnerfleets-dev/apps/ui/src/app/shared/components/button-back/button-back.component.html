@@ -1,0 +1,10 @@
+<button
+  data-cy="navigate-back-btn"
+  mat-flat-button
+  color="accent"
+  class="small tw-normal-case"
+  (click)="navigateBack.emit()"
+>
+  <mat-icon svgIcon="back" class="tw-shrink-0 tw-mr-1"></mat-icon>
+  {{ btnNameKey | translate }}
+</button>

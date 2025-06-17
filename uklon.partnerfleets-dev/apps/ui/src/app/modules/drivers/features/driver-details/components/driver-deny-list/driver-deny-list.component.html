@@ -1,0 +1,49 @@
+<div class="tw-flex tw-items-center tw-justify-between">
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <div class="avatar">
+      <img src="/assets/icons/icon_black_list_user.svg" alt="avatar" />
+    </div>
+
+    <div class="tw-text-base tw-text-neutral-graphite">
+      {{ 'DenyList.PassangesCount' | translate: { count: denyList.count } }}
+    </div>
+  </div>
+
+  @if (denyList.count) {
+    <button mat-icon-button (click)="onClearDenyList()" class="clear-btn">
+      <mat-icon class="material-symbols-outlined">delete</mat-icon>
+    </button>
+  }
+</div>
+
+<ng-template #dialog>
+  <div class="tw-text-neutral-graphite">
+    <section class="header">
+      <div class="tw tw-text-dialogTitle tw-text-accent-coral-light">
+        {{ 'DenyList.Dialog.Title' | translate }}
+      </div>
+
+      <button mat-icon-button matDialogClose disableRipple class="!tw-w-6 !tw-h-6 !tw-leading-6">
+        <mat-icon class="tw-text-neutral-graphite">close</mat-icon>
+      </button>
+    </section>
+
+    <section class="content">
+      <img src="/assets/images/clear_black_list.svg" class="tw-justify-self-center" alt="clear" />
+
+      <div class="tw-text-base tw-text-neutral-graphite">
+        {{ 'DenyList.Dialog.Message' | translate }}
+      </div>
+    </section>
+
+    <section class="footer">
+      <button mat-flat-button matDialogClose color="accent" class="!tw-py-1.5">
+        {{ 'DenyList.Dialog.CancelBtn' | translate }}
+      </button>
+
+      <button mat-flat-button [matDialogClose]="true" color="warn" class="!tw-py-1.5">
+        {{ 'Common.Buttons.B_Clear' | translate }}
+      </button>
+    </section>
+  </div>
+</ng-template>

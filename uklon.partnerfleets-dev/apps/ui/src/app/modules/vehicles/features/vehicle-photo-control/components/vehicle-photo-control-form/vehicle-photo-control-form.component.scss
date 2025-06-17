@@ -1,0 +1,9 @@
+$header-height: 72px;
+
+:host {
+  @apply tw-p-md tw-pt-0 tw-text-neutral-graphite tw-grow tw-flex tw-flex-col tw-justify-between tw-gap-md;
+}
+
+svg {
+  animation: rotate 1s infinite;
+}

@@ -1,0 +1,38 @@
+<div class="general-container">
+  <div class="sm:tw-flex sm:tw-justify-between sm:tw-items-center">
+    <section class="header">
+      <upf-filters-container
+        direction="row"
+        [filterKey]="filterKey"
+        [expandable]="false"
+        [defaultFilters]="filtersForm.getRawValue()"
+        (filtersChange)="range$.next($event.dateRange)"
+      >
+        <form [formGroup]="filtersForm">
+          <mat-form-field floatLabel="always" class="tw-w-full sm:tw-w-72 sm:tw-shrink-0">
+            <mat-label>
+              {{ 'Common.Filters.Period.Label' | translate }}
+            </mat-label>
+
+            <upf-date-time-range-control formControlName="dateRange" [showTime]="false"></upf-date-time-range-control>
+          </mat-form-field>
+        </form>
+      </upf-filters-container>
+    </section>
+  </div>
+
+  @let stats = stats$ | async;
+
+  <section class="stats">
+    <upf-basic-statistics class="sm:tw-col-span-full" [stats]="stats"></upf-basic-statistics>
+
+    <upf-income-statistics
+      [stats]="stats?.histogram_items"
+      [range]="filtersForm.value.dateRange"
+    ></upf-income-statistics>
+
+    <upf-product-type-statistics [stats]="stats?.product_items"></upf-product-type-statistics>
+
+    <upf-top-drivers class="sm:tw-col-span-full" [drivers]="stats?.top_drivers"></upf-top-drivers>
+  </section>
+</div>

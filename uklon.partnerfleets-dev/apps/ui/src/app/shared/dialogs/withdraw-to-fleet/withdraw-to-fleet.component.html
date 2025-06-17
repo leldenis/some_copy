@@ -1,0 +1,31 @@
+<div class="withdraw-to-fleet" data-cy="withdraw-to-fleet-popup">
+  <div class="flex-row justify-content-between align-items-center">
+    <div class="withdraw-to-fleet__title">
+      {{ 'Modals.WithdrawToFleet.Title' | translate }}
+    </div>
+
+    <button data-cy="close-modal" mat-icon-button (click)="onCancelClick()">
+      <mat-icon [svgIcon]="icons.close"></mat-icon>
+    </button>
+  </div>
+
+  <div class="flex-row justify-content-center">
+    <img src="/assets/icons/icon_withdraw_fleet.svg" class="withdraw-fleet-img" alt="icon withdraw" />
+  </div>
+
+  <div class="withdraw-to-fleet__description">
+    {{ 'Modals.WithdrawToFleet.Description1' | translate }}
+    <span class="amount">{{ amount / 100 | upfMoney: data?.currency }}</span>
+    {{ 'Modals.WithdrawToFleet.Description2' | translate }}
+  </div>
+
+  <div class="flex-row align-items-center justify-content-between withdraw-to-fleet__actions">
+    <button data-cy="continue-btn" mat-flat-button color="accent" (click)="onCancelClick()">
+      {{ 'Modals.WithdrawToFleet.Cancel' | translate }}
+    </button>
+
+    <button data-cy="transfer-btn" mat-flat-button color="primary" (click)="onAcceptClick()">
+      {{ 'Modals.WithdrawToFleet.TransferMoney' | translate }}
+    </button>
+  </div>
+</div>

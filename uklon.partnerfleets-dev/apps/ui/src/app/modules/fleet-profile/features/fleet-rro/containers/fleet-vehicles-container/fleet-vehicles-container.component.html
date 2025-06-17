@@ -1,0 +1,39 @@
+<section class="tw-flex tw-items-center sm:tw-gap-md">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    class="tw-w-full"
+  >
+    <form [formGroup]="filtersForm" class="tw-grid tw-gap-md sm:tw-grid-cols-1">
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+        </mat-label>
+
+        <input
+          matInput
+          [placeholder]="'Common.Filters.LicencePlate.Placeholder' | translate"
+          formControlName="licencePlate"
+        />
+
+        <mat-icon [svgIcon]="icons.search" matSuffix></mat-icon>
+      </mat-form-field>
+    </form>
+  </upf-filters-container>
+</section>
+
+@if (vehicles$ | async; as collection) {
+  @if (collection?.data?.length > 0) {
+    <upf-fleet-vehicle-list
+      [vehicles]="collection.data"
+      [totalCount]="collection.total"
+      (openLinkCashToVehicleModal)="openLinkCashierToVehicleModal($event)"
+      (openUnLinkCashFromVehicleModal)="openUnLinkCashierToVehicleModal($event)"
+      data-cy="fleet-vehicle-list"
+    ></upf-fleet-vehicle-list>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+  }
+}

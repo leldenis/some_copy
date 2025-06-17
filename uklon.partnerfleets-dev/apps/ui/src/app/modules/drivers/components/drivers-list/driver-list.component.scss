@@ -1,0 +1,93 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow tw-shrink tw-max-h-full tw-justify-between;
+  @apply sm:tw-shadow-sm sm:tw-rounded sm:tw-overflow-hidden;
+
+  ::ng-deep {
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+}
+
+.icon-driver-blocked {
+  @apply tw-text-xl tw-align-middle hover:tw-cursor-pointer tw-text-accent-coral-light;
+}
+
+.upf-pagination {
+  @apply tw-w-full tw-border-t tw-border-neutral-cloud tw-bg-neutral-white sm:tw-bg-transparent;
+  @apply tw-fixed tw-right-0 tw-bottom-0 sm:tw-relative;
+}
+
+.unlink-btn {
+  @apply tw-text-neutral-smoke hover:tw-text-accent-coral-light hover:tw-bg-neutral-cloud tw-shrink-0;
+  @apply focus:tw-text-accent-coral-light focus:tw-bg-neutral-cloud tw-rounded-sm tw-transition-colors;
+  @apply tw-w-9 tw-h-9 tw-grid tw-place-items-center;
+}
+
+.icon-driver-online {
+  vertical-align: top;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+}
+
+.icon-photo-control {
+  @apply tw-inline-block tw-ml-1 tw-align-top;
+}
+
+.panel-header {
+  @apply tw-text-base tw-grid tw-gap-1 xl:tw-gap-2 tw-items-center tw-w-full;
+  @apply tw-px-md tw-text-neutral-graphite tw-cursor-default;
+  grid-template-columns: minmax(0, 4fr) repeat(2, minmax(0, 2fr)) repeat(2, minmax(0, 1fr)) repeat(2, minmax(0, 2fr));
+
+  &.main {
+    @apply tw-hidden tw-text-sm tw-text-neutral-smoke tw-min-h-[3rem] sm:tw-grid;
+  }
+}
+
+.mobile-panel-header {
+  @apply tw-flex tw-justify-between tw-gap-2 tw-pl-2 tw-items-center tw-w-full tw-h-14;
+  @apply tw-text-base tw-text-neutral-graphite;
+
+  .expand-icon {
+    @apply tw-grid tw-place-items-center tw-h-full sm:tw-h-14 tw-cursor-pointer;
+    @apply sm:tw-h-14 tw-cursor-pointer tw-w-9;
+
+    .mat-icon {
+      @apply tw-transition-transform tw-text-icon tw-w-5 tw-h-5;
+    }
+
+    &.expanded {
+      @apply tw-bg-neutral-silver;
+
+      .mat-icon {
+        @apply tw-rotate-180;
+      }
+    }
+  }
+}
+
+.data-panel {
+  border-radius: 0.25rem !important;
+  @apply tw-shadow-sm #{!important};
+
+  @screen sm {
+    border-radius: 0 !important;
+    @apply tw-shadow-none #{!important};
+    @apply tw-border-t tw-border-neutral-cloud;
+
+    &:last-of-type {
+      @apply tw-border-b tw-border-b-neutral-cloud;
+    }
+  }
+}
+
+.filter-link {
+  @apply tw-text-accent-mint-light tw-cursor-pointer hover:tw-underline;
+}

@@ -1,0 +1,14 @@
+export { OrderReportingService } from './order-reporting.service';
+export { IdentityService } from './identity.service';
+export { PartnersService } from './partners.service';
+export { AnalyticsReportingService } from './analytics-reporting.service';
+export { SearchService } from './search.service';
+export { RidersService } from './riders.service';
+export { GpsService } from './gps.service';
+export { OrderProcessingService } from './order-processing.service';
+export { PaymentProcessingService } from './payment-processing.service';
+export { DeliveryService } from './delivery.service';
+export { DriverBonusService } from './driver-bonus.service';
+export { FiscalizationService } from './fiscalization.service';
+export { PregameService } from './pregame.service';
+export { DriverOrderingService } from './driver-ordering.service';

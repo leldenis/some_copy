@@ -1,0 +1,17 @@
+<upf-filters-container
+  direction="row"
+  [isOpened]="!isMobileView"
+  [filterKey]="filterKey"
+  [defaultFilters]="filterGroup.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <form [formGroup]="filterGroup" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always" class="tw-w-full sm:tw-w-64">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="period"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <upf-couriers-autocomplete formControlName="courierId" [fleetId]="fleetId"></upf-couriers-autocomplete>
+  </form>
+</upf-filters-container>

@@ -1,0 +1,49 @@
+<header>
+  <h3>
+    {{ 'FleetProfile.RRO.Modals.HowToGetKey.Title' | translate }}
+  </h3>
+
+  <button mat-icon-button (click)="handlerCancel()">
+    <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+  </button>
+</header>
+
+<section class="content">
+  <div>
+    <h2>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Services.Title' | translate }}</h2>
+
+    <ul class="tw-grid -tw-ml-2">
+      <li class="tw-flex tw-gap-1">
+        <upf-dot-marker-icon />
+        <span>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Services.Item1' | translate }}</span>
+      </li>
+
+      <li class="tw-flex tw-gap-1">
+        <upf-dot-marker-icon />
+        <span>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Services.Item2' | translate }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tw-mt-4">
+    <h2>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Period.Title' | translate }}</h2>
+
+    <ul class="tw-grid -tw-ml-2">
+      <li class="tw-flex tw-gap-1">
+        <upf-dot-marker-icon />
+        <span>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Period.Item1' | translate }}</span>
+      </li>
+
+      <li class="tw-flex tw-gap-1">
+        <upf-dot-marker-icon />
+        <span>{{ 'FleetProfile.RRO.Modals.HowToGetKey.Period.Item2' | translate }}</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <button mat-flat-button class="action-btn" color="accent" (click)="handlerCancel()">
+    {{ 'Common.Buttons.B_BackToList' | translate }}
+  </button>
+</footer>

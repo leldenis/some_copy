@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+$selected-track-color: #33CCA150 !important;
+$selected-handle-color: #33CCA1 !important;
+
+$unselected-track-color: #CFD0D2 !important;
+$unselected-handle-color: #ACACB2 !important;
+
+$disabled-unselected-handle-color: #E6E7E7 !important;
+$disabled-unselected-track-color: #F2F2F2 !important;
+$disabled-selected-handle-color: #33CCA1 !important;
+$disabled-opacity: 1 !important;
+
+$track-height: 18px;
+$ripple-size: calc($track-height * 2) !important;
+$ripple-opacity: 0.2 !important;
+
+.mat-mdc-slide-toggle {
+  --mdc-switch-state-layer-size: #{$ripple-size};
+  --mdc-switch-unselected-pressed-state-layer-opacity: #{$ripple-opacity};
+  --mdc-switch-selected-pressed-state-layer-opacity: #{$ripple-opacity};
+  --mdc-switch-unselected-hover-state-layer-opacity: #{$ripple-opacity};
+  --mdc-switch-selected-hover-state-layer-opacity: #{$ripple-opacity};
+  // Disabled
+  --mdc-switch-disabled-selected-handle-color: #{$disabled-selected-handle-color};
+  --mdc-switch-disabled-unselected-handle-color: #{$disabled-unselected-handle-color};
+  --mdc-switch-disabled-selected-track-color: #{$selected-track-color};
+  --mdc-switch-disabled-unselected-track-color: #{$disabled-unselected-track-color};
+  --mdc-switch-disabled-track-opacity: #{$disabled-opacity};
+  --mdc-switch-disabled-handle-opacity: #{$disabled-opacity};
+  --mat-switch-disabled-unselected-handle-opacity: #{$disabled-opacity};
+  // Unselected
+  --mdc-switch-unselected-track-color: #{$unselected-track-color};
+  --mdc-switch-unselected-focus-track-color: #{$unselected-track-color};
+  --mdc-switch-unselected-hover-track-color: #{$unselected-track-color};
+  --mdc-switch-unselected-pressed-track-color: #{$unselected-track-color};
+  --mdc-switch-unselected-handle-color: #{$unselected-handle-color};
+  --mdc-switch-unselected-focus-handle-color: #{$unselected-handle-color};
+  --mdc-switch-unselected-hover-handle-color: #{$unselected-handle-color};
+  --mdc-switch-unselected-pressed-handle-color: #{$unselected-handle-color};
+  // Selected track
+  --mdc-switch-selected-track-color: #{$selected-track-color};
+  --mdc-switch-selected-focus-track-color: #{$selected-track-color};
+  --mdc-switch-selected-hover-track-color: #{$selected-track-color};
+  --mdc-switch-selected-pressed-track-color: #{$selected-track-color};
+  --mdc-switch-selected-handle-color: #{$selected-handle-color};
+  --mdc-switch-selected-focus-handle-color: #{$selected-handle-color};
+  --mdc-switch-selected-hover-handle-color: #{$selected-handle-color};
+  --mdc-switch-selected-pressed-handle-color: #{$selected-handle-color};
+  --mdc-switch-track-height: #{$track-height};
+  --mdc-switch-track-shape: #{calc($track-height / 2)};
+}

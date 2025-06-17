@@ -1,0 +1,11 @@
+<mat-icon
+  class="outlined"
+  svgIcon="i-expand-circle"
+  [ngxTippy]="popoverContent"
+  [tippyProps]="props"
+  [ngClass]="{ opened: isOpened$ | async }"
+></mat-icon>
+
+<ng-template #popoverContent>
+  <ng-content></ng-content>
+</ng-template>

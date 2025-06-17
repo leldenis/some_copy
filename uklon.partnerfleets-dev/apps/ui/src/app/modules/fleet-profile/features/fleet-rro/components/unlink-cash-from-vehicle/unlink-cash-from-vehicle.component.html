@@ -1,0 +1,52 @@
+<header>
+  <h3>
+    {{ 'FleetProfile.RRO.Modals.UnLinkCashFromVehicle.Title' | translate }}
+  </h3>
+
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+  </button>
+</header>
+
+<mat-divider></mat-divider>
+
+<section class="content">
+  <div class="flex-row justify-content-center tw-mb-2">
+    <img src="/assets/icons/icon_link-big.svg" class="tw-w-20 tw-h-20" alt="icon unlink" />
+  </div>
+
+  <div class="tw-grid tw-gap-4">
+    <div class="tw-flex tw-gap-1 tw-text-base">
+      <div class="tw-font-bold">{{ 'FleetProfile.RRO.Modals.UnLinkCashFromVehicle.SelectedCar' | translate }}:</div>
+      <div>
+        {{ data.vehicle.name }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-gap-1 tw-text-base">
+      <div class="tw-font-bold">{{ 'FleetProfile.RRO.Modals.UnLinkCashFromVehicle.Cashier' | translate }}:</div>
+      <div>{{ data.cashierPos?.name }}</div>
+    </div>
+  </div>
+</section>
+
+<mat-divider></mat-divider>
+
+<footer>
+  <button type="button" mat-flat-button color="accent" (click)="closeDialog()">
+    {{ 'Common.Buttons.B_Close' | translate }}
+  </button>
+
+  <div class="tw-w-[150px]">
+    <upf-loader-button
+      color="warn"
+      type="button"
+      class="!tw-w-full"
+      [disabled]="!data?.vehicle?.id"
+      [loading]="loading$ | async"
+      (handlerClick)="handlerSave()"
+    >
+      {{ 'Common.Buttons.B_Unlink' | translate }}
+    </upf-loader-button>
+  </div>
+</footer>

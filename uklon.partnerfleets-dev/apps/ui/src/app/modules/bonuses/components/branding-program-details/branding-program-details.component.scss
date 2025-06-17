@@ -1,0 +1,47 @@
+.bonus-rules {
+  @apply tw-flex tw-flex-row tw-justify-between tw-flex-wrap sm:tw-flex-nowrap;
+  @apply tw-gap-4 sm:tw-gap-6 tw-p-2 tw-text-sm;
+  @apply tw-bg-[#EDFCFF] tw-rounded-md;
+  @apply tw-border-[#1BB0CE] tw-border-[0.5px];
+}
+
+.bonus-rules-info {
+  @apply tw-flex tw-flex-row tw-justify-between sm:tw-justify-items-start tw-relative;
+  @apply tw-w-full sm:tw-w-auto;
+}
+
+.bonus-rules-indicators {
+  @apply tw-flex tw-flex-col tw-gap-2 tw-p-0.5;
+  @apply tw-w-full tw-px-8;
+
+  @screen sm {
+    @apply tw-flex-row tw-gap-4 tw-w-auto tw-px-0;
+  }
+}
+
+.bonus-rules-item {
+  @apply tw-grid tw-grid-cols-2 tw-gap-y-0.5;
+
+  @screen sm {
+    @apply tw-flex tw-flex-col tw-gap-y-0.5;
+  }
+}
+
+.bonus-rules-title, .bonus-rules-value {
+  @apply tw-text-[#0B7A94];
+}
+
+.bonus-rules-value {
+  @apply tw-text-base tw-font-medium;
+}
+
+.select-item {
+  height: min-content;
+
+  ::ng-deep {
+    .mdc-list-item__primary-text {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+}

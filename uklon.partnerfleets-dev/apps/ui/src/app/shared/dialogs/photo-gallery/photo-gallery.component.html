@@ -1,0 +1,67 @@
+@if ({ photos: galleryData?.photos$ | async }; as data) {
+  @for (photo of data.photos; track photo) {
+    <div
+      data-cy="image-preview-modal"
+      [hidden]="photo.category !== galleryData?.selectedPhotoData.category"
+      (swipeleft)="onNextClick()"
+      (swiperight)="onPreviousClick()"
+    >
+      <div
+        *upfLet="photo.category === galleryData?.selectedPhotoData.category as categoryActive"
+        class="flex-col image-preview"
+        [ngClass]="{ active: categoryActive }"
+      >
+        <div class="image-preview__content">
+          <img
+            upfDefaultImgSrc
+            [src]="galleryData.selectedPhotoData?.isJustUploaded ? photo?.data?.fallback_url : photo?.data?.url"
+            [defaultSrc]="photo?.data?.fallback_url"
+            [attr.data-cy]="'photo-gallery-' + photo.category"
+            alt=""
+          />
+
+          <div class="flex-row justify-content-between align-items-center image-preview__header">
+            <div>
+              {{ galleryData.label + galleryData.selectedPhotoData.category | translate }}
+            </div>
+
+            <button
+              [attr.data-cy]="categoryActive ? 'close-image-preview-modal-btn' : ''"
+              class="icon-button"
+              mat-icon-button
+              (click)="onCloseClick()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-row justify-content-between image-preview__actions">
+          <button
+            data-cy="prev-image-preview-modal-btn"
+            class="!tw-text-white !tw-bg-neutral-graphite"
+            mat-icon-button
+            (click)="onPreviousClick()"
+          >
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+
+          <button
+            data-cy="next-image-preview-modal-btn"
+            class="!tw-text-white !tw-bg-neutral-graphite"
+            mat-icon-button
+            (click)="onNextClick()"
+          >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+
+        <upf-slider-indicator
+          class="image-preview__slider-indicator"
+          [items]="data.photos"
+          [currentIndex]="$index"
+        ></upf-slider-indicator>
+      </div>
+    </div>
+  }
+}

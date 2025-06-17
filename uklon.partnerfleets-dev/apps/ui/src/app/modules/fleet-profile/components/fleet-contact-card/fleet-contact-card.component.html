@@ -1,0 +1,82 @@
+<div class="contact-card" [attr.data-cy]="'card-' + contact().user_id">
+  <div class="tw-flex tw-items-center tw-justify-between">
+    <div class="tw-flex tw-items-center tw-gap-2">
+      @let colors = contact().user_id | id2Color;
+
+      <div class="avatar" [style.background-color]="colors.back" [style.color]="colors.fore">
+        {{ contact().last_name[0] }}
+      </div>
+
+      <div class="tw-flex tw-gap-1 tw-items-center" [attr.data-cy]="'card-name-' + contact().user_id">
+        <span>
+          {{ contact() | fullName }}
+          {{ isMe() ? '(' + ('FleetProfile.Contacts.ContactInfo.Me' | translate) + ')' : '' }}
+        </span>
+      </div>
+
+      @if (isMe()) {
+        <i class="i-circle"></i>
+      }
+    </div>
+
+    @if (contact().status.value === contactStatus.BLOCKED) {
+      <mat-icon
+        class="outlined blocked-icon"
+        [ngxTippy]="blockReasonTpl"
+        [tippyContext]="{
+          data: {
+            title: 'BlockedList.Contacts.ContactBlocked' | translate,
+            content:
+              ((contact().status.reason === statusReason.OTHER
+                ? 'BlockedList.Reasons.' + contact().status.reason + 'Blocked'
+                : 'BlockedList.Reasons.' + contact().status.reason
+              ) | translate),
+          },
+        }"
+      >
+        flag
+      </mat-icon>
+    }
+  </div>
+
+  <div class="tw-grid tw-gap-1">
+    <div class="tw-text-xs tw-leading-3 tw-text-neutral-granit">
+      {{ 'FleetProfile.Contacts.ContactInfo.PhoneNumber' | translate }}
+    </div>
+
+    <div class="tw-hidden sm:tw-block" [attr.data-cy]="'card-phone-' + contact().user_id">
+      {{ contact().phone || '-' }}
+    </div>
+    <a class="sm:tw-hidden" [ngClass]="{ 'tw-pointer-events-none': !contact().phone }" href="tel:{{ contact().phone }}">
+      {{ contact().phone || '-' }}
+    </a>
+  </div>
+
+  <div class="tw-grid tw-gap-1">
+    <div class="tw-text-xs tw-leading-3 tw-text-neutral-granit">
+      {{ 'FleetProfile.Contacts.ContactInfo.Email' | translate }}
+    </div>
+
+    <div class="tw-hidden sm:tw-block" [attr.data-cy]="'card-email-' + contact().user_id">
+      {{ contact().email || '-' }}
+    </div>
+    <a
+      class="sm:tw-hidden"
+      [ngClass]="{ 'tw-pointer-events-none': !contact().email }"
+      href="mailto:{{ contact().email }}"
+    >
+      {{ contact().email || '-' }}
+    </a>
+  </div>
+
+  @if (isMe()) {
+    <a mat-icon-button [routerLink]="['/', corePath.WORKSPACE, corePath.ACCOUNT]">
+      <mat-icon class="outlined tw-text-neutral-smoke">stylus</mat-icon>
+    </a>
+  }
+</div>
+
+<ng-template #blockReasonTpl let-data="data">
+  <div>{{ data.title }}</div>
+  <div>{{ data.content }}</div>
+</ng-template>

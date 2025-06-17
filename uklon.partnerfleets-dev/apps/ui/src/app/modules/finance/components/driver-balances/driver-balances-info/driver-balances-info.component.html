@@ -1,0 +1,53 @@
+<div class="tw-flex tw-gap-2">
+  <div class="tw-flex tw-gap-4">
+    <div class="tw-hidden sm:tw-flex tw-self-center">
+      @if (balance > 0) {
+        <mat-icon [svgIcon]="icons.financePositive"></mat-icon>
+      }
+      @if (balance < 0) {
+        <mat-icon [svgIcon]="icons.financeNegative"></mat-icon>
+      }
+      @if (!balance) {
+        <mat-icon [svgIcon]="icons.financeNeutral"></mat-icon>
+      }
+    </div>
+
+    <div class="tw-flex tw-flex-col tw-gap-2 tw-justify-between">
+      <div class="tw-text-base">
+        {{ 'Finance.DriversBalances.Info.Title' | translate }}
+      </div>
+
+      <div
+        class="tw-text-money tw-font-medium"
+        [ngClass]="{ 'tw-text-accent-coral-light': balance < 0 }"
+        [attr.data-cy]="'sum-drivers-balances'"
+      >
+        {{ (balance ? balance / 100 : 0) | upfMoney: currency }}
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-gap-2">
+    <div class="tw-flex tw-items-center flt-divider">
+      <div class="tw-flex tw-items-center tw-justify-center flt-divider-icon">
+        <mat-icon [svgIcon]="icons.arrowRightSm"></mat-icon>
+      </div>
+    </div>
+
+    <div class="tw-flex tw-flex-col tw-gap-2 tw-justify-between">
+      <div class="tw-text-base">
+        {{ 'DriverBalancesInfo.WithdrawalAmount.Title' | translate }}
+      </div>
+      <div
+        class="tw-text-headline"
+        [ngClass]="{
+          'tw-text-neutral-granit': withdrawalAmount === 0,
+          'tw-text-accent-mint-light': withdrawalAmount > 0,
+        }"
+        data-cy="withdraw-to-fleet-sum"
+      >
+        {{ (withdrawalAmount ? withdrawalAmount / 100 : 0) | upfMoney: currency }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+@let cardPan = cardData?.pan_truncated;
+@if (cardPan) {
+  <section class="card" data-cy="fleet-card">
+    <div class="tw-flex tw-items-center tw-gap-md">
+      <div class="card-avatar">
+        <mat-icon [svgIcon]="vendor" class="vendor-icon {{ vendor }}"></mat-icon>
+      </div>
+
+      <div class="card-info">
+        <div>{{ 'FleetWalletCard.Title' | translate }}</div>
+
+        <div class="tw-text-white">
+          {{ cardPan | cardPan }}
+        </div>
+      </div>
+    </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="cardMenu">
+      <mat-icon class="tw-text-white">more_vert</mat-icon>
+    </button>
+  </section>
+} @else {
+  <div class="card add" data-cy="fleet-add-card">
+    <div class="tw-flex tw-items-center tw-justify-between tw-gap-md tw-w-full">
+      <div class="tw-grid tw-gap-1 tw-text-base">
+        <div class="tw-text-neutral-graphite" [attr.data-cy]="'bind-card-title'">
+          {{ 'FleetWalletCard.Title' | translate }}:
+        </div>
+
+        <div class="tw-text-neutral-granit">
+          {{ 'FleetWalletCard.NoCardAttached' | translate | lowercase }}
+        </div>
+      </div>
+
+      <button mat-flat-button color="primary" (click)="handleAddCardClick()" [attr.data-cy]="'bind-card-button'">
+        <div class="tw-flex tw-items-center tw-gap-1">
+          <mat-icon>add</mat-icon>
+          {{ 'FleetWalletCard.AddCard' | translate }}
+        </div>
+      </button>
+    </div>
+  </div>
+}
+
+<mat-menu #cardMenu class="auto-height tw-top-md -tw-right-2" xPosition="before">
+  <button mat-menu-item (click)="handleDeleteCardClick()">
+    <div class="tw-flex tw-items-center tw-justify-between tw-gap-md">
+      <span class="tw-text-base tw-text-accent-coral-light">
+        {{ 'FleetWalletCard.DeleteCard' | translate }}
+      </span>
+
+      <mat-icon class="outlined delete-icon">delete</mat-icon>
+    </div>
+  </button>
+</mat-menu>

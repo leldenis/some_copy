@@ -1,0 +1,30 @@
+:host {
+  font-size: 0.625rem;
+
+  @apply tw-px-2 tw-py-1.5 tw-rounded;
+  @apply tw-uppercase tw-leading-3 tw-shrink-0 tw-w-fit;
+
+  &.success {
+    @apply tw-bg-accent-mint-dark tw-text-green-800;
+  }
+
+  &.warn {
+    @apply tw-bg-alert-yellow-dark tw-text-alert-yellow-light;
+  }
+
+  &.error {
+    @apply tw-bg-alert-blood-light tw-text-alert-blood-dark;
+  }
+
+  &.neutral {
+    @apply tw-bg-neutral-silver tw-text-neutral-smoke;
+  }
+
+  &.primary {
+    @apply tw-bg-alert-violet-dark tw-text-alert-violet-light;
+  }
+
+  &.accent {
+    @apply tw-bg-alert-blue-dark tw-text-alert-blue-light;
+  }
+}

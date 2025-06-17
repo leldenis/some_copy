@@ -1,0 +1,58 @@
+<div class="header">
+  <div>{{ 'CashLimits.HowToSetupCashLimits' | translate }}</div>
+
+  <button mat-icon-button matDialogClose data-cy="cash-limits-info-dialog-header-close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="content">
+  @for (section of layout; track accordionIndex; let accordionIndex = $index) {
+    <div class="tw-text-dialogTitle sm:tw-text-xl tw-font-medium">{{ section.title | translate }}</div>
+
+    <mat-accordion displayMode="flat" multi="true">
+      @for (article of section.articles; track $index) {
+        <mat-expansion-panel
+          #panel
+          class="cash-limit-panel"
+          (opened)="onExpandedChange(accordionIndex)"
+          [expanded]="!accordionIndex && !$index"
+          [attr.data-cy]="'cash-limits-info-dialog-panel-' + accordionIndex + '-' + $index"
+        >
+          <mat-expansion-panel-header [collapsedHeight]="panelHeightPx()" [expandedHeight]="panelHeightPx()">
+            <div class="tw-text-base sm:tw-text-dialogTitle" [class.tw-font-medium]="panel.expanded">
+              @if (section.indexed) {
+                {{ $index + 1 }}.
+              }
+
+              {{ article.title | translate }}
+            </div>
+          </mat-expansion-panel-header>
+
+          <div class="tw-grid tw-gap-2 sm:-tw-mt-2">
+            <div
+              class="tw-text-neutral-smoke tw-text-base tw-grid tw-gap-2 sm:tw-gap-3 sm:tw-text-dialogTitle"
+              [innerHTML]="article.message | translate"
+            ></div>
+
+            @if (article?.infoPanelMessage) {
+              <upf-info-panel color="accent">
+                <div class="tw-text-base tw-leading-5">
+                  {{ article.infoPanelMessage | translate }}
+                </div>
+              </upf-info-panel>
+            }
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+
+    <mat-divider class="!tw-border-neutral-cloud tw-bt-3 tw-pb-6"></mat-divider>
+  }
+</div>
+
+<div class="footer">
+  <button mat-flat-button matDialogClose color="accent" data-cy="cash-limits-info-dialog-close-btn">
+    {{ 'Common.Buttons.B_Close' | translate }}
+  </button>
+</div>

@@ -1,0 +1,86 @@
+<section class="branding">
+  <img
+    ngSrc="/assets/images/fleets_logo_sm.png"
+    srcset="/assets/icons/uklon.svg"
+    width="64"
+    height="20"
+    alt="brand-logo"
+  />
+</section>
+
+<header [ngClass]="{ 'fullscreen-mode': fullScreenMode() === 'full' }">
+  <section class="tw-flex tw-items-center tw-gap-3">
+    <div class="tw-flex tw-flex-row-reverse tw-items-center tw-gap-3 sm:tw-flex-row">
+      @if (config()?.header?.backNavigationButton) {
+        <a
+          mat-flat-button
+          color="accent"
+          data-cy="shell-navigate-back-btn"
+          class="small tw-normal-case"
+          (click)="onNavigateBack(config()?.header?.backRoute)"
+        >
+          <mat-icon class="tw-shrink-0 tw-mr-1">arrow_back</mat-icon>
+          {{ 'Common.Buttons.B_Back' | translate }}
+        </a>
+      }
+
+      @if (isMobileView()) {
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="openSidebar.emit()"
+          data-cy="mobile-menu-toggle-btn"
+          class="sm:!tw-hidden"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      } @else if (config()?.header?.title) {
+        <img ngSrc="/assets/icons/uklon-icon.svg" width="24" height="24" />
+      }
+    </div>
+
+    <div class="tw-text-title tw-grid" [ngClass]="{ '!tw-hidden sm:!tw-flex': config()?.header?.hideTitleOnMobile }">
+      @if (config()?.header?.title) {
+        {{ title() }}
+      }
+
+      @if (config()?.header?.customTitle) {
+        {{ config()?.header.customTitle | translate: { data: config()?.header.customTitleData } }}
+      }
+
+      @if (config()?.header?.subtitle && fullScreenMode() !== 'full') {
+        <span class="subtitle">
+          {{ config()?.header.subtitle | translate }}
+        </span>
+      }
+    </div>
+  </section>
+
+  <section class="tw-flex tw-items-center tw-gap-md sm:tw-gap-8">
+    @if (config()?.header?.template) {
+      <ng-container
+        [ngTemplateOutlet]="config()?.header.template"
+        [ngTemplateOutletContext]="{ $implicit: config()?.header.templateContext }"
+      ></ng-container>
+    }
+
+    <ng-content></ng-content>
+
+    @if (showNotificationsBtn() && fullScreenMode() !== 'full') {
+      <div class="notifications-container">
+        <button
+          class="!tw-bg-neutral-silver notifications-btn"
+          mat-icon-button
+          data-cy="open-notification-center-btn"
+          (click)="openNotificationsSidebar.emit(notificationsCount())"
+        >
+          <mat-icon class="outlined tw-text-neutral-smoke">notifications</mat-icon>
+        </button>
+
+        <div class="counter" [ngClass]="{ empty: !notificationsCount(), 'has-custom': customNotificationsCount() }">
+          {{ notificationsCount() | countMask: 10 }}
+        </div>
+      </div>
+    }
+  </section>
+</header>

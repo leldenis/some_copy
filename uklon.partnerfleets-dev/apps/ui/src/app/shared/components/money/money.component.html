@@ -1,0 +1,5 @@
+@if (money) {
+  {{ money.amount / 100 | upfMoney: money?.currency || currency : displayType }}
+} @else {
+  0
+}

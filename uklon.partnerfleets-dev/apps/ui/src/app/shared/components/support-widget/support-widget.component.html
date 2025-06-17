@@ -1,0 +1,104 @@
+<div class="support-widget">
+  @if (expand) {
+    <div class="support-widget__content">
+      <div class="tw-flex tw-gap-2 tw-mb-md">
+        @for (country of countries; track country) {
+          <div
+            (click)="onSelectCountry(country)"
+            class="country-avatar"
+            [ngClass]="{ selected: country === selectedCountry }"
+          >
+            {{ 'Common.CountryCode.' + country | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="text-subtitle">{{ 'SupportWidget.PhoneTitle' | translate }}</div>
+
+      <div class="info-panel">
+        <div class="info-panel__icon">
+          <mat-icon>phone_enabled</mat-icon>
+        </div>
+        <div class="info-panel__data">
+          @if (widget?.country) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Country' | translate }}</div>
+              <div class="text-accent">&plus;{{ widget.country.phone }}</div>
+            </div>
+          }
+          @if (widget?.capital) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Capital.' + selectedCountry | translate }}</div>
+              <div class="text-accent">&plus;{{ widget.capital.phone }}</div>
+            </div>
+          }
+          @if (widget?.regions) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Regions' | translate }}</div>
+              <div class="text-accent">&plus;{{ widget.regions.phone }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="divider">&nbsp;</div>
+
+      <div class="text-subtitle">{{ 'SupportWidget.ScheduleTitle' | translate }}</div>
+
+      <div class="info-panel">
+        <div class="info-panel__icon">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div class="info-panel__data">
+          @if (widget?.country) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Country' | translate }}</div>
+              <div class="text-accent">
+                <ng-container
+                  *ngTemplateOutlet="scheduleTpl; context: { schedule: widget?.country.schedule }"
+                ></ng-container>
+              </div>
+            </div>
+          }
+          @if (widget?.capital) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Capital.' + selectedCountry | translate }}</div>
+              <div class="text-accent">
+                <ng-container
+                  *ngTemplateOutlet="scheduleTpl; context: { schedule: widget.capital.schedule }"
+                ></ng-container>
+              </div>
+            </div>
+          }
+          @if (widget?.regions) {
+            <div>
+              <div class="text-subtitle">{{ 'SupportWidget.Regions' | translate }}</div>
+              <div class="text-accent">
+                <ng-container
+                  *ngTemplateOutlet="scheduleTpl; context: { schedule: widget.regions.schedule }"
+                ></ng-container>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="upf-support-widget-trigger">
+  <button type="button" mat-icon-button disableRipple (click)="toggleSupportPanel()">
+    <mat-icon>support_agent</mat-icon>
+  </button>
+</div>
+
+<ng-template let-schedule="schedule" #scheduleTpl>
+  @for (item of schedule; track item) {
+    <span>{{ 'Common.DayOfWeek.' + item?.dayRange?.from + 'Short' | translate | lowercase }}</span>
+    @if (item?.dayRange?.to) {
+      <span>&nbsp;&dash;&nbsp;{{ 'Common.DayOfWeek.' + item?.dayRange?.to + 'Short' | translate | lowercase }}</span>
+    }
+    <span>&nbsp;{{ item?.timeRange?.from }}&dash;{{ item?.timeRange?.to }}</span>
+    <span>{{ $last ? '' : ',&nbsp;' }}</span>
+  }
+</ng-template>

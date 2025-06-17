@@ -1,0 +1,29 @@
+@if (currentLocale$ | async; as currentLocale) {
+  <button class="tw-flex tw-items-center tw-gap-1" [matMenuTriggerFor]="langMenu" (click)="isOpened = true">
+    <div class="language-avatar">
+      {{ localeToCountry[currentLocale] || currentLocale | uppercase }}
+    </div>
+
+    <mat-icon class="!tw-w-5 !tw-h-5 !tw-leading-5" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+  </button>
+
+  <mat-menu #langMenu class="!tw-min-w-[14rem] !tw-mt-2" (closed)="isOpened = false">
+    @for (locale of availableLanguages; track locale) {
+      <button mat-menu-item (click)="handleLanguageChange(locale)">
+        <div class="language-option">
+          <div class="language-avatar" [ngClass]="{ '!tw-text-accent-mint-light': locale === currentLocale }">
+            {{ localeToCountry[locale] || locale | uppercase }}
+          </div>
+
+          <div class="tw-text-neutral-graphite">
+            {{ 'Common.LocaleName.' + (locale | titlecase) | translate }}
+          </div>
+
+          @if (locale === currentLocale) {
+            <mat-icon class="check-icon">done</mat-icon>
+          }
+        </div>
+      </button>
+    }
+  </mat-menu>
+}

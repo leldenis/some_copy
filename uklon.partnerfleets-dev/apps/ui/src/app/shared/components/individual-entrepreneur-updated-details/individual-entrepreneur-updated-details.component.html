@@ -1,0 +1,51 @@
+<div class="tw-flex tw-flex-col tw-gap-md">
+  @if (changeType()) {
+    <div class="history-item">
+      <small>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.update_type' | translate }}</small>
+      <p>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.UpdateType.' + changeType() | translate }}</p>
+    </div>
+
+    <mat-divider class="tw-shrink-0"></mat-divider>
+  }
+
+  <div class="tw-flex tw-gap-md">
+    <div class="history-item tw-max-w-[50%]">
+      <small>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.entrepreneur_name' | translate }}</small>
+      <p>{{ name() || '-' }}</p>
+    </div>
+
+    <mat-divider vertical class="tw-shrink-0 sm:!tw-hidden"></mat-divider>
+
+    <div class="tw-flex tw-flex-col tw-gap-2 sm:tw-flex-row">
+      @for (item of allPaymentProviders; track $index) {
+        @if (paymentProviders()[item]) {
+          <mat-divider vertical class="tw-hidden sm:tw-flex tw-shrink-0"></mat-divider>
+
+          <div class="history-item">
+            <small>
+              {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.PaymentProviders.' + item | translate }}
+            </small>
+            <p>{{ paymentProviders()[item]?.merchant_id || '-' }}</p>
+          </div>
+
+          @if (item === merchant.PLATON) {
+            <mat-divider vertical class="tw-hidden sm:tw-flex tw-shrink-0"></mat-divider>
+            <mat-divider class="tw-shrink-0"></mat-divider>
+
+            @let paymentChannelId = cleanGuid(paymentProviders()[item]?.payment_channel_id);
+            <div class="history-item">
+              <small>
+                {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.PaymentChannel.' + item | translate }}
+              </small>
+              <p>{{ paymentChannels.paymentProviderNames()[paymentChannelId] || paymentChannelId || '-' }}</p>
+            </div>
+          }
+
+          @if (!$last) {
+            <mat-divider class="tw-shrink-0"></mat-divider>
+          }
+        }
+      }
+    </div>
+  </div>
+</div>

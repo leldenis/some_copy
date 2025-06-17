@@ -1,0 +1,115 @@
+@let fleet = fleet$ | async;
+@if (fleet?.id) {
+  <section class="flt-material tw-grid tw-grid-cols-12 tw-gap-4">
+    <upf-driver-balances-info
+      [balance]="driversBalance$ | async"
+      [currency]="driversCurrency$ | async"
+      [withdrawalAmount]="withdrawalAmount"
+      class="tw-col-span-12"
+    ></upf-driver-balances-info>
+
+    <upf-driver-balances-filter
+      [value]="filter$ | async"
+      [fleetId]="fleet.id"
+      [filterKey]="filterKey"
+      (filtersChange)="onFilterApply($event)"
+      (sortChange)="onSortChange($event)"
+      class="tw-col-span-12 sm:tw-col-span-7"
+    ></upf-driver-balances-filter>
+
+    <div class="tw-hidden sm:tw-flex tw-gap-4 tw-justify-end tw-items-center tw-h-full sm:tw-col-span-5">
+      @if (fleet?.wallet_transfers_allowed) {
+        @if (fleetCurrency$ | async; as currency) {
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="!canWithdrawToFleetBalance"
+            (click)="
+              handleWithdrawToFleetClick(currency, fleet.id);
+              reportUserRole(analyticsEventType.FINANCE_DRIVER_BALANCES_TRANSFER_TO_WALLET_TAP)
+            "
+            data-cy="withdraw-to-fleet-button"
+          >
+            {{ 'Finance.DriversBalances.Filter.TransferToFleet' | translate }}
+          </button>
+        }
+
+        @if (driversCurrency$ | async; as currency) {
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="!canWithdrawToDriversBalances"
+            (click)="
+              handleWithdrawToDriversClick(currency, fleet.id);
+              reportUserRole(analyticsEventType.FINANCE_DRIVER_BALANCES_REPLENISH_BALANCE_TAP)
+            "
+            data-cy="withdraw-to-drivers-button"
+          >
+            {{ 'Finance.DriversBalances.Filter.TransferToDrivers' | translate }}
+          </button>
+        }
+      }
+    </div>
+
+    @if (drivers$ | async; as drivers) {
+      @if (drivers?.length > 0) {
+        <upf-driver-balances-list
+          [walletTransfersAllowed]="fleet?.wallet_transfers_allowed"
+          [drivers]="drivers"
+          [driversCurrency]="driversCurrency$ | async"
+          [fleetCurrency]="fleetCurrency$ | async"
+          [maxWithdrawalAmountToFleet]="driversBalance$ | async"
+          [maxWithdrawalAmountToDrivers]="fleetBalance$ | async"
+          (withdrawalChange)="handleWithdrawalChange($event)"
+          (sortChange)="onSortChange($event)"
+          class="tw-col-span-12 tw-mb-4 sm:tw-mb-0"
+        ></upf-driver-balances-list>
+      } @else {
+        <upf-empty-state
+          [state]="(hasError$ | async) ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"
+          class="tw-col-span-12"
+        ></upf-empty-state>
+      }
+    }
+  </section>
+}
+
+@if (fleet?.wallet_transfers_allowed) {
+  <div class="tw-fixed tw-bottom-0 tw-rounded-t-lg tw-shadow-lg tw-right-4 tw-left-4 sm:tw-hidden">
+    <div class="tw-sticky tw-h-cell-1 tw-rounded-t-lg tw-shadow-lg tw-bottom-4 tw-bg-neutral-white">
+      <div class="tw-grid tw-grid-cols-2 tw-h-full">
+        @if (fleetCurrency$ | async; as currency) {
+          <button
+            mat-button
+            color="primary"
+            [disabled]="!canWithdrawToFleetBalance"
+            (click)="handleWithdrawToFleetClick(currency, fleet.id)"
+          >
+            <div class="tw-flex tw-justify-center tw-items-center tw-gap-2">
+              <mat-icon class="tw-flex-shrink-0" [svgIcon]="icons.withdrawalWallet"></mat-icon>
+              <span>
+                {{ 'Finance.DriversBalances.Filter.TransferToFleet' | translate }}
+              </span>
+            </div>
+          </button>
+        }
+
+        @if (driversCurrency$ | async; as currency) {
+          <button
+            mat-button
+            color="primary"
+            [disabled]="!canWithdrawToDriversBalances"
+            (click)="handleWithdrawToDriversClick(currency, fleet.id)"
+          >
+            <div class="tw-flex tw-justify-center tw-items-center tw-gap-2">
+              <mat-icon class="tw-flex-shrink-0" [svgIcon]="icons.topUpUser"></mat-icon>
+              <span>
+                {{ 'Finance.DriversBalances.Filter.TransferToDrivers' | translate }}
+              </span>
+            </div>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}

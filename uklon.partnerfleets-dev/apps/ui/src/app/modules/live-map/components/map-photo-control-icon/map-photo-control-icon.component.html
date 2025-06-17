@@ -1,0 +1,24 @@
+@let deadline = photoControl.deadline_to_send | photoControlDeadlineMessage;
+
+<mat-icon
+  class="outlined tw-text-neutral-smoke"
+  [ngClass]="{
+    '!tw-text-accent-coral-light': photoControl?.block_immediately || deadline.passedDeadline,
+  }"
+  [ngxTippy]="tooltip"
+  [tippyContext]="{ photoControl }"
+>
+  photo_camera
+</mat-icon>
+
+<ng-template #tooltip let-photoControl="photoControl">
+  <div class="tw-text-sm">
+    <div>{{ tooltipTitle | translate }}</div>
+
+    @if (!photoControl?.block_immediately && photoControl?.deadline_to_send) {
+      <div class="tw-text-neutral-fog">
+        {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+      </div>
+    }
+  </div>
+</ng-template>

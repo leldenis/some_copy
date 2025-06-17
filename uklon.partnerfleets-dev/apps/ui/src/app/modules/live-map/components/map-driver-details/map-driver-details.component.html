@@ -1,0 +1,88 @@
+@if (showStatus()) {
+  <div class="tw-basis-full tw-flex">
+    <upf-status-badge [color]="statusStyling[employee().status]" data-cy="courier-status">
+      {{ 'LiveMap.DriverStatus.' + employee().status | translate }}
+    </upf-status-badge>
+  </div>
+}
+
+<div class="tw-flex tw-items-center tw-gap-2 tw-w-full tw-justify-between">
+  <div class="tw-flex tw-items-center tw-gap-2">
+    @if (employee().photos.driver_avatar_photo; as avatar) {
+      <img
+        upfDefaultImgSrc
+        [src]="avatar.url"
+        [defaultSrc]="avatar.fallback_url"
+        loading="lazy"
+        class="tw-shrink-0 tw-rounded-full tw-object-cover tw-w-9 tw-h-9"
+        data-cy="driver-avatar"
+        alt="avatar"
+      />
+    }
+
+    <div class="tw-grid tw-gap-1" data-cy="driver-info">
+      <div class="fullname tw-line-clamp-2" ngxTippy="{{ employee() | fullName }}" [tippyProps]="{ delay: [750, 100] }">
+        {{ employee() | fullName }}
+      </div>
+      <div class="tw-text-sm">{{ employee().phone }}</div>
+    </div>
+  </div>
+
+  <div class="tw-grid tw-gap-1">
+    <div class="tw-flex tw-gap-1 tw-justify-self-end">
+      @if (employee().vehicle?.photo_control) {
+        <upf-map-photo-control-icon
+          [photoControl]="employee().vehicle.photo_control"
+          [employeeStatus]="employee().status"
+          (click)="$event.stopPropagation()"
+        ></upf-map-photo-control-icon>
+      }
+
+      @if (!employee()?.location) {
+        <mat-icon
+          (click)="$event.stopPropagation()"
+          ngxTippy="{{ 'LiveMap.Tooltips.NoGeolocation' | translate }}"
+          class="outlined tw-text-accent-coral-light tw-font-light !tw-w-5 !tw-h-5 tw-text-xl"
+          data-cy="driver-location-icon"
+        >
+          location_off
+        </mat-icon>
+      }
+
+      <upf-status-badge class="tw-justify-self-end tw-min-w-[70px] tw-text-center" data-cy="driver-licensePlate">
+        {{ employee().vehicle?.license_plate }}
+      </upf-status-badge>
+    </div>
+  </div>
+</div>
+
+<div class="tw-flex tw-gap-1 tw-self-start tw-ml-11">
+  <div class="tw-whitespace-nowrap tw-flex tw-gap-1">
+    <span class="tw-text-neutral-smoke">{{ 'DriverFilters.Title' | translate }}:</span>
+
+    <span
+      class="tw-flex tw-items-center tw-font-medium tw-w-fit"
+      [class.tw-text-neutral-granit]="employee().status === employeeStatus.Inactive"
+      (click)="$event.stopPropagation()"
+    >
+      @let driverFilters =
+        employee().order_accepting_methods
+          | driverFilters: employee().is_device_online && !employee().is_driver_in_idle
+          | async;
+
+      @for (filter of driverFilters; track $index) {
+        <span
+          [class.filter-link]="filter.isLink"
+          [attr.data-cy]="'active-filter' + (filter.isLink ? '-link' : '')"
+          (click)="onShowActiveFilters(employee().id, filter.isLink)"
+        >
+          {{ filter.key | translate: { data: filter.data } }}
+        </span>
+
+        <span class="tw-mr-1">
+          {{ $last ? '' : ', ' }}
+        </span>
+      }
+    </span>
+  </div>
+</div>

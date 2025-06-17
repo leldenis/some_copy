@@ -1,0 +1,18 @@
+:host {
+  @apply tw-text-neutral-graphite tw-text-base;
+}
+
+.rating-container {
+  @apply tw-grid tw-grid-cols-5 tw-gap-2 sm:tw-grid-cols-10;
+
+  .rating {
+    @apply tw-aspect-square tw-bg-neutral-silver tw-rounded tw-grid tw-place-content-center;
+    @apply tw-border tw-border-neutral-cloud tw-text-2xl tw-cursor-pointer;
+    @apply tw-transition-colors tw-transition-shadow;
+
+    &.selected {
+      box-shadow: 0 0 0 1px var(--success-color);
+      @apply tw-border-accent-mint-light tw-outline-accent-mint-light;
+    }
+  }
+}

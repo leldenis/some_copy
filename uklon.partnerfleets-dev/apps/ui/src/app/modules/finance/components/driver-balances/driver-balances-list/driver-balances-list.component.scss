@@ -1,0 +1,27 @@
+:host {
+  @apply sm:tw-rounded sm:tw-shadow-sm;
+
+  ::ng-deep .mat-sort-header-arrow {
+    display: none;
+  }
+}
+
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}
+
+.flt-table .flt-table-row.flt-selectable.flt-selected-row {
+  @apply tw-border tw-border-solid tw-border-accent-mint-light;
+}
+
+.flt-table .flt-table-row.flt-selectable {
+  @apply tw-border tw-border-solid tw-border-t-transparent tw-border-x-transparent;
+}
+
+.flt-remove-top-border {
+  border-top-color: transparent !important;
+}
+
+.cdk-table-sticky {
+  top: 48px !important;
+}

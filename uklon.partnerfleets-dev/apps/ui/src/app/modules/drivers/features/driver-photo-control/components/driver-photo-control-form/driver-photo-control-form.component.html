@@ -1,0 +1,111 @@
+@let isMobileView = isMobileView$ | async;
+
+<div class="tw-flex tw-flex-col tw-gap-2 sm:tw-gap-md">
+  <div class="tw-grid tw-gap-md">
+    <div class="sm:tw-hidden tw-grid tw-gap-2">
+      <div class="tw-text-title tw-font-medium">
+        {{ 'DriverPhotoControl.Title' | translate: { data: fullName() } }}
+      </div>
+
+      <ng-container [ngTemplateOutlet]="deadlineTpl"></ng-container>
+    </div>
+
+    @if (ticket().status === ticketStatus.DRAFT && ticket()?.reasons?.length > 0) {
+      <upf-ticket-status-reasons
+        data-cy="photo-control-reason-panel-draft"
+        reasonPath="DriverPhotoControl.TicketsList.Reasons."
+        [activeLogs]="draftReason()"
+        [showTitle]="false"
+      ></upf-ticket-status-reasons>
+    }
+
+    @if (ticket().status === ticketStatus.CLARIFICATION) {
+      <upf-ticket-status-reasons
+        data-cy="photo-control-reason-panel-clarification"
+        reasonPath="DriverPhotoControl.ClarificationReason."
+        [activeLogs]="clarificationReason()"
+      ></upf-ticket-status-reasons>
+    }
+  </div>
+
+  <form [formGroup]="photosForm">
+    <div class="tw-hidden sm:tw-block">
+      <ng-container [ngTemplateOutlet]="deadlineTpl"></ng-container>
+    </div>
+
+    <upf-info-panel color="success" class="sm:tw-w-2/5" data-cy="photo-control-instructions">
+      {{ 'DriverPhotoControl.Panel.DriverPhotoSharpnessInstruction' | translate }}
+    </upf-info-panel>
+
+    <section class="photos">
+      @for (section of layout; track $index) {
+        @if (ticket().picture_types | photoCategories: section.categories : 'driver'; as categoriesGroup) {
+          @if (categoriesGroup.length) {
+            <div class="tw-text-dialogTitle tw-font-medium tw-text-neutral-graphite">
+              {{ section.title | translate }}
+            </div>
+
+            <div class="group">
+              @for (type of categoriesGroup; track $index) {
+                <ng-container [formGroupName]="type">
+                  @if (type === photoCategory.PROFILE) {
+                    <upf-driver-avatar-control
+                      [category]="type"
+                      [ticketId]="ticket().id"
+                      [ticketType]="ticketType.DRIVER_PHOTO_CONTROL"
+                      [hideLabel]="categoriesGroup.length === 1"
+                      (photoClick)="onOpenGallery($event, isMobileView)"
+                      (fileUploaded)="handleFileUploaded(type)"
+                      formControlName="url"
+                      class="tw-col-span-full sm:!tw-h-[180px]"
+                      [attr.data-cy]="'photo-category-' + photoCategory.PROFILE"
+                    ></upf-driver-avatar-control>
+                  } @else {
+                    <upf-photo-card-new
+                      [category]="type"
+                      [ticketId]="ticket().id"
+                      [ticketType]="ticketType.DRIVER_PHOTO_CONTROL"
+                      [hideLabel]="categoriesGroup.length === 1"
+                      (photoClick)="onOpenGallery($event, isMobileView)"
+                      (fileUploaded)="handleFileUploaded(type)"
+                      formControlName="url"
+                      [attr.data-cy]="'photo-category-' + type"
+                    ></upf-photo-card-new>
+                  }
+                </ng-container>
+              }
+            </div>
+          }
+        }
+      }
+    </section>
+  </form>
+</div>
+
+@if (ticket().status === ticketStatus.DRAFT || ticket().status === ticketStatus.CLARIFICATION) {
+  <section class="footer">
+    <button
+      data-cy="photo-control-btn-submit"
+      class="tw-w-full sm:tw-w-auto"
+      mat-flat-button
+      color="primary"
+      [disabled]="!photosForm.valid"
+      (click)="onSubmitForm(ticket().id)"
+    >
+      {{ 'PhotoControl.Form.SubmitButton' | translate }}
+    </button>
+  </section>
+}
+
+<ng-template #deadlineTpl>
+  @let deadline = ticket().deadline_to_send | photoControlDeadlineMessage;
+
+  @if (ticket()?.deadline_to_send && !ticket()?.block_immediately) {
+    <div class="deadline" data-cy="photo-control-deadline-panel" [ngClass]="{ passed: deadline?.passedDeadline }">
+      @if (deadline) {
+        {{ 'PhotoControl.TicketsList.Deadline' | translate }} :
+        {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+      }
+    </div>
+  }
+</ng-template>

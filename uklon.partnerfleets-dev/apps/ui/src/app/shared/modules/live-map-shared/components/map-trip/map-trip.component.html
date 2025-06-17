@@ -1,0 +1,66 @@
+@if (order) {
+  <section class="panel-header" (click)="togglePanelOpened(panelType.TRIP)">
+    <div class="tw-flex tw-items-center tw-gap-md tw-justify-between tw-w-full">
+      <div class="tw-flex tw-items-center tw-gap-md">
+        <button mat-icon-button (click)="onGoBack()" class="back-btn">
+          <mat-icon class="tw-text-tmp">arrow_back</mat-icon>
+        </button>
+
+        <ng-container *upfLet="order?.status | titlecase as orderStatus">
+          <upf-status-badge [color]="orderStatusStyling[orderStatus]">
+            {{ 'LiveMap.ActiveOrderStatus.' + orderStatus | translate }}
+          </upf-status-badge>
+        </ng-container>
+      </div>
+
+      <div class="tw-flex tw-items-center tw-gap-2">
+        <div class="tw-flex tw-items-center tw-gap-2">
+          <div class="tw-text-neutral-granit tw-text-base">
+            {{ order.pickup_time | seconds2Date }}
+            {{ order.pickup_time | seconds2Time }}
+          </div>
+        </div>
+
+        <mat-icon class="expand-btn" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+      </div>
+    </div>
+  </section>
+
+  @if (isOpened) {
+    <section class="panel-content tw-grid tw-gap-md">
+      <div class="tw-grid tw-gap-2">
+        <div class="tw-text-neutral-granit tw-text-base">
+          {{ 'Orders.Trips.Details.Driver' | translate }}
+        </div>
+
+        <div class="panel-info">
+          <div class="data">
+            <a (click)="navigateToEntity.emit(mapEntity.id); $event.stopPropagation()" class="tw-shrink-0">
+              <img upfDefaultImgSrc [src]="avatar.url" [defaultSrc]="avatar.fallback_url" class="avatar" alt="avatar" />
+            </a>
+
+            <div class="details">
+              <a (click)="navigateToEntity.emit(mapEntity.id)">{{ mapEntity.last_name }} {{ mapEntity.first_name }}</a>
+
+              <small>{{ mapEntity.phone }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <upf-map-route [routePoints]="order.route.route_points"></upf-map-route>
+
+      <mat-divider></mat-divider>
+
+      <upf-map-route-details
+        [order]="order"
+        [isDelivery]="isDelivery"
+        (navigateToOrder)="navigateToOrder.emit()"
+      ></upf-map-route-details>
+
+      <mat-divider></mat-divider>
+    </section>
+  }
+}

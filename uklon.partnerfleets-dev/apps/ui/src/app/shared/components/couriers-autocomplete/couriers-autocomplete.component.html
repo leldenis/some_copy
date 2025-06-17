@@ -1,0 +1,67 @@
+<mat-form-field floatLabel="always" class="tw-w-full no-indent">
+  <mat-label>
+    {{ 'CouriersAutocomplete.Title' | translate }}
+  </mat-label>
+
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="autoCouriers"
+    [formControl]="filterControl"
+    (keyup)="handleChange($event)"
+    (focus)="inputFocused = true"
+    (blur)="inputFocused = false"
+    [placeholder]="
+      (withAllDriversOption
+        ? inputFocused
+          ? 'CouriersAutocomplete.Placeholder'
+          : 'CouriersAutocomplete.AllCouriers'
+        : 'CouriersAutocomplete.Placeholder'
+      ) | translate
+    "
+    [ngClass]="{ 'with-all-option': withAllDriversOption && !inputFocused }"
+  />
+
+  @if (selectedCourierId) {
+    <mat-icon matIconSuffix (click)="resetControl()" class="tw-cursor-pointer">close</mat-icon>
+  } @else {
+    <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+  }
+
+  <mat-autocomplete #autoCouriers="matAutocomplete" [displayWith]="displayWithFn">
+    <cdk-virtual-scroll-viewport
+      #scroller
+      [itemSize]="itemHeightPx"
+      [minBufferPx]="itemHeightPx * itemsPerPage"
+      [maxBufferPx]="panelHeightPx"
+      [style.height.px]="panelHeight$ | async"
+      (scrolledIndexChange)="handleScroll($event)"
+      class="autocomplete-viewport"
+    >
+      <mat-option
+        *cdkVirtualFor="let courier of filteredCouriers$ | async"
+        [value]="courier"
+        (onSelectionChange)="onSelectionChange($event)"
+        class="!tw-p-0"
+      >
+        <div
+          *upfLet="courier.last_name + ' ' + courier.first_name as fullName"
+          class="tw-text-base tw-px-4"
+          [innerHTML]="fullName | searchHighlight: (selectedCourierId ? null : filterControl.value)"
+        >
+          {{ fullName }}
+        </div>
+      </mat-option>
+
+      @if (!couriers$.value.length && !selectedCourierId && filterControl.value) {
+        <mat-option disabled class="!tw-p-0">
+          <div class="tw-text-base tw-px-4 tw-truncate">{{ 'Common.Filters.NoMatch' | translate }}`</div>
+        </mat-option>
+      }
+
+      @if (isLoading) {
+        <upf-progress-spinner class="!tw-h-10"></upf-progress-spinner>
+      }
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+</mat-form-field>

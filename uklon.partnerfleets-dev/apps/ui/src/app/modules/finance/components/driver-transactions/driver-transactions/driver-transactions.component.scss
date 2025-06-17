@@ -1,0 +1,11 @@
+:host {
+  @apply tw-relative tw-pt-md tw-gap-4 tw-w-full;
+}
+
+.fleet-wallet {
+  @apply tw-flex tw-grow tw-flex-col tw-h-full;
+}
+
+.row {
+  @apply tw-grow tw-h-full;
+}

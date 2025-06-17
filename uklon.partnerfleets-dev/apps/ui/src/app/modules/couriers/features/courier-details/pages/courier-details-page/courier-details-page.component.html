@@ -1,0 +1,28 @@
+@if (selectedFleetId$ | async; as fleetId) {
+  <div
+    infiniteScroll
+    [scrollWindow]="false"
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    class="tw-h-full tw-overflow-auto"
+  >
+    @if (courier$ | async; as courier) {
+      <div class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-4 sm:tw-p-4 tw-grow">
+        <div class="tw-flex tw-flex-col tw-w-auto sm:tw-min-w-[412px] sm:tw-max-w-[412px]">
+          <upf-courier-info-container
+            [courier]="courier"
+            [restrictions]="restrictions$ | async"
+            (removeCourier)="removeCourier()"
+            class="tw-flex tw-flex-col sm:tw-min-h-[calc(100vh-72px-16px)] sm:tw-rounded-lg sm:tw-bg-neutral-white sm:tw-shadow-sm"
+          ></upf-courier-info-container>
+        </div>
+
+        <upf-courier-details-tabs
+          class="tw-grow sm:tw-rounded-lg sm:tw-bg-neutral-white sm:tw-shadow-sm"
+          [selectedCourierId]="courier.id"
+          [selectedFleetId]="fleetId"
+        ></upf-courier-details-tabs>
+      </div>
+    }
+  </div>
+}

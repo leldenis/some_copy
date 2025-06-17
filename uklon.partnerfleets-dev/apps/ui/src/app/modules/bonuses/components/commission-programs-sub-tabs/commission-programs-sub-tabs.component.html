@@ -1,0 +1,34 @@
+<div class="tw-flex tw-gap-2">
+  <button
+    mat-flat-button
+    color="accent"
+    class="toggle-btn"
+    data-cy="commission-tab-active"
+    [class.active]="activatedProgramType() === programTypes.ACTIVE"
+    (click)="handlerProgramType(programTypes.ACTIVE)"
+  >
+    <span class="btn-label">{{ 'Bonuses.Commissions.Tabs.Active' | translate }}</span>
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    class="toggle-btn"
+    data-cy="commission-tab-planned"
+    [class.active]="activatedProgramType() === programTypes.PLANNED"
+    (click)="handlerProgramType(programTypes.PLANNED)"
+  >
+    {{ 'Bonuses.Commissions.Tabs.Planned' | translate }}
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    class="toggle-btn"
+    data-cy="commission-tab-archived"
+    [class.active]="activatedProgramType() === programTypes.ARCHIVED"
+    (click)="handlerProgramType(programTypes.ARCHIVED)"
+  >
+    {{ 'Bonuses.Commissions.Tabs.Archived' | translate }}
+  </button>
+</div>

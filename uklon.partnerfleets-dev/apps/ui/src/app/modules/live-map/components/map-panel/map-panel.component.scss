@@ -1,0 +1,35 @@
+@use "map" as m;
+
+:host {
+  @include m.map-panel(1rem, 1rem);
+}
+
+.panel-item {
+  @apply tw-p-5 tw-rounded tw-cursor-pointer tw-grid tw-gap-5;
+  @apply tw-transition-shadow hover:tw-shadow-sm active:tw-shadow-none;
+
+  .icons {
+    @apply tw-flex tw-items-center tw-justify-between;
+
+    .mat-icon {
+      @apply tw-text-current tw-w-md tw-h-md tw-text-tmp;
+    }
+  }
+
+  .info {
+    @apply tw-flex tw-items-baseline tw-gap-2;
+
+    span {
+      @apply tw-text-xl tw-text-current;
+    }
+
+    small {
+      @apply tw-text-base tw-text-current;
+    }
+  }
+
+  &.no-data {
+    @apply tw-cursor-default tw-text-neutral-granit tw-bg-white ;
+    @apply tw-border tw-border-neutral-fog hover:tw-shadow-none;
+  }
+}

@@ -1,0 +1,36 @@
+@mixin header-cell() {
+  @apply tw-h-cell-0;
+}
+
+@mixin core() {
+  @apply tw-hidden sm:[display:inherit];
+  @apply tw-h-cell-1;
+  @apply tw-px-2 sm:tw-px-4;
+
+  &--divider {
+    @apply tw-h-0;
+    @apply sm:tw-hidden;
+
+    &.flt-table-cell--visible {
+      @apply sm:tw-hidden;
+    }
+  }
+
+  &--large {
+    @apply tw-h-16;
+    @apply sm:tw-h-cell-1;
+  }
+
+  &--hidden {
+    @apply tw-hidden;
+  }
+
+  &--visible {
+    @apply [display:inherit];
+  }
+
+  &-toggle {
+    @apply tw-flex tw-justify-end tw-items-stretch;
+    @apply tw-px-0;
+  }
+}

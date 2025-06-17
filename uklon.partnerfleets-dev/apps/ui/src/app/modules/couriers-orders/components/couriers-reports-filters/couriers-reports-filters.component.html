@@ -1,0 +1,16 @@
+<upf-filters-container
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+  direction="row"
+>
+  <form [formGroup]="filtersForm">
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="dateRange"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <upf-couriers-autocomplete [fleetId]="fleetId" formControlName="courierId"></upf-couriers-autocomplete>
+  </form>
+</upf-filters-container>

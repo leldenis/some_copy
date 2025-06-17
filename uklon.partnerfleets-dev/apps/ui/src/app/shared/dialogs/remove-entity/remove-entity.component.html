@@ -1,0 +1,72 @@
+<div class="row remove-from-fleet">
+  <div class="flex-row justify-content-between align-items-center remove-from-fleet__header">
+    <div class="remove-from-fleet__title" data-cy="remove-vehicle-from-fleet">
+      @switch (data.type) {
+        @case (entityType.VEHICLE) {
+          {{ 'Modals.RemoveFromFleet.Vehicle' | translate: { '0': data.placeholder } }}
+        }
+
+        @case (entityType.DRIVER) {
+          {{ 'Modals.RemoveFromFleet.Driver' | translate: { '0': data.placeholder } }}
+        }
+      }
+    </div>
+
+    <button data-cy="close-modal" mat-icon-button (click)="handleCancelClick()">
+      <mat-icon [svgIcon]="icons.close"></mat-icon>
+    </button>
+  </div>
+
+  <div [formGroup]="formGroup" class="flex-col remove-from-fleet__body">
+    @if (data.type === entityType.DRIVER) {
+      <div class="description">
+        {{ 'Modals.RemoveFromFleet.Description' | translate }}
+      </div>
+    }
+
+    <mat-form-field class="reason-field no-indent">
+      <mat-label for="reason">
+        {{ 'Modals.RemoveFromFleet.ReasonLabel' | translate }}
+      </mat-label>
+
+      <mat-select data-cy="reason-control" formControlName="reason">
+        @for (reason of reasons; track reason) {
+          <mat-option data-cy="reason-control-item" id="reason" [value]="reason">
+            {{ reasonsIntl.get(reason) | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>
+        {{ 'Modals.RemoveFromFleet.CommentLabel' | translate }}
+      </mat-label>
+
+      <textarea
+        formControlName="comment"
+        maxlength="250"
+        matInput
+        id="comment"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="3"
+        cdkAutosizeMaxRows="5"
+        [placeholder]="'Modals.RemoveFromFleet.CommentPlaceholder' | translate"
+        data-cy="comment-control"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="flex-row align-items-center justify-content-center remove-from-fleet__actions">
+    <button
+      mat-flat-button
+      color="warn"
+      [disabled]="formGroup.invalid"
+      (click)="handleAcceptClick()"
+      class="col-4"
+      data-cy="remove-btn"
+    >
+      {{ 'Common.Buttons.' + (data.type === 'driver' ? 'B_Remove' : 'B_Delete') | translate }}
+    </button>
+  </div>
+</div>

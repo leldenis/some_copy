@@ -1,0 +1,37 @@
+<section class="tw-grid tw-gap-md sm:tw-gap-2">
+  <div class="title">{{ 'Auth.Login.Entrance' | translate }}</div>
+
+  <div class="subtitle">{{ 'Auth.Login.EnterPhone' | translate }}</div>
+</section>
+
+<form class="tw-grid" [formGroup]="loginForm">
+  <upf-phone-input
+    [countryCode]="selectedCountryPhoneNumber$ | async"
+    [formats]="formats$ | async"
+    (countryChange)="handleCountryChange($event)"
+    formControlName="contact"
+    data-cy="contact"
+    class="tw-mb-5"
+  >
+    <span class="label">{{ 'Auth.Login.PhoneLabel' | translate }}</span>
+  </upf-phone-input>
+
+  <div class="tw-grid tw-gap-md">
+    <mat-checkbox data-cy="remember-me-control" (change)="handleRememberMeClick()" formControlName="isRememberMe">
+      <span class="tw-text-sm tw-leading-[14px] tw-text-neutral-graphite">
+        {{ 'Auth.Login.RememberMe' | translate }}
+      </span>
+    </mat-checkbox>
+
+    <upf-loader-button
+      color="primary"
+      dataCY="continue-login-btn"
+      type="button"
+      [disabled]="loginForm.invalid"
+      [loading]="isLoading$ | async"
+      (handlerClick)="getAuthMethod()"
+    >
+      {{ 'Common.Buttons.B_Continue' | translate }}
+    </upf-loader-button>
+  </div>
+</form>

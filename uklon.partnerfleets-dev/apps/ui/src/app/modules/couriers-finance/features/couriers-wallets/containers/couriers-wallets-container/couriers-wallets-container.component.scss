@@ -1,0 +1,27 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-2 sm:tw-gap-4;
+  @apply tw-h-full tw-w-full;
+  @apply tw-pt-md sm:tw-pb-md;
+}
+
+.mobile-withdraw-btns {
+  @apply sm:tw-hidden tw-grid tw-grid-cols-[1fr_1px_1fr] tw-overflow-hidden tw-h-cell-1;
+  @apply tw-sticky tw-bottom-0 tw-rounded-t-lg tw-shadow-lg -tw-mx-md tw-bg-white;
+  filter: drop-shadow(0 -2px 4px rgba(0 0 0 / 16%));
+
+  .btn {
+    @apply tw-rounded-none tw-whitespace-normal tw-h-full tw-transition-colors tw-text-base;
+
+    &:not(:disabled) {
+      @apply tw-bg-accent-mint-light tw-text-white;
+    }
+  }
+
+  .btn-content {
+    @apply tw-flex tw-items-center tw-gap-2;
+
+    .mat-icon {
+      @apply tw-w-8 tw-h-5;
+    }
+  }
+}

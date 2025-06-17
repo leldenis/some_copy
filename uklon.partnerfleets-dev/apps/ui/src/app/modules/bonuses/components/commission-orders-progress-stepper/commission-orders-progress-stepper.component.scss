@@ -1,0 +1,17 @@
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}
+
+.theme {
+  &-green {
+    .icon-completed {
+      @apply tw-text-accent-mint-light;
+    }
+  }
+
+  &-black {
+    .icon-completed {
+      @apply tw-text-neutral-graphite;
+    }
+  }
+}

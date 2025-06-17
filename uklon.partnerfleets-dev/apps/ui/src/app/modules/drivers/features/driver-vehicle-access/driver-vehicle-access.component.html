@@ -1,0 +1,58 @@
+@if (settings$ | async; as settings) {
+  <div class="tw-flex tw-flex-col tw-gap-md max-sm:tw-gap-4 tw-w-full">
+    <div class="tw-grow">
+      <div class="tw-text-heading tw-mb-3">
+        {{ 'Vehicles.DriverAccess.AccessTitle' | translate }}
+      </div>
+
+      <mat-radio-group
+        color="primary"
+        [formControl]="accessControl"
+        class="tw-flex tw-flex-wrap tw-gap-4 tw-mb-4 max-sm:tw-flex-col"
+      >
+        <mat-radio-button data-cy="access-all-cars-radio" [value]="accessType.ALL" [disabled]="isDriverBlocked">
+          {{ 'Vehicles.DriverAccess.AllCars' | translate }}
+        </mat-radio-button>
+
+        <mat-radio-button
+          data-cy="access-specific-drivers-radio"
+          [value]="accessType.SPECIFIC_VEHICLES"
+          [disabled]="isDriverBlocked"
+        >
+          {{ 'Vehicles.DriverAccess.SelectedVehicles' | translate }}
+        </mat-radio-button>
+
+        <mat-radio-button
+          data-cy="access-nobody-radio"
+          [value]="accessType.NOBODY"
+          [disabled]="!!currentVehicle || isDriverBlocked"
+          [ngxTippy]="!!currentVehicle ? ('Vehicles.DriverAccess.Tooltips.NobodyAccess' | translate) : null"
+        >
+          {{ 'Vehicles.DriverAccess.Nobody' | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      @if (accessControl.value === accessType.SPECIFIC_VEHICLES) {
+        <upf-vehicles-autocomplete
+          data-cy="vehicles-accessibility-autocomplete"
+          [formControl]="vehicleControl"
+          [fleetId]="fleet.id"
+          [currentVehicle]="currentVehicle"
+          [disabled]="isDriverBlocked"
+          [inputClass]="'sm:tw-w-72 tw-w-full'"
+        ></upf-vehicles-autocomplete>
+      }
+    </div>
+
+    <button
+      data-cy="save-vehicles-accessibility-btn"
+      class="sm:tw-self-start max-sm:tw-w-full"
+      mat-flat-button
+      color="primary"
+      [disabled]="isDriverBlocked"
+      (click)="!isDriverBlocked ? handleSettingsUpdate() : null"
+    >
+      {{ 'Vehicles.DriverAccess.SaveButton' | translate }}
+    </button>
+  </div>
+}

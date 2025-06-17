@@ -1,0 +1,135 @@
+{
+  "captcha": {
+    "siteKey": "6LcHX-0kAAAAAKSe8PFail3dBHUtgPQpkSu-0ibQ"
+  },
+  "countries": {
+    "UA": {
+      "support": {
+        "capital": {
+          "regionId": 1,
+          "driverCare": {
+            "phone": "+38 093 177 02 16",
+            "schedule": [
+              {
+                "dayRange": {
+                  "from": "Monday",
+                  "to": "Friday"
+                },
+                "timeRange": {
+                  "from": "08:00",
+                  "to": "18:00"
+                }
+              },
+              {
+                "dayRange": {
+                  "from": "Saturday"
+                },
+                "timeRange": {
+                  "from": "09:00",
+                  "to": "17:00"
+                }
+              }
+            ]
+          },
+          "fleets": {
+            "phone": "+38 093 177 15 17",
+            "schedule": [
+              {
+                "dayRange": {
+                  "from": "Monday",
+                  "to": "Friday"
+                },
+                "timeRange": {
+                  "from": "09:00",
+                  "to": "18:00"
+                }
+              }
+            ]
+          }
+        },
+        "regions": {
+          "driverCare": {
+            "phone": "+38 093 177 15 16",
+            "schedule": [
+              {
+                "dayRange": {
+                  "from": "Monday",
+                  "to": "Sunday"
+                },
+                "timeRange": {
+                  "from": "09:00",
+                  "to": "18:00"
+                }
+              }
+            ]
+          },
+          "fleets": {
+            "phone": "+38 093 177 15 06",
+            "schedule": [
+              {
+                "dayRange": {
+                  "from": "Monday",
+                  "to": "Sunday"
+                },
+                "timeRange": {
+                  "from": "09:00",
+                  "to": "18:00"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "links": {
+        "offer": "https://uklon.com.ua/user-agreement/?tab=offer",
+        "agreement": "https://uklon.com.ua/user-agreement/?tab=protection",
+        "terms": "https://uklon.com.ua/driver-update-baza-znan",
+        "help": "https://uklon.com.ua/driver-update-baza-znan",
+        "store": "https://uklondriver.onelink.me/bt4Z/f480cc5b",
+        "support": "tel:+380931771511"
+      }
+    },
+    "AZ": {
+      "support": {
+        "capital": {
+          "regionId": 101,
+          "driverCareAndFleets": {
+            "phone": "+99 412 526 57 02",
+            "schedule": [
+              {
+                "dayRange": {
+                  "from": "Monday",
+                  "to": "Friday"
+                },
+                "timeRange": {
+                  "from": "09:00",
+                  "to": "18:00"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "links": {
+        "offer": "https://uklon.eu/privacy-policy-az/",
+        "agreement": "https://uklon.eu/privacy-policy-az/",
+        "terms": "https://uklon.com.ua/driver-update-baza-znan",
+        "help": "https://uklon.com.ua/driver-update-baza-znan",
+        "store": "https://uklondriver.onelink.me/bt4Z/f480cc5b",
+        "support": "tel:+380931771511"
+      }
+    },
+    "UZ": {
+      "support": {
+      },
+      "links": {
+        "offer": "https://uklon.com.ua/user-agreement/?tab=offer",
+        "agreement": "https://uklon.com.ua/user-agreement/?tab=protection",
+        "terms": "https://uklon.com.ua/driver-update-baza-znan",
+        "help": "https://uklon.com.ua/driver-update-baza-znan",
+        "store": "https://uklondriver.onelink.me/bt4Z/f480cc5b",
+        "support": "tel:+380931771511"
+      }
+    }
+  }
+}

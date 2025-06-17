@@ -1,0 +1,59 @@
+@if (isBrandedWithPriority) {
+  <mat-icon
+    [ngxTippy]="vehicleOptionsTpl"
+    [tippyContext]="
+      showTooltips
+        ? {
+            data: {
+              title: vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED_WITH_PRIORITY)?.tooltip | translate,
+              content:
+                vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED_WITH_PRIORITY)?.tooltipDesc
+                | translate: { days: brandedDays, additionalDays: priorityDays },
+            },
+          }
+        : null
+    "
+    [svgIcon]="vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED_WITH_PRIORITY)?.icon"
+  ></mat-icon>
+}
+
+@if (isBranded && !isPriority) {
+  <mat-icon
+    [ngxTippy]="vehicleOptionsTpl"
+    [tippyContext]="
+      showTooltips
+        ? {
+            data: {
+              title: vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED)?.tooltip | translate,
+              content:
+                vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED)?.tooltipDesc | translate: { days: brandedDays },
+            },
+          }
+        : null
+    "
+    [svgIcon]="vehicleOptionsTooltip.get(vehicleOptionsType.BRANDED)?.icon"
+  ></mat-icon>
+}
+
+@if (isPriority && !isBranded) {
+  <mat-icon
+    [ngxTippy]="vehicleOptionsTpl"
+    [tippyContext]="
+      showTooltips
+        ? {
+            data: {
+              title: vehicleOptionsTooltip.get(vehicleOptionsType.PRIORITY)?.tooltip | translate,
+              content:
+                vehicleOptionsTooltip.get(vehicleOptionsType.PRIORITY)?.tooltipDesc | translate: { days: priorityDays },
+            },
+          }
+        : null
+    "
+    [svgIcon]="vehicleOptionsTooltip.get(vehicleOptionsType.PRIORITY)?.icon"
+  ></mat-icon>
+}
+
+<ng-template #vehicleOptionsTpl let-data="data">
+  <div>{{ data.title }}</div>
+  <div class="tw-text-neutral-granit">{{ data.content }}</div>
+</ng-template>

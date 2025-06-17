@@ -1,0 +1,32 @@
+<section class="wrapper">
+  @if (data$ | async; as data) {
+    <div class="tw-flex tw-flex-col tw-p-md tw-gap-2 tw-justify-between sm:tw-flex-row sm:tw-p-0 tw-text-base">
+      <div class="tw-text-neutral-graphite tw-text-tmp tw-shrink-0 tw-font-medium">
+        {{ 'Dashboard.Statistics.EarningForPeriod' | translate }} {{ rangeLabel }}
+      </div>
+
+      @if (data.datasets.length) {
+        <div
+          class="tw-grid tw-grid-cols-2 tw-gap-2 sm:tw-gap-x-md sm:tw-gap-y-1 sm:tw-flex sm:tw-flex-wrap sm:tw-flex-row"
+        >
+          @for (color of dataColors | keyvalue; track $index) {
+            <div class="tw-flex tw-items-center tw-gap-2">
+              <span [style.backgroundColor]="color.value" class="tw-inline-block tw-w-2 tw-h-2 tw-rounded-full"></span>
+              {{ 'Dashboard.Statistics.IncomeType.' + color.key | translate }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="tw-relative tw-overflow-auto" [ngClass]="{ 'tw-h-80': !data.datasets.length }">
+      @if (data.datasets.length) {
+        <div class="tw-h-80" [style.minWidth.px]="minWidth">
+          <canvas baseChart [data]="data" [type]="type" [options]="options" [plugins]="plugins"></canvas>
+        </div>
+      } @else {
+        <upf-empty-state [state]="emptyState.DASHBOARD_INCOME"></upf-empty-state>
+      }
+    </div>
+  }
+</section>

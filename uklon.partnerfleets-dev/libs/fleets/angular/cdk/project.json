@@ -1,0 +1,36 @@
+{
+  "name": "@uklon/fleets/angular/cdk",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/fleets/angular/cdk/src",
+  "prefix": "cdk",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/libs/fleets/angular/cdk"],
+      "options": {
+        "project": "libs/fleets/angular/cdk/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/fleets/angular/cdk/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/fleets/angular/cdk/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/fleets/angular/cdk"],
+      "options": {
+        "jestConfig": "libs/fleets/angular/cdk/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": []
+}

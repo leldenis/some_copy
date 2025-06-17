@@ -1,0 +1,6 @@
+# Set URL for your scoped packages, e.g. package with name `@uklon/my-package` will use this URL for download.
+"@uklon:registry"="https://gitlab.uklon.com.ua/api/v4/packages/npm/"
+
+# Add the token for the scoped packages URL. This will allow you to download.
+# Make sure you replace ${GITLAB_AUTH_TOKEN} with the personal access token copied earlier or create a local environment variable (this is recommended) named GITLAB_AUTH_TOKEN with the token copied earlier as the value.
+"//gitlab.uklon.com.ua/api/v4/packages/npm/:_authToken"="${GITLAB_AUTH_TOKEN}"

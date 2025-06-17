@@ -1,0 +1,284 @@
+@let isRegionUZ = isRegionUZ$ | async;
+
+<div class="upf-data-row" data-cy="total-amount-section">
+  <div class="upf-data-row-header" data-cy="total-amount-section-title">
+    <span>
+      {{ 'OrderReportInformation.Data.TotalCost.Label' | translate }}
+      {{ isRegionUZ ? '(UZS)' : '' }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.TotalCost.Cash.Label' | translate }}
+    </span>
+
+    <upf-money [money]="report.profit.cash"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.TotalCost.Wallet.Label' | translate }}
+    </span>
+
+    <upf-money [money]="report.profit.wallet"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.TotalCost.Card.Label' | translate }}
+    </span>
+
+    <upf-money [money]="report.profit.card"></upf-money>
+
+    <span class="upf-data-item-label max-sm:!tw-hidden">
+      {{ 'Orders.Trips.List.Merchant' | translate }}
+    </span>
+
+    <div class="tw-flex tw-items-center max-sm:!tw-hidden">
+      <upf-money [money]="report.profit.merchant"></upf-money>
+
+      @if (showGroupedSplitsTooltip) {
+        <span>
+          <div class="tw-flex tw-pl-1 sm:tw-pl-2 tw-text-accent-mint-light">
+            <upf-split-payments-tooltip [groupedSplits]="report.grouped_splits"></upf-split-payments-tooltip>
+          </div>
+        </span>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="upf-data-row sm:!tw-hidden">
+  <upf-order-report-split-payments-details
+    [merchantsProfit]="report.profit.merchant"
+    [groupedSplits]="report.grouped_splits"
+  ></upf-order-report-split-payments-details>
+</div>
+
+<div class="upf-data-row" data-cy="additional-income-section">
+  <div class="upf-data-row-header" data-cy="additional-income-section-title">
+    <span>
+      {{ 'OrderReportInformation.Data.AdditionalIncome.Label' | translate }}
+      {{ isRegionUZ ? '(UZS)' : '' }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.AdditionalIncome.Promotion.Label' | translate }}
+    </span>
+
+    <div class="tw-flex tw-gap-2 upf-grid-col-3">
+      <upf-money [money]="report.compensation?.total"></upf-money>
+
+      @if (report.compensation?.total.amount) {
+        <upf-popover>
+          <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+            <div class="tw-font-medium tw-leading-5">
+              {{ 'OrderReportInformation.Data.AdditionalIncome.Promotion.Label' | translate }}
+            </div>
+
+            <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Promotion.Support' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.compensation?.ticket"></upf-money>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>
+                  {{ 'OrderReportInformation.Data.AdditionalIncome.Promotion.PassengerAbsence' | translate }}
+                </div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.compensation?.absence"></upf-money>
+              </div>
+            </div>
+          </div>
+        </upf-popover>
+      }
+    </div>
+
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.AdditionalIncome.Tips.Label' | translate }}
+    </span>
+
+    <upf-money [money]="report.tips"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.Label' | translate }}
+    </span>
+
+    <div class="tw-flex tw-gap-2">
+      <upf-money [money]="report.bonuses.total"></upf-money>
+
+      @if (report.bonuses.total.amount) {
+        <upf-popover>
+          <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+            <div class="tw-font-medium tw-leading-5">
+              {{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.Label' | translate }}
+            </div>
+
+            <div class="tw-shrink-0 tw-grid tw-gap-0.5">
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.OrderBonus' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.bonuses.order"></upf-money>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.GuaranteedBonus' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.bonuses.guaranteed"></upf-money>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.WeekBonus' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.bonuses.week"></upf-money>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.IndividualBonus' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.bonuses.individual"></upf-money>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-gap-md">
+                <div>{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.BrandingBonus' | translate }}</div>
+                <upf-money class="!tw-text-white !tw-text-sm" [money]="report.bonuses.branding"></upf-money>
+              </div>
+            </div>
+          </div>
+        </upf-popover>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="upf-data-row" data-cy="transfers-section">
+  <div class="upf-data-row-header" data-cy="transfers-section-title">
+    <span>
+      {{ 'OrderReportInformation.Data.Refill.Label' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.Refill.Self' | translate }}
+    </span>
+
+    <upf-money [money]="report.transfers.replenishment"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.Refill.Balance' | translate }}
+    </span>
+
+    <upf-money [money]="report.transfers.from_balance"></upf-money>
+  </div>
+</div>
+
+<div class="upf-data-row" data-cy="expenses-section">
+  <div class="upf-data-row-header" data-cy="expenses-section-title">
+    <span>
+      {{ 'OrderReportInformation.Data.Expenses.Label' | translate }}
+      {{ isRegionUZ ? '(UZS)' : '' }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'OrderReportInformation.Data.Expenses.Fine.Label' | translate }}
+    </span>
+
+    <upf-money
+      [ngClass]="{ 'upf-grid-col-3': hasCommissionProgram }"
+      [money]="report.penalties"
+      [withNegativeColor]="false"
+    ></upf-money>
+
+    <span class="upf-data-item-label tw-flex tw-items-center">
+      {{ 'OrderReportInformation.Data.Expenses.Commission.Label' | translate }}
+      <div class="tw-flex tw-pl-1 sm:tw-pl-2 tw-text-accent-mint-light">
+        <mat-icon
+          [svgIcon]="icons.info"
+          [ngxTippy]="'OrderReportInformation.Data.Expenses.CommissionProgram.Tooltip' | translate"
+          [tippyProps]="{ maxWidth: '50vw' }"
+        ></mat-icon>
+      </div>
+    </span>
+
+    @if (hasCommissionProgram) {
+      <div class="tw-flex tw-gap-2 upf-grid-col-3">
+        <upf-money
+          class="!tw-text-neutral-granit tw-line-through"
+          [money]="report.commission.total"
+          [withNegativeColor]="false"
+        ></upf-money>
+        <upf-money [money]="report.commission.actual" [withNegativeColor]="false"></upf-money>
+      </div>
+    } @else {
+      <upf-money [money]="report.commission.total" [withNegativeColor]="false"></upf-money>
+    }
+  </div>
+</div>
+
+<div class="upf-data-row" data-cy="transfers-section">
+  <div class="upf-data-row-header" data-cy="transfers-section-title">
+    <span>
+      {{ 'OrderReportInformation.Data.Activity.Label' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label max-sm:tw-order-1">
+      {{ 'OrderReportInformation.Data.Activity.Chain' | translate }}
+    </span>
+
+    <div class="tw-flex tw-items-center max-sm:tw-order-2">
+      @if (report.chain_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+
+    <span class="upf-data-item-label max-sm:tw-order-5">
+      {{ 'OrderReportInformation.Data.Activity.Passenger' | translate }}
+    </span>
+
+    <div class="tw-flex tw-items-center max-sm:tw-order-6">
+      @if (report.total_executing_time | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+
+    <span class="upf-data-item-label max-sm:tw-order-3">
+      {{ 'OrderReportInformation.Data.Activity.Broadcast' | translate }}
+    </span>
+
+    <div class="tw-flex tw-items-center max-sm:tw-order-4">
+      @if (report.broadcast_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+
+    <span class="upf-data-item-label max-sm:tw-order-7">
+      {{ 'OrderReportInformation.Data.Activity.Offer' | translate }}
+    </span>
+
+    <div class="tw-flex tw-items-center max-sm:tw-order-8">
+      @if (report.offer_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+  </div>
+</div>

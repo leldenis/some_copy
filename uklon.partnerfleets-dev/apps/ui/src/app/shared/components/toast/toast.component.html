@@ -1,0 +1,11 @@
+<div class="toast" [class]="data.type" data-cy="toast-component">
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <mat-icon>{{ toastIcon }}</mat-icon>
+
+    <div>{{ data.text | translate: data?.params }}</div>
+  </div>
+
+  <button mat-icon-button (click)="close()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+</div>

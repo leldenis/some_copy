@@ -1,0 +1,26 @@
+<div
+  class="tw-px-2 tw-py-1 tw-rounded-full tw-bg-neutral-silver tw-text-center tw-flex tw-w-max tw-gap-1"
+  [ngClass]="{
+    'tw-text-neutral-granit': orderStatusCanceled,
+    'hover:tw-cursor-pointer': showDeliveryConditions,
+  }"
+  [ngxTippy]="showDeliveryConditions ? productDeliveryConditionsTpl : null"
+  [tippyContext]="{
+    data: {
+      main: conditions?.main,
+      additional: conditions?.additional,
+    },
+  }"
+>
+  {{ 'Common.ProductTypes.' + (productType | normalizeString) | translate }}
+</div>
+
+<ng-template #productDeliveryConditionsTpl let-data="data">
+  @if (data.main) {
+    <p class="tw-text-neutral-granit">{{ 'Common.ProductConditions.' + data.main.data | translate }}</p>
+  }
+
+  @for (item of data.additional; track $index) {
+    {{ 'Common.ProductConditions.' + item.name | translate }}
+  }
+</ng-template>

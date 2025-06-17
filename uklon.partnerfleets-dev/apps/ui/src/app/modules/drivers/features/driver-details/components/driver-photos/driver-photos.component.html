@@ -1,0 +1,63 @@
+<div class="tw-grid tw-grid-cols-12 tw-grow tw-gap-4">
+  <div class="tw-col-span-12 tw-my-1">
+    <span class="tw-text-heading tw-font-medium">
+      {{ 'Drivers.Drivers.Details.LicensePhotos' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-photos-container">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Drivers.Drivers.Details.DriverLicense' | translate }}
+      </span>
+    </div>
+
+    @for (category of driverLicenseCategories; track $index) {
+      <upf-photo-card-new
+        class="upf-photo"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'driver-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+
+  <div class="upf-photos-container">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Drivers.Drivers.Details.Residence' | translate }}
+      </span>
+    </div>
+
+    @for (category of driverResidenceCategories; track $index) {
+      <upf-photo-card-new
+        class="upf-photo"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'driver-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+
+  @if (additionalDriverInfoRegions[selectedFleet.region_id]) {
+    <div class="upf-photos-container">
+      <div class="tw-col-span-12">
+        <span class="tw-text-heading">
+          {{ 'Drivers.Drivers.Details.IdCard' | translate }}
+        </span>
+      </div>
+
+      @for (category of idCardCategories; track $index) {
+        <upf-photo-card-new
+          class="upf-photo"
+          [category]="category"
+          [photoUrl]="photos?.[category]?.data?.url"
+          [attr.data-cy]="'driver-photo-' + category"
+          (photoClick)="onPhotoOpen($event)"
+        ></upf-photo-card-new>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,16 @@
+@if (showCashPointAndUnlinkBtn) {
+  <div class="tw-flex tw-items-center">
+    <span>{{ cashPoint?.name }}</span>
+    <button type="button" mat-icon-button class="hover:tw-text-accent-coral-light" (click)="unlinkCashPoint()">
+      <mat-icon>link_off</mat-icon>
+    </button>
+  </div>
+} @else {
+  <upf-status-badge color="neutral">
+    @if (!cashPoint?.id || !cashPoint?.fiscalStatus) {
+      {{ 'VehicleDetailsInfo.FiscalizationStatus.NoFiscalization' | translate }}
+    } @else if (cashPoint && cashPoint.status === cashierStatus.CLOSED) {
+      {{ 'VehicleDetailsInfo.FiscalizationStatus.ShiftClosed' | translate }}
+    }
+  </upf-status-badge>
+}

@@ -1,0 +1,36 @@
+<section (click)="togglePanelOpened(panelType.SEARCH)" class="panel-header">
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <button mat-icon-button (click)="closeSearch.emit()" class="back-btn">
+      <mat-icon class="tw-text-tmp">arrow_back</mat-icon>
+    </button>
+
+    <h3 class="!tw-m-0 !tw-font-normal tw-text-neutral-graphite !tw-text-tmp !tw-leading-4">
+      {{ 'LiveMap.Search.Results' | translate }}
+      @if (employees.length) {
+        <span>({{ employees.length }})</span>
+      }
+    </h3>
+  </div>
+
+  <mat-icon class="expand-btn" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+</section>
+
+@if (isOpened) {
+  <section class="panel-content">
+    @if (employees.length) {
+      @for (employee of employees; track employee.id) {
+        <upf-map-courier-details
+          [employee]="employee"
+          [showStatus]="true"
+          (click)="onSelectEmployee(employee)"
+          data-cy="map-driver"
+          class="tw-flex-col !tw-items-start"
+        ></upf-map-courier-details>
+      }
+    } @else {
+      <div class="tw-p-md tw-text-base tw-text-neutral-granit max-sm:tw-pb-0 sm:tw-pt-0">
+        {{ 'LiveMap.Search.NoMatch' | translate }}
+      </div>
+    }
+  </section>
+}

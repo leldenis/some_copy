@@ -1,0 +1,4 @@
+:host {
+  @apply tw-pt-md tw-w-full tw-grid tw-gap-md;
+  grid-template-rows: max-content 1fr;
+}

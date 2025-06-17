@@ -1,0 +1,99 @@
+<div class="tw-flex tw-flex-col tw-gap-3 sm:tw-flex-row sm:tw-gap-8">
+  @if (isMobileView) {
+    <div class="tw-flex tw-gap-md">
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'Couriers.CourierDetails.Tabs.Deliveries' | translate }}</div>
+
+        <div>{{ report.total_orders_count }}</div>
+      </div>
+
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportList.RidesTotalAmount.Title' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit.order.total }"></ng-container>
+      </div>
+    </div>
+
+    <mat-divider class="sm:tw-hidden"></mat-divider>
+  }
+
+  <div class="tw-grid tw-gap-2">
+    <div class="tw-text-base">{{ 'OrderReportInformation.Data.TotalCost.Label' | translate }}</div>
+
+    <div class="tw-flex tw-gap-md">
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportInformation.Data.TotalCost.Cash.Label' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit.order.cash }"></ng-container>
+      </div>
+
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportInformation.Data.TotalCost.Wallet.Label' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit.order.wallet }"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="sm:tw-hidden"></mat-divider>
+
+  <div class="tw-grid tw-gap-2">
+    <div class="tw-text-base">{{ 'OrderReportInformation.Data.AdditionalIncome.Label' | translate }}</div>
+
+    <div class="tw-flex tw-gap-md">
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">
+          {{ 'OrderReportInformation.Data.AdditionalIncome.Promotion.Label' | translate }}
+        </div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit?.promotion }"></ng-container>
+      </div>
+
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportInformation.Data.AdditionalIncome.Tips.Label' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit?.tips }"></ng-container>
+      </div>
+
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportInformation.Data.AdditionalIncome.Bonus.Label' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit?.bonus }"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="sm:tw-hidden"></mat-divider>
+
+  <div class="tw-grid tw-gap-2">
+    <div class="tw-text-base">{{ 'OrderReportInformation.Data.Expenses.Label' | translate }}</div>
+
+    <div class="tw-flex tw-gap-md">
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary">{{ 'OrderReportInformation.Data.Expenses.Fine.Label' | translate }}</div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.profit?.fine }"></ng-container>
+      </div>
+
+      <div class="tw-grid tw-gap-2">
+        <div class="text-secondary tw-flex tw-gap-2">
+          {{ 'OrderReportInformation.Data.Expenses.Commission.Label' | translate }}
+
+          <mat-icon
+            class="outlined"
+            [ngxTippy]="'OrderReportInformation.Data.Expenses.Commission.Tooltip' | translate"
+            [tippyProps]="{ maxWidth: '50vw' }"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: report.loss?.order?.wallet }"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #moneyTpl let-money>
+  <upf-money [money]="money" [ngClass]="{ '!tw-text-neutral-granit': !money }"></upf-money>
+</ng-template>

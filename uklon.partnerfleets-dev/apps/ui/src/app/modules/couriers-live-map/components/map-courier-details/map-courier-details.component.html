@@ -1,0 +1,39 @@
+@if (showStatus) {
+  <div class="tw-basis-full">
+    <upf-status-badge [color]="statusStyling[employee.status]" data-cy="courier-status">
+      {{ 'LiveMap.DriverStatus.' + employee.status | translate }}
+    </upf-status-badge>
+  </div>
+}
+
+<div class="tw-flex tw-items-center tw-gap-2 tw-w-full tw-justify-between">
+  <div class="tw-flex tw-items-center tw-gap-2">
+    @if (employee.photos?.['courier_avatar_photo']; as avatar) {
+      <img
+        upfDefaultImgSrc
+        [src]="avatar.url"
+        [defaultSrc]="avatar.fallback_url"
+        loading="lazy"
+        class="tw-shrink-0 tw-rounded-full tw-object-cover tw-w-9 tw-h-9"
+        data-cy="courier-avatar"
+        alt="avatar"
+      />
+    }
+
+    <div class="tw-grid tw-gap-1" data-cy="courier-info">
+      <div class="fullname">{{ employee.last_name }} {{ employee.first_name }}</div>
+      <div class="tw-text-sm">{{ employee.phone }}</div>
+    </div>
+  </div>
+
+  @if (!employee.location) {
+    <mat-icon
+      (click)="$event.stopPropagation()"
+      ngxTippy="{{ 'LiveMap.Tooltips.NoGeolocation' | translate }}"
+      class="outlined tw-text-accent-coral-light tw-font-light !tw-w-5 !tw-h-5 tw-text-xl"
+      data-cy="courier-location-icon"
+    >
+      location_off
+    </mat-icon>
+  }
+</div>

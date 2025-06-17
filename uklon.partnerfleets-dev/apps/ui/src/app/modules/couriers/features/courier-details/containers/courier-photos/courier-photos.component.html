@@ -1,0 +1,27 @@
+@if (courierPhotos$ | async; as photos) {
+  <div class="tw-grid tw-grid-cols-12 tw-grow tw-gap-4">
+    <div class="tw-col-span-12 tw-my-1">
+      <span class="tw-text-heading tw-font-medium">
+        {{ 'Drivers.Drivers.Details.LicensePhotos' | translate }}
+      </span>
+    </div>
+
+    <div class="upf-photos-container">
+      <div class="tw-col-span-12">
+        <span class="tw-text-heading">
+          {{ 'Drivers.Drivers.Details.IdCard' | translate }}
+        </span>
+      </div>
+
+      @for (category of idCardCategories; track $index) {
+        <upf-photo-card-new
+          class="upf-photo"
+          [category]="category"
+          [photoUrl]="photos[category]?.url"
+          [attr.data-cy]="'courier-photo-' + category"
+          (photoClick)="onPhotoOpen($event)"
+        ></upf-photo-card-new>
+      }
+    </div>
+  </div>
+}

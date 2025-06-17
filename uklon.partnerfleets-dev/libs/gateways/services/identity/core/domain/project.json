@@ -1,0 +1,33 @@
+{
+  "name": "@uklon/gateways/services/identity/core/domain",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gateways/services/identity/core/domain/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gateways/services/identity/core/domain",
+        "tsConfig": "libs/gateways/services/identity/core/domain/tsconfig.lib.json",
+        "packageJson": "libs/gateways/services/identity/core/domain/package.json",
+        "main": "libs/gateways/services/identity/core/domain/src/index.ts",
+        "assets": ["libs/gateways/services/identity/core/domain/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/gateways/services/identity/core/domain"
+      ],
+      "options": {
+        "jestConfig": "libs/gateways/services/identity/core/domain/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

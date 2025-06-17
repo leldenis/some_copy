@@ -1,0 +1,22 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-6 tw-p-md tw-text-neutral-graphite tw-h-full;
+}
+
+.statistic-container {
+  @apply tw-gap-4;
+  @screen sm {
+    @apply tw-grid tw-grid-rows-2 tw-grid-cols-1;
+  }
+
+  @screen xl {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.statistic-details {
+  max-width: 1200px;
+
+  @screen sm {
+    @apply tw-shadow-sm tw-rounded tw-p-md;
+  }
+}

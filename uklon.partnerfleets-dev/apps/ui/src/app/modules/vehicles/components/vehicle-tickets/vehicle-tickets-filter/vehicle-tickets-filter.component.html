@@ -1,0 +1,67 @@
+<section class="tw-flex tw-items-center sm:tw-justify-between sm:tw-gap-md tw-mb-md">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="filtersChange.emit($event)"
+    class="tw-w-full"
+  >
+    <form [formGroup]="filtersForm" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+        </mat-label>
+
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="license_plate"
+          [placeholder]="'Common.Filters.LicencePlate.Placeholder' | translate"
+          data-cy="vehicles-ticket-autocomplete"
+        />
+
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.Status.Caption' | translate }}
+        </mat-label>
+
+        <mat-select formControlName="status" data-cy="status-control">
+          <mat-option [value]="''" [attr.data-cy]="'status-item-All'">
+            {{ 'Vehicles.Creation.VehicleTicketStatus.All' | translate }}
+          </mat-option>
+
+          @for (status of statusList; track status) {
+            @if (status !== ticketStatus.BLOCKED_BY_MANAGER && status !== ticketStatus.ALL) {
+              <mat-option [attr.data-cy]="'status-item-' + status" [value]="status">
+                {{ 'Vehicles.Creation.VehicleTicketStatus.' + status | translate }}
+              </mat-option>
+            }
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <ng-template #vehicleTicketBtn upfFiltersActionButton>
+        <a
+          [routerLink]="['./', vehiclePaths.CREATE]"
+          mat-flat-button
+          color="primary"
+          class="sm:!tw-py-1"
+          data-cy="add-vehicle-btn"
+          (click)="addVehicle.emit()"
+        >
+          <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+            <mat-icon [svgIcon]="icons.plus"></mat-icon>
+            <span>{{ 'Common.Buttons.B_AddVehicle' | translate }}</span>
+          </div>
+        </a>
+      </ng-template>
+    </form>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block">
+    <ng-template [ngTemplateOutlet]="vehicleTicketBtn"></ng-template>
+  </div>
+</section>

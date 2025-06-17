@@ -1,0 +1,138 @@
+<div class="tw-rounded" *upfLet="isMobileView$ | async as isMobileView">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    <div class="panel-header main">
+      <div>{{ 'FleetProfile.RRO.Vehicles.Header.Car' | translate }}</div>
+      <div>{{ 'FleetProfile.RRO.Vehicles.Header.Cashier' | translate }}</div>
+      <div>{{ 'FleetProfile.RRO.Vehicles.Header.Status' | translate }}</div>
+    </div>
+
+    @for (item of vehicles; track $index) {
+      <mat-expansion-panel [disabled]="!isMobileView" hideToggle class="data-panel">
+        <mat-expansion-panel-header
+          class="!tw-p-0 !tw-py-2 tw-cursor-default"
+          expandedHeight="56px"
+          collapsedHeight="56px"
+        >
+          <ng-container
+            [ngTemplateOutlet]="isMobileView ? mobilePanel : desktopPanel"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          ></ng-container>
+
+          <ng-template #mobilePanel let-item>
+            <div class="mobile-panel-header">
+              <div class="tw-grid tw-gap-1">
+                <span class="tw-text-sm tw-font-medium">
+                  <a
+                    [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, item.vehicle.id]"
+                    class="tw-font-medium hover:tw-underline focus:tw-underline"
+                  >
+                    {{ item.vehicle?.licencePlate }}
+                  </a>
+                </span>
+                <span class="text-small">
+                  {{ item.vehicle?.about?.maker?.name }}&nbsp;{{ item.vehicle?.about?.model?.name }}
+                </span>
+              </div>
+              <div class="tw-grid tw-self-start tw-pt-1.5">
+                @if (item?.cashierPos?.name) {
+                  <ng-container
+                    [ngTemplateOutlet]="unlinkBtnTpl"
+                    [ngTemplateOutletContext]="{ $implicit: item }"
+                  ></ng-container>
+                } @else {
+                  <ng-container
+                    [ngTemplateOutlet]="openModalToLinkTpl"
+                    [ngTemplateOutletContext]="{ $implicit: item }"
+                  ></ng-container>
+                }
+              </div>
+              <div>
+                <ng-container
+                  [ngTemplateOutlet]="statusTpl"
+                  [ngTemplateOutletContext]="{ $implicit: item?.cashierPos }"
+                ></ng-container>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #desktopPanel let-item>
+            <div class="panel-header">
+              <div class="tw-grid">
+                <span class="tw-text-base tw-font-medium">
+                  <a
+                    [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, item.vehicle.id]"
+                    class="tw-font-medium hover:tw-underline focus:tw-underline"
+                  >
+                    {{ item.vehicle?.licencePlate }}
+                  </a>
+                </span>
+                <span class="text-small">
+                  {{ item.vehicle?.about?.maker?.name }}&nbsp;{{ item.vehicle?.about?.model?.name }}
+                </span>
+              </div>
+              <div>
+                @if (item?.cashierPos?.name) {
+                  <ng-container
+                    [ngTemplateOutlet]="unlinkBtnTpl"
+                    [ngTemplateOutletContext]="{ $implicit: item }"
+                  ></ng-container>
+                } @else {
+                  <ng-container
+                    [ngTemplateOutlet]="openModalToLinkTpl"
+                    [ngTemplateOutletContext]="{ $implicit: item }"
+                  ></ng-container>
+                }
+              </div>
+
+              <div>
+                <ng-container
+                  [ngTemplateOutlet]="statusTpl"
+                  [ngTemplateOutletContext]="{ $implicit: item?.cashierPos }"
+                ></ng-container>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>
+
+<upf-pagination [totalCount]="totalCount" class="upf-pagination tw-block"></upf-pagination>
+
+<ng-template #unlinkBtnTpl let-item>
+  <div class="tw-flex tw-items-center">
+    <span>{{ item?.cashierPos?.name }}</span>
+    <button
+      type="button"
+      mat-icon-button
+      class="hover:tw-text-accent-coral-light"
+      (click)="unlinkCashier($event, item)"
+    >
+      <mat-icon>link_off</mat-icon>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #openModalToLinkTpl let-item>
+  <div
+    role="button"
+    class="tw-flex tw-flex-row link-casa"
+    (click)="handlerOpenLinkCashToVehicleModal(item?.cashierPos?.id, item?.vehicle)"
+  >
+    <mat-icon>link</mat-icon>
+    <span>{{ 'FleetProfile.RRO.KeyList.List.Btn.LinkCasa' | translate }}</span>
+  </div>
+</ng-template>
+
+<ng-template #statusTpl let-cashier>
+  <upf-status-badge [color]="cashier?.status && cashier?.id ? vehicleCashierStatus[cashier.status] : 'warn'">
+    @if (cashier?.status === cashierStatus.OPEN) {
+      {{ 'FleetProfile.RRO.Vehicles.List.Status.Active' | translate }}
+    } @else if (cashier?.status === cashierStatus.CLOSED) {
+      {{ 'FleetProfile.RRO.Vehicles.List.Status.ShiftClosed' | translate }}
+    } @else {
+      {{ 'FleetProfile.RRO.Vehicles.List.Status.ShiftOpened' | translate }}
+    }
+  </upf-status-badge>
+</ng-template>

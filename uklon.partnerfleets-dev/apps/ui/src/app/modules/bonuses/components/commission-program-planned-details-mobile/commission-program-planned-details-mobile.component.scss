@@ -1,0 +1,20 @@
+.expanded-view {
+  @apply tw-grid tw-gap-4 tw-px-2 tw-py-3 sm:tw-p-4;
+  @apply tw-text-neutral-graphite tw-bg-neutral-silver;
+
+  &-col {
+    @apply tw-flex tw-flex-col tw-gap-2;
+  }
+
+  &-title {
+    @apply tw-text-[10px] tw-text-neutral-granit;
+  }
+
+  &-description {
+    @apply tw-text-base tw-text-neutral-graphite;
+  }
+}
+
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}

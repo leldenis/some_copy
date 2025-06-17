@@ -1,0 +1,32 @@
+:host {
+  @apply tw-flex tw-flex-col tw-justify-between tw-gap-2 tw-w-full tw-min-h-full tw-p-md tw-pb-0 tw-text-neutral-graphite;
+  @apply sm:tw-bg-neutral-silver sm:tw-gap-md;
+}
+
+form {
+  @apply tw-bg-white tw-rounded-lg tw-grid tw-gap-md;
+  @apply sm:tw-p-md;
+}
+
+.deadline {
+  @apply tw-text-neutral-smoke tw-text-base;
+
+  &.passed {
+    @apply tw-text-accent-coral-light;
+  }
+}
+
+.photos {
+  @apply tw-grid tw-gap-md;
+}
+
+.group {
+  @apply tw-grid tw-gap-md tw-grid-cols-2;
+  @apply sm:tw-w-2/5;
+}
+
+.footer {
+  @apply tw-bg-white tw-p-md tw-sticky tw-bottom-0 tw-shadow-sm tw-rounded-t-lg;
+  @apply tw-flex tw-justify-end tw-z-10 -tw-mx-md;
+  @apply sm:tw-m-0;
+}

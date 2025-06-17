@@ -1,0 +1,250 @@
+@use 'sass:map';
+@use '../functions';
+@use '../variables';
+@use '../typography' as typography;
+
+@mixin upfCellMatFormField {
+  .upf-cell-mat-form-field {
+    &.mat-form-field-appearance-outline,
+    &.mat-form-field {
+      .mat-form-field-outline {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+
+      .mat-form-field-label-wrapper {
+        display: none;
+      }
+
+      .mat-form-field-infix {
+        margin: functions.remify(1) 0 functions.remify(1) 0;
+        padding: 0;
+        border: none;
+        width: 100%;
+      }
+
+      .mat-form-field-subscript-wrapper {
+        display: none;
+      }
+
+      .mat-form-field-flex {
+        padding: 0 functions.remify(4) 0 functions.remify(4);
+        margin-top: 0;
+        position: relative;
+        align-items: center;
+      }
+
+      .mat-form-field-wrapper {
+        margin: 0;
+        padding: 0;
+      }
+
+      input {
+        @include typography.setFont(
+          functions.remify(3.5),
+          functions.remify(4.5),
+        );
+
+        &.mat-input-element {
+          margin: 0;
+          padding: functions.remify(1) 0 functions.remify(1) 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin upfHeaderCell {
+  .upf-table-header-cell {
+    align-items: start;
+
+    &.upf-has-icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      mat-icon {
+        margin-left: functions.remify(2);
+      }
+    }
+
+    .upf-title {
+      color: map.get(variables.$neutral-palette, neutral-smoke-quartz);
+      font-size: functions.remify(3);
+      line-height: functions.remify(3.5);
+    }
+
+    .upf-subtitle {
+      color: map.get(variables.$neutral-palette, neutral-granit);
+      font-size: functions.remify(3);
+      line-height: functions.remify(3.5);
+    }
+  }
+}
+
+@mixin upfTableCell {
+  .upf-table-cell {
+    @include upfCellMatFormField;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &.upf-expandable {
+      align-items: end;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    &.upf-expanded {
+      .upf-table-icon {
+        rotate: 180deg;
+      }
+
+      .upf-expandable-toggle-container {
+        background-color: map.get(variables.$neutral-palette, neutral-silver);
+      }
+    }
+
+    .upf-expandable-toggle-container {
+      display: flex;
+      padding: functions.remify(4.5);
+    }
+
+    .upf-table-icon-button {
+      height: functions.remify(5);
+      width: functions.remify(5);
+
+      .mat-button-wrapper {
+        display: flex;
+      }
+    }
+
+    .upf-table-icon {
+      --icon-fill: #{map.get(variables.$neutral-palette, neutral-smoke-quartz)};
+      height: functions.remify(5);
+      width: functions.remify(5);
+    }
+
+    .upf-primary-value {
+      @extend .upf-primary-text;
+    }
+
+    .upf-secondary-value {
+      @extend .upf-secondary-text;
+    }
+
+    .upf-money-value {
+      @extend .upf-money-text;
+    }
+
+    .upf-link-value {
+      @extend .upf-link-text;
+      display: block;
+      padding-bottom:  functions.remify(1);
+    }
+  }
+}
+
+@mixin upfTableHeaderRow {
+  $cell-height: functions.remify(12);
+
+  .upf-table-row.upf-table-header-row {
+    grid-auto-rows: $cell-height;
+  }
+}
+
+@mixin upfTableRow {
+  $min-cell-width: functions.remify(0);
+  $max-cell-width: 1fr;
+  $cell-height: functions.remify(14);
+  $column-gap: functions.remify(4);
+  $border-color: map.get(variables.$neutral-palette, neutral-something); // not found in mediator
+  $border-size:  functions.remify(0.25);
+
+  .upf-table-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax($min-cell-width, $max-cell-width));
+    grid-auto-rows: minmax(0, $cell-height);
+    grid-column-gap: $column-gap;
+    border-bottom: $border-size $border-color solid;
+
+    &.upf-selected {
+      background-color: map.get(variables.$accent-background-palette, accent-mint);
+    }
+
+    .upf-table-cell:first-child {
+      padding-left: $column-gap;
+    }
+
+    .upf-table-cell:last-child {
+      padding-right: $column-gap;
+    }
+
+    &.upf-expandable {
+      &.upf-collapsed {
+        border-bottom: $border-size $border-color solid;
+      }
+
+      &.upf-expanded {
+        border-bottom: 0;
+      }
+    }
+
+    &.upf-collapsable {
+      grid-auto-rows: minmax(0, max-content);
+      background-color: map.get(variables.$neutral-palette, neutral-silver);
+
+      &.upf-collapsed {
+        overflow: hidden;
+        height: 0;
+        border-bottom: 0;
+      }
+
+      &.upf-expanded {
+        height: inherit;
+        border-bottom: $border-size $border-color solid;
+      }
+    }
+  }
+}
+
+@mixin upfTable {
+  $background-color: map.get(variables.$neutral-palette, neutral-white);
+
+  .upf-table {
+    display: grid;
+    height: 100%;
+    grid-template-rows: max-content 1fr;
+    background-color: $background-color;
+
+    &.upf-sticky-header {
+      overflow-y: auto;
+
+      thead {
+        top: 0;
+        position: sticky;
+        z-index: 1;
+        background-color: $background-color;
+      }
+    }
+  }
+
+  th {
+    font-weight: inherit;
+  }
+
+  @include upfTableHeaderRow;
+  @include upfTableRow;
+  @include upfHeaderCell;
+  @include upfTableCell;
+}
+

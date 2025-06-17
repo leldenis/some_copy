@@ -1,0 +1,59 @@
+<div class="upf-styles">
+  <div
+    class="upf-color-neutral-fog tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-2 tw-border-y tw-border-current"
+  >
+    <span class="product-title">
+      {{
+        ('Common.AvailableProduct.' + (configuration.product?.name | normalizeString) | translate) ||
+          configuration.product?.name
+      }}
+    </span>
+
+    <button data-cy="close-modal" mat-icon-button (click)="handleCancelClick()">
+      <mat-icon [svgIcon]="icons.close" class="tw-h-5 tw-w-5" data-cy="close-product-config-btn"></mat-icon>
+    </button>
+  </div>
+</div>
+
+@if (hasHint$ | async) {
+  <div class="upf-alert-warn tw-flex tw-p-2 tw-rounded tw-gap-2 tw-m-4">
+    <div>
+      <mat-icon [svgIcon]="icons.warning" class="tw-h-5 tw-w-5"></mat-icon>
+    </div>
+    <div class="tw-grow">
+      {{ 'ProductConfiguration.Hint' | translate }}
+    </div>
+  </div>
+}
+
+<upf-product-accessibility [rules]="configuration.accessibility_rules" [metrics]="metrics$ | async">
+  <div class="tw-flex tw-flex-row tw-items-center tw-gap-2 tw-px-4 tw-py-2">
+    <span class="product-accessibility-title">{{ 'Drivers.Drivers.Details.AvailabilityRules' | translate }}:</span>
+    <mat-icon
+      [ngxTippy]="'Drivers.Drivers.Details.Hint1' | translate"
+      class="outlined tw-w-5 tw-h-5 tw-text-accent-mint-light"
+    >
+      info
+    </mat-icon>
+  </div>
+</upf-product-accessibility>
+
+<upf-product-accessibility [rules]="configuration.editing_accessibility_rules" [metrics]="metrics$ | async">
+  <div class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-px-4 tw-py-2 tw-gap-2">
+    <div class="tw-flex tw-flex-row tw-items-center tw-gap-2">
+      <span class="product-accessibility-title">{{ 'Drivers.Drivers.Details.BlockEditing' | translate }}:</span>
+
+      <mat-icon
+        [ngxTippy]="'Drivers.Drivers.Details.Hint2' | translate"
+        class="outlined tw-w-5 tw-h-5 tw-text-accent-mint-light"
+      >
+        info
+      </mat-icon>
+    </div>
+
+    <mat-slide-toggle
+      [formControl]="isEditableByDriver"
+      (ngModelChange)="!isDriverBlocked ? handleIsEditableByDriverChange($event) : null"
+    ></mat-slide-toggle>
+  </div>
+</upf-product-accessibility>

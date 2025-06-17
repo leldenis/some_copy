@@ -1,0 +1,105 @@
+@if (locale$ | async) {
+  <ng-container *upfLet="params$ | async as params">
+    <div
+      leaflet
+      [leafletOptions]="mapOptions"
+      (leafletMapReady)="onMapReady($event)"
+      (click)="enableMapInteractions()"
+      class="live-map"
+      data-cy="live-map"
+    >
+      @if (!searchMode) {
+        <ng-container *upfLet="fragment$ | async as selectedPanel">
+          <ng-container *upfLet="selectedOrder$ | async as selectedOrder">
+            @if (employees$ | async; as employees) {
+              @switch (selectedPanel) {
+                @case (state.Home) {
+                  <upf-couriers-map-panel
+                    upfToggleMapInteractions
+                    [couriers]="employees"
+                    (selectedGroup)="panelsNavigation('employeesList', { status: $event[0].status })"
+                    (panelOpened)="reportPanelOpened($event)"
+                    data-cy="map-home-panel"
+                  ></upf-couriers-map-panel>
+                }
+
+                @case (state.EmployeesList) {
+                  <upf-map-couriers-panel
+                    upfToggleMapInteractions
+                    [employees]="employees"
+                    (selectEmployee)="onSelectEmployee($event)"
+                    (goBack)="panelsNavigation('home')"
+                    (panelOpened)="reportPanelOpened($event)"
+                    data-cy="map-drivers-panel"
+                  ></upf-map-couriers-panel>
+                }
+
+                @case (state.EmployeeDetails) {
+                  @if (selectedEmployee$ | async; as selectedEmployee) {
+                    <upf-map-courier-panel
+                      upfToggleMapInteractions
+                      [employee]="selectedEmployee"
+                      [orders]="activeOrders$ | async"
+                      [currentAddress]="employeeAddress$ | async"
+                      [isMobileView]="isMobileView"
+                      (goBack)="panelsNavigation('employeesList', { status: $event.status, employeeId: null })"
+                      (selectedRoute)="onSelectRoute($event)"
+                      (clearRoutes)="onClearRoutes()"
+                      (panelOpened)="reportPanelOpened($event)"
+                      (navigateToDelivery)="onNavigateToOrder(selectedOrder.order_id, selectedEmployee.id)"
+                      data-cy="map-driver-panel"
+                    ></upf-map-courier-panel>
+                  }
+                }
+
+                @case (state.ActiveOrder) {
+                  @if (selectedEmployee$ | async; as selectedEmployee) {
+                    <upf-map-trip
+                      [order]="selectedOrder"
+                      [entity]="selectedEmployee"
+                      (goBack)="
+                        clearMarkers(routeMarkers);
+                        panelsNavigation('employeeDetails', {
+                          status: selectedEmployee.status,
+                          employeeId: selectedEmployee.id,
+                        })
+                      "
+                      (panelOpened)="reportPanelOpened($event)"
+                      (navigateToEntity)="onNavigateToEntity($event)"
+                      (navigateToOrder)="onNavigateToOrder(selectedOrder.order_id, selectedEmployee.id)"
+                      data-cy="map-trip-panel"
+                    ></upf-map-trip>
+                  }
+                }
+              }
+            }
+          </ng-container>
+        </ng-container>
+      } @else {
+        <upf-couriers-map-search
+          upfToggleMapInteractions
+          [employees]="filteredEmployees$ | async"
+          (selectEmployee)="onSelectEmployee($event)"
+          (closeSearch)="onCloseSearch(true)"
+          (panelOpened)="reportPanelOpened($event)"
+          data-cy="map-search-panel"
+        ></upf-couriers-map-search>
+      }
+
+      <button
+        upfToggleMapInteractions
+        (click)="onToggleFullScreen()"
+        class="fulscreen-btn sm:!tw-hidden"
+        data-cy="map-fullscreen-btn"
+      >
+        <mat-icon>{{ isFullScreen ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+
+      <div class="active-area"></div>
+
+      <div class="disclaimer" data-cy="map-disclaimer">
+        {{ 'LiveMap.MapDisclaimer' | translate }}
+      </div>
+    </div>
+  </ng-container>
+}

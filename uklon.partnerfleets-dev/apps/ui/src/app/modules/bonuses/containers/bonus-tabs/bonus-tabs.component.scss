@@ -1,0 +1,25 @@
+:host {
+  @apply tw-flex tw-bg-white tw-h-full tw-w-full;
+
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      @apply tw-flex tw-grow;
+    }
+
+    .mat-mdc-tab-body-wrapper,
+    .mat-mdc-tab-body.mat-mdc-tab-body-active,
+    .mat-mdc-tab-body-content {
+      @apply tw-flex tw-w-full tw-overflow-visible;
+    }
+  }
+}
+
+.commission-info {
+  @apply tw-hidden sm:tw-flex tw-flex-initial tw-gap-1 tw-h-fit;
+  @apply tw-absolute tw-top-[17px] tw-bottom-0 tw-right-1 tw-z-10;
+  @apply tw-text-accent-mint-light tw-text-base;
+
+  .mat-icon {
+    @apply tw-w-5 tw-h-5;
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "strictNullChecks": false,
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@api-env/*": [
+        "apps/api/src/environments/*"
+      ],
+      "@api/*": [
+        "apps/api/src/app/*"
+      ],
+      "@constant": [
+        "libs/constant/src/index.ts"
+      ],
+      "@data-access": [
+        "libs/data-access/src/index.ts"
+      ],
+      "@ui-env/*": [
+        "apps/ui/src/environments/*"
+      ],
+      "@ui/*": [
+        "apps/ui/src/app/*"
+      ],
+      "@uklon/fleets/angular/cdk": [
+        "libs/fleets/angular/cdk/src/index.ts"
+      ],
+      "@uklon/fleets/fleets-app/authentication/domain": [
+        "libs/fleets/fleets-app/authentication/domain/src/index.ts"
+      ],
+      "@uklon/fleets/fleets-gateway-app/authentication/password-recovery-feature": [
+        "libs/fleets/fleets-gateway-app/authentication/features/password-recovery-feature/src/index.ts"
+      ],
+      "@uklon/fleets/shared/domains/user/data-access": [
+        "libs/fleets/shared/domains/user/data-access/src/index.ts"
+      ],
+      "@uklon/fleets/shared/styles": [
+        "libs/fleets/shared/styles/src/index.ts"
+      ],
+      "@uklon/gateways/data-access/identity": [
+        "libs/gateways/data-access/identity/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/account/domain": [
+        "libs/gateways/services/identity/account/domain/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/account/reset-feature": [
+        "libs/gateways/services/identity/account/features/reset-feature/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/confirmation/domain": [
+        "libs/gateways/services/identity/confirmation/domain/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/confirmation/reset-password-feature": [
+        "libs/gateways/services/identity/confirmation/features/reset-password-feature/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/core/domain": [
+        "libs/gateways/services/identity/core/domain/src/index.ts"
+      ],
+      "@uklon/gateways/services/identity/core/types": [
+        "libs/gateways/services/identity/core/types/src/index.ts"
+      ],
+      "@uklon/gateways/shared/types": [
+        "libs/gateways/shared/types/src/index.ts"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

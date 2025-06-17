@@ -1,0 +1,78 @@
+<mat-form-field
+  appearance="outline"
+  [class]="inputClass ?? 'tw-w-full'"
+  [ngClass]="{
+    'mat-form-field-invalid': !selection.selected.length && (filterControl.dirty || filterControl.touched),
+  }"
+>
+  <mat-label>
+    {{ 'Vehicles.DriverAccess.SearchForCars.Caption' | translate }}
+  </mat-label>
+
+  <input
+    data-cy="vehicles-accessibility-autocomplete-input"
+    type="text"
+    matInput
+    [matAutocomplete]="autoVehicles"
+    [formControl]="filterControl"
+  />
+
+  <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+
+  <mat-autocomplete #autoVehicles="matAutocomplete">
+    <cdk-virtual-scroll-viewport
+      #scroller
+      [itemSize]="itemHeightPx"
+      [minBufferPx]="itemHeightPx * itemsPerPage"
+      [maxBufferPx]="panelHeightPx"
+      [style.height.px]="panelHeight$ | async"
+      (scrolledIndexChange)="handleScroll($event)"
+    >
+      <mat-option
+        *cdkVirtualFor="let vehicle of filteredVehicles$ | async"
+        class="!tw-p-0"
+        [disabled]="disabled"
+        [attr.data-cy]="'search-vehicle-' + vehicle.licencePlate"
+        (onSelectionChange)="handleVehicleSelection(vehicle, $event)"
+      >
+        <div
+          class="tw-text-base tw-px-4"
+          [innerHTML]="vehicle.licencePlate | searchHighlight: filterControl.value"
+        ></div>
+      </mat-option>
+
+      @if (isLoading) {
+        <upf-progress-spinner class="!tw-h-10"></upf-progress-spinner>
+      }
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+
+  @if (!selection.selected.length && (filterControl.dirty || filterControl.touched)) {
+    <mat-hint class="tw-text tw-text-accent-coral-light" data-cy="no-vehicle-error-message">
+      {{ 'Vehicles.DriverAccess.SearchForCars.NoVehicleSelectedError' | translate }}
+    </mat-hint>
+  }
+</mat-form-field>
+
+@if (selection.selected.length) {
+  <mat-chip-listbox>
+    @for (vehicle of selection.selected; track vehicle) {
+      <mat-chip
+        [attr.data-cy]="'vehicle-' + vehicle.licencePlate"
+        [disabled]="disabled"
+        [ngxTippy]="
+          currentVehicle?.id === vehicle.id ? ('Vehicles.DriverAccess.Tooltips.RemoveAccess' | translate) : null
+        "
+        class="tw-text-base"
+      >
+        {{ vehicle.licencePlate }}
+
+        @if (currentVehicle?.id !== vehicle.id) {
+          <button matChipRemove (click)="!disabled ? handleVehicleRemoval(vehicle) : null">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        }
+      </mat-chip>
+    }
+  </mat-chip-listbox>
+}

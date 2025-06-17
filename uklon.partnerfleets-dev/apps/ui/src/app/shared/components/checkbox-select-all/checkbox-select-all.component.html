@@ -1,0 +1,9 @@
+<mat-checkbox
+  class="mat-mdc-option"
+  [indeterminate]="isIndeterminate()"
+  [checked]="isChecked()"
+  (click)="$event.stopPropagation()"
+  (change)="toggleSelection($event)"
+>
+  {{ 'Common.All' | translate }}
+</mat-checkbox>

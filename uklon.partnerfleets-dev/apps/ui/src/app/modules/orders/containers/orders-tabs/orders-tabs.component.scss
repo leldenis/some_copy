@@ -1,0 +1,17 @@
+:host {
+  @apply tw-flex tw-bg-white;
+  @apply tw-h-full;
+  @apply tw-w-full;
+
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      @apply tw-flex tw-grow;
+    }
+
+    .mat-mdc-tab-body-wrapper,
+    .mat-mdc-tab-body.mat-mdc-tab-body-active,
+    .mat-mdc-tab-body-content {
+      @apply tw-flex tw-w-full tw-overflow-visible;
+    }
+  }
+}

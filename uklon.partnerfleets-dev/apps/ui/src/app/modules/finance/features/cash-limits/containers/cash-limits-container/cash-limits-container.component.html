@@ -1,0 +1,41 @@
+@let isMobileView = isMobileView$ | async;
+
+@if (isMobileView) {
+  <upf-cash-limits-info-dialog-trigger [isMobile]="true"></upf-cash-limits-info-dialog-trigger>
+}
+
+@if (cashLimitsSettings()) {
+  <upf-cash-limits-info-panel
+    class="sm:tw-w-fit"
+    data-cy="cash-limits-panel"
+    [cashLimitsSettings]="cashLimitsSettings()"
+    (editCashLimits)="openDialog()"
+  ></upf-cash-limits-info-panel>
+
+  <upf-cash-limits-filters (filtersChange)="onFiltersChange($event)"></upf-cash-limits-filters>
+
+  @if (drivers$ | async; as drivers) {
+    @if (drivers.length) {
+      <upf-cash-limits-list
+        data-cy="cash-limits-list"
+        [drivers]="drivers"
+        [isMobileView]="isMobileView"
+        [fleetId]="fleetId()"
+        (loadMore)="onLoadNext()"
+        (editDriversLimits)="onEditDriversLimits($event)"
+      ></upf-cash-limits-list>
+    } @else {
+      <upf-empty-state></upf-empty-state>
+    }
+  }
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA_CUSTOM">
+    <div class="tw-flex tw-flex-col tw-gap-md tw-items-center">
+      {{ 'CashLimits.EmptyStateTitle' | translate }}
+
+      <button class="tw-w-fit" mat-flat-button color="primary" data-cy="cash-limits-setup-btn" (click)="openDialog()">
+        {{ 'CashLimits.Buttons.SetUp' | translate }}
+      </button>
+    </div>
+  </upf-empty-state>
+}

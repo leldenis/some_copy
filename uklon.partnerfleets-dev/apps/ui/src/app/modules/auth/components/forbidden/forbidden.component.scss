@@ -1,0 +1,67 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+@use 'variables' as v;
+
+.forbidden-form-container {
+  height: 100%;
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 2rem;
+
+    &-title {
+      @include m.set-font(f.px2rem(48), f.px2rem(48), 400, var(--black10-color));
+      margin-bottom: f.px2rem(20);
+    }
+
+    &-subtitle {
+      @include m.set-font(f.px2rem(14), f.px2rem(14), 400, var(--grey30-color));
+      max-width: 50%;
+      min-width: 320px;
+    }
+  }
+}
+
+.forbidden-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 320px;
+
+  label {
+    @include m.set-font(f.px2rem(14), f.px2rem(14), 400, var(--black-color));
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .forbidden-form-container {
+    &__description {
+      padding-bottom: 1rem;
+
+      &-subtitle {
+        padding: 1rem;
+      }
+    }
+  }
+
+  .forbidden-form {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: v.$breakpoint-desktop-min) {
+  .forbidden-form-container {
+    &__description {
+      padding: 0;
+    }
+  }
+
+  .forbidden-form {
+    margin-top: 1rem;
+  }
+}

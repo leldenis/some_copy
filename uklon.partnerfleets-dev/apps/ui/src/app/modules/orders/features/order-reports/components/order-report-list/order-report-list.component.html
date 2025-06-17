@@ -1,0 +1,397 @@
+<cdk-table
+  [dataSource]="reports"
+  class="flt-table flt-grid-24 flt-shadowless tw-mb-cell-1 sm:tw-mb-0"
+  data-cy="orders-reports-list"
+>
+  <ng-container [cdkColumnDef]="'driver'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-4" data-cy="driver-header">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.Driver.Subtitle' | translate }}
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit">
+          {{ 'OrderReportList.Driver.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-12 sm:tw-col-span-4"
+      data-cy="driver-cell"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <a
+          [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, report.driver.id]"
+          class="tw-font-medium"
+        >
+          {{ report.driver.last_name }} {{ report.driver.first_name }}
+        </a>
+        <span class="tw-text-md tw-text-neutral-granit">
+          {{ report.driver.signal }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'rides'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="rides-header">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.Rides.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2" data-cy="rides-cell">
+      <div class="tw-flex tw-items-center">
+        <span>
+          {{ report.total_orders_count || 0 }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'onlineTime'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.OnlineTime.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        @if (report.online_time_seconds | duration; as time) {
+          <span>
+            @if (time.hours) {
+              {{ 'Common.Abbreviation.Hours' | translate: time }}
+            }
+            {{ 'Common.Abbreviation.Minutes' | translate: time }}
+          </span>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'totalExecutingTime'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.TotalExecutingTime.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        @if (report.total_executing_time + report.total_time_from_accepted_to_running | duration; as time) {
+          <span>
+            @if (time.hours) {
+              {{ 'Common.Abbreviation.Hours' | translate: time }}
+            }
+            {{ 'Common.Abbreviation.Minutes' | translate: time }}
+          </span>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'ridesPerHour'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.OrdersPerHour.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span>
+          {{ report.orders_per_hour || 0 }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'totalDistance'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3" data-cy="total-distance-header">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.TotalDistance.Title' | translate }}
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit">
+          {{ 'OrderReportList.TotalDistance.PickUp' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report"
+      class="flt-table-cell tw-col-span-8 sm:tw-col-span-3"
+      data-cy="total-distance-cell"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>
+          {{ report.total_distance_meters / 1000 || 0 | number: '1.2-2' }}
+          {{ 'Common.Km' | translate }}
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit">
+          {{ report.total_distance_to_pickup_meters / 1000 || 0 | number: '1.2-2' }}
+          {{ 'Common.Km' | translate }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'ridesTotalAmount'">
+    <cdk-header-cell
+      *cdkHeaderCellDef
+      class="flt-table-cell tw-flex tw-items-center sm:tw-col-span-2"
+      data-cy="total-amount-header"
+    >
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.RidesTotalAmount.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report"
+      class="flt-table-cell tw-col-span-8 sm:tw-col-span-2"
+      data-cy="total-amount-cell"
+    >
+      <div class="tw-flex tw-items-center">
+        <ng-template
+          [ngTemplateOutlet]="moneyTpl"
+          [ngTemplateOutletContext]="{ $implicit: report.profit.order }"
+        ></ng-template>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'averagePricePerHour'">
+    <cdk-header-cell *cdkHeaderCellDef="let report" class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Common.Enum.Currency.' + currency | translate }} /
+          {{ 'Common.Hour' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <ng-template
+          [ngTemplateOutlet]="moneyTpl"
+          [ngTemplateOutletContext]="{ $implicit: report.average_order_price_per_hour }"
+        ></ng-template>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'averagePricePerKm'">
+    <cdk-header-cell *cdkHeaderCellDef="let report" class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Common.Enum.Currency.' + currency | translate }} /
+          {{ 'Common.Km' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-8 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <ng-template
+          [ngTemplateOutlet]="moneyTpl"
+          [ngTemplateOutletContext]="{ $implicit: report.average_order_price_per_kilometer }"
+        ></ng-template>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'totalAmount'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="total-price-header">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'OrderReportList.TotalAmount.Title' | translate }}
+        </span>
+        <div class="tw-flex tw-items-center tw-pl-2 tw-text-accent-mint-light">
+          <mat-icon
+            [svgIcon]="icons.info"
+            [ngxTippy]="'OrderReportList.TotalAmount.Tooltip' | translate"
+            [tippyProps]="{ maxWidth: '50vw' }"
+            data-cy="total-price-icon"
+          ></mat-icon>
+        </div>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-8 sm:tw-col-span-2"
+      data-cy="total-price-cell"
+    >
+      <div class="tw-flex tw-items-center tw-justify-end sm:tw-justify-start">
+        <ng-template
+          [ngTemplateOutlet]="moneyTpl"
+          [ngTemplateOutletContext]="{
+            $implicit: report.profit?.total,
+            addAmount: report.loss?.total?.amount,
+          }"
+        ></ng-template>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'toggle'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-1"></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-4 sm:tw-col-span-1"
+      data-cy="expand-cell"
+    >
+      <div
+        class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+        [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+      >
+        <button mat-icon-button (click)="toggle(index)" [ngClass]="selection.isSelected(index) ? 'tw-rotate-180' : ''">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'detail'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell flt-table-cell--hidden"></cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell flt-toggleable tw-col-span-24" data-cy="expandable-row">
+      <div class="tw-bg-neutral-silver tw-p-2 sm:tw-p-4 tw-flex tw-flex-col tw-gap-2">
+        <div class="tw-pb-2 tw-border-b tw-border-neutral-cloud sm:tw-hidden">
+          <div class="flt-data-list sm:hidden" data-cy="expanded-row-info-mobile">
+            <div class="flt-data-label">
+              {{ 'OrderReportList.Rides.Title' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              {{ report.total_orders_count || 0 }}
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'OrderReportList.OnlineTime.Title' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              <div class="tw-flex tw-items-center">
+                @if (report.online_time_seconds | duration; as time) {
+                  <span>
+                    @if (time.hours) {
+                      {{ 'Common.Abbreviation.Hours' | translate: time }}
+                    }
+                    {{ 'Common.Abbreviation.Minutes' | translate: time }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'OrderReportList.OrdersPerHour.Title' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              {{ report.orders_per_hour || 0 }}
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'OrderReportList.TotalExecutingTime.Title' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              <div class="tw-flex tw-items-center">
+                @if (report.total_executing_time + report.total_time_from_accepted_to_running | duration; as time) {
+                  <span>
+                    @if (time.hours) {
+                      {{ 'Common.Abbreviation.Hours' | translate: time }}
+                    }
+                    {{ 'Common.Abbreviation.Minutes' | translate: time }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'Common.Enum.Currency.' + currency | translate }} /
+              {{ 'Common.Hour' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              <ng-template
+                [ngTemplateOutlet]="moneyTpl"
+                [ngTemplateOutletContext]="{ $implicit: report.average_order_price_per_hour }"
+              ></ng-template>
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'OrderReportList.TotalDistance.Title' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              {{ report.total_distance_meters / 1000 || 0 | number: '1.2-2' }}
+              {{ 'Common.Km' | translate }}
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'Common.Enum.Currency.' + currency | translate }} /
+              {{ 'Common.Km' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              <ng-template
+                [ngTemplateOutlet]="moneyTpl"
+                [ngTemplateOutletContext]="{ $implicit: report.average_order_price_per_kilometer }"
+              ></ng-template>
+            </div>
+
+            <div class="flt-data-label">
+              {{ 'OrderReportList.TotalDistance.PickUp' | translate }}
+            </div>
+
+            <div class="flt-data-value">
+              {{ report.total_distance_to_pickup_meters / 1000 || 0 | number: '1.2-2' }}
+              {{ 'Common.Km' | translate }}
+            </div>
+          </div>
+        </div>
+
+        <upf-order-report-information [report]="report"></upf-order-report-information>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    cdk-header-row
+    *cdkHeaderRowDef="visibleColumns"
+    class="flt-table-row flt-grid-24 flt-table-header-row"
+    data-cy="orders-reports-header-row"
+  ></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: visibleColumns"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+    class="flt-table-row flt-grid-24"
+    data-cy="orders-reports-row"
+  ></cdk-row>
+</cdk-table>
+
+<ng-template #moneyTpl let-money let-addAmount="addAmount">
+  @if (money) {
+    <span>
+      {{ (money.amount + (addAmount || 0)) / 100 | upfMoney: money.currency }}
+    </span>
+  } @else {
+    <span>0</span>
+  }
+</ng-template>

@@ -1,0 +1,30 @@
+:host {
+  @apply tw-h-full;
+}
+
+.list-row {
+  @apply tw-grid tw-h-14 tw-px-md tw-items-center tw-gap-md;
+  @apply tw-text-base tw-text-neutral-graphite tw-border-t tw-border-neutral-cloud;
+  grid-template-columns: repeat(3, minmax(0, 2fr)) minmax(0, 2fr) minmax(0, 3fr) 1fr;
+
+  &.header {
+    @apply tw-hidden tw-text-sm tw-text-neutral-smoke tw-h-14 tw-border-none sm:tw-grid;
+  }
+}
+
+.list-card {
+  @apply tw-rounded tw-shadow-sm tw-p-2 tw-text-base;
+  @apply tw-grid tw-gap-3;
+}
+
+.application-btn {
+  @apply tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-font-medium;
+}
+
+.mat-icon {
+  @apply tw-text-icon tw-w-5 tw-h-5 tw-leading-5 tw-shrink-0;
+}
+
+.review-btn {
+  @apply tw-flex tw-gap-1 tw-items-center tw-text-neutral-graphite tw-cursor-pointer;
+}

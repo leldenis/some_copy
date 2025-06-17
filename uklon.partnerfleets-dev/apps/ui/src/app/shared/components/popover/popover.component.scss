@@ -1,0 +1,11 @@
+:host {
+  @apply tw-flex tw-gap-2 tw-flex-col tw-text-sm tw-leading-5 tw-whitespace-nowrap;
+}
+
+.mat-icon {
+  @apply tw-w-4 tw-h-4 tw-text-icon tw-cursor-pointer tw-text-accent-mint-light tw-transition-all;
+
+  &.opened {
+    @apply tw-text-neutral-graphite tw-rotate-180;
+  }
+}

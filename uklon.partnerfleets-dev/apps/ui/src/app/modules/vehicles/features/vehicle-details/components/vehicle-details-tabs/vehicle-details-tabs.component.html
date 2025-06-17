@@ -1,0 +1,59 @@
+@let tabIndex = selectedTabIndex$ | async;
+
+<mat-tab-group
+  class="tw-grow"
+  animationDuration="400ms"
+  [selectedIndex]="tabIndex"
+  (selectedIndexChange)="handleFragmentChange($event)"
+  color="primary"
+>
+  <mat-tab>
+    <span *matTabLabel [attr.data-cy]="'vehicle-details-tabs-products'">
+      {{ 'Vehicles.Details.Tabs.Products' | translate }}
+    </span>
+
+    <ng-template matTabContent>
+      <upf-vehicle-products [fleet]="fleet" [isVehicleBlocked]="isVehicleBlocked" />
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <span *matTabLabel [attr.data-cy]="'vehicle-details-tabs-access'">
+      {{ 'Vehicles.Details.Tabs.Access' | translate }}
+    </span>
+
+    <ng-template matTabContent>
+      <upf-vehicle-access [fleet]="fleet" [vehicle]="vehicle" [isVehicleBlocked]="isVehicleBlocked" />
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <span *matTabLabel [attr.data-cy]="'vehicle-details-tabs-changeshistory'">
+      {{ 'Vehicles.Details.Tabs.History' | translate }}
+    </span>
+
+    <ng-template matTabContent>
+      <upf-vehicle-history [fleetId]="fleet.id" [vehicleId]="vehicle.id" [tabIndex]="tabIndex" />
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <span *matTabLabel [attr.data-cy]="'vehicle-details-tabs-photo'">
+      {{ 'Vehicles.Details.Tabs.Photo' | translate }}
+    </span>
+
+    <ng-template matTabContent>
+      <upf-vehicle-photos [fleet]="fleet" [isMobileView]="isMobileView" />
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <span *matTabLabel [attr.data-cy]="'vehicle-details-tabs-orders'">
+      {{ 'Vehicles.Details.Tabs.Trips' | translate }}
+    </span>
+
+    <ng-template matTabContent>
+      <upf-vehicle-orders [fleetId]="fleet.id" [vehicleId]="vehicle.id" [tabIndex]="tabIndex" />
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

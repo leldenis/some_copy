@@ -1,0 +1,37 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-4;
+  @apply tw-h-full;
+  @apply tw-p-4;
+  @apply tw-relative;
+}
+
+.flt-dialog-close {
+  @apply tw-absolute;
+  @apply tw-right-[6px];
+  @apply tw-top-[6px];
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+}
+
+.mat-mdc-raised-button {
+  @apply tw-text-base sm:tw-text-inherit;
+  @apply tw-h-11 sm:tw-h-9 sm:tw-w-auto;
+  @apply tw-text-neutral-white tw-font-medium;
+  @apply tw-uppercase;
+}
+
+.mat-mdc-outlined-button {
+  @apply tw-text-base sm:tw-text-inherit;
+  @apply tw-h-11 sm:tw-h-9 sm:tw-w-auto;
+  @apply tw-text-neutral-graphite tw-font-medium;
+  @apply tw-uppercase;
+}
+
+.placeholder {
+  width: 160px;
+  height: 135px;
+  background: url('/assets/icons/icon_delete-card.svg') no-repeat center center;
+  background-size: 100%;
+}

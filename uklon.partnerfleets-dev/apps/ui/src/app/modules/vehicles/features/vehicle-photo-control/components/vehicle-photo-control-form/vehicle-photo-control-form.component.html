@@ -1,0 +1,124 @@
+@if (ticket(); as ticket) {
+  <div class="tw-grid tw-gap-5" [ngClass]="{ '!tw-gap-md': ticket.status === ticketStatus.CLARIFICATION }">
+    <section class="tw-grid tw-gap-2">
+      <div class="tw-text-title">{{ 'PhotoControl.Panel.Title' | translate }} {{ ticket.license_plate }}</div>
+
+      @if (!ticket?.block_immediately && ticket?.deadline_to_send) {
+        @let deadline = ticket.deadline_to_send | photoControlDeadlineMessage;
+        <div class="tw-text-neutral-smoke tw-text-base">
+          {{ 'PhotoControl.TicketsList.Deadline' | translate }} :
+          {{ deadline.longTitle | translate: { till: deadline.till, days: deadline.days } }}
+        </div>
+      }
+    </section>
+
+    @if (ticket.status === ticketStatus.DRAFT && ticket?.reasons?.length > 0) {
+      <upf-ticket-status-reasons
+        reasonPath="PhotoControl.TicketsList.Reasons."
+        [activeLogs]="draftReason()"
+        [showTitle]="false"
+      ></upf-ticket-status-reasons>
+    }
+
+    @if (ticket.status === ticketStatus.CLARIFICATION) {
+      <upf-ticket-status-reasons
+        reasonPath="PhotoControl.ClarificationReason."
+        [activeLogs]="clarificationReason()"
+      ></upf-ticket-status-reasons>
+    }
+
+    <div class="tw-grid tw-gap-md">
+      <section class="tw-grid tw-gap-2.5">
+        <div class="tw-font-medium">
+          {{ 'Vehicles.Details.Photos.VehiclesPhotos' | translate }}
+        </div>
+      </section>
+
+      <section class="tw-grid tw-grid-cols-2 tw-gap-md" [formGroup]="photosForm">
+        @for (category of ticket.picture_types | photoCategories: [photosGroup.BODY]; track $index) {
+          @if ($first) {
+            <upf-info-panel color="warn" class="tw-col-span-2">
+              <ul class="tw-grid -tw-ml-2">
+                <li class="tw-flex tw-items-center tw-gap-1">
+                  <upf-dot-marker-icon />
+                  <span [innerHTML]="'Vehicles.Details.Titles.1' | translate"></span>
+                </li>
+                <li class="tw-flex tw-items-center tw-gap-1">
+                  <upf-dot-marker-icon />
+                  <span [innerHTML]="'Vehicles.Details.Titles.2' | translate"></span>
+                </li>
+              </ul>
+            </upf-info-panel>
+          }
+
+          <ng-container [formGroupName]="category">
+            <upf-photo-card-new
+              [capture]="'environment'"
+              [category]="category"
+              [ticketId]="ticket.id"
+              [ticketType]="ticketType.VEHICLE_PHOTO_CONTROL"
+              (photoClick)="onPhotoOpen($event); reportPlaceholderClick(category)"
+              formControlName="url"
+            ></upf-photo-card-new>
+          </ng-container>
+        }
+
+        @for (
+          category of ticket.picture_types | photoCategories: [photosGroup.INTERIOR, photosGroup.OTHER];
+          track $index
+        ) {
+          @if ($first) {
+            <upf-info-panel color="warn" class="tw-col-span-2">
+              <ul class="tw-grid -tw-ml-2">
+                <li class="tw-flex tw-items-center tw-gap-1">
+                  <upf-dot-marker-icon />
+                  <span [innerHTML]="'PhotoControl.Form.PhotosInstruction2' | translate"></span>
+                </li>
+
+                <li class="tw-flex tw-items-center tw-gap-1">
+                  <upf-dot-marker-icon />
+                  <span [innerHTML]="'PhotoControl.Form.PhotosInstruction3' | translate"></span>
+                </li>
+              </ul>
+            </upf-info-panel>
+          }
+
+          <ng-container [formGroupName]="category">
+            <upf-photo-card-new
+              [capture]="'environment'"
+              [category]="category"
+              [ticketId]="ticket.id"
+              [ticketType]="ticketType.VEHICLE_PHOTO_CONTROL"
+              (photoClick)="onPhotoOpen($event); reportPlaceholderClick(category)"
+              formControlName="url"
+            ></upf-photo-card-new>
+          </ng-container>
+        }
+      </section>
+    </div>
+
+    @if (options().length && ticket.region_id !== region.TASHKENT) {
+      <div class="tw-grid tw-gap-md">
+        <div class="tw-text-base tw-font-medium">{{ 'PhotoControl.Form.OptionsTitle' | translate }}</div>
+
+        <mat-form-field subscriptSizing="fixed" class="col-sm-12 col-6">
+          <mat-label>
+            {{ 'Vehicles.Creation.AdvancedOptions' | translate }}
+          </mat-label>
+
+          <mat-select data-cy="advanced-options-control" [formControl]="optionsControl" multiple>
+            @for (option of options(); track $index) {
+              <mat-option data-cy="advanced-options-control-item" [value]="option.code">
+                {{ 'Common.AdvancedOptions.' + option.code | translate }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    }
+  </div>
+
+  <button mat-flat-button color="primary" (click)="onSubmitTicket(ticket)" [disabled]="!photosForm.valid">
+    {{ 'PhotoControl.Form.SubmitButton' | translate }}
+  </button>
+}

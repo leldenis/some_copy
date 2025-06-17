@@ -1,0 +1,200 @@
+<div class="tw-grid tw-grid-cols-12 tw-gap-2 sm:tw-gap-5 tw-text-base">
+  <div class="tw-col-span-12">
+    <span class="tw-font-medium tw-text-neutral-graphite tw-text-heading">
+      {{ 'VehicleDetailsInfo.Title' | translate }}
+    </span>
+  </div>
+  <dl class="tw-grid tw-grid-cols-12 tw-col-span-12 tw-gap-4 sm:tw-gap-5">
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.Fields.BodyType' | translate }}
+    </dt>
+    <dd class="tw-col-span-6" data-cy="body-type">
+      {{ (bodyTypeIntl.get($any(vehicle.body_type)) | translate) || vehicle.body_type }}
+    </dd>
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.Fields.PassengerSeatsCount' | translate }}
+    </dt>
+    <dd class="tw-col-span-6" data-cy="passenger_seats_count">
+      {{ vehicle.passenger_seats_count }}
+    </dd>
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.Fields.VINCode' | translate }}
+    </dt>
+    <dd class="tw-col-span-6" data-cy="vin-code">
+      {{ vehicle.vin_code }}
+    </dd>
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.Fields.Color' | translate }}
+    </dt>
+    <dd class="tw-col-span-6" data-cy="vehicle_color">
+      {{ (colorIntl.get($any(vehicle.color)) | translate) || vehicle.color }}
+    </dd>
+
+    @if (vehicle.body_type === vehicleCargoType) {
+      <dt class="tw-col-span-6 tw-text-neutral-granit">
+        {{ 'VehicleDetailsInfo.Fields.LoadCapacity' | translate }}
+      </dt>
+      <dd class="tw-col-span-6" data-cy="vehicle_color">
+        {{ vehicle?.load_capacity | translateLoadCapacity: 'full' }}
+      </dd>
+    } @else {
+      <dt class="tw-col-span-6 tw-text-neutral-granit">
+        {{ 'VehicleDetailsInfo.Fields.ComfortLevel' | translate }}
+      </dt>
+      <dd class="tw-col-span-6">
+        <div class="tw-flex">
+          <div
+            class="tw-flex tw-items-center tw-text-base tw-px-2 tw-rounded-full tw-h-6 tw-bg-neutral-silver"
+            data-cy="comfort_level"
+          >
+            <span>
+              {{ 'Common.AvailableProduct.' + (vehicle.comfort_level | normalizeString) | translate }}
+            </span>
+          </div>
+        </div>
+      </dd>
+
+      <dt class="tw-col-span-6 tw-text-neutral-granit">
+        {{ 'VehicleDetailsInfo.Fields.Options' | translate }}
+      </dt>
+      <dd class="tw-col-span-6" data-cy="vehicle-options">
+        @for (option of vehicle.options; track option) {
+          {{ 'Common.AdvancedOptions.' + option | translate }}{{ $last ? '' : ', ' }}
+        }
+      </dd>
+    }
+
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.Fields.AddedAt' | translate }}
+    </dt>
+    <dd class="tw-col-span-6" data-cy="added_to_fleet_date">
+      {{ vehicle.added_to_fleet | seconds2Date }}
+    </dd>
+
+    <dt class="tw-col-span-6 tw-text-neutral-granit">
+      {{ 'VehicleList.Header.Availability' | translate }}
+    </dt>
+    @if (accessType) {
+      <dd class="tw-col-span-6">
+        <upf-status-badge [color]="accessColorMap[accessType]">
+          {{ 'Vehicles.VehicleAccess.AccessType.' + accessType | translate }}
+        </upf-status-badge>
+      </dd>
+    }
+
+    @if (rroAvailable) {
+      <dt class="tw-col-span-6 tw-text-neutral-granit">
+        {{ 'VehicleDetailsInfo.Fields.Fiscalization' | translate }}
+      </dt>
+      <dd class="tw-col-span-6">
+        <upf-vehicle-cash-point-info
+          [cashPoint]="vehicleCashPoint"
+          (unlink)="unlinkCashPoint.emit($event)"
+        ></upf-vehicle-cash-point-info>
+      </dd>
+    }
+  </dl>
+  <hr class="tw-col-span-12 tw-my-2 sm:tw-my-0 sm:tw-hidden" />
+  <div class="tw-col-span-12 tw-flex tw-justify-between tw-items-center sm:tw-hidden">
+    <div class="tw-text-neutral-granit">
+      {{ 'VehicleDetailsInfo.RemoveFromFleet.Caption' | translate }}
+    </div>
+    <div>
+      <button
+        data-cy="delete-vehicle-menu-btn"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        [disabled]="isVehicleBlocked"
+      >
+        <mat-icon [svgIcon]="icons.verticalDots"></mat-icon>
+      </button>
+
+      <mat-menu classList="!tw-min-h-0 !tw-mt-1">
+        <ul>
+          <li
+            data-cy="mobile-delete-vehicle-btn"
+            mat-menu-item
+            (click)="!isVehicleBlocked ? handleDeleteVehicleClick() : null"
+          >
+            <div class="tw-flex tw-justify-between tw-w-full tw-items-center tw-text-accent-coral-light">
+              <span>{{ 'VehicleDetailsInfo.Menu.RemoveVehicle.Caption' | translate }}</span>
+              <mat-icon [svgIcon]="icons.deleteBase"></mat-icon>
+            </div>
+          </li>
+        </ul>
+      </mat-menu>
+    </div>
+  </div>
+  <hr class="tw-col-span-12 tw-mt-2 sm:tw-mt-0" />
+  <div class="tw-grid tw-grid-cols-12 tw-gap-2 sm:tw-gap-5 tw-col-span-12">
+    <div class="tw-col-span-12 tw-mt-2 sm:tw-mt-0">
+      <span class="tw-font-medium tw-text-neutral-graphite tw-text-heading">
+        {{ 'VehicleDetailsInfo.Driver.Caption' | translate }}
+      </span>
+    </div>
+    @if (vehicle.selected_by_driver; as driver) {
+      <div class="tw-flex tw-items-center tw-gap-4 tw-col-span-8">
+        <div class="tw-h-12 tw-w-12">
+          @if (avatar$ | async; as avatar) {
+            <img
+              upfDefaultImgSrc
+              [src]="avatar.url"
+              [defaultSrc]="avatar.fallback_url"
+              class="tw-w-12 tw-h-12 tw-rounded-full tw-object-center tw-object-cover"
+              alt="avatar"
+            />
+          }
+        </div>
+        <div class="tw-flex tw-flex-col tw-gap-1">
+          <div>
+            <a
+              [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.driver_id]"
+              class="tw-font-medium hover:tw-underline focus:tw-underline"
+            >
+              {{ driver.last_name }} {{ driver.first_name }}
+            </a>
+          </div>
+          <div class="tw-text-md">{{ driver.phone }}</div>
+        </div>
+      </div>
+    } @else {
+      <div class="tw-flex tw-items-center tw-gap-4 tw-col-span-8">
+        <div
+          class="tw-flex tw-items-center tw-justify-center tw-bg-neutral-cloud tw-border tw-border-neutral-silver tw-h-12 tw-w-12 tw-rounded-full tw-text-neutral-granit"
+        >
+          <mat-icon [svgIcon]="icons.person"></mat-icon>
+        </div>
+        <div class="tw-flex tw-flex-col tw-gap-1">
+          <span class="tw-text-neutral-granit tw-text-base">
+            {{ 'VehicleDetailsInfo.NoDriver' | translate }}
+          </span>
+        </div>
+      </div>
+    }
+
+    <div class="tw-flex tw-items-center tw-justify-end tw-col-span-4">
+      @if (vehicle.selected_by_driver) {
+        <button
+          mat-icon-button
+          (click)="handleUnlinkClick(vehicle)"
+          class="hover:tw-text-accent-coral-light hover:tw-bg-neutral-cloud focus:tw-text-accent-coral-light focus:tw-bg-neutral-cloud"
+        >
+          <mat-icon [svgIcon]="icons.unlink"></mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+  <hr class="tw-col-span-12 tw-my-2 sm:tw-my-0" />
+</div>
+<div class="tw-hidden sm:tw-flex tw-flex-col tw-justify-self-stretch">
+  <button
+    mat-flat-button
+    data-cy="delete-vehicle-btn"
+    color="accent"
+    class="warn"
+    [disabled]="isVehicleBlocked"
+    (click)="!isVehicleBlocked ? handleDeleteVehicleClick() : null"
+  >
+    {{ 'VehicleDetailsInfo.RemoveFromFleet.Caption' | translate }}
+  </button>
+</div>

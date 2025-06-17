@@ -1,0 +1,67 @@
+<upf-filters-container
+  class="tw-w-full"
+  direction="row"
+  [isOpened]="!isMobileView"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersReset)="sendAnalytics(eventType.LIVE_MAP_FILTERS_CLEARED, 'wholeForm')"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <form [formGroup]="filtersForm" class="tw-grid tw-gap-md sm:tw-grid-cols-2">
+    <mat-form-field floatLabel="always" data-cy="map-filter-name">
+      <mat-label>
+        {{ 'Common.Filters.Name.Caption' | translate }}
+      </mat-label>
+
+      <input
+        #name
+        matInput
+        type="text"
+        formControlName="name"
+        (focus)="sendAnalytics(eventType.LIVE_MAP_FOCUS_SEARCH_INPUT, 'name')"
+        placeholder="{{ 'Common.Filters.Name.Placeholder' | translate }}"
+      />
+
+      @if (name.value) {
+        <mat-icon
+          matIconSuffix
+          (click)="$event.stopPropagation(); onResetFilters('name')"
+          class="tw-text-neutral-smoke"
+        >
+          close
+        </mat-icon>
+      } @else {
+        <mat-icon [svgIcon]="icons.search" matSuffix></mat-icon>
+      }
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always" data-cy="map-filter-licensePlate">
+      <mat-label>{{ 'Common.Filters.LicencePlate.Caption' | translate }}</mat-label>
+
+      <input
+        #licensePlate
+        matInput
+        type="text"
+        formControlName="licensePlate"
+        (focus)="sendAnalytics(eventType.LIVE_MAP_FOCUS_SEARCH_INPUT, 'licensePlate')"
+        placeholder="{{ 'Common.Filters.LicencePlate.Placeholder' | translate }}"
+      />
+
+      @if (licensePlate.value) {
+        <mat-icon
+          matIconSuffix
+          class="tw-text-neutral-smoke"
+          (click)="$event.stopPropagation(); onResetFilters('licensePlate')"
+        >
+          close
+        </mat-icon>
+      } @else {
+        <mat-icon [svgIcon]="icons.search" matSuffix></mat-icon>
+      }
+
+      <mat-error>
+        {{ 'LiveMap.Search.LicensePlateError' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</upf-filters-container>

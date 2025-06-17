@@ -1,0 +1,48 @@
+@use "sass:map";
+
+$neutral-palette: (
+  neutral-black: hsla(0, 0%, 0%, 1),
+  neutral-onyx: hsla(210, 6%, 14%, 1),
+  neutral-carbon: hsla(228, 9%, 22%, 1),
+  neutral-graphite: hsla(232, 10%, 30%, 1),
+  neutral-shale: hsla(231, 7%, 39%, 1),
+  neutral-smoke-quartz: hsla(229, 5%, 47%, 1),
+  neutral-granit: hsla(240, 4%, 69%, 1),
+  neutral-fog: hsla(220, 3%, 82%, 1),
+  neutral-something: hsla(0, 0%, 80%, 1),
+  neutral-cloud: hsla(180, 2%, 90%, 1),
+  neutral-silver: hsla(0, 0%, 95%, 1),
+  neutral-white: hsla(0, 0%, 100%, 1),
+);
+
+$accent-palette: (
+  accent-coral: hsla(0, 73%, 68%, 1),
+  accent-mint: hsla(163, 60%, 50%, 1),
+  accent-blue: hsla(190, 77%, 46%, 1),
+  accent-lime: hsla(61, 54%, 60%, 1),
+);
+
+$accent-background-palette: (
+  accent-coral: hsla(0, 73%, 68%, 0.2),
+  accent-mint: hsla(164, 60%, 95%, 1),
+  accent-blue: hsla(190, 77%, 46%, 0.2),
+  accent-lime: hsla(61, 54%, 60%, 0.2),
+);
+
+$alert-background-palette: (
+  alert-blue: hsla(190, 100%, 94%, 1),
+  alert-green: hsla(152, 43%, 88%, 1),
+  alert-yellow: hsla(46, 92%, 81%, 1),
+  alert-red: hsla(0, 71%, 93%, 1),
+  alert-violet: hsla(250, 100%, 95%, 1),
+);
+
+$alert-text-palette: (
+  alert-blue: hsla(191, 86%, 31%, 1),
+  alert-bright-green: hsla(127, 91%, 36%, 1),
+  alert-green: hsla(151, 100%, 23%, 1),
+  alert-yellow: hsla(40, 100%, 26%, 1),
+  alert-bright-red: hsla(345, 87%, 47%, 1),
+  alert-red: hsla(2, 92%, 39%, 1),
+  alert-violet: hsla(250, 71%, 56%, 1),
+);

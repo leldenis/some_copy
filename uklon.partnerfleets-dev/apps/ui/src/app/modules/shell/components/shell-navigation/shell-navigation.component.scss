@@ -1,0 +1,71 @@
+@use 'mixins' as m;
+
+$nav-item-height: 56px;
+$transition-options: 0.4s ease-in-out;
+$bottom-items-count: 2;
+
+:host {
+  @apply tw-overflow-auto tw-h-full tw-flex tw-flex-col tw-justify-between tw-overscroll-none;
+  max-height: calc(100dvh - calc(#{$nav-item-height}) * #{$bottom-items-count});
+
+  &.overflowing {
+    @apply tw-border-b tw-border-neutral-carbon;
+  }
+
+  &.desktop {
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply tw-bg-neutral-shale tw-rounded-sm;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply tw-bg-neutral-granit tw-rounded-sm;
+    }
+  }
+}
+
+.menu-toggle-container {
+  @apply tw-sticky tw-top-0 tw-bg-neutral-onyx tw-z-10 tw-border-neutral-carbon;
+
+  .mobile-menu-header {
+    @apply tw-flex tw-items-center tw-justify-between tw-py-2.5 tw-px-2 tw-pr-md;
+    @apply tw-bg-neutral-onyx tw-z-10 tw-sticky tw-top-0;
+  }
+}
+
+.navigation-item {
+  @include m.navigation-item();
+
+  &.opened {
+    .indicator {
+      left: 2.25rem !important;
+    }
+  }
+
+  .icon-container {
+    &:has(.user-avatar) {
+      padding-inline: 18px;
+    }
+  }
+}
+
+.indicator {
+  @apply tw-absolute tw-left-11 tw-top-md;
+  transition: left $transition-options;
+}
+
+.user-avatar {
+  @apply tw-w-8 tw-h-8 tw-rounded-full tw-grid tw-place-content-center;
+}
+
+.bottom-nav {
+  @apply tw-grid tw-gap-1.5 tw-sticky tw-bottom-0 tw-bg-neutral-onyx tw-pt-1.5;
+
+  &.has-scroll {
+    @apply tw-border-t tw-border-neutral-carbon;
+  }
+}
+

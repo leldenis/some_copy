@@ -1,0 +1,40 @@
+@use 'mixins' as m;
+
+:host {
+  @apply tw-flex tw-flex-col tw-gap-md tw-text-base;
+}
+
+.upload-container {
+  @apply tw-grid tw-items-center tw-gap-6 tw-py-md tw-px-[18px] tw-rounded tw-shadow-sm tw-min-h-[76px];
+  grid-template-columns: 1fr auto;
+
+  &.upload-in-progress {
+    display: flex;
+  }
+}
+
+.progress-container {
+  @apply tw-flex tw-items-center tw-relative;
+
+  .progress-bar {
+    @apply tw-grid tw-items-center tw-gap-md tw-w-full tw-mr-7;
+    grid-template-columns: 1fr 25px;
+  }
+
+  .mdc-icon-button {
+    @apply tw-absolute -tw-right-2;
+  }
+}
+
+.error {
+  @apply tw-text-accent-coral-light tw-font-medium;
+}
+
+.mdc-fab {
+  @apply tw-w-11 tw-h-11 tw-rounded tw-shadow-none;
+  line-height: 44px;
+}
+
+.action-btn {
+  @include m.icon-button(44px, 24px);
+}

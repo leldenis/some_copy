@@ -1,0 +1,63 @@
+<div class="tw-flex tw-items-center sm:tw-justify-between sm:tw-gap-md tw-mb-md">
+  <upf-filters-container
+    class="tw-w-full"
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersGroup.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+  >
+    <form class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row" [formGroup]="filtersGroup">
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Couriers.Filters.Name.Caption' | translate }}
+        </mat-label>
+
+        <input matInput formControlName="name" [placeholder]="'Couriers.Filters.Name.Placeholder' | translate" />
+
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Couriers.Filters.Phone.Caption' | translate }}
+        </mat-label>
+
+        <input matInput formControlName="phone" [placeholder]="'Couriers.Filters.Phone.Placeholder' | translate" />
+
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <ng-template #vehicleTicketBtn upfFiltersActionButton>
+        @if (registrationLink$ | async; as link) {
+          <a
+            [href]="link"
+            mat-flat-button
+            color="primary"
+            target="_blank"
+            class="!tw-flex tw-flex-col tw-justify-center tw-w-full sm:tw-w-auto sm:!tw-py-1"
+          >
+            <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+              <mat-icon class="tw-text-icon">open_in_new</mat-icon>
+
+              <span>
+                {{ 'Common.Buttons.B_AddCourier' | translate }}
+              </span>
+            </div>
+          </a>
+        }
+      </ng-template>
+    </form>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block">
+    <ng-template [ngTemplateOutlet]="vehicleTicketBtn"></ng-template>
+  </div>
+</div>
+
+@if (couriers$ | async; as items) {
+  @if (items?.length) {
+    <upf-couriers-list [couriers]="items" (cdkScrolled)="onLoadNext()"></upf-couriers-list>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+  }
+}

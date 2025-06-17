@@ -1,0 +1,45 @@
+:host {
+  @apply tw-flex tw-flex-col tw-h-full;
+
+  ::ng-deep {
+    .mat-content.mat-content-hide-toggle {
+      @apply tw-flex-row-reverse tw-m-0;
+    }
+
+    .mat-expansion-indicator::after {
+      @apply tw-border-neutral-graphite;
+    }
+
+    .mat-expansion-panel-body {
+      @apply tw-p-md tw-bg-neutral-silver;
+    }
+  }
+}
+
+.mat-expansion-panel-header-description {
+  @apply tw-ml-6 tw-mr-0;
+
+  .mat-icon {
+    @apply tw-h-14 tw-leading-[56px] tw-w-9 tw-text-center tw-transition-transform;
+    @apply sm:tw-w-12;
+  }
+
+  &.expanded {
+    @apply tw-bg-neutral-silver;
+
+    .mat-icon {
+      @apply tw-rotate-180;
+    }
+  }
+}
+
+.grid-header {
+  @apply tw-grid tw-grid-cols-[2fr_1fr_36px] tw-gap-2 tw-px-md tw-py-2.5 tw-w-full tw-min-h-[48px];
+  @apply tw-text-md tw-text-neutral-smoke tw-items-center tw-border-y tw-border-neutral-cloud;
+  @apply sm:tw-grid-cols-[2fr_1fr_1fr_48px];
+
+  &.panel-header {
+    @apply tw-grid-cols-[2fr_1fr] tw-text-neutral-graphite tw-p-0 tw-text-base tw-border-none;
+    @apply sm:tw-grid-cols-[2fr_1fr_1fr];
+  }
+}

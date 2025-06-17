@@ -1,0 +1,114 @@
+<div class="tw-p-md">
+  <div class="flex-row justify-content-between align-items-center select-period__header">
+    <div class="title">
+      {{ 'Modals.SelectPeriod.Title' | translate }}
+    </div>
+
+    <button data-cy="close-date-range-modal" mat-icon-button (click)="onCancelClick()">
+      <mat-icon [svgIcon]="icons.close" class="tw-text-icon !tw-w-5 !tw-h-5"></mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field class="col-12 date-picker-wrap" floatLabel="always" subscriptSizing="fixed">
+    <mat-label>
+      {{ 'Modals.SelectPeriod.DateRangeLabel' | translate }}
+    </mat-label>
+
+    <mat-date-range-input data-cy="input-container" [max]="maxDate" [rangePicker]="picker" class="!tw-flex">
+      <input
+        data-cy="custom-date-range-input-start"
+        matStartDate
+        autocomplete="off"
+        [placeholder]="'Modals.SelectPeriod.DatePlaceholder' | translate"
+        [formControl]="startAtDateControl"
+      />
+
+      <input
+        data-cy="custom-date-range-input-end"
+        matEndDate
+        autocomplete="off"
+        [placeholder]="'Modals.SelectPeriod.DatePlaceholder' | translate"
+        [formControl]="endAtDateControl"
+      />
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    @if (endAtDateControl.hasError('dateRange')) {
+      <mat-error data-cy="date-range-error">
+        {{ 'Modals.SelectPeriod.Errors.DateRange' | translate }}
+      </mat-error>
+    }
+  </mat-form-field>
+
+  @if (periodData?.showTime) {
+    <div class="tw-grid tw-grid-cols-2 tw-gap-md">
+      <mat-form-field subscriptSizing="fixed" floatLabel="always">
+        <mat-label>
+          {{ 'Modals.SelectPeriod.FromTimeLabel' | translate }}
+        </mat-label>
+
+        <input
+          data-cy="start-at-control"
+          type="text"
+          mask="00:00"
+          pattern="((0|1)[0-9]|2[0-3])([0-5][0-9])"
+          matInput
+          placeholder="00:00"
+          autocomplete="off"
+          [formControl]="startAtTimeControl"
+          (ngModelChange)="endAtTimeControl.updateValueAndValidity()"
+        />
+
+        @if (startAtTimeControl.hasError('time')) {
+          <mat-error>
+            {{ 'Modals.SelectPeriod.Errors.FromTime' | translate }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="fixed" floatLabel="always">
+        <mat-label>
+          {{ 'Modals.SelectPeriod.ToTimeLabel' | translate }}
+        </mat-label>
+
+        <input
+          data-cy="end-at-control"
+          type="text"
+          mask="00:00"
+          pattern="((0|1)[0-9]|2[0-3])([0-5][0-9])"
+          matInput
+          placeholder="23:59"
+          autocomplete="off"
+          [formControl]="endAtTimeControl"
+          (ngModelChange)="startAtTimeControl.updateValueAndValidity()"
+        />
+        @if (endAtTimeControl.hasError('time')) {
+          <mat-error>
+            {{ 'Modals.SelectPeriod.Errors.ToTime' | translate }}
+          </mat-error>
+        }
+        @if (endAtTimeControl.hasError('currentTime')) {
+          <mat-error>
+            {{ 'Modals.SelectPeriod.Errors.CurrentTime' | translate }}
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  }
+
+  <div class="flex-row align-items-center justify-content-center select-period__actions">
+    <button
+      data-cy="accept-date-range-btn"
+      mat-flat-button
+      color="accent"
+      class="sm:tw-w-fit"
+      [disabled]="!this.formGroup.valid"
+      (click)="onAcceptClick()"
+    >
+      {{ 'Common.Buttons.B_Apply' | translate }}
+    </button>
+  </div>
+</div>

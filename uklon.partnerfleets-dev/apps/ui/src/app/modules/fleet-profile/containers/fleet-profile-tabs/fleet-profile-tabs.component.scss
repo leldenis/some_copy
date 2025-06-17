@@ -1,0 +1,25 @@
+:host {
+  @apply sm:tw-shadow-sm sm:tw-rounded-lg tw-grow tw-bg-white tw-flex tw-h-full;
+
+  ::ng-deep {
+    .mat-mdc-tab-group {
+      @apply tw-w-full;
+    }
+
+    .mat-mdc-tab-body-wrapper {
+      @apply tw-flex tw-grow;
+    }
+
+    .mat-mdc-tab-body-wrapper,
+    .mat-mdc-tab-body.mat-mdc-tab-body-active,
+    .mat-mdc-tab-body-content {
+      @apply tw-flex tw-w-full;
+    }
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: -2px;
+  right: -10px;
+}

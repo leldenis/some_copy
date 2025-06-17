@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use 'libs/fleets/shared/styles/src/styles/functions' as functions;
+@use 'libs/fleets/shared/styles/src/styles/variables' as vars;
+
+$neutral-palette: vars.$neutral-palette;
+$accent-palette: vars.$accent-palette;
+
+:host {
+  @apply tw-grid tw-gap-3 sm:tw-gap-4;
+  grid-template-rows: 1fr max-content;
+}
+
+.step-indicator-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+  justify-content: center;
+  gap: functions.remify(2);
+}
+
+.step-indicator {
+  background-color: map.get($neutral-palette, neutral-cloud);
+  border-radius: functions.remify(0.5);
+  height: functions.remify(1);
+  width: functions.remify(6);
+
+  &.is-active {
+    background-color: map.get($accent-palette, accent-mint);
+  }
+}

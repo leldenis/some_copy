@@ -1,0 +1,8 @@
+:host {
+  @apply tw-bg-white tw-border-b tw-border-neutral-silver tw-mt-md;
+  @apply sm:tw-rounded sm:tw-shadow-sm sm:tw-p-md sm:tw-mt-0 sm:tw-border-none;
+}
+
+.wrapper {
+  @apply tw-grid tw-mb-md sm:tw-mb-0 sm:tw-gap-md;
+}

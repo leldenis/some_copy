@@ -1,0 +1,28 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-4 tw-justify-between;
+
+  .mat-mdc-icon-button {
+    @apply tw-h-7 tw-w-7 tw-leading-7;
+    @apply tw-bg-neutral-silver;
+    @apply tw-rounded-sm;
+    @apply tw-flex tw-justify-center tw-items-center;
+  }
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+}
+
+.mat-mdc-menu-item {
+  @apply tw-h-11 tw-leading-[44px];
+  @apply tw-px-2;
+  @apply tw-w-48;
+
+  .mat-icon {
+    @apply tw-m-0;
+  }
+
+  .mat-icon-no-color {
+    @apply tw-text-accent-coral-light;
+  }
+}

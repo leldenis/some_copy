@@ -1,0 +1,64 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow tw-shrink tw-max-h-full tw-justify-between;
+  @apply sm:tw-shadow-sm sm:tw-rounded;
+}
+
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}
+
+.rating .mat-icon {
+  @apply tw-h-[18px] tw-w-[18px] tw-text-yellow-400;
+}
+
+.flt-data-row {
+  @apply tw-grid tw-grid-cols-12 tw-col-span-12 tw-gap-2;
+  @apply tw-text-base;
+
+  &:not(:last-child) {
+    @apply tw-pb-2;
+    @apply tw-border-b tw-border-neutral-cloud;
+  }
+}
+
+.flt-data-row-header {
+  @apply tw-col-span-12;
+  @apply tw-text-md;
+}
+
+.flt-data-row-content {
+  @apply tw-col-span-12;
+}
+
+.flt-data-list {
+  @apply tw-grid tw-auto-cols-max tw-grid-flow-col;
+
+  li {
+    @apply tw-w-20 tw-min-w-max;
+  }
+}
+
+.flt-data {
+  @apply tw-flex tw-flex-col tw-gap-1;
+
+  &-label {
+    @apply tw-text-label sm:tw-text-md tw-text-neutral-granit tw-font-medium sm:tw-font-normal;
+    @apply tw-overflow-visible;
+
+    &-icon-wrapper {
+      @apply tw-absolute tw-right-0 tw-top-0;
+      @apply tw-flex tw-items-center;
+      @apply tw-w-0 tw-h-full;
+      @apply tw-overflow-visible;
+    }
+
+    &--has-icon {
+      @apply tw-relative;
+
+      .mat-icon {
+        @apply tw-text-neutral-graphite sm:tw-text-accent-blue-light;
+        @apply tw-h-5 tw-w-5;
+      }
+    }
+  }
+}

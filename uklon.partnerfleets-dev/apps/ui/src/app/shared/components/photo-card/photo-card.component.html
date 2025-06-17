@@ -1,0 +1,96 @@
+<div data-cy="photo-card" class="align-self-center photo-card-wrapper">
+  <input
+    [id]="fileInputId"
+    [accept]="allowedExtensions"
+    (click)="onPlaceholderClick()"
+    (change)="onSelectImage($event)"
+    [attr.capture]="capture"
+    type="file"
+    data-cy="photo-card-input"
+  />
+
+  @if (photoUrl || defaultPhotoUrl) {
+    <div data-cy="photo-container" class="size-100">
+      <img
+        data-cy="photo"
+        class="size-100 photo"
+        upfDefaultImgSrc
+        alt=""
+        [src]="isJustUploaded ? defaultPhotoUrl : photoUrl"
+        [defaultSrc]="defaultPhotoUrl"
+        (click)="onImageClick()"
+      />
+
+      @if ((isCreation || isEdit) && !uploadResult && !inProgress) {
+        <label
+          data-cy="replace-photo"
+          class="flex-row align-items-center justify-content-center replace-photo"
+          [for]="fileInputId"
+        >
+          <mat-icon class="replace-photo__remove-icon">edit</mat-icon>
+        </label>
+      }
+    </div>
+  }
+
+  @if (!photoUrl && !inProgress) {
+    <div data-cy="photo-container" class="size-100">
+      <div
+        class="flex-col align-items-center justify-content-center size-100 photo-placeholder"
+        [class.warn]="hasWarning && !defaultPhotoUrl"
+      >
+        @if ((isCreation || isEdit) && !inProgress) {
+          <label class="cover-btn" [for]="fileInputId"></label>
+        }
+
+        @if ((isCreation || isEdit) && !uploadResult && !inProgress) {
+          <label class="flex-row align-items-center justify-content-center replace-photo" [for]="fileInputId">
+            <mat-icon class="replace-photo__add-icon">add</mat-icon>
+          </label>
+        }
+
+        <div data-cy="photo-silhouette" class="photo-category" [style.background-image]="placeholderStyles"></div>
+      </div>
+    </div>
+  }
+
+  @if (inProgress) {
+    <div class="progress-wrapper photo-placeholder" data-cy="photo-spinner">
+      <mat-spinner diameter="36" strokeWidth="6" color="primary"></mat-spinner>
+    </div>
+  }
+
+  @if (uploadResult === uploadResultRef.FAILED) {
+    <div class="message-wrapper error-message">
+      <upf-info-panel color="error">
+        {{
+          ('Modals.PhotoCard.UploadError' | translate) +
+            '. ' +
+            ('Modals.PhotoCard.FormatError' | translate: { '0': allowedExtensions.join(',') })
+        }}
+      </upf-info-panel>
+    </div>
+  }
+
+  @if (fileSizeErrorMsg) {
+    <div class="message-wrapper error-message">
+      <upf-info-panel color="error">
+        {{ fileSizeErrorMsg | translate: { data: maxFileSizeInMb } }}
+      </upf-info-panel>
+    </div>
+  }
+
+  @if (uploadResult === uploadResultRef.SUCCESS) {
+    <div class="message-wrapper success-message">
+      <upf-info-panel data-cy="photo-upload-success">
+        {{ 'Modals.PhotoCard.UploadSuccess' | translate }}
+      </upf-info-panel>
+    </div>
+  }
+</div>
+
+@if (descriptionPath) {
+  <div class="photo-label">
+    {{ descriptionPath + category | translate }}
+  </div>
+}

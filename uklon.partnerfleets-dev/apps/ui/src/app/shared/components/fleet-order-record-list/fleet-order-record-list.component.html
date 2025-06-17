@@ -1,0 +1,359 @@
+<cdk-table
+  *upfLet="isMobileView$ | async as isMobileView"
+  [dataSource]="dataSource"
+  class="flt-table flt-grid-24 !tw-shadow-none"
+>
+  <ng-container cdkColumnDef="Driver">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('Driver') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-table-cell--visible tw-col-span-10 sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        @if (row?.driver; as driver) {
+          <div class="tw-grid tw-gap-1">
+            <a
+              [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.id]"
+              class="tw-font-medium hover:tw-underline focus:tw-underline"
+            >
+              {{ driver.fullName }}
+            </a>
+
+            <div class="tw-flex tw-gap-1 tw-items-end sm:tw-hidden">
+              <span class="tw-text-base tw-text-neutral-graphite tw-leading-[14px]">
+                {{ row.payment.cost | upfMoney: row.payment.currency }}
+              </span>
+
+              <span class="tw-text-md tw-text-neutral-granit tw-leading-[12px]">
+                {{ row.payment.distance }}
+                {{ 'Common.Abbreviations.Kilometers' | translate }}
+              </span>
+            </div>
+          </div>
+        } @else {
+          <div>
+            <span class="tw-text-neutral-granit">
+              {{ 'FleetOrderRecordList.Row.Messages.DriverWasRemoved' | translate }}
+            </span>
+          </div>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="LicensePlate">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3" data-cy="trips-licensePlace-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('LicensePlate') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-table-cell--visible tw-col-span-10 sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        @if (row?.vehicle; as vehicle) {
+          <div class="tw-grid tw-gap-1">
+            <a
+              [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, vehicle.id]"
+              class="hover:tw-underline focus:tw-underline tw-font-medium"
+              data-cy="cell-licensePlate"
+            >
+              {{ vehicle.licencePlate }}
+            </a>
+
+            <div class="tw-flex tw-gap-1 tw-items-end sm:tw-hidden">
+              <span class="tw-text-base tw-text-neutral-graphite tw-leading-[14px]">
+                {{ row.payment.cost | upfMoney: row.payment.currency }}
+              </span>
+
+              <span class="tw-text-md tw-text-neutral-granit tw-leading-[12px]">
+                {{ row.payment.distance }}
+                {{ 'Common.Abbreviations.Kilometers' | translate }}
+              </span>
+            </div>
+          </div>
+        } @else {
+          <div>
+            <span class="tw-text-neutral-granit">
+              {{ 'FleetOrderRecordList.Row.Messages.VehicleWasRemoved' | translate }}
+            </span>
+          </div>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="PickupTime">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3" data-cy="trips-pickupTime-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('PickupTime') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-3" data-cy="cell-pickupTime">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span
+          [class]="row.status === orderStatus.CANCELED ? 'tw-text-neutral-granit' : 'tw-text-neutral-graphite'"
+          class="tw-text-base"
+        >
+          {{ row.pickupTime | seconds2Date }}
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit">
+          {{ row.pickupTime | seconds2Time }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Route">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-5" data-cy="trips-route-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('Route') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-5" data-cy="cell-route">
+      <div class="tw-flex tw-items-center">
+        <a
+          [routerLink]="row.status === orderStatus.CANCELED ? null : [orderDetailsPath, row.id]"
+          [queryParams]="row?.driver?.id ? { driverId: row.driver?.id } : {}"
+        >
+          <upf-route-points
+            [route]="row.route"
+            [orderCanceled]="row.status === orderStatus.CANCELED"
+            [isRouteLink]="true"
+            [isMobile]="isMobileView"
+          ></upf-route-points>
+        </a>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="CostAndDistance">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-4" data-cy="trips-cost-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('CostAndDistance') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell tw-col-span-8 sm:tw-col-span-4"
+      data-cy="cell-cost"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span
+          [class]="
+            row.status === orderStatus.CANCELED
+              ? {
+                  'tw-text-neutral-granit': true,
+                  'tw-hidden': true,
+                  'sm:tw-inline': true,
+                }
+              : 'tw-text-neutral-graphite'
+          "
+          class="tw-text-base"
+        >
+          {{ row.payment.cost | upfMoney: row.payment.currency }}
+        </span>
+        <span
+          [class]="
+            row.status === orderStatus.CANCELED
+              ? {
+                  'tw-hidden': true,
+                  'sm:tw-inline': true,
+                }
+              : 'tw-text-neutral-graphite'
+          "
+          class="tw-text-neutral-granit tw-text-md"
+        >
+          {{ row.payment.distance }}
+          {{ 'Common.Abbreviations.Kilometers' | translate }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="PaymentType">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="trips-paymentType-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('PaymentType') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-2" data-cy="cell-paymentType">
+      <div [class]="row.status === orderStatus.CANCELED ? 'tw-hidden' : ''" class="tw-flex tw-items-center">
+        <mat-icon
+          ngxTippy="{{ 'Orders.Trips.List.Tooltip.' + (row.payment.feeType | titlecase) | translate }}"
+          [svgIcon]="paymentTypeIconMap.get(row.payment.feeType)"
+        ></mat-icon>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="ProductType">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3" data-cy="trips-productType-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('ProductType') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-3" data-cy="cell-productType">
+      <upf-product-type-chip
+        class="tw-flex tw-items-center"
+        [productType]="row.vehicle.productType"
+        [conditions]="row.vehicle.productConditions"
+        [orderStatus]="row.status"
+      ></upf-product-type-chip>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Status">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="trips-status-header">
+      <ng-container
+        *ngTemplateOutlet="headerCellTpl; context: { $implicit: headerCellsViewModel.get('Status') }"
+      ></ng-container>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-12 sm:tw-col-span-2"
+      data-cy="cell-status"
+    >
+      <div class="tw-flex tw-justify-end tw-items-center tw-gap-2 sm:tw-justify-start">
+        <upf-status-badge
+          *upfLet="'Orders.Trips.CancellationInitiator.' + row?.cancellation?.initiator | translate as statusTooltipMsg"
+          [color]="statusColor[row.status]"
+          [attr.data-cy]="'status-icon-' + row.status"
+          [ngxTippy]="row.status === orderStatus.CANCELED ? statusTooltipMsg : null"
+        >
+          {{ 'Orders.Trips.Filter.OrderStatus.' + row?.status | translate }}
+        </upf-status-badge>
+
+        @if (row?.optional) {
+          <mat-icon
+            svgIcon="i-hand"
+            class="tw-shrink-0 !tw-w-5 !tw-h-5"
+            ngxTippy="{{ 'Orders.Trips.List.Tooltip.OptionalOrder' | translate }}"
+          ></mat-icon>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Toggle">
+    <cdk-cell
+      *cdkCellDef="let report; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-2"
+    >
+      @if (report.hasAdditionalIncome || isMobileView) {
+        <div
+          class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+          [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+        >
+          <button
+            mat-icon-button
+            (click)="toggle(index)"
+            [ngClass]="selection.isSelected(index) ? 'tw-rotate-180' : ''"
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+      }
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="ExpandedView">
+    <cdk-cell
+      *cdkCellDef="let row; let index = index"
+      class="flt-table-cell flt-toggleable tw-col-span-24 sm:tw-hidden tw-bg-neutral-silver"
+    >
+      <div class="tw-grid tw-p-2 tw-gap-2 sm:tw-hidden">
+        <div class="tw-flex tw-items-center">
+          <a
+            [routerLink]="row.status === orderStatus.CANCELED ? null : [orderDetailsPath, row.id]"
+            [queryParams]="row?.driver?.id ? { driverId: row.driver?.id } : {}"
+          >
+            <upf-route-points
+              [route]="row.route"
+              [orderCanceled]="row.status === orderStatus.CANCELED"
+              [isRouteLink]="true"
+              [isMobile]="isMobileView"
+            ></upf-route-points>
+          </a>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="tw-flex tw-gap-4">
+          <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1 tw-shrink-0">
+            <span class="tw-text-label tw-text-neutral-granit">
+              {{ 'FleetOrderRecordList.Header.PrimaryCaption.ExpandedView.PickupTime' | translate }}
+            </span>
+            <span class="tw-text-base tw-text-neutral-graphite">
+              {{ row.pickupTime | seconds2Date }}
+              {{ row.pickupTime | seconds2Time }}
+            </span>
+          </div>
+
+          <mat-divider vertical></mat-divider>
+
+          <div class="tw-grid tw-gap-1">
+            <span class="tw-text-label tw-text-neutral-granit">
+              {{ 'FleetOrderRecordList.Header.PrimaryCaption.ExpandedView.PaymentType' | translate }}
+            </span>
+
+            {{ 'Orders.Trips.List.Tooltip.' + (row.payment.feeType | titlecase) | translate }}
+          </div>
+
+          <mat-divider vertical></mat-divider>
+
+          <div class="tw-grid tw-gap-1">
+            <span class="tw-text-label tw-text-neutral-granit">
+              {{ 'FleetOrderRecordList.Header.PrimaryCaption.ExpandedView.ProductType' | translate }}
+            </span>
+            <span class="tw-text-base tw-text-neutral-graphite">
+              @if (row.vehicle) {
+                {{ 'Common.ProductTypes.' + (row.vehicle.productType | normalizeString) | translate }}
+              }
+            </span>
+          </div>
+        </div>
+
+        @if (row.hasAdditionalIncome) {
+          <mat-divider></mat-divider>
+
+          <upf-order-additional-income-info [order]="row"></upf-order-additional-income-info>
+        }
+      </div>
+
+      <upf-order-additional-income-info [order]="row" class="max-sm:tw-hidden"></upf-order-additional-income-info>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    *cdkHeaderRowDef="headerRowColumns"
+    class="flt-table-row flt-table-header-row flt-grid-24"
+    data-cy="header-row"
+  ></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: rowColumns"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+    class="flt-table-row flt-grid-24"
+    data-cy="row"
+  ></cdk-row>
+</cdk-table>
+
+<ng-template let-viewModel #headerCellTpl>
+  <div class="tw-flex tw-flex-col tw-justify-center">
+    <span class="tw-text-md tw-text-neutral-smoke">
+      {{ viewModel.primaryCaption | translate }}
+    </span>
+    @if (viewModel.secondaryCaption) {
+      <span class="tw-text-md tw-text-neutral-granit">
+        {{ viewModel.secondaryCaption | translate }}
+      </span>
+    }
+  </div>
+</ng-template>

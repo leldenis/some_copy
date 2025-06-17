@@ -1,0 +1,35 @@
+:host {
+  @apply tw-flex tw-flex-col tw-justify-between tw-h-full tw-pt-0;
+}
+
+header {
+  @apply tw-py-3 tw-flex tw-justify-between tw-items-center;
+  @apply tw-px-md tw-py-2.5 tw-border-b tw-border-neutral-silver;
+}
+
+.mat-mdc-dialog-title {
+  h3 {
+    margin: 0;
+  }
+
+  .mat-icon {
+    @apply tw-text-neutral-graphite;
+  }
+}
+
+.content {
+  @apply tw-grid tw-gap-md tw-p-md tw-overflow-auto tw-break-all;
+
+  .item {
+    @apply tw-grid tw-text-base;
+
+    .title {
+      @apply tw-font-medium;
+    }
+  }
+}
+
+footer {
+  @apply tw-flex tw-flex-row tw-justify-center tw-gap-4 tw-p-md;
+  @apply tw-border-t tw-border-neutral-silver;
+}

@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "variables";
+
+@mixin upf-colors {
+  .upf-color-neutral-fog {
+    color: map.get(variables.$neutral-palette, neutral-fog);
+  }
+}

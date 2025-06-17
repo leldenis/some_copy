@@ -1,0 +1,188 @@
+<div class="tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    <div class="panel-header main">
+      <div>{{ 'FleetProfile.RRO.KeyList.Header.Key' | translate }}</div>
+      <div>{{ 'FleetProfile.RRO.KeyList.Header.DRFO' | translate }}</div>
+      <div>{{ 'FleetProfile.RRO.KeyList.Header.TimeExpired' | translate }}</div>
+      <div>{{ 'FleetProfile.RRO.KeyList.Header.LinkCasa' | translate }}</div>
+      <div class="tw-text-center">{{ 'FleetProfile.RRO.KeyList.Header.Actions' | translate }}</div>
+    </div>
+
+    @for (item of keys; track $index) {
+      <mat-expansion-panel [disabled]="!isMobileView" #panel hideToggle class="data-panel">
+        <mat-expansion-panel-header
+          class="!tw-p-0 !tw-py-2 tw-cursor-default"
+          expandedHeight="56px"
+          collapsedHeight="56px"
+        >
+          <ng-container
+            [ngTemplateOutlet]="isMobileView ? mobilePanel : desktopPanel"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          ></ng-container>
+
+          <ng-template #mobilePanel let-item>
+            <div class="mobile-panel-header">
+              <div class="tw-grid tw-gap-1">
+                <span class="tw-text-sm">{{ item?.display_name ? item.display_name : '-' }}</span>
+                <span class="text-small">{{ item?.serial ? (item.serial | keyMask) : '-' }}</span>
+              </div>
+              <div class="tw-flex tw-items-center">
+                @if (item?.cashier?.points_of_sale?.length > 0) {
+                  {{ item.cashier.points_of_sale[0]?.name }}
+                } @else {
+                  <button
+                    class="link-casa"
+                    (click)="$event.stopPropagation(); handlerOpenLinkCashToKeyModal(item?.cashier?.cashier_id)"
+                  >
+                    <span class="tw-flex tw-items-center tw-gap-1">
+                      <mat-icon>link</mat-icon>
+                      <span>{{ 'FleetProfile.RRO.KeyList.List.Btn.LinkCasa' | translate }}</span>
+                    </span>
+                  </button>
+                }
+              </div>
+              <div class="expand-icon" [ngClass]="{ expanded: panel.expanded }">
+                <mat-icon>expand_more</mat-icon>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #desktopPanel let-item>
+            <div class="panel-header">
+              <div class="tw-grid tw-gap-1">
+                <span>{{ item?.display_name ? item.display_name : '-' }}</span>
+                <span class="text-small" data-cy="key-list-field-serial">
+                  {{ item?.serial ? (item.serial | keyMask) : '-' }}
+                </span>
+              </div>
+              <div data-cy="key-list-field-dfro">{{ item?.drfo ? item.drfo : '-' }}</div>
+
+              <div class="tw-grid tw-gap-1">
+                <ng-container *ngTemplateOutlet="expirationTimeLinkTpl; context: { $implicit: item }"></ng-container>
+              </div>
+
+              <div data-cy="key-list-field-link-cashier">
+                @if (item?.cashier?.points_of_sale?.length > 0) {
+                  {{ item.cashier.points_of_sale[0]?.name }}
+                } @else {
+                  <button
+                    class="link-casa tw-text-sm"
+                    (click)="handlerOpenLinkCashToKeyModal(item?.cashier?.cashier_id)"
+                  >
+                    <span class="tw-flex tw-items-center tw-gap-1">
+                      <mat-icon>link</mat-icon>
+                      {{ 'FleetProfile.RRO.KeyList.List.Btn.LinkCasa' | translate }}
+                    </span>
+                  </button>
+                }
+              </div>
+              <div class="tw-flex tw-items-center tw-justify-center">
+                <button
+                  type="button"
+                  mat-icon-button
+                  class="action-btn"
+                  data-cy="key-list-btn-info"
+                  [ngxTippy]="'FleetProfile.RRO.KeyList.List.Btn.KeyDetails' | translate"
+                  (click)="handlerOpenKeyInfoModal(item)"
+                >
+                  <mat-icon
+                    svgIcon="i-doc-info"
+                    class="!tw-w-6 !tw-h-6 !tw-flex tw-items-center tw-justify-center"
+                  ></mat-icon>
+                </button>
+                <button
+                  type="button"
+                  mat-icon-button
+                  class="action-btn"
+                  data-cy="key-list-btn-remove-key"
+                  [ngxTippy]="'FleetProfile.RRO.KeyList.List.Btn.RemoveKey' | translate"
+                  (click)="handlerOpenRemoveKeyModal(item.key_id, item?.display_name)"
+                >
+                  <mat-icon class="!tw-w-[22px] !tw-h-[22px]">
+                    <span class="material-symbols-outlined tw-text-[22px]">delete</span>
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel-header>
+
+        <div class="expanded-view">
+          <div class="tw-flex tw-flex-col tw-gap-2">
+            <div class="tw-grid tw-grid-cols-2">
+              <div class="tw-grid tw-gap-1">
+                <span class="text-small">{{ 'FleetProfile.RRO.KeyList.Header.TimeExpired' | translate }}</span>
+                <span class="tw-text-base">
+                  <ng-container *ngTemplateOutlet="expirationTimeLinkTpl; context: { $implicit: item }"></ng-container>
+                </span>
+              </div>
+            </div>
+            <div class="tw-grid tw-gap-1">
+              <span class="text-small">{{ 'FleetProfile.RRO.KeyList.Header.DRFO' | translate }}</span>
+              <span class="tw-text-base">{{ item?.drfo ? item.drfo : '-' }}</span>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="tw-flex tw-flex-col">
+            <div class="tw-flex tw-flex-row tw-items-center -tw-ml-3">
+              <button type="button" mat-icon-button class="action-btn" (click)="handlerOpenKeyInfoModal(item)">
+                <mat-icon
+                  svgIcon="i-doc-info"
+                  class="!tw-w-6 !tw-h-6 !tw-flex tw-items-center tw-justify-center"
+                ></mat-icon>
+              </button>
+              <span class="tw-text-base tw-text-neutral-smoke">
+                {{ 'FleetProfile.RRO.KeyList.List.Btn.KeyDetails' | translate }}
+              </span>
+            </div>
+
+            <div class="tw-flex tw-flex-row tw-items-center -tw-ml-3">
+              <button
+                type="button"
+                mat-icon-button
+                class="action-btn"
+                (click)="handlerOpenRemoveKeyModal(item.key_id, item?.display_name)"
+              >
+                <mat-icon class="!tw-w-[22px] !tw-h-[22px]">
+                  <span class="material-symbols-outlined tw-text-[22px]">delete</span>
+                </mat-icon>
+              </button>
+              <span class="tw-text-base tw-text-neutral-smoke">
+                {{ 'FleetProfile.RRO.KeyList.List.Btn.RemoveKey' | translate }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>
+
+<ng-template #expirationTimeLinkTpl let-item>
+  @let deadline = item.expiration_date | keyDeadline;
+
+  <span
+    [class.tw-text-accent-coral-light]="deadline.expired || deadline.expireSoon"
+    class="tw-flex tw-items-center tw-gap-1"
+  >
+    <span data-cy="key-list-field-expiration-date">
+      {{ item?.expiration_date ? (item.expiration_date | seconds2Date: 'dd.MM.yyyy HH:mm:ss') : '-' }}
+    </span>
+
+    @if (deadline.expired || deadline.expireSoon) {
+      <mat-icon
+        [ngxTippy]="
+          (deadline.expired
+            ? 'FleetProfile.RRO.KeyList.List.Tooltip.KeyTimeExpired'
+            : 'FleetProfile.RRO.KeyList.List.Tooltip.ExpirationTimeKey'
+          ) | translate
+        "
+        class="outlined icon-info"
+      >
+        info
+      </mat-icon>
+    }
+  </span>
+</ng-template>

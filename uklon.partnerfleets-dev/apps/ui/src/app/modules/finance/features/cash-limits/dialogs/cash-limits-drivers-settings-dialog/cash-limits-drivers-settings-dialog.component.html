@@ -1,0 +1,135 @@
+@let period =
+  (data.settings?.period === limitPeriod.WEEK
+    ? 'CashLimits.SettingsDialog.PeriodDisclaimerWeek'
+    : 'CashLimits.Period.Day'
+  )
+    | translate
+    | lowercase;
+@let currency = data?.settings?.limit?.currency ?? data.currency | currencySymbol;
+
+<div class="header" data-cy="cash-limits-drivers-dialog-title">
+  @if (driversCouldBeBlocked()) {
+    {{ 'CashLimits.DriversSettingsDialog.ConfirmTitle' | translate }}
+  } @else {
+    {{ isSingleDriver() ? (drivers()[0] | fullName) : ('CashLimits.DriversSettingsDialog.Title' | translate) }}
+  }
+
+  <button mat-icon-button (click)="onCloseDialog()" data-cy="cash-limits-dialog-close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+@if (driversCouldBeBlocked()) {
+  <div class="content" data-cy="cash-limits-drivers-dialog-confirmation-message">
+    <div>
+      {{
+        (isSingleDriver()
+          ? 'CashLimits.DriversSettingsDialog.ConfirmMessageSingle'
+          : 'CashLimits.DriversSettingsDialog.ConfirmMessagePlural'
+        ) | translate
+      }}
+    </div>
+
+    <div class="chips-container">
+      <mat-chip-listbox>
+        @for (driver of driverToBeBlocked(); track $index) {
+          <mat-chip data-cy="cash-limits-drivers-dialog-driver-chip">{{ driver | fullName }}</mat-chip>
+        }
+      </mat-chip-listbox>
+    </div>
+  </div>
+} @else {
+  <form class="content" [formGroup]="cashLimitsForm">
+    @if (!isSingleDriver()) {
+      <div class="chips-container">
+        <mat-chip-listbox>
+          @for (driver of drivers(); track $index) {
+            <mat-chip data-cy="cash-limits-drivers-dialog-driver-chip">
+              {{ driver | fullName }}
+
+              @if (drivers().length > 1) {
+                <button matChipRemove (click)="onRemoveDriver(driver.id)">
+                  <mat-icon class="tw-text-neutral-granit">cancel</mat-icon>
+                </button>
+              }
+            </mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+
+    <div>{{ 'CashLimits.SettingsDialog.LimitTitle' | translate }}</div>
+
+    <mat-radio-group class="tw-grid tw-gap-3" color="primary" formControlName="enabled" (change)="reportTypeChange()">
+      @if (data.settings?.enabled) {
+        <mat-radio-button [value]="null" data-cy="cash-limits-drivers-dialog-radio-fleet">
+          {{
+            'CashLimits.DriversSettingsDialog.LimitType.Fleet'
+              | translate
+                : {
+                    period,
+                    currency,
+                    amount: data.settings.limit.amount / 100,
+                  }
+          }}
+        </mat-radio-button>
+      }
+
+      <div class="tw-grid tw-gap-md">
+        <mat-radio-button [value]="true" data-cy="cash-limits-drivers-dialog-radio-individual">
+          {{ 'CashLimits.DriversSettingsDialog.LimitType.Individual' | translate }}
+        </mat-radio-button>
+
+        @if (cashLimitsForm.value.enabled) {
+          <div class="tw-grid tw-gap-1" [@growVertical]>
+            <mat-form-field class="tw-w-[180px]" floatLabel="always" subscriptSizing="fixed">
+              <mat-label>{{ 'CashLimits.SettingsDialog.LimitAmountLabel' | translate }}</mat-label>
+
+              <span class="tw-pl-md" matPrefix>{{ currency }}</span>
+
+              <input matInput mask="0*" formControlName="amount" data-cy="cash-limits-drivers-dialog-amount-input" />
+
+              <mat-error>
+                {{ 'Modals.WithdrawToCard.Required' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <upf-info-panel color="accent" data-cy="cash-limits-drivers-dialog-limit-disclaimer">
+              {{
+                'CashLimits.DriversSettingsDialog.LimitDisclaimer'
+                  | translate
+                    : {
+                        period,
+                        currency,
+                        amount: cashLimitsForm.value.amount ?? '',
+                      }
+              }}
+            </upf-info-panel>
+          </div>
+        }
+      </div>
+
+      <mat-radio-button [value]="false" data-cy="cash-limits-drivers-dialog-radio-no-limits">
+        {{ 'CashLimits.DriversSettingsDialog.LimitType.NoLimits' | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </form>
+}
+
+<div class="footer">
+  <button mat-flat-button data-cy="cash-limits-drivers-dialog-cancel-btn" color="accent" (click)="onCloseDialog()">
+    {{ 'Common.Buttons.B_Cancel' | translate }}
+  </button>
+
+  <button
+    mat-flat-button
+    data-cy="cash-limits-drivers-dialog-save-btn"
+    [color]="driversCouldBeBlocked() ? 'accent' : 'primary'"
+    [disabled]="!cashLimitsForm.valid"
+    (click)="onSubmit(driversCouldBeBlocked())"
+  >
+    <span [class.tw-text-accent-coral-light]="driversCouldBeBlocked()">
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </span>
+  </button>
+</div>

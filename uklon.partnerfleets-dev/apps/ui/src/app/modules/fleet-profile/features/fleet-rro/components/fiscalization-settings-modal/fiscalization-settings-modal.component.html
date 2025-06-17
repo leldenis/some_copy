@@ -1,0 +1,91 @@
+<div data-cy="fiscal-settings-modal">
+  <header>
+    <h3>
+      {{ 'FleetProfile.RRO.Modals.Settings.Title' | translate }}
+    </h3>
+
+    <button mat-icon-button (click)="closeDialog()" data-cy="settings-header-btn-close">
+      <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+    </button>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <section [formGroup]="formGroup" class="content">
+    <h4>{{ 'FleetProfile.RRO.Modals.Settings.FarePayment.Description' | translate }}</h4>
+
+    <mat-form-field>
+      <mat-label>
+        {{ 'FleetProfile.RRO.Modals.Settings.FarePayment.Label' | translate }}
+      </mat-label>
+
+      <mat-select
+        formControlName="fare_payment_types"
+        multiple
+        data-cy="fare-payment-types"
+        [placeholder]="'FleetProfile.RRO.Modals.Settings.FarePayment.Placeholder' | translate"
+      >
+        @for (item of farePaymentTypesOptions; track item) {
+          <mat-option [value]="item">
+            {{ 'FleetProfile.RRO.Modals.Settings.FarePayment.Type.' + item | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <h4>{{ 'FleetProfile.RRO.Modals.Settings.VatType.Description' | translate }}</h4>
+
+    <mat-form-field>
+      <mat-label>
+        {{ 'FleetProfile.RRO.Modals.Settings.VatType.Label' | translate }}
+      </mat-label>
+
+      <mat-select
+        formControlName="vat_type"
+        data-cy="vat-type"
+        [placeholder]="'FleetProfile.RRO.Modals.Settings.VatType.Placeholder' | translate"
+      >
+        @for (item of vatTypeOptions; track item) {
+          <mat-option [value]="item">
+            {{ 'FleetProfile.RRO.Modals.Settings.VatType.Type.' + item | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <h4>{{ 'FleetProfile.RRO.Modals.Settings.ServiceProductName.Description' | translate }}</h4>
+
+    <mat-form-field>
+      <mat-label>
+        {{ 'FleetProfile.RRO.Modals.Settings.ServiceProductName.Label' | translate }}
+      </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="service_product_name"
+        maxlength="100"
+        #input
+        data-cy="service-product-name"
+      />
+      <mat-hint align="end">{{ input.value.length }} / 100</mat-hint>
+    </mat-form-field>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <footer>
+    <button mat-flat-button color="accent" (click)="closeDialog()" data-cy="settings-footer-btn-close">
+      {{ 'Common.Buttons.B_Close' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="action-btn"
+      [disabled]="isSaveBtnDisabled()"
+      (click)="handlerSave()"
+      data-cy="settings-footer-btn-save"
+    >
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </button>
+  </footer>
+</div>

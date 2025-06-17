@@ -1,0 +1,50 @@
+<div class="panel-header tw-leading-5" (click)="togglePanelOpened(panelType.ALL_DRIVERS)">
+  <div class="tw-grid">
+    <h3
+      class="!tw-m-0 !tw-font-normal tw-text-tmp tw-text-neutral-graphite !tw-leading-5"
+      data-cy="map-home-panel-title"
+    >
+      <ng-container
+        *upfLet="totalCouriers ? 'LiveMap.Couriers.AllCouriersTitle' : 'LiveMap.Couriers.NoCouriersTitle' as title"
+      >
+        {{ title | translate: { count: totalCouriers } }}
+      </ng-container>
+    </h3>
+  </div>
+
+  <mat-icon class="expand-btn" [ngClass]="{ opened: isOpened }" data-cy="map-home-panel-toggle">expand_more</mat-icon>
+</div>
+
+@if (isOpened) {
+  <div class="tw-grid tw-grid-cols-2 tw-gap-md panel-content" data-cy="map-home-panel-body">
+    @for (group of groupsConfig; track $index) {
+      <div
+        (click)="onSelectGroup(group.data)"
+        class="panel-item {{ group.class }}"
+        [ngClass]="{ 'no-data': !group.data.length }"
+        [attr.data-cy]="'map-home-panel-group-' + group.status"
+      >
+        <div class="icons">
+          <mat-icon class="outlined" [attr.data-cy]="'group-icon-' + group.status">
+            {{ group.icon }}
+          </mat-icon>
+
+          <mat-icon
+            (click)="$event.stopPropagation()"
+            ngxTippy="{{ 'LiveMap.Couriers.Tooltips.' + group.status | translate }}"
+            [tippyProps]="{ maxWidth: '50vw' }"
+            class="outlined tw-text-neutral-smoke"
+            [attr.data-cy]="'info-icon-' + group.status"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <div class="info" [attr.data-cy]="'drivers-count-' + group.status">
+          <span>{{ group.data.length }}</span>
+          <small>{{ 'LiveMap.DriverStatus.' + group.status | translate }}</small>
+        </div>
+      </div>
+    }
+  </div>
+}

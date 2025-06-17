@@ -1,0 +1,51 @@
+<header>
+  <h3>
+    {{ 'FleetProfile.RRO.Modals.LinkCashToKey.Title' | translate }}
+  </h3>
+
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+  </button>
+</header>
+
+<mat-divider></mat-divider>
+
+<section class="content">
+  @if (cashiersLoading$ | async) {
+    <upf-progress-spinner class="!tw-border-none !tw-h-11"></upf-progress-spinner>
+  } @else {
+    <mat-form-field>
+      <mat-label>
+        {{ 'FleetProfile.RRO.Modals.LinkCashToKey.Select.Label' | translate }}
+      </mat-label>
+
+      <mat-select
+        [formControl]="cashierPosFormControl"
+        [placeholder]="'FleetProfile.RRO.Modals.LinkCashToKey.Select.Label' | translate"
+      >
+        @for (item of cashiers$ | async; track $index) {
+          <mat-option [value]="item">{{ item.name }} [{{ item.fiscal_number }}]</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+</section>
+
+<mat-divider></mat-divider>
+
+<footer>
+  <button mat-flat-button color="accent" (click)="closeDialog()">{{ 'Common.Buttons.B_Close' | translate }}</button>
+
+  <div class="tw-w-[124px]">
+    <upf-loader-button
+      color="primary"
+      type="button"
+      class="!tw-w-full"
+      [disabled]="!cashierPosFormControl.value"
+      [loading]="loading$ | async"
+      (handlerClick)="handlerSave()"
+    >
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </upf-loader-button>
+  </div>
+</footer>

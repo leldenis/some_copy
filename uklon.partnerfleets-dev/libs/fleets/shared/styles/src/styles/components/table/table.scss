@@ -1,0 +1,14 @@
+@mixin core() {
+  @apply tw-grid tw-grid-cols-12 tw-auto-rows-max;
+  @apply tw-text-base tw-text-neutral-graphite;
+  @apply tw-gap-2 sm:tw-gap-0;
+  @apply sm:tw-shadow-lg sm:tw-rounded-lg;
+
+  &.flt-grid-24 {
+    @apply tw-grid tw-grid-cols-24 tw-auto-rows-max;
+  }
+
+  &.flt-shadowless {
+    @apply tw-shadow-none;
+  }
+}

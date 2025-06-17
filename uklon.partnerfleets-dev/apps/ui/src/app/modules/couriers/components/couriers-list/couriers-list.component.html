@@ -1,0 +1,153 @@
+<cdk-table [dataSource]="couriers" class="flt-table flt-shadowless tw-mb-cell-1 sm:tw-mb-0 tw-bg-neutral-white">
+  <ng-container cdkColumnDef="FullName">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Couriers.List.Header.FullName' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-table-cell--visible tw-col-span-11 sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <div class="tw-text-base tw-font-medium">
+          <a
+            [routerLink]="['/', corePaths.WORKSPACE, corePaths.COURIERS, courierPaths.DETAILS, row.id]"
+            class="tw-font-medium hover:tw-underline focus:tw-underline"
+          >
+            {{ row.last_name }} {{ row.first_name }}
+          </a>
+
+          @if (row.restrictions | showCourierRestrictions) {
+            <mat-icon
+              [ngxTippy]="'CourierRestriction.Tooltip' | translate"
+              (click)="$event.stopPropagation()"
+              class="tw-align-bottom restriction"
+            >
+              lock
+            </mat-icon>
+          }
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Phone">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Couriers.List.Header.Phone' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>
+          {{ row.phone }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Rating">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Couriers.List.Header.Rating' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>
+          {{ row.rating.value / 100 | number: '1.2-2' }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="ActivityRate">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Couriers.List.Header.ActivityRate' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>
+          {{ row.activity_rate.value }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Toggle">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:!tw-hidden"></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-1 sm:tw-order-none sm:!tw-hidden"
+    >
+      <div
+        [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+        class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+      >
+        <button mat-icon-button (click)="toggle(index)" [ngClass]="{ 'tw-rotate-180': selection.isSelected(index) }">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="ExpandedView">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:!tw-hidden"></cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let row" class="flt-table-cell flt-toggleable tw-col-span-12 sm:!tw-hidden">
+      <div class="tw-grid tw-grid-cols-12 tw-items-center tw-bg-neutral-silver">
+        <div class="tw-col-span-4 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'Couriers.List.Row.Phone' | translate }}
+          </div>
+          <div>
+            <a class="tw-text-accent-mint-light" href="tel: {{ row.phone }}">
+              {{ row.phone }}
+            </a>
+          </div>
+        </div>
+        <div class="tw-col-span-2 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'Couriers.List.Row.Rating' | translate }}
+          </div>
+          <div>
+            {{ row.rating.value / 100 | number: '1.2-2' }}
+          </div>
+        </div>
+
+        <div class="tw-col-span-6 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'Couriers.List.Row.ActivityRate' | translate }}
+          </div>
+          <div>
+            {{ row.activity_rate.value }}
+          </div>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    *cdkHeaderRowDef="columns; sticky: true"
+    class="flt-table-row flt-table-header-row tw-bg-neutral-white"
+  ></cdk-header-row>
+
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: columns"
+    class="flt-table-row"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+  ></cdk-row>
+</cdk-table>

@@ -1,0 +1,59 @@
+@use 'variables' as v;
+
+:host {
+  @apply tw-flex tw-flex-col tw-gap-4;
+  @apply tw-h-full tw-p-0 tw-relative tw-text-neutral-graphite;
+}
+
+.dialog-header {
+  @apply tw-text-tmp tw-px-md tw-py-5 tw-border-b tw-border-neutral-fog;
+  @apply tw-flex tw-items-center tw-gap-2 tw-flex-wrap;
+}
+
+.dialog-content {
+  @apply tw-overflow-y-auto;
+}
+
+.flt-dialog-close {
+  @apply tw-absolute;
+  @apply tw-right-[6px];
+  @apply tw-top-[8px];
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+}
+
+.mat-mdc-unelevated-button {
+  @apply tw-w-full sm:tw-w-auto tw-py-1;
+}
+
+.mat-mdc-progress-spinner {
+  @apply tw-absolute tw-left-1/2 -tw-translate-x-1/2;
+
+  --mdc-circular-progress-active-indicator-color: white;
+}
+
+@media (max-width: v.$breakpoint-mobile-sm-max) {
+  .dialog-footer {
+    @apply tw-p-3;
+
+    &__text {
+      @apply tw-text-xs;
+    }
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .dialog-header {
+    @apply tw-text-base tw-py-4 tw-gap-1 tw-flex tw-flex-col tw-items-start;
+  }
+
+  .dialog-header, .dialog-footer {
+    @apply tw-h-1/6;
+  }
+
+  .btn-text {
+    @apply tw-m-auto;
+  }
+}

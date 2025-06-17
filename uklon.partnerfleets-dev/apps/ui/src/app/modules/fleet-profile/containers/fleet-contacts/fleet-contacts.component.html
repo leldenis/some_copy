@@ -1,0 +1,33 @@
+<div class="contacts-container">
+  <div class="tw-text-heading tw-font-medium" data-cy="owners-title">
+    {{ 'FleetProfile.Contacts.FleetOwnersTitle' | translate }}
+  </div>
+
+  <div class="cards-container" data-cy="owners-cards-container">
+    @for (owner of groupedContacts().owners; track owner) {
+      <upf-fleet-contact-card
+        [contact]="owner"
+        [isMe]="loggedInUser().user_id === owner.user_id"
+      ></upf-fleet-contact-card>
+    }
+  </div>
+
+  <div class="tw-text-heading tw-font-medium" data-cy="managers-title">
+    {{ 'FleetProfile.Contacts.FleetManagersTitle' | translate }}
+  </div>
+
+  @if (groupedContacts().managers.length) {
+    <div class="cards-container" data-cy="managers-cards-container">
+      @for (manager of groupedContacts().managers; track manager) {
+        <upf-fleet-contact-card
+          [contact]="manager"
+          [isMe]="loggedInUser().user_id === manager.user_id"
+        ></upf-fleet-contact-card>
+      }
+    </div>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA_CUSTOM">
+      {{ 'FleetProfile.Contacts.EmptyState' | translate }}
+    </upf-empty-state>
+  }
+</div>

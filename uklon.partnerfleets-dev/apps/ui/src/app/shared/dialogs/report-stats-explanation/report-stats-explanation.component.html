@@ -1,0 +1,50 @@
+<div class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-w-fit" (click)="showStatsDialog()">
+  <mat-icon class="outlined tw-text-accent-mint-light tw-text-icon !tw-w-5 !tw-h-5">info</mat-icon>
+  <div class="tw-text-accent-mint-light tw-font-medium tw-text-base">
+    {{ 'Dialogs.ReportStatsExplanation.Title' | translate }}
+  </div>
+</div>
+
+<ng-template #dialog>
+  <div class="header">
+    <div class="tw-text-tmp tw-font-medium">{{ 'Dialogs.ReportStatsExplanation.Title' | translate }}</div>
+
+    <button mat-icon-button matDialogClose>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="content">
+    <mat-accordion displayMode="flat">
+      @for (section of layout; track $index) {
+        <mat-expansion-panel #panel class="instruction-panel">
+          <mat-expansion-panel-header collapsedHeight="48px" expandedHeight="48px">
+            <span class="tw-transition-all" [class.tw-font-medium]="panel.expanded">
+              <div class="tw-text-base sm:tw-text-tmp sm:tw-leading-6" [innerHTML]="section.title | translate"></div>
+            </span>
+          </mat-expansion-panel-header>
+
+          <div class="tw-grid tw-gap-md">
+            <div class="tw-text-base sm:tw-text-tmp sm:tw-leading-5" [innerHTML]="section.message | translate"></div>
+
+            @if (section.infoPanelMessage) {
+              <upf-info-panel color="accent">
+                <ng-template upfInfoPanelTitle>
+                  {{ 'Dialogs.ReportStatsExplanation.InfoPanelTitle' | translate }}
+                </ng-template>
+
+                <div class="tw-text-base tw-leading-5" [innerHTML]="section.infoPanelMessage | translate"></div>
+              </upf-info-panel>
+            }
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </div>
+
+  <div class="tw-p-md tw-flex tw-justify-center tw-border-t tw-border-neutral-silver">
+    <button mat-flat-button matDialogClose color="accent" class="tw-w-full sm:tw-w-fit">
+      {{ 'Dialogs.WithdrawToCard.PendingTransaction.ConfirmBtn' | translate }}
+    </button>
+  </div>
+</ng-template>

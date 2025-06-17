@@ -1,0 +1,9 @@
+<div class="loading-indicator" data-cy="loading-indicator">
+  <div class="loading-indicator__spinner">
+    <mat-spinner diameter="{{ size }}" color="primary"></mat-spinner>
+
+    @if (title) {
+      <div class="tw-text-base tw-text-neutral-granit">{{ title | translate }}</div>
+    }
+  </div>
+</div>

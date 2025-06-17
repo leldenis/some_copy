@@ -1,0 +1,21 @@
+<button
+  mat-flat-button
+  class="loader-button"
+  [type]="type"
+  [color]="color"
+  [disabled]="disabled"
+  [class.loading]="loading"
+  [attr.data-cy]="dataCY"
+  (click)="handlerButtonClick()"
+>
+  @if (hasSpinner && loading) {
+    <mat-icon
+      class="loader-button__icon !tw-m-auto !tw-w-5 !tw-h-5 !tw-text-xl"
+      svgIcon="i-progress-activity"
+    ></mat-icon>
+  }
+
+  @if (!hasSpinner || !loading) {
+    <ng-content></ng-content>
+  }
+</button>

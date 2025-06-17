@@ -1,0 +1,205 @@
+<div class="upf-data-row sm:!tw-hidden">
+  <div class="upf-data-list upf-grid-4">
+    <div class="upf-data-item-label tw-flex tw-flex-row">
+      {{ 'VehicleOrderReportList.NetEarning.Title' | translate }}
+      <div class="tw-ml-0.5 tw-text-neutral-granit">
+        <mat-icon
+          [svgIcon]="icons.info"
+          [ngxTippy]="'VehicleOrderReportList.NetEarning.Tooltip' | translate"
+          [tippyProps]="{ maxWidth: '50vw' }"
+        ></mat-icon>
+      </div>
+    </div>
+
+    <upf-money [money]="report.profit_amount"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.OnlineTime.Title' | translate }}
+    </span>
+
+    <span>
+      @if (report.online_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </span>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Orders.Completed' | translate }}
+    </span>
+
+    <span>
+      {{ report.total_orders_count || 0 }}
+    </span>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.OrdersPerHour.Title' | translate }}
+    </span>
+
+    <div>
+      {{ (report.orders_per_hour || 0).toFixed(2) }}
+    </div>
+  </div>
+</div>
+
+<div class="upf-data-row sm:!tw-hidden">
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Orders.Distance' | translate }}
+    </span>
+
+    <span>{{ report.total_distance_meters / 1000 || 0 | number: '1.2-2' }} {{ 'Common.Km' | translate }}</span>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.OrdersExecutionTime.Title' | translate }}
+    </span>
+
+    <div>
+      @if (report.orders_execution_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="upf-data-row">
+  <div class="upf-data-row-header">
+    <span>
+      {{ 'VehicleOrderReportList.Details.EarningPerOrders.Title' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.EarningPerOrders.Cash' | translate }}
+    </span>
+
+    <upf-money [money]="report.total_cash_earnings"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.EarningPerOrders.Cashless' | translate }}
+    </span>
+
+    <upf-money [money]="report.total_cashless_earnings"></upf-money>
+  </div>
+</div>
+
+<div class="upf-data-row">
+  <div class="upf-data-row-header">
+    <span>
+      {{ 'VehicleOrderReportList.Details.AdditionalIncome.Title' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.AdditionalIncome.Compensation' | translate }}
+    </span>
+
+    <upf-money class="upf-grid-col-3" [money]="report.total_compensations"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.AdditionalIncome.Tips' | translate }}
+    </span>
+
+    <upf-money [money]="report.total_tips"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.AdditionalIncome.Bonuses' | translate }}
+    </span>
+
+    <upf-money [money]="report.total_bonus"></upf-money>
+  </div>
+</div>
+
+<div class="upf-data-row">
+  <div class="upf-data-row-header">
+    <span>
+      {{ 'VehicleOrderReportList.Details.AverageCostOrder.Title' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label max-sm:tw-order-1">
+      {{ 'VehicleOrderReportList.Details.AverageCostOrder.Total' | translate }}
+    </span>
+
+    <upf-money class="max-sm:tw-order-2" [money]="report.average_order_cost"></upf-money>
+
+    <span class="upf-data-item-label max-sm:tw-order-3">
+      {{ 'VehicleOrderReportList.Details.AverageCostOrder.Cash' | translate }}
+    </span>
+
+    <upf-money class="max-sm:tw-order-4" [money]="report.average_cash_order_cost"></upf-money>
+
+    <span class="upf-data-item-label max-sm:tw-order-7">
+      {{ 'VehicleOrderReportList.Details.AverageCostOrder.Cashless' | translate }}
+    </span>
+
+    <upf-money class="max-sm:tw-order-8" [money]="report.average_cashless_order_cost"></upf-money>
+
+    <span class="upf-data-item-label max-sm:tw-order-5">
+      {{ 'VehicleOrderReportList.Details.AverageCostOrder.CostPerKm' | translate }}
+    </span>
+
+    <upf-money class="max-sm:tw-order-6" [money]="report.average_price_per_kilometer"></upf-money>
+  </div>
+</div>
+
+<div class="upf-data-row">
+  <div class="upf-data-row-header">
+    <span>
+      {{ 'VehicleOrderReportList.Details.Expenses.Title' | translate }}
+    </span>
+  </div>
+
+  <div class="upf-data-list upf-grid-4">
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.Expenses.Penalties' | translate }}
+    </span>
+
+    <upf-money [money]="report.total_penalties"></upf-money>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.Expenses.Commission' | translate }}
+    </span>
+
+    <upf-money [money]="report.fee_amount"></upf-money>
+  </div>
+</div>
+
+<div class="upf-data-row !tw-hidden sm:!tw-flex">
+  <div class="upf-data-list">
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.OrdersExecutionTime.Title' | translate }}
+    </span>
+
+    <div>
+      @if (report.orders_execution_time_seconds | duration; as time) {
+        <span>
+          @if (time.hours) {
+            {{ 'Common.Abbreviation.Hours' | translate: time }}
+          }
+          {{ 'Common.Abbreviation.Minutes' | translate: time }}
+        </span>
+      }
+    </div>
+
+    <span class="upf-data-item-label">
+      {{ 'VehicleOrderReportList.Details.OrdersPerHour.Title' | translate }}
+    </span>
+
+    <div>
+      {{ (report.orders_per_hour || 0).toFixed(2) }}
+    </div>
+  </div>
+</div>

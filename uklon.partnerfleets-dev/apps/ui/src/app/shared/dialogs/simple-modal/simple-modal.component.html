@@ -1,0 +1,41 @@
+<div data-cy="simple-modal">
+  <header>
+    <h3 class="tw-text-accent-mint-light" [class.!tw-text-accent-coral-light]="!modalPositiveType">
+      {{ data.title | translate }}
+    </h3>
+
+    <button mat-icon-button (click)="handlerCancel()" data-cy="simple-modal-btn-close">
+      <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+    </button>
+  </header>
+
+  @if (data.content) {
+    <mat-divider></mat-divider>
+
+    <section class="content" data-cy="simple-modal-content">
+      <p>{{ data.content | translate }}</p>
+    </section>
+
+    <mat-divider></mat-divider>
+  }
+
+  <footer [class.!tw-justify-center]="data.cancelBtn && !data.acceptBtn">
+    @if (data.cancelBtn) {
+      <button mat-flat-button color="accent" (click)="handlerCancel()" data-cy="simple-modal-btn-cancel">
+        {{ data.cancelBtn | translate }}
+      </button>
+    }
+
+    @if (data.acceptBtn) {
+      <button
+        mat-flat-button
+        class="action-btn"
+        data-cy="simple-modal-btn-accept"
+        [color]="modalPositiveType ? 'primary' : 'warn'"
+        (click)="handlerAccept()"
+      >
+        {{ data.acceptBtn | translate }}
+      </button>
+    }
+  </footer>
+</div>

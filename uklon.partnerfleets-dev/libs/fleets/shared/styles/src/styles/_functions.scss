@@ -1,0 +1,9 @@
+@use "sass:math";
+
+// workaround of current 16px grid
+@function remify($rem) {
+  $futureRemSizeInPx: 4;
+  $currentRemSizeInPx: 16;
+
+  @return math.div($futureRemSizeInPx, $currentRemSizeInPx) * $rem * 1rem;
+}

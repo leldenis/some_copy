@@ -1,0 +1,68 @@
+@let styling = status() | panelStyling: brandingPeriod().deadline_to_send;
+
+<upf-info-panel
+  class="!tw-grid"
+  [hideToggle]="!showDetailsPanel()"
+  [expanded]="false"
+  [color]="status() === ticketStatus.CLARIFICATION ? clarificationStatusStyling.color : styling.color"
+>
+  <ng-template upfInfoPanelIcon>
+    <mat-icon [svgIcon]="icons.brandedEmpty"></mat-icon>
+  </ng-template>
+
+  <ng-template upfInfoPanelTitle>
+    @if (status() === ticketStatus.CLARIFICATION) {
+      {{ 'VehicleBrandingPeriod.Panel.TitleClarification' | translate }}
+    } @else {
+      {{ 'VehicleBrandingPeriod.Panel.Title' | translate }}
+    }
+  </ng-template>
+
+  @if (showStatusDescription() || showDeadline()) {
+    <ng-template upfInfoPanelSubtitle>
+      @if (showStatusDescription()) {
+        {{ 'VehicleBrandingPeriod.TicketStatus.' + status() | translate }}
+      }
+
+      @if (showDeadline()) {
+        <div class="tw-mb-2">
+          <span class="tw-mr-0.5">{{ 'PhotoControl.Panel.Till' | translate }}: {{ deadline().till }}</span>
+
+          @if (deadline().passedDeadline) {
+            <span>({{ 'PhotoControl.Panel.Expired' | translate }})</span>
+          } @else {
+            <span>({{ 'PhotoControl.Panel.DaysRemaining' | translate }}: {{ deadline().days }})</span>
+          }
+        </div>
+      }
+    </ng-template>
+  }
+
+  @if (showDetailsPanel()) {
+    <div class="tw-grid tw-gap-2 -tw-ml-7 tw-overflow-hidden">
+      @if (brandingPeriod().reject_or_clarification_reason) {
+        <div class="tw-pl-7 tw-grid">
+          <div>
+            <span class="tw-font-medium">{{ 'Common.Tickets.Reason' | translate }}:</span>
+            <span>
+              {{
+                (status() === ticketStatus.REJECTED
+                  ? 'VehicleBrandingPeriod.RejectionReason.'
+                  : 'VehicleBrandingPeriod.ClarificationReason.') + brandingPeriod().reject_or_clarification_reason
+                  | translate
+              }}
+            </span>
+          </div>
+        </div>
+      }
+
+      @if (status() === ticketStatus.DRAFT || status() === ticketStatus.CLARIFICATION) {
+        <div>
+          <button mat-flat-button color="primary" class="tw-w-full" (click)="onOpenVehicleBrandingPeriodDialog()">
+            {{ 'VehicleBrandingPeriod.VehicleBrandingReviewButton' | translate }}
+          </button>
+        </div>
+      }
+    </div>
+  }
+</upf-info-panel>

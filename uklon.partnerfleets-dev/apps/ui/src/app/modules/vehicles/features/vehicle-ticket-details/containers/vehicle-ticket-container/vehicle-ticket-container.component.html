@@ -1,0 +1,75 @@
+@let isMobileView = isMobileView$ | async;
+
+@if (ticket().status === ticketStatus.CLARIFICATION) {
+  <upf-ticket-status-reasons [activeLogs]="activeLogs()" class="tw-pl-4 tw-pr-4 tw-mt-4"></upf-ticket-status-reasons>
+}
+
+@if (selectedFleetId()) {
+  <div class="sm:tw-mt-6 tw-mb-24">
+    <div class="ticket-container">
+      <upf-vehicle-creation-info
+        class="tw-px-6"
+        [isEdit]="canEdit()"
+        [ticket]="ticket()"
+        [showCargo]="showCargo$ | async"
+        [fleetId]="selectedFleetId()"
+        (creationFormChange)="creationFormChange($event)"
+        #creationInfo
+      ></upf-vehicle-creation-info>
+
+      @if (ticketConfig()) {
+        <upf-vehicle-creation-photos
+          [isEdit]="canEdit()"
+          [ticketId]="ticket().id"
+          [vehicleId]="ticket().vehicle_id"
+          [ticketStatus]="ticket().status"
+          [isMobileView]="isMobileView"
+          [ticketConfig]="ticketConfig()"
+          [images]="ticket().images"
+          [regionId]="ticket().region_id"
+          [additionalPictureTypes]="ticket()?.additional_picture_types ?? []"
+          (photosValid)="onPhotoUploaded($event)"
+        ></upf-vehicle-creation-photos>
+      }
+    </div>
+  </div>
+
+  @if (canEdit()) {
+    <upf-footer [leftPosition]="isMobileView ? 0 : 86">
+      @if (licensePlateConfirmed()) {
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!fromGroupData?.isValid || !photosValid"
+          (click)="onSendClick(ticket())"
+        >
+          {{ 'Common.Buttons.B_Send' | translate }}
+        </button>
+      } @else {
+        <button
+          type="button"
+          data-cy="create-ticket-btn"
+          mat-flat-button
+          color="primary"
+          class="vehicle-creation-info__continue-btn"
+          [disabled]="!creationInfo.formGroup.valid"
+          (click)="onConfirmLicensePlate()"
+        >
+          {{ 'Common.Buttons.B_Continue' | translate }}
+        </button>
+      }
+    </upf-footer>
+  }
+}
+
+<ng-template #statusTpl let-status>
+  @if (status) {
+    <div data-cy="ticket-status" class="flex-row align-items-center ticket-status">
+      <span class="status">{{ 'Vehicles.Creation.VehicleTicketStatus.Status' | translate }}:</span>
+
+      <upf-status-badge [color]="ticketStatusColorMap[status]">
+        {{ 'Vehicles.Creation.VehicleTicketStatus.' + status | translate }}
+      </upf-status-badge>
+    </div>
+  }
+</ng-template>

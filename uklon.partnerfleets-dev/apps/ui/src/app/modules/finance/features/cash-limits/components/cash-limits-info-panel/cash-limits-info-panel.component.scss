@@ -1,0 +1,11 @@
+@use 'mixins' as m;
+
+.mat-mdc-icon-button {
+  @apply tw-absolute tw-right-0.5 tw-top-0.5;
+  @include m.icon-button(40px, 24px);
+
+  @screen sm {
+    @apply tw-relative;
+    @include m.icon-button(20px);
+  }
+}

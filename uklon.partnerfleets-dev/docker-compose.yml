@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  gateway:
+    container_name: gateway
+    environment:
+      - ServiceName=PartnerFleets
+      - port=8080
+      - APPSETTINGS_DIRECTORY_PATH=/tmp
+    build:
+      context: .
+      dockerfile: Dockerfile.Gateway
+      args:
+        - CI_SERVER_HOST=gitlab.uklon.com.ua
+        - CI_JOB_TOKEN=
+    ports:
+      - 8080:8080
+    restart: on-failure
+    volumes:
+      - ./dockercontext/settings:/tmp
+      - gateway_vol:/usr/app
+      - /usr/src/app/node_modules
+    networks:
+      - monorepo_net
+  ui:
+    container_name: ui
+    environment:
+      - ServiceName=PartnerFleets
+      - APPSETTINGS_DIRECTORY_PATH=/tmp
+      - NginxPort=4200
+      - NginxGatewayHost=bff:8080
+      - CI_PIPELINE_ID=dev
+    build:
+      context: .
+      dockerfile: Dockerfile.UI
+    ports:
+      - 4200:4200
+    restart: on-failure
+    volumes:
+      - ./dockercontext/settings:/tmp
+      - ui_vol:/usr/app
+    networks:
+      - monorepo_net
+    links:
+      - "gateway:bff"
+
+# By using a named value, we make sure that the data stays the same even when the container is removed.
+# It will stay there until we delete the volume ourselves: docker volume ls + docker system prune -a --volumes
+volumes:
+  gateway_vol: { }
+  ui_vol: { }
+
+networks:
+  monorepo_net:
+    driver: bridge

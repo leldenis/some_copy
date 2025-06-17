@@ -1,0 +1,373 @@
+<cdk-table [dataSource]="vehicles" class="flt-table flt-shadowless tw-mb-cell-1 sm:tw-mb-0" data-cy="table">
+  <ng-container cdkColumnDef="LicencePlate">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="header-cell-LicencePlate">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.LicencePlate' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let vehicle"
+      class="flt-table-cell flt-table-cell--visible tw-order-1 sm:tw-order-none tw-col-span-4 sm:tw-col-span-2 tw-min-w-[130px]"
+      data-cy="cell-LicencePlate"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-2 sm:tw-hidden">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.LicencePlate' | translate }}
+        </span>
+
+        <ng-container
+          *ngTemplateOutlet="licencePlateContentTpl; context: { $implicit: vehicle, dataCyLink: 'link-mobile' }"
+        ></ng-container>
+      </div>
+
+      <div class="tw-hidden sm:tw-flex tw-flex-col tw-justify-center tw-gap-2">
+        <ng-container
+          *ngTemplateOutlet="licencePlateContentTpl; context: { $implicit: vehicle, dataCyLink: 'link-desktop' }"
+        ></ng-container>
+
+        <div class="tw-text-base sm:tw-hidden">{{ vehicle.about.maker.name }} {{ vehicle.about.model.name }}</div>
+      </div>
+    </cdk-cell>
+
+    <ng-template #licencePlateContentTpl let-vehicle let-link="dataCyLink">
+      <div class="tw-text-base tw-font-medium tw-flex tw-gap-0.5 sm:tw-gap-1 tw-items-end">
+        <a
+          [routerLink]="['./', vehiclePaths.DETAILS, vehicle.id]"
+          class="tw-font-medium hover:tw-underline focus:tw-underline"
+          [attr.data-cy]="link"
+        >
+          {{ vehicle.licencePlate }}
+        </a>
+
+        <div class="tw-flex sm:tw-gap-1 tw-items-center">
+          @if (vehicle.about.bodyType === bodyType.CARGO) {
+            <mat-icon
+              svgIcon="icon-vehicle-cargo-{{ vehicle.about.loadCapacity.toLowerCase() }}"
+              class="icon-cargo"
+            ></mat-icon>
+          }
+
+          @if (vehicle.status.value === vehicleBlockedStatus) {
+            <mat-icon class="icon-vehicle-blocked" [ngxTippy]="'BlockedList.Blocked' | translate">
+              outlined_flag
+            </mat-icon>
+          }
+
+          @if (
+            vehicle?.photo_control &&
+            (vehicle.photo_control.status === ticketStatus.DRAFT ||
+              vehicle.photo_control.status === ticketStatus.CLARIFICATION)
+          ) {
+            <upf-photo-control-icon
+              path="PhotoControl.Tooltips.VehiclesList"
+              [status]="vehicle.photo_control.status"
+              [blockImmediately]="vehicle.photo_control.block_immediately"
+              [deadline]="vehicle.photo_control?.deadline_to_send"
+            ></upf-photo-control-icon>
+          }
+
+          @if (
+            brandingPeriodAvailable &&
+            (vehicle?.branding_period?.status === ticketStatus.DRAFT ||
+              vehicle?.branding_period?.status === ticketStatus.CLARIFICATION)
+          ) {
+            <upf-vehicle-branding-period-icon
+              [brandingPeriod]="vehicle.branding_period"
+            ></upf-vehicle-branding-period-icon>
+          }
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Toggle">
+    <cdk-header-cell
+      *cdkHeaderCellDef
+      class="flt-table-cell sm:!tw-hidden"
+      data-cy="header-cell-Toggle"
+    ></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let vehicle; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-1 tw-order-4 sm:tw-order-none sm:tw-col-span-1 sm:!tw-hidden"
+      data-cy="cell-Toggle"
+    >
+      <div class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center">
+        <button mat-icon-button (click)="toggle(index)" [ngClass]="selection.isSelected(index) ? 'tw-rotate-180' : ''">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Vehicle">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="header-cell-Vehicle">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.Vehicle' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let vehicle"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-6 tw-order-3 sm:tw-order-none sm:tw-col-span-2"
+      data-cy="cell-Vehicle"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-2 sm:tw-gap-1">
+        <div data-cy="vehicle-maker">{{ vehicle.about.maker.name }} {{ vehicle.about.model.name }}</div>
+        <div class="tw-text-md sm:tw-text-base tw-text-neutral-granit" data-cy="vehicle-properties">
+          {{ 'Common.Colors.' + vehicle?.about.color | translate }} •
+          {{ vehicle.about.productionYear }}
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Branding">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-1" data-cy="header-cell-Branding">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.Branding' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let vehicle" class="flt-table-cell sm:tw-col-span-1" data-cy="cell-Branding">
+      @if (vehicle.uklon.hasBranding) {
+        <div class="tw-text-accent-mint-light tw-flex tw-items-center">
+          <mat-icon [svgIcon]="icons.checkGreen"></mat-icon>
+        </div>
+      }
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="VehicleClass">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="header-cell-VehicleClass">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.VehicleClass' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let vehicle" class="flt-table-cell sm:tw-col-span-2" data-cy="cell-VehicleClass">
+      @if (vehicle.about.bodyType !== bodyType.CARGO) {
+        <div class="tw-flex tw-flex-col tw-justify-center">
+          <div class="tw-flex">
+            <div
+              class="tw-flex tw-items-center tw-text-base tw-px-2 tw-rounded-full tw-h-6 tw-text-neutral-shale tw-bg-neutral-silver"
+            >
+              <span>
+                {{
+                  vehicle.uklon.comfortLevel
+                    ? ('Common.AvailableProduct.' + (vehicle.uklon.comfortLevel | normalizeString) | translate)
+                    : '-'
+                }}
+              </span>
+            </div>
+          </div>
+        </div>
+      }
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Priority">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="header-cell-Prioirty">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.Priority' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let vehicle" class="flt-table-cell sm:tw-col-span-2" data-cy="cell-Priority">
+      <div class="tw-flex tw-items-center">
+        <upf-status-badge [color]="vehicle.uklon.hasPriority ? 'success' : 'neutral'">
+          {{ (vehicle.uklon.hasPriority ? 'VehicleList.HasPriority' : 'VehicleList.NoPriority') | translate }}
+        </upf-status-badge>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Availability">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-1" data-cy="header-cell-Availability">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.Availability' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let vehicle"
+      class="flt-table-cell flt-table-cell--visible tw-order-3 sm:tw-order-none sm:tw-col-span-1"
+      data-cy="cell-Availability"
+    >
+      <div class="tw-flex tw-items-center">
+        <mat-icon
+          svgIcon="i-availability-{{ vehicle.uklon.accessibleFor }}"
+          [ngxTippy]="'VehicleList.Tooltips.' + vehicle.uklon.accessibleFor | translate"
+        ></mat-icon>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Driver">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="header-cell-Driver">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleList.Header.Driver' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let vehicle" class="flt-table-cell sm:tw-col-span-2 sm:!tw-pr-1" data-cy="cell-Driver">
+      <div class="tw-flex tw-justify-between tw-items-center">
+        <div class="tw-flex tw-flex-col tw-justify-center">
+          @if (vehicle?.driver; as driver) {
+            <div>
+              <a
+                [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPath.DETAILS, driver.id]"
+                class="tw-font-medium hover:tw-underline focus:tw-underline"
+              >
+                {{ driver.fullName }}
+              </a>
+            </div>
+          } @else {
+            <div>
+              <span class="tw-text-neutral-granit">
+                {{ 'VehicleList.NoDriver' | translate }}
+              </span>
+            </div>
+          }
+        </div>
+        <div>
+          @if (vehicle?.driver) {
+            <button
+              mat-icon-button
+              [ngxTippy]="'Modals.UnlinkVehicle.Unlink' | translate"
+              [tippyProps]="{ placement: 'left' }"
+              (click)="unlink($event, vehicle)"
+              class="tw-text-neutral-smoke hover:tw-text-accent-coral-light hover:tw-bg-neutral-cloud focus:tw-text-accent-coral-light focus:tw-bg-neutral-cloud !tw-rounded-sm"
+              data-cy="unlink-btn"
+            >
+              <mat-icon [svgIcon]="icons.unlink"></mat-icon>
+            </button>
+          }
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="ExpandedView">
+    <cdk-header-cell
+      *cdkHeaderCellDef
+      class="flt-table-cell sm:!tw-hidden"
+      data-cy="header-cell-ExpandedView"
+    ></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let vehicle"
+      class="flt-table-cell flt-toggleable tw-col-span-12 tw-order-5 sm:tw-order-none"
+      data-cy="cell-ExpandedView"
+    >
+      <div class="tw-grid tw-grid-cols-12 tw-items-center">
+        <hr class="tw-col-span-12 tw-text-neutral-silver" />
+        <div class="tw-col-span-4 tw-h-cell-1 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'VehicleList.Header.Priority' | translate }}
+          </div>
+          <div class="tw-flex">
+            <upf-status-badge [color]="vehicle.uklon.hasPriority ? 'success' : 'neutral'">
+              {{ (vehicle.uklon.hasPriority ? 'VehicleList.HasPriority' : 'VehicleList.NoPriority') | translate }}
+            </upf-status-badge>
+          </div>
+        </div>
+        <div class="tw-col-span-8 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'VehicleList.Header.Branding' | translate }}
+          </div>
+          <div class="tw-text-accent-mint-light tw-h-6">
+            @if (vehicle.uklon.hasBranding) {
+              <mat-icon [svgIcon]="icons.checkGreen"></mat-icon>
+            }
+          </div>
+        </div>
+        <hr class="tw-col-span-12 tw-text-neutral-silver" />
+        <div class="tw-col-span-4 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'VehicleList.Header.VehicleClass' | translate }}
+          </div>
+          <div class="tw-flex">
+            <div
+              class="tw-flex tw-items-center tw-text-base tw-px-2 tw-rounded-full tw-h-6 tw-text-neutral-shale tw-bg-neutral-silver"
+            >
+              <span>
+                {{
+                  vehicle.uklon.comfortLevel
+                    ? ('Common.AvailableProduct.' + (vehicle.uklon.comfortLevel | normalizeString) | translate)
+                    : '-'
+                }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="tw-col-span-6 tw-h-cell-2 tw-flex tw-flex-col tw-justify-center tw-px-2 tw-gap-2">
+          <div class="tw-font-medium tw-text-label tw-text-neutral-granit">
+            {{ 'VehicleList.Header.Driver' | translate }}
+          </div>
+
+          @if (vehicle?.driver) {
+            <div class="tw-h-6">
+              <a
+                [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPath.DETAILS, vehicle.driver.id]"
+                class="tw-font-medium hover:tw-underline focus:tw-underline"
+              >
+                {{ vehicle.driver.fullName }}
+              </a>
+            </div>
+          } @else {
+            <div class="tw-h-6">
+              <span class="tw-text-neutral-granit">
+                {{ 'VehicleList.NoDriver' | translate }}
+              </span>
+            </div>
+          }
+        </div>
+        <div class="tw-col-span-2 tw-h-cell-2 tw-px-2 tw-flex tw-items-center tw-justify-end">
+          <div>
+            @if (vehicle?.driver) {
+              <button
+                mat-icon-button
+                (click)="unlink($event, vehicle)"
+                class="tw-text-neutral-smoke hover:tw-text-accent-coral-light hover:tw-bg-neutral-cloud focus:tw-text-accent-coral-light focus:tw-bg-neutral-cloud !tw-rounded-sm"
+              >
+                <mat-icon [svgIcon]="icons.unlink"></mat-icon>
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    *cdkHeaderRowDef="columns"
+    class="flt-table-row flt-table-header-row"
+    data-cy="header-row"
+  ></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: columns"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+    class="flt-table-row"
+    [attr.data-cy]="'row-' + index"
+  >
+    >
+  </cdk-row>
+</cdk-table>
+
+<upf-pagination [totalCount]="totalCount" class="upf-pagination"></upf-pagination>

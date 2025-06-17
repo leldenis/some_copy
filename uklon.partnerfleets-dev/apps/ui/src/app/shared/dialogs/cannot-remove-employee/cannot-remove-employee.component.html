@@ -1,0 +1,50 @@
+<div class="tw-py-1.5">
+  <div class="tw-flex tw-justify-between tw-items-center">
+    <h3 class="tw-text-accent-coral-light">
+      {{ 'CannotRemoveDialog.' + entityTranslationKey + '.Title' | translate }}
+    </h3>
+
+    <button mat-icon-button matDialogClose>
+      <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="tw-flex-col tw-gap-4">
+  <div class="tw-flex tw-justify-center tw-py-4">
+    <mat-icon svgIcon="i-remove-wallet"></mat-icon>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-gap-4">
+    <mat-chip-listbox class="tw-flex">
+      <mat-chip class="!tw-bg-[#f2f2f2]">
+        <span class="tw-text-base tw-text-neutral-graphite">{{ employee.last_name }} {{ employee.first_name }}</span>
+        &nbsp;
+        <span
+          [ngClass]="employee.wallet.balance.amount > 0 ? '!tw-text-accent-mint-light' : '!tw-text-accent-coral-light'"
+          class="tw-text-base"
+        >
+          {{ employee.wallet.balance.amount / 100 | upfMoney: employee.wallet.balance.currency }}
+        </span>
+      </mat-chip>
+    </mat-chip-listbox>
+
+    <span class="tw-text-base tw-text-neutral-graphite tw-pt-0.5 tw-pb-3.5">
+      {{ 'CannotRemoveDialog.' + entityTranslationKey + '.Text' | translate }}
+      <br />
+      <span class="tw-font-medium">
+        {{ 'CannotRemoveDialog.' + entityTranslationKey + '.NavigationPath' | translate }}
+      </span>
+    </span>
+  </div>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions class="tw-flex !tw-justify-end">
+  <button mat-flat-button color="primary" class="action-btn" (click)="navigateToWithdraw()">
+    {{ 'CannotRemoveDialog.' + entityTranslationKey + '.Buttons.NavigateToWithdraw' | translate }}
+  </button>
+</mat-dialog-actions>

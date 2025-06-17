@@ -1,0 +1,28 @@
+
+:host {
+  @apply tw-flex tw-flex-col tw-w-full tw-h-full tw-gap-4;
+  @apply sm:tw-gap-6;
+}
+
+.live-map {
+  @apply tw-h-full tw-outline-none tw-shadow-lg;
+  @apply sm:tw-mx-0;
+}
+
+.active-area {
+  @apply tw-absolute tw-inset-0 tw-bottom-[110px];
+
+  @screen sm {
+    @apply tw-inset-md tw-left-[400px];
+  }
+}
+
+.disclaimer {
+  @apply tw-absolute tw-inset-x-0 tw-bottom-0 tw-z-[1000] tw-p-2 tw-border-t tw-leading-3;
+  @apply tw-text-xs tw-text-neutral-granit tw-border-neutral-silver;
+  background: rgb(255 255 255 / 80%);
+
+  @screen sm {
+    @apply tw-text-sm tw-rounded-tl-lg tw-shadow-sm tw-border-none tw-inset-x-auto tw-right-0;
+  }
+}

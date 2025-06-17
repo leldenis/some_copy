@@ -1,0 +1,29 @@
+<upf-statistic-filters
+  [filterKey]="filterKey"
+  [filterSubKey]="driverId()"
+  (filtersChange)="filtersChange$.next($event)"
+></upf-statistic-filters>
+
+@if (statistic$ | async; as statistic) {
+  <upf-statistic-earnings-for-period [statistic]="statistic" class="upf-section"></upf-statistic-earnings-for-period>
+
+  <mat-divider class="tw-block sm:!tw-hidden"></mat-divider>
+
+  <div class="statistic-container">
+    <upf-statistic-employee-info
+      titleKey="DriverStatistic.Driver.Title"
+      [statistic]="statistic"
+      data-cy="driver-statistics"
+    ></upf-statistic-employee-info>
+
+    <mat-divider class="tw-block !tw-mt-6 !tw-mb-6 sm:!tw-hidden"></mat-divider>
+
+    <upf-statistic-details
+      [statistic]="statistic"
+      [chartLabels]="chartLabels$ | async"
+      class="statistic-details"
+    ></upf-statistic-details>
+  </div>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA" class="tw-h-full tw-flex tw-grow tw-justify-center"></upf-empty-state>
+}

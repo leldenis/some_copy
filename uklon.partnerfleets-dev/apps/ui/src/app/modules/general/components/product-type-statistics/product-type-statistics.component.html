@@ -1,0 +1,58 @@
+<div class="tw-rounded tw-shadow-sm tw-p-md tw-flex tw-flex-col tw-gap-md tw-h-full tw-max-h-[424px]">
+  <div class="tw-text-neutral-graphite tw-text-tmp tw-font-medium">
+    {{ 'Dashboard.Statistics.EarningsByProduct' | translate }}
+  </div>
+
+  @if (data$ | async; as data) {
+    <div class="tw-overflow-auto tw-h-full tw-flex tw-flex-col tw-justify-between" #scroller>
+      <ng-container *upfLet="chartScrolled$ | async as scrolled">
+        <div class="tw-sticky tw-top-0" [ngClass]="{ 'tw-h-full': !data.datasets.length }">
+          @if (data.datasets.length) {
+            <section
+              [ngClass]="{ 'tw-border-b tw-border-b-neutral-fog -tw-translate-y-[30%]': scrolled }"
+              class="tw-w-full tw-self-center tw-relative tw-top-0 tw-bg-white tw-transition-all"
+            >
+              <div class="tw-h-60 tw-transition-all" [ngClass]="{ 'tw-scale-[0.6] tw-translate-y-[15%]': scrolled }">
+                <canvas baseChart [type]="'doughnut'" [data]="data" [options]="options"></canvas>
+              </div>
+
+              <div class="total tw-transition-all" [ngClass]="{ '!tw-top-[65%] tw-scale-[0.6]': scrolled }">
+                <span class="tw-text-xl tw-text-neutral-graphite tw-w-max">
+                  {{ total / 100 | upfMoney: currency }}
+                </span>
+
+                <span class="tw-text-base tw-text-neutral-granit">
+                  {{ 'Dashboard.Statistics.EarningsByProductTotal' | translate }}
+                </span>
+              </div>
+            </section>
+          } @else {
+            <upf-empty-state [state]="emptyState.DASHBOARD_PRODUCTS"></upf-empty-state>
+          }
+        </div>
+
+        <section class="tw-grid tw-gap-2 tw-text-neutral-graphite">
+          @for (income of statistics; track income) {
+            <div class="tw-text-base tw-flex tw-items-center tw-justify-between">
+              <div class="tw-flex tw-items-center tw-gap-2">
+                <span
+                  [style.background]="colors[income.product_code.toLowerCase()]"
+                  class="tw-inline-block tw-w-2 tw-h-2 tw-rounded-full"
+                ></span>
+                {{ 'Common.ProductTypes.' + (income.product_code | normalizeString) | translate }}
+              </div>
+
+              <div class="tw-flex tw-items-center tw-gap-2">
+                <span>
+                  {{ income.earnings.amount / 100 | upfMoney: income.earnings.currency }}
+                </span>
+
+                <span class="tw-text-neutral-granit">{{ income.percent | number: '1.2-2' }}%</span>
+              </div>
+            </div>
+          }
+        </section>
+      </ng-container>
+    </div>
+  }
+</div>

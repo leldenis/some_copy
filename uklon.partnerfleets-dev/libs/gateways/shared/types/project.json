@@ -1,0 +1,31 @@
+{
+  "name": "@uklon/gateways/shared/types",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gateways/shared/types/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gateways/shared/types",
+        "main": "libs/gateways/shared/types/src/index.ts",
+        "tsConfig": "libs/gateways/shared/types/tsconfig.lib.json",
+        "assets": ["libs/gateways/shared/types/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/gateways/shared/types"],
+      "options": {
+        "jestConfig": "libs/gateways/shared/types/jest.config.ts",
+        "testTimeout": 20000
+      }
+    }
+  },
+  "tags": []
+}

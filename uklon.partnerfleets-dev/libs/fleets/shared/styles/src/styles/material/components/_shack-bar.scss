@@ -1,0 +1,16 @@
+.mat-mdc-snack-bar-container {
+  margin: 24px !important;
+  --mdc-snackbar-container-color: trasparent !important;
+  --mdc-snackbar-container-shape: 4px !important;
+
+  .mat-mdc-snack-bar-label,
+  .mdc-snackbar__surface {
+    padding: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .mat-mdc-snack-bar-container {
+    margin: 8px !important;
+  }
+}

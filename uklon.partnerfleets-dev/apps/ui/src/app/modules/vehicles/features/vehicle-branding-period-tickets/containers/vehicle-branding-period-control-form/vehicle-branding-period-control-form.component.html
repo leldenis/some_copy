@@ -1,0 +1,33 @@
+<div class="tw-flex tw-flex-col tw-gap-2 tw-p-md tw-pt-0">
+  <div class="tw-text-headline tw-font-medium">
+    {{ 'VehicleBrandingPeriod.Form.Title' | translate }} {{ vehicle().license_plate }}
+  </div>
+
+  @if (ticket()?.status === ticketStatus.CLARIFICATION) {
+    <upf-ticket-status-reasons
+      reasonPath="VehicleBrandingPeriod.ClarificationReason."
+      [activeLogs]="clarificationReason()"
+    ></upf-ticket-status-reasons>
+  }
+
+  <upf-vehicle-branding-period-video-upload
+    [monthlyCode]="monthlyCode"
+    [ticket]="ticket()"
+    (fileUploaded)="fileUploaded.set($event)"
+    (uploadInProgress)="uploadInProgress.set($event)"
+  ></upf-vehicle-branding-period-video-upload>
+</div>
+
+<div class="tw-grid tw-gap-2">
+  @if (sendFailed()) {
+    <div class="tw-text-accent-coral-light tw-font-medium tw-text-base tw-px-md tw-text-center">
+      {{ 'VehicleBrandingPeriod.Form.SubmitError' | translate }}
+    </div>
+  }
+
+  <footer class="tw-shadow-sm tw-p-md">
+    <button mat-flat-button color="primary" class="tw-w-full" [disabled]="!fileUploaded()" (click)="onSubmit()">
+      {{ 'PhotoControl.Form.SubmitButton' | translate }}
+    </button>
+  </footer>
+</div>

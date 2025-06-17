@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "libs/fleets/shared/styles/src/styles/functions" as functions;
+@use "libs/fleets/shared/styles/src/styles/typography" as typography;
+@use "libs/fleets/shared/styles/src/styles/variables" as variables;
+
+.product-title {
+  @include typography.setFont(
+    functions.remify(5),
+    functions.remify(5),
+    500,
+    map.get(variables.$neutral-palette, neutral-graphite)
+  );
+}
+
+.product-accessibility-title {
+  @include typography.setFont(
+    functions.remify(4),
+    functions.remify(4.5),
+    500,
+    map.get(variables.$neutral-palette, neutral-shale)
+  );
+}
+
+.upf-alert {
+  @include typography.setFont(functions.remify(3.5), functions.remify(5.5));
+
+  &-warn {
+    color: map.get(variables.$alert-text-palette, alert-red);
+    background-color: map.get(variables.$alert-background-palette, alert-red);
+  }
+}

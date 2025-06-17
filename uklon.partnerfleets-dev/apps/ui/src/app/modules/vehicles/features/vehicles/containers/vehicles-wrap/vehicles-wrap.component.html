@@ -1,0 +1,141 @@
+<section class="tw-flex tw-items-center sm:tw-justify-between sm:tw-gap-md">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    class="tw-w-full"
+    data-cy="filter"
+  >
+    <form [formGroup]="filtersForm" class="tw-grid tw-gap-md sm:tw-grid-cols-5">
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+        </mat-label>
+
+        <input
+          matInput
+          [placeholder]="'Common.Filters.LicencePlate.Placeholder' | translate"
+          formControlName="licencePlate"
+          data-cy="filter-License-Plate"
+        />
+
+        <mat-icon [svgIcon]="icons.search" matSuffix></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Vehicles.Filters.HasPriority.Caption' | translate }}
+        </mat-label>
+
+        <mat-select
+          formControlName="hasPriority"
+          [placeholder]="'Vehicles.Filters.HasPriority.Placeholder' | translate"
+          data-cy="filter-Priority"
+        >
+          @for (option of brandingPriorityOptions | keyvalue; track option) {
+            <mat-option [value]="option.value" data-cy="filter-Priority-option">
+              {{ 'Vehicles.Filters.HasPriority.' + option.key | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Vehicles.Filters.HasBranding.Caption' | translate }}
+        </mat-label>
+
+        <mat-select
+          formControlName="hasBranding"
+          [placeholder]="'Vehicles.Filters.HasBranding.Placeholder' | translate"
+          data-cy="filter-has-Branding"
+        >
+          @for (option of brandingPriorityOptions | keyvalue; track option) {
+            <mat-option [value]="option.value" data-cy="filter-Branding-option">
+              {{ 'Vehicles.Filters.HasBranding.' + option.key | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Vehicles.Filters.BodyType.Caption' | translate }}
+        </mat-label>
+
+        <mat-select
+          formControlName="bodyType"
+          [placeholder]="'Vehicles.Filters.BodyType.Placeholder' | translate"
+          data-cy="filter-Body-type"
+        >
+          <mat-option [value]="''">
+            {{ 'Vehicles.Filters.BodyType.All' | translate }}
+          </mat-option>
+
+          @for (item of bodyTypes$ | async; track item) {
+            <mat-option [value]="item.code" data-cy="filter-Body-type-option">
+              {{ 'Common.BodyTypes.' + item.code | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'BlockedList.Blocking' | translate }}
+        </mat-label>
+
+        <mat-select formControlName="status">
+          @for (item of blockStatuses; track item) {
+            <mat-option [value]="item">
+              {{ 'BlockedList.Cars.Filters.' + item | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+    <ng-template #vehicleTicketBtn upfFiltersActionButton>
+      <a
+        [routerLink]="['./', vehiclePaths.CREATE]"
+        mat-flat-button
+        color="primary"
+        class="sm:!tw-py-1"
+        data-cy="add-vehicle-btn"
+        (click)="onAddVehicle()"
+      >
+        <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+          <mat-icon [svgIcon]="icons.plus"></mat-icon>
+          <span>{{ 'Common.Buttons.B_AddVehicle' | translate }}</span>
+        </div>
+      </a>
+    </ng-template>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block">
+    <ng-template [ngTemplateOutlet]="vehicleTicketBtn"></ng-template>
+  </div>
+</section>
+
+@if (fleetId) {
+  <section class="upf-section tw-flex tw-grow tw-shrink tw-justify-center">
+    @if (vehicles$ | async; as vehicles) {
+      @if (vehicles?.data?.length) {
+        <upf-vehicle-list
+          [vehicles]="vehicles.data"
+          [totalCount]="vehicles?.total"
+          [brandingPeriodAvailable]="showVehicleBrandingPeriod$ | async"
+          (unlinkVehicle)="onUnlinkVehicle($event, fleetId)"
+          data-cy="vehicle-list"
+        ></upf-vehicle-list>
+      } @else {
+        <upf-empty-state
+          [state]="(hasError$ | async) ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"
+        ></upf-empty-state>
+      }
+    } @else {
+      <upf-empty-state [state]="(hasError$ | async) ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"></upf-empty-state>
+    }
+  </section>
+}

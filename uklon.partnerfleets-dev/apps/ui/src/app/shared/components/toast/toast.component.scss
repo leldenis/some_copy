@@ -1,0 +1,21 @@
+.toast {
+  @apply tw-rounded tw-p-md tw-gap-md tw-flex tw-items-center tw-justify-between;
+  @apply tw-w-full sm:tw-max-w-lg;
+  @apply tw-font-medium tw-leading-[24px] tw-tracking-[.024px];
+}
+
+button, .mat-icon {
+  @apply tw-w-6 tw-h-6 tw-text-2xl tw-leading-6 tw-shrink-0;
+}
+
+.success {
+  @apply tw-bg-alerts-green-light tw-text-alert-grass-light;
+}
+
+.warn {
+  @apply tw-bg-alerts-yellow-light tw-text-alert-yellow-light;
+}
+
+.error {
+  @apply tw-bg-alerts-red-light tw-text-alert-blood-dark;
+}

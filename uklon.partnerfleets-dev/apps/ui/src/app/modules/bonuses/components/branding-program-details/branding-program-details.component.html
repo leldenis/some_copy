@@ -1,0 +1,92 @@
+<div class="bonus-rules" data-cy="bonus-program-details">
+  <div class="bonus-rules-info">
+    <div class="tw-flex tw-flex-row">
+      <mat-icon class="outlined tw-text-icon tw-text-accent-blue-light !tw-contents">info</mat-icon>
+
+      <div class="bonus-rules-item tw-ml-2 sm:tw-justify-around">
+        <span class="tw-font-medium" data-cy="bonus-program-details-title">
+          {{ 'Bonuses.Program.Requirements.Title' | translate }}
+        </span>
+        <span data-cy="bonus-program-details-subtitle">{{ 'Bonuses.Program.Requirements.Subtitle' | translate }}</span>
+      </div>
+    </div>
+    <button>
+      <mat-icon
+        class="tw-cursor-pointer tw-self-start tw-flex sm:!tw-hidden"
+        [class.tw-rotate-180]="mobilePanelOpen()"
+        (click)="toggleBrandingProgram()"
+      >
+        keyboard_arrow_down
+      </mat-icon>
+    </button>
+  </div>
+
+  @if (mobilePanelOpen()) {
+    <div [@growVertical] class="bonus-rules-indicators">
+      <div class="bonus-rules-item">
+        <span class="bonus-rules-title" data-cy="bonus-details-branding-type">
+          {{ 'Bonuses.Program.BrandingType.Label' | translate }}
+        </span>
+        <span class="bonus-rules-value" data-cy="bonus-details-branding-type-value">
+          @if (parameters()?.branding_types?.length > 0) {
+            {{ parameters().branding_types | translateItems: 'Bonuses.Program.BrandingType.Options.' }}
+          } @else {
+            {{ 'Bonuses.Program.BrandingType.Options.All' | translate }}
+          }
+        </span>
+      </div>
+
+      @if (parameters().driver_rating?.range?.length) {
+        <div class="bonus-rules-item">
+          <span class="bonus-rules-title" data-cy="bonus-program-details-rating">
+            {{ 'Bonuses.Program.Rating.Title' | translate }}
+          </span>
+          <span class="bonus-rules-value" data-cy="bonus-program-details-rating-value">
+            {{ 'Bonuses.Program.Rating.From' | translate: { value: parameters().driver_rating?.range?.[0] } }}
+          </span>
+        </div>
+      }
+
+      @if (parameters().orders.cancelled.percent?.[0]?.range?.length) {
+        <div class="bonus-rules-item">
+          <span class="bonus-rules-title" data-cy="bonus-program-details-cancel-percentage">
+            % {{ 'Bonuses.Program.CancellationPercentage' | translate }}
+          </span>
+          <span class="bonus-rules-value" data-cy="bonus-program-details-cancel-percentage-value">
+            {{
+              'Bonuses.Program.Percent.To'
+                | translate: { value: (parameters().orders.cancelled.percent?.[0]?.range?.[1] | number: '1.2-2') + '%' }
+            }}
+          </span>
+        </div>
+      }
+
+      @if (parameters().orders.completed.count?.length) {
+        <div class="bonus-rules-item">
+          <span class="bonus-rules-title" data-cy="bonus-program-details-max-value-title">
+            {{ 'Bonuses.Program.Maximum' | translate }}
+          </span>
+          <span class="bonus-rules-value" data-cy="bonus-program-details-max-value">
+            {{
+              parameters().orders.completed.count[parameters().orders.completed.count?.length - 1]?.value
+                | upfMoney: parameters().currency
+            }}
+          </span>
+        </div>
+      }
+
+      @if (parameters().days?.length) {
+        <div class="bonus-rules-item">
+          <span class="bonus-rules-title" data-cy="bonus-program-details-days">
+            {{ 'Bonuses.Program.Days' | translate }}
+          </span>
+          <span class="bonus-rules-value" data-cy="bonus-program-details-days-value">
+            @for (day of parameters().days; track $index) {
+              {{ 'Common.DaysShort.' + day.toLowerCase() | translate }}
+            }
+          </span>
+        </div>
+      }
+    </div>
+  }
+</div>

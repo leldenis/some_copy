@@ -1,0 +1,123 @@
+<div class="driver-restriction" [formGroup]="formGroup">
+  <div class="tw-text-heading tw-font-medium tw-my-1">
+    {{ 'Drivers.Drivers.Details.DriverRestrictions' | translate }}
+  </div>
+
+  @if (orderRestrictions$ | async; as orderRestrictions) {
+    <form class="restriction-group tw-gap-2 tw-flex tw-flex-col" formArrayName="restrictions">
+      <div class="tw-text-neutral-granit tw-text-sm tw-flex tw-justify-between sm:tw-text-base">
+        <div>{{ 'Drivers.Drivers.Restriction.OrderGroup.Title' | translate }}</div>
+        <div>{{ 'Drivers.Drivers.Restriction.OrderGroup.Subtitle' | translate }}</div>
+      </div>
+
+      <div class="restriction-group__list" data-cy="orders-restrictions">
+        @for (orderRestriction of orderRestrictions; track orderRestriction) {
+          <div [formGroupName]="orderRestriction.formGroupName" class="restriction-group__item">
+            <div class="restriction-item" [attr.data-cy]="'order-restriction-' + $index">
+              <div class="restriction-item__toggle">
+                <mat-slide-toggle formControlName="hasRestriction"></mat-slide-toggle>
+              </div>
+
+              <div class="restriction-item__description">
+                <div class="description-title">
+                  {{ orderRestriction.title | translate }}
+                </div>
+
+                <div class="description-subtitle">
+                  {{ orderRestriction.description | translate }}
+                </div>
+              </div>
+
+              @if (orderRestriction.reason) {
+                <upf-status-badge [color]="orderRestriction.reasonBadge ? 'warn' : 'success'">
+                  {{ orderRestriction.reason | translate }}
+                </upf-status-badge>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </form>
+  }
+
+  @if (financeProfile$ | async; as financeProfile) {
+    <form class="restriction-group tw-flex tw-flex-col tw-gap-2" formGroupName="financeProfile">
+      <div class="tw-text-neutral-granit tw-text-sm sm:tw-text-base">
+        <div>{{ 'Drivers.Drivers.Restriction.FinanceGroup.Title' | translate }}</div>
+      </div>
+
+      <div class="restriction-group__list" data-cy="finance-restrictions">
+        @let disabledTooltip = 'Drivers.Drivers.Restriction.FinanceGroup.DisabledTooltip' | translate;
+        <div class="restriction-item" data-cy="finance-restriction-payment-to-card">
+          <div class="restriction-item__toggle">
+            <mat-slide-toggle
+              formControlName="paymentToCard"
+              [ngxTippy]="financialSettingsDisabled ? disabledTooltip : null"
+            ></mat-slide-toggle>
+          </div>
+
+          <div class="restriction-item__description">
+            <div class="description-title">
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.OrderPaymentToCard.Title' | translate }}
+            </div>
+
+            <div class="description-subtitle">
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.OrderPaymentToCard.Subtitle' | translate }}
+            </div>
+          </div>
+
+          @let configuredByUser = financeProfile?.order_payment_to_card?.configured_by;
+          @if (configuredByUser) {
+            <upf-status-badge
+              [color]="configuredByUser !== driverFinanceAllowing.FLEET_OWNER ? 'warn' : 'success'"
+              data-cy="restriction-activator-payment-to-card"
+            >
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.ConfiguredByMap.' + configuredByUser | translate }}
+            </upf-status-badge>
+          }
+        </div>
+
+        <div class="restriction-item" data-cy="finance-restriction-wallet-to-card">
+          <div class="restriction-item__toggle">
+            <mat-slide-toggle
+              formControlName="walletToCard"
+              [ngxTippy]="financialSettingsDisabled ? disabledTooltip : null"
+            ></mat-slide-toggle>
+          </div>
+          <div class="restriction-item__description">
+            <div class="description-title">
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.WalletToCardTransfer.Title' | translate }}
+            </div>
+            <div class="description-subtitle">
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.WalletToCardTransfer.Subtitle' | translate }}
+            </div>
+          </div>
+
+          @let configuredBy = financeProfile?.wallet_to_card_transfer?.configured_by;
+
+          @if (configuredBy) {
+            <upf-status-badge
+              [color]="configuredBy !== driverFinanceAllowing.FLEET_OWNER ? 'warn' : 'success'"
+              data-cy="restriction-activator-wallet-to-card"
+            >
+              {{ 'Drivers.Drivers.Restriction.FinanceGroup.ConfiguredByMap.' + configuredBy | translate }}
+            </upf-status-badge>
+          }
+        </div>
+      </div>
+    </form>
+  }
+
+  <div class="tw-flex tw-flex-grow tw-items-end tw-justify-start tw-gap-md">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="formGroup.pristine"
+      (click)="onSaveClick()"
+      type="button"
+      data-cy="driver-restrictions-save-btn"
+    >
+      {{ 'Drivers.Drivers.Details.SaveButton' | translate }}
+    </button>
+  </div>
+</div>

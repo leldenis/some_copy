@@ -1,0 +1,216 @@
+<div class="panel-header" (click)="isOpened = !isOpened">
+  <div
+    data-cy="order-details-panel-toggle"
+    class="tw-flex tw-self-start tw-items-center tw-justify-between tw-text-base tw-w-full"
+  >
+    <span class="tw-text-neutral-granit">
+      {{ 'Orders.Trips.List.Driver' | translate }}
+    </span>
+
+    <mat-icon class="tw-text-neutral-graphite expand-btn" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+  </div>
+
+  <div class="panel-info">
+    @let driver = order.driver;
+
+    <div class="data">
+      <a
+        [routerLink]="['/', path.WORKSPACE, path.DRIVERS, driverPath.DETAILS, driver.id]"
+        (click)="$event.stopPropagation()"
+        class="tw-shrink-0"
+        data-cy="driver-avatar"
+      >
+        <img
+          upfDefaultImgSrc
+          [src]="driver.photos?.driver_avatar_photo?.url"
+          [defaultSrc]="driver.photos?.driver_avatar_photo?.fallback_url"
+          class="avatar"
+          alt="avatar"
+        />
+      </a>
+
+      <div class="details">
+        <a [routerLink]="['/', path.WORKSPACE, path.DRIVERS, driverPath.DETAILS, driver.id]" data-cy="driver-fullName">
+          {{ driver.fullName }}
+        </a>
+
+        <small data-cy="driver-phone">{{ driver.phone }}</small>
+        <small data-cy="driver-signal" class="!tw-text-neutral-granit">{{ driver.signal }}</small>
+      </div>
+    </div>
+
+    <upf-status-badge [color]="statusColor[order.status]" data-cy="order-status">
+      {{ 'Orders.Trips.Filter.OrderStatus.' + order.status | translate }}
+    </upf-status-badge>
+  </div>
+</div>
+
+@if (isOpened) {
+  <section class="panel-content tw-grid tw-gap-md" data-cy="order-details-panel-data">
+    <mat-divider class="!tw-hidden sm:!tw-block"></mat-divider>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-base tw-text-neutral-granit" data-cy="vehicle-title">
+        {{ 'LiveMap.Car' | translate }}
+      </div>
+
+      @let vehicle = order.vehicle;
+
+      <div class="panel-info">
+        <div class="data">
+          <a
+            [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, vehicle.id]"
+            class="tw-shrink-0"
+            data-cy="vehicle-avatar"
+          >
+            <img
+              upfDefaultImgSrc
+              [src]="vehicle.photos?.vehicle_angled_front?.url ?? vehicle.photos?.driver_car_front_photo?.url"
+              [defaultSrc]="vehicle.photos?.driver_car_front_photo?.fallback_url"
+              class="avatar"
+              alt="avatar"
+            />
+          </a>
+
+          <div class="details">
+            <span>
+              <a
+                [routerLink]="['/', path.WORKSPACE, path.VEHICLES, vehiclePath.DETAILS, vehicle.id]"
+                data-cy="vehicle-licensePlate"
+              >
+                {{ vehicle.licencePlate }}
+              </a>
+            </span>
+
+            <small data-cy="vehicle-makeModel">{{ vehicle.make }} {{ vehicle.model }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-text-base tw-grid tw-gap-2">
+      <div class="tw-text-neutral-granit tw-text-base">
+        {{ 'Orders.Trips.List.Route' | translate }}
+      </div>
+
+      <div class="tw-grid">
+        @for (route of order.route.points; track route) {
+          <div>
+            <div class="tw-flex tw-items-baseline tw-gap-md" [attr.data-cy]="'route-point-' + $index">
+              <mat-icon class="!tw-w-3 !tw-h-3 tw-text-sm tw-text-neutral-smoke tw-shrink-0">
+                {{ $last ? 'location_on' : 'trip_origin' }}
+              </mat-icon>
+
+              <span>{{ route.address }}</span>
+            </div>
+
+            @if (!$last) {
+              <div class="tw-w-3 tw-h-3 tw-leading-3 tw-grid tw-place-items-center tw-text-neutral-smoke">•</div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-flex tw-items-center tw-gap-md tw-text-base">
+        <span class="tw-text-neutral-granit">
+          {{ 'Orders.Trips.Details.TimeInTravel' | translate }}
+        </span>
+
+        @let orderDuration = timeDiff$ | async | duration;
+
+        @if (orderDuration) {
+          <span data-cy="trip-duration">
+            @if (orderDuration.hours) {
+              {{ 'Common.Abbreviation.Hours' | translate: orderDuration }}
+            }
+            {{ 'Common.Abbreviation.Minutes' | translate: orderDuration }}
+          </span>
+        }
+      </div>
+
+      <div class="tw-text-base tw-flex tw-gap-md">
+        <div class="tw-grid tw-gap-2" data-cy="trip-created-at">
+          <div class="label">
+            {{ 'Orders.Trips.Details.CreatedAt' | translate }}
+          </div>
+          <div>
+            {{ order?.createdAt ? (order.createdAt | seconds2Time) : '-' }}
+          </div>
+        </div>
+
+        <mat-divider vertical></mat-divider>
+
+        <div class="tw-grid tw-gap-2" data-cy="trip-pickup-time">
+          <div class="label">
+            {{ 'Orders.Trips.Details.PickupTime' | translate }}
+          </div>
+          <div>
+            {{ order?.pickupTime ? (order.pickupTime | seconds2Time) : '-' }}
+          </div>
+        </div>
+
+        <mat-divider vertical></mat-divider>
+
+        <div class="tw-grid tw-gap-2" data-cy="trip-completed-at">
+          <div class="label">
+            {{ 'Orders.Trips.Details.CompletedAt' | translate }}
+          </div>
+          <div>
+            {{ order?.completedAt ? (order.completedAt | seconds2Time) : '-' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-grid tw-gap-md tw-text-base tw-grid-cols-2" data-cy="trip-info">
+      <div class="label">{{ 'Orders.Trips.Details.Date' | translate }}</div>
+      <div>
+        {{ order?.createdAt ? (order.createdAt | seconds2Date) : '-' }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.List.PaymentType' | translate }}</div>
+      <div>
+        {{ 'Orders.Trips.List.Tooltip.' + (order.payment.feeType | titlecase) | translate }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.Details.Cost' | translate }}</div>
+      <div class="tw-flex tw-items-center tw-gap-2">
+        {{ order.payment.cost ? (order.payment.cost | upfMoney: order.payment.currency) : '-' }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.Details.Distance' | translate }}</div>
+      <div>
+        {{ order.payment?.distance ? order.payment.distance?.toFixed(2) + ' ' + ('Common.Km' | translate) : '-' }}
+      </div>
+
+      <div class="label">{{ 'Orders.Trips.Details.Rating' | translate }}</div>
+      <div class="tw-flex tw-items-center tw-gap-2">
+        <mat-icon class="rating-icon">grade</mat-icon>
+
+        {{ order.driver?.rating ? (order.driver.rating / 100 | number: '1.2-2') : '-' }}
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="label">
+        {{ 'VehicleOrders.Filters.ProductType.Caption' | translate }}
+      </div>
+
+      <upf-status-badge data-cy="product-type">
+        {{ 'Common.ProductTypes.' + (order.vehicle.productType | normalizeString) | translate }}
+      </upf-status-badge>
+    </div>
+
+    <mat-divider class="sm:!tw-hidden"></mat-divider>
+  </section>
+}

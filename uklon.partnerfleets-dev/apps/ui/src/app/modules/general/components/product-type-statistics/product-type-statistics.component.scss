@@ -1,0 +1,8 @@
+:host {
+  @apply tw-bg-white tw-border-b tw-border-neutral-silver;
+  @apply sm:tw-border-none;
+}
+
+.total {
+  @apply tw-absolute tw-grid tw-text-center tw-gap-1 tw-left-1/2 tw-top-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2;
+}

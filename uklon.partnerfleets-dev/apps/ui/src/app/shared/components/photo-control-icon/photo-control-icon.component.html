@@ -1,0 +1,28 @@
+<ng-container *upfLet="deadline() | photoControlDeadlineMessage as deadlineData">
+  <mat-icon
+    data-cy="photo-control-icon"
+    class="outlined tw-text-neutral-smoke"
+    [class.!tw-text-accent-coral-light]="this.blockImmediately() || deadlineData.passedDeadline"
+    [ngxTippy]="tooltip"
+  >
+    photo_camera
+  </mat-icon>
+
+  <ng-template #tooltip>
+    <div class="tw-text-sm" data-cy="photo-control-tooltip-title">
+      <div data-cy="photo-control-tooltip-title">{{ tooltipTitle() | translate }}</div>
+
+      @if (!blockImmediately() && deadline()) {
+        <div class="tw-text-neutral-fog" data-cy="photo-control-tooltip-deadline">
+          {{ 'PhotoControl.Panel.Till' | translate }}: {{ deadlineData.till }}
+
+          @if (deadlineData.passedDeadline) {
+            ({{ 'PhotoControl.Panel.Expired' | translate }})
+          } @else {
+            ({{ 'PhotoControl.Panel.DaysRemaining' | translate }}: {{ deadlineData.days }})
+          }
+        </div>
+      }
+    </div>
+  </ng-template>
+</ng-container>

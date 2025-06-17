@@ -1,0 +1,35 @@
+<div class="upf-detailed-data for-period">
+  <dl>
+    <dt>
+      <div class="tw-text-neutral-graphite tw-font-medium tw-text-tmp tw-leading-4">
+        {{ 'DriverStatistic.Data.EarningsForPeriod.Label' | translate }}
+      </div>
+
+      <div class="tw-text-neutral-granit tw-text-base">
+        {{ 'DriverStatistic.Data.EarningsForPeriod.Description' | translate }}
+      </div>
+    </dt>
+
+    <dd data-cy="income-for-period">
+      <ng-container
+        *ngTemplateOutlet="
+          moneyTpl;
+          context: {
+            $implicit: statistic.earnings_for_period,
+            addAmount: statistic.loss?.total?.amount,
+          }
+        "
+      ></ng-container>
+    </dd>
+  </dl>
+</div>
+
+<ng-template let-money let-addAmount="addAmount" let-displayType="displayType" #moneyTpl>
+  @if (money) {
+    <span class="tw-text-neutral-graphite">
+      {{ (money.amount + (addAmount || 0)) / 100 | upfMoney: money.currency : displayType }}
+    </span>
+  } @else {
+    &mdash;
+  }
+</ng-template>

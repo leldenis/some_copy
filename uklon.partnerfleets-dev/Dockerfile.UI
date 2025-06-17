@@ -1,0 +1,7 @@
+FROM ${AwsEcrHost}/webstack:nginx
+
+COPY dockercontext/config/push_notifications.conf  /etc/nginx/templates/push_notifications-server.conf.template
+
+WORKDIR /html
+
+COPY dist/apps/ui /html

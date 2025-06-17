@@ -1,0 +1,19 @@
+@use "map" as m;
+
+:host {
+  @include m.map-panel();
+  @apply tw-shadow-none tw-bg-transparent tw-gap-md;
+}
+
+.panel-container {
+  @apply tw-flex tw-flex-col tw-p-md tw-bg-white tw-shadow-sm;
+  @apply sm:tw-rounded-lg
+}
+
+.panel-info {
+  @include m.map-panel-info();
+}
+
+.mat-expansion-panel-spacing {
+  @apply tw-m-0;
+}

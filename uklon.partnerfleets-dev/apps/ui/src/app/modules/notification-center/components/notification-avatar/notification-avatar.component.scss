@@ -1,0 +1,11 @@
+:host {
+  @apply tw-grid tw-place-items-center tw-w-11 tw-aspect-square tw-rounded-full tw-shrink-0;
+}
+
+.mat-icon {
+  @apply tw-text-icon tw-w-5 tw-h-5 tw-text-white;
+
+  &.svg-icon {
+    @apply tw-text-neutral-granit
+  }
+}

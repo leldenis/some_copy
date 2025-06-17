@@ -1,0 +1,37 @@
+.upf-detailed-data {
+  @apply tw-flex;
+
+  @screen sm {
+    @apply tw-inline-flex tw-p-4 tw-rounded tw-shadow;
+  }
+
+  dl {
+    @apply tw-grid tw-items-start sm:tw-items-center tw-gap-x-md;
+    grid-template-columns: 1fr min-content;
+  }
+
+  dt {
+    @apply tw-grid tw-items-center tw-gap-2;
+  }
+
+  dd {
+    font-size: 1.625rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+  }
+
+  &.for-period {
+    dl {
+      grid-template-columns: max-content max-content;
+      @apply max-sm:tw-grid-cols-2;
+    }
+
+    dd {
+      @apply tw-text-end;
+    }
+  }
+}
+
+.upf-divider {
+  @apply tw-my-md;
+}

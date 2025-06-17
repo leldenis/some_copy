@@ -1,0 +1,24 @@
+{
+  "name": "@uklon/gateways/services/identity/core/types",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gateways/services/identity/core/types/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gateways/services/identity/core/types",
+        "main": "libs/gateways/services/identity/core/types/src/index.ts",
+        "packageJson": "libs/gateways/services/identity/core/types/src/package.json",
+        "tsConfig": "libs/gateways/services/identity/core/types/tsconfig.lib.json",
+        "assets": ["libs/gateways/services/identity/core/types/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

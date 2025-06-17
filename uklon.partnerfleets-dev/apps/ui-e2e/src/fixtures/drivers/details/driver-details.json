@@ -1,0 +1,23 @@
+{
+  "id":"c19c7e33-7da7-400a-b64a-967ae4f532a5",
+  "first_name":"Aqasczqp404",
+  "last_name":"Aqaanmxf404",
+  "phone":"576019807038",
+  "license":"bebuh",
+  "signal":500270,
+  "email":"404sohco@uklon.aqa",
+  "rating":500,
+  "karma":{
+    "calculation_metrics":{
+      "completed_count":0,
+      "rejected_count":0,
+      "canceled_count":0
+    },
+    "calculated_at":1666359678,
+    "orders_to_calculation":0,
+    "reset_count":0,
+    "group":"FirstPriority",
+    "value":100
+  },
+  "employed_from":1666359678
+}

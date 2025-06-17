@@ -1,0 +1,65 @@
+<div class="tw-grid tw-gap-2">
+  <div class="tw-flex tw-gap-md">
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small>{{ 'CourierHistory.Titles.Property' | translate }}</small>
+
+      @if (oldName() || newName()) {
+        <p>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.entrepreneur_name' | translate }}</p>
+      }
+
+      @for (item of allPaymentProviders; track $index) {
+        @if (oldPaymentProviders()[item] || newPaymentProviders()[item]) {
+          <p>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.PaymentProviders.' + item | translate }}</p>
+
+          @if (item === merchant.PLATON) {
+            <p>{{ 'FleetProfile.FleetHistory.ProfileChangeProperties.PaymentChannel.' + item | translate }}</p>
+          }
+        }
+      }
+    </div>
+
+    <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small class="tw-text-accent-coral-light">{{ 'CourierHistory.Titles.OldProperty' | translate }}</small>
+
+      @if (oldName() || newName()) {
+        <p>{{ oldName() || '-' }}</p>
+      }
+
+      @for (item of allPaymentProviders; track $index) {
+        @if (oldPaymentProviders()[item] || newPaymentProviders()[item]) {
+          <p>{{ oldPaymentProviders()[item]?.merchant_id || '-' }}</p>
+
+          @if (item === merchant.PLATON) {
+            @let paymentChannelId = cleanGuid(oldPaymentProviders()[item]?.payment_channel_id);
+            <p>{{ paymentChannels.paymentProviderNames()[paymentChannelId] || paymentChannelId || '-' }}</p>
+          }
+        }
+      }
+    </div>
+
+    <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+    <div class="history-item tw-basis-1/3 tw-flex-shrink-0 sm:tw-w-36">
+      <small class="tw-text-accent-mint-light">{{ 'CourierHistory.Titles.NewProperty' | translate }}</small>
+
+      @if (oldName() || newName()) {
+        <p>{{ newName() || '-' }}</p>
+      }
+
+      @for (item of allPaymentProviders; track $index) {
+        @if (oldPaymentProviders()[item] || newPaymentProviders()[item]) {
+          <p>{{ newPaymentProviders()[item]?.merchant_id || '-' }}</p>
+
+          @if (item === merchant.PLATON) {
+            @let paymentChannelId = cleanGuid(newPaymentProviders()[item]?.payment_channel_id);
+            <p>{{ paymentChannels.paymentProviderNames()[paymentChannelId] || paymentChannelId || '-' }}</p>
+          }
+        }
+      }
+    </div>
+  </div>
+
+  <mat-divider class="profile-divider"></mat-divider>
+</div>

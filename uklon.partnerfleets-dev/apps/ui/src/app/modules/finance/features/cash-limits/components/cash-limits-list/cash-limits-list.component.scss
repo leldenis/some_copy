@@ -1,0 +1,54 @@
+:host {
+  @apply tw-flex-grow;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5 tw-text-icon tw-shrink-0;
+}
+
+.list-container {
+  @apply tw-flex tw-flex-col tw-justify-between tw-gap-2;
+  @apply sm:tw-shadow-sm sm:tw-rounded sm:tw-overflow-hidden sm:tw-block;
+
+  &.mobile {
+    margin-bottom: 52px;
+  }
+}
+
+.driver-row {
+  @apply tw-grid tw-gap-2 tw-items-center tw-px-md;
+  @apply tw-text-base tw-leading-5 tw-h-14 tw-text-neutral-graphite;
+  grid-template-columns: 34px repeat(5, minmax(0, 1fr));
+
+  &.header {
+    @apply tw-hidden tw-h-12 tw-text-sm tw-text-neutral-smoke tw-relative sm:tw-grid;
+  }
+
+  &:not(last-child) {
+    @apply sm:tw-border-b tw-border-neutral-silver;
+  }
+}
+
+.driver-card {
+  @apply tw-text-base tw-leading-5 tw-shadow-sm tw-rounded tw-text-neutral-graphite;
+  @apply tw-p-2 tw-grid tw-gap-2 tw-border tw-border-transparent tw-transition;
+
+  &.selected {
+    @apply tw-border-accent-mint-light tw-shadow-none;
+  }
+
+  .limit-data {
+    @apply tw-grid tw-gap-md;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 36px;
+  }
+}
+
+.edit-menu {
+  @apply tw-fixed tw-text-base tw-bottom-0 tw-left-0 tw-right-0;
+  @apply tw-bg-neutral-silver tw-flex tw-items-center tw-justify-between tw-p-md tw-text-neutral-graphite;
+  @apply sm:tw-absolute sm:tw-inset-0 sm:tw-m-0;
+
+  .action {
+    @apply tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-font-medium;
+  }
+}

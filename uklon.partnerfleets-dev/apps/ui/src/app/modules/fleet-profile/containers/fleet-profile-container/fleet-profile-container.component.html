@@ -1,0 +1,22 @@
+@if (fleet$ | async; as fleet) {
+  @if (region$ | async; as region) {
+    <div
+      class="profile-container"
+      infiniteScroll
+      [scrollWindow]="false"
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+    >
+      <upf-fleet-profile-info [fleet]="fleet" [region]="region"></upf-fleet-profile-info>
+
+      <upf-fleet-profile-tabs
+        [fleet]="fleet"
+        [account]="account$ | async"
+        [b2bActivated]="b2bActivated$ | async"
+        [settings]="fiscalizationSettings$ | async"
+        [rroAvailable]="rroAvailable$ | async"
+        [showIndicator]="showIndicator$ | async"
+      ></upf-fleet-profile-tabs>
+    </div>
+  }
+}

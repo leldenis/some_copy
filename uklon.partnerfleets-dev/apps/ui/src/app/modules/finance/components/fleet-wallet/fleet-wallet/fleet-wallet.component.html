@@ -1,0 +1,98 @@
+@if (regionId) {
+  <section class="tw-flex tw-flex-col tw-gap-4 tw-h-full">
+    @let hideActions = regionId | includedIn: hideActionsRegions;
+    @let walletData =
+      {
+        withdrawalEnabled: rentalFleetWithdrawalEnabled$ | async,
+        entrepreneurs: entrepreneurs$ | async,
+        card: card$ | async,
+        transferSettings: transferToCardSettings$ | async,
+      };
+
+    <upf-fleet-wallet-info
+      [wallet]="wallet$ | async"
+      [card]="walletData.card"
+      [showButton]="!hideActions && !b2bActivated && walletData.withdrawalEnabled && !!walletData.card"
+      (withdraw)="handleWithdrawal($event, regionId, walletData.transferSettings)"
+      (withdrawDisabledClick)="reportUserRole(analyticsEventType.FINANCE_FLEET_WALLET_WITHDRAW_UNAVAILABLE_TAP)"
+    >
+      <mat-divider vertical class="!tw-hidden sm:!tw-block"></mat-divider>
+
+      @if (!b2bActivated && walletData.withdrawalEnabled && !hideActions && !!walletData.card) {
+        <upf-fleet-wallet-card
+          [card]="walletData.card"
+          (addCard)="handleAddCard()"
+          (deleteCard)="handleDeleteCard($event)"
+        ></upf-fleet-wallet-card>
+      }
+
+      @if (entrepreneursAdded) {
+        <upf-fleet-entrepreneur
+          [entrepreneurs]="walletData.entrepreneurs"
+          [b2bActivated]="b2bActivated"
+          [showFinanceSettings]="showFinanceSettings"
+          [balanceSplitModel]="balanceSplitModel"
+          (selectedEntrepreneurChange)="onSelectedEntrepreneurChange($event)"
+          (loadBalanceSplitModel)="loadFleetBalanceSplitModel()"
+        ></upf-fleet-entrepreneur>
+      }
+    </upf-fleet-wallet-info>
+
+    @if (!hideActions) {
+      <div class="tw-hidden tw-gap-md sm:tw-flex">
+        @if (!b2bActivated && entrepreneursAdded) {
+          <upf-info-panel class="tw-hidden sm:tw-block tw-max-w-lg">
+            {{ 'Finance.FleetEntrepreneur.PaymentCardDisclaimer' | translate }}
+          </upf-info-panel>
+        }
+      </div>
+    }
+
+    @if (balance < 0) {
+      <upf-info-panel class="tw-w-fit" color="error">
+        {{ 'Finance.Wallet.NegativeBalanceDisclaimer' | translate }}
+      </upf-info-panel>
+    }
+
+    <div class="tw-flex tw-items-center tw-gap-md">
+      <div class="tw-text-neutral-graphite tw-text-heading tw-font-medium tw-hidden sm:tw-block">
+        {{ 'Finance.Wallet.Title' | translate }}
+      </div>
+
+      <upf-fleet-wallet-transactions-filter
+        [filterKey]="filterKey"
+        (filtersChanged)="handleFilterChange($event)"
+        class="tw-w-full sm:tw-w-fit"
+      ></upf-fleet-wallet-transactions-filter>
+    </div>
+
+    @let transactions = transactions$ | async;
+
+    <div class="tw-flex tw-flex-col tw-justify-center tw-grow" [ngClass]="{ 'tw-grow': !transactions?.length }">
+      @if (transactions) {
+        @if (status$ | async; as status) {
+          @let hasMoreData = hasMoreData$ | async;
+          @if (transactions?.length) {
+            <upf-fleet-wallet-transactions-list
+              [dataSource]="transactions"
+              (cdkScrolled)="loadNext(status, hasMoreData)"
+              class="tw-grow tw-mb-13 sm:tw-mb-0"
+            ></upf-fleet-wallet-transactions-list>
+          } @else {
+            <upf-empty-state
+              [state]="(hasError$ | async) ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"
+            ></upf-empty-state>
+          }
+
+          @if (status === 'progress') {
+            <upf-progress-spinner class="tw-static tw-w-full tw-bottom-0"></upf-progress-spinner>
+          }
+        }
+      } @else {
+        <upf-empty-state
+          [state]="(hasError$ | async) ? emptyStatesRef.ERROR : emptyStatesRef.NO_DATA"
+        ></upf-empty-state>
+      }
+    </div>
+  </section>
+}

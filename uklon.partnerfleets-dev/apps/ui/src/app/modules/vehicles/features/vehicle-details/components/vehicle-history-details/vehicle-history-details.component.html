@@ -1,0 +1,290 @@
+@switch (info?.change_type) {
+  <!-- ProfileChanged -->
+  @case (historyType.PROFILE_CHANGED) {
+    <div>
+      <div class="tw-grid tw-gap-2">
+        @for (prop of vehicleChangeProps; track prop) {
+          @if (vehicleHistoryPropsMap[prop]; as props) {
+            @if (!!info.details && (info.details[props.new] || info.details[props.old])) {
+              <ng-container
+                *upfLet="
+                  prop === 'fuels'
+                    ? { was: 'Removed', is: 'Added' }
+                    : { was: 'OldProperty', is: 'NewProperty' } as propKeys
+                "
+              >
+                <div class="tw-flex tw-gap-md">
+                  <div class="history-item tw-basis-[30%] tw-flex-shrink-0 sm:tw-w-36">
+                    <small>{{ 'DriverHistory.Titles.Property' | translate }}</small>
+
+                    <p>{{ 'DriverHistory.VehicleChangeProperties.' + prop | translate }}</p>
+                  </div>
+
+                  <mat-divider vertical class="tw-shrink-0"></mat-divider>
+
+                  <div class="history-item tw-basis-[30%] tw-flex-shrink-0 sm:tw-w-36">
+                    <small class="tw-text-alert-blood-dark">
+                      {{ 'DriverHistory.Titles.' + propKeys.was | translate }}
+                    </small>
+
+                    <ng-container
+                      [ngTemplateOutlet]="changedVehicleProp"
+                      [ngTemplateOutletContext]="{ $implicit: info.details[props.old], prop }"
+                    ></ng-container>
+                  </div>
+
+                  <div class="history-item tw-basis-[30%] tw-flex-shrink-0 sm:tw-w-36">
+                    <small class="tw-text-alert-grass-light">
+                      {{ 'DriverHistory.Titles.' + propKeys.is | translate }}
+                    </small>
+
+                    <ng-container
+                      [ngTemplateOutlet]="changedVehicleProp"
+                      [ngTemplateOutletContext]="{ $implicit: info.details[props.new], prop }"
+                    ></ng-container>
+                  </div>
+                </div>
+              </ng-container>
+
+              <mat-divider class="profile-divider"></mat-divider>
+            }
+          }
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ProductAvailabilityChanged -->
+  @case (historyType.PRODUCT_AVAILABILITY_CHANGED) {
+    <div>
+      @if (productsChanged) {
+        <div class="tw-flex tw-gap-md">
+          @if (productsChanged['became_available']?.length) {
+            <div class="history-item">
+              <small class="tw-text-alert-grass-light">{{ 'DriverHistory.Titles.Enabled' | translate }}</small>
+
+              <p class="tw-flex tw-flex-wrap tw-gap-md">
+                @for (product of productsChanged['became_available']; track product) {
+                  <span>
+                    {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                  </span>
+                }
+              </p>
+            </div>
+          }
+
+          @if (productsChanged['became_available']?.length && productsChanged['became_unavailable']?.length) {
+            <mat-divider vertical class="tw-shrink-0"></mat-divider>
+          }
+
+          @if (productsChanged['became_unavailable']?.length) {
+            <div class="history-item">
+              <small class="tw-text-alert-blood-dark">{{ 'DriverHistory.Titles.Disabled' | translate }}</small>
+
+              <p class="tw-flex tw-flex-wrap tw-gap-md">
+                @for (product of productsChanged['became_unavailable']; track product) {
+                  <span>
+                    {{ 'Common.AvailableProduct.' + (product | normalizeString) | translate }}
+                  </span>
+                }
+              </p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- PictureUploaded -->
+  @case (historyType.PICTURE_UPLOADED) {
+    <div class="history-item">
+      <small class="tw-text-body">{{ 'DriverHistory.Titles.Photo' | translate }}</small>
+
+      <p>{{ 'DriverHistory.VehiclePictures.' + info.details['type'] | translate }}</p>
+    </div>
+  }
+
+  <!-- AccessToVehicleChanged -->
+  @case (historyType.ACCESS_TO_VEHICLE_CHANGED) {
+    <div class="tw-grid tw-gap-md tw-text-neutral-graphite">
+      <span class="tw-text-base tw-font-medium">
+        {{ 'DriverHistory.VehicleAccessType.' + info.details['type'] | translate }}
+      </span>
+
+      @if (info.details['type'] === vehicleAccessType.SPECIFIC_DRIVERS) {
+        @if (driversNames$ | async; as drivers) {
+          <div [@growVertical] class="tw-grid tw-gap-md tw-grid-cols-2 sm:tw-grid-cols-3">
+            @for (driver of drivers; track driver) {
+              <span>{{ driver }}</span>
+            }
+          </div>
+        }
+      }
+
+      @if (info.details['comment']) {
+        <div class="history-item">
+          <small class="tw-text-neutral-granit">
+            {{ 'DriverHistory.Titles.Comment' | translate }}
+          </small>
+
+          <p>{{ info.details['comment'] }}</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- OptionsChanged -->
+  @case (historyType.OPTIONS_CHANGED) {
+    <div class="tw-flex tw-gap-md">
+      @if (optionsChanged['added'].length) {
+        <div class="history-item">
+          <small class="tw-text-alert-grass-light">
+            {{ 'DriverHistory.Titles.Added' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (option of optionsChanged['added']; track option) {
+              <span>
+                {{ 'Common.AdvancedOptions.' + option | translate }}
+              </span>
+            }
+          </p>
+        </div>
+      }
+
+      @if (optionsChanged['removed'].length && optionsChanged['added'].length) {
+        <mat-divider vertical class="tw-shrink-0"></mat-divider>
+      }
+
+      @if (optionsChanged['removed'].length) {
+        <div class="history-item">
+          <small class="tw-text-alert-blood-dark">
+            {{ 'DriverHistory.Titles.Removed' | translate }}
+          </small>
+
+          <p class="tw-flex tw-gap-md">
+            @for (option of optionsChanged['removed']; track option) {
+              <span>
+                {{ 'Common.AdvancedOptions.' + option | translate }}
+              </span>
+            }
+          </p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Blocked list - Blocked Reason -->
+  @case (historyType.BLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details['reason']) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details['reason'], changeType: historyType.BLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+  <!-- / Blocked list - Blocked Reason -->
+
+  <!-- Blocked list - Unblocked Reason -->
+  @case (historyType.UNBLOCKED) {
+    <div class="tw-flex tw-gap-md">
+      @if (info.details['reason']) {
+        <ng-container
+          [ngTemplateOutlet]="blockedListTpl"
+          [ngTemplateOutletContext]="{ $implicit: info.details['reason'], changeType: historyType.UNBLOCKED }"
+        ></ng-container>
+      }
+    </div>
+  }
+
+  <!--  Suitable for RideHailing-->
+  @case (historyType.RIDE_HAILING_ENABLED_CHANGED) {
+    <div>
+      <span class="tw-text-base tw-font-medium">
+        {{
+          info.details['new_is_ride_hailing_enabled']
+            ? ('DriverHistory.RideHailing.Available' | translate)
+            : ('DriverHistory.RideHailing.NotAvailable' | translate)
+        }}
+      </span>
+    </div>
+  }
+}
+
+<ng-template #blockedListTpl let-reason let-changeType="changeType">
+  <div class="history-item">
+    <small class="tw-text-alert-blood-dark">
+      {{ 'BlockedList.Reason' | translate }}
+    </small>
+
+    <p class="tw-flex tw-gap-md">
+      {{
+        (reason === statusReason.OTHER ? 'BlockedList.Reasons.' + reason + changeType : 'BlockedList.Reasons.' + reason)
+          | translate
+      }}
+    </p>
+  </div>
+</ng-template>
+
+<!-- Templates -->
+<ng-template #changedVehicleProp let-data let-prop="prop">
+  @switch (prop) {
+    @case ('body_type') {
+      <p>
+        {{ data ? ('Common.BodyTypes.' + data | translate) : '-' }}
+      </p>
+    }
+
+    @case ('color') {
+      <p>
+        {{ data ? ('Common.Colors.' + data | translate) : '-' }}
+      </p>
+    }
+
+    @case ('comfort_level') {
+      <p>
+        {{ data ? ('Common.AvailableProduct.' + (data | normalizeString) | translate) : '-' }}
+      </p>
+    }
+
+    @case ('insurance_policy_actual_to') {
+      <p>
+        {{ (data | seconds2Date) || '-' }}
+      </p>
+    }
+
+    @case ('model_details') {
+      <p>{{ data['make'] || '-' }} {{ data['model'] || '' }}</p>
+    }
+
+    @case ('load_capacity') {
+      <p>
+        {{ data | translateLoadCapacity: 'full' }}
+      </p>
+    }
+
+    @case ('fuels') {
+      <p class="tw-flex tw-gap-1 tw-flex-wrap">
+        @if (data.length) {
+          @for (fuel of data; track fuel) {
+            <span class="tw-whitespace-nowrap">
+              {{ 'Common.Enums.Fuel.' + fuel | translate }}{{ $last ? '' : ', ' }}
+            </span>
+          }
+        }
+
+        @if (!data.length) {
+          <span>-</span>
+        }
+      </p>
+    }
+
+    @default {
+      <p>
+        {{ data || '-' }}
+      </p>
+    }
+  }
+</ng-template>

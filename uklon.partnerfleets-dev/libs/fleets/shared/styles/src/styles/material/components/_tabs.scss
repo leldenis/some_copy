@@ -1,0 +1,21 @@
+$border-color: #E6E7E7;
+$label-color: #73757E !important;
+$font-size: 14px;
+$line-height: 18px;
+$tab-label-padding: 16px;
+
+.mat-mdc-tab-header {
+  border-bottom: 1px solid $border-color;
+
+  .mdc-tab {
+    width: auto;
+    padding-inline: $tab-label-padding;
+    --mat-tab-header-inactive-label-text-color: #{$label-color};
+    --mat-tab-header-label-text-size: #{$font-size};
+    --mat-tab-header-label-text-line-height: #{$line-height};
+
+    &.mdc-tab-indicator--active  {
+      font-weight: 500 !important;
+    }
+  }
+}

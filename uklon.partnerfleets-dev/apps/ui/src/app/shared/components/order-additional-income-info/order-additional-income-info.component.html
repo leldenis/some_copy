@@ -1,0 +1,65 @@
+<div class="tw-bg-neutral-silver tw-text-neutral-graphite tw-grid tw-gap-2 sm:tw-p-md">
+  <div class="sm:tw-text-base tw-text-sm">
+    {{ 'VehicleOrderReportList.Details.AdditionalIncome.Title' | translate }}
+  </div>
+
+  <div class="tw-flex tw-gap-md">
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-xs sm:tw-text-sm tw-text-neutral-smoke">
+        {{ 'VehicleOrderReportList.Details.AdditionalIncome.Promo' | translate }}
+      </div>
+
+      <upf-money
+        [ngClass]="{ '!tw-text-neutral-granit': !order?.additionalIncome?.promo?.amount }"
+        [money]="order?.additionalIncome?.promo"
+      ></upf-money>
+    </div>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-xs sm:tw-text-sm tw-text-neutral-smoke">
+        {{ 'VehicleOrderReportList.Details.AdditionalIncome.Idle' | translate }}
+      </div>
+
+      <upf-money
+        [ngClass]="{ '!tw-text-neutral-granit': !order?.additionalIncome?.idle.amount }"
+        [money]="order?.additionalIncome?.idle"
+      ></upf-money>
+    </div>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-xs sm:tw-text-sm tw-text-neutral-smoke">
+        {{ 'VehicleOrderReportList.Details.AdditionalIncome.Compensation' | translate }}
+      </div>
+
+      <upf-money
+        [ngClass]="{ '!tw-text-neutral-granit': !order?.additionalIncome?.compensation?.amount }"
+        [money]="order?.additionalIncome?.compensation"
+      ></upf-money>
+    </div>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-xs sm:tw-text-sm tw-text-neutral-smoke">
+        {{ 'OrderReportInformation.Data.AdditionalIncome.Tips.Label' | translate }}
+      </div>
+
+      <upf-money
+        [ngClass]="{ '!tw-text-neutral-granit': !order?.additionalIncome?.tips?.amount }"
+        [money]="order?.additionalIncome?.tips"
+      ></upf-money>
+    </div>
+
+    <div class="tw-grid tw-gap-2">
+      <div class="tw-text-xs sm:tw-text-sm tw-text-neutral-smoke">
+        {{ 'DriverStatistic.Data.Profit.Fine.Label' | translate }}
+      </div>
+
+      <upf-money
+        [ngClass]="{
+          '!tw-text-neutral-granit': !order?.additionalIncome?.penalty?.amount,
+          '!tw-text-accent-coral-light': order?.additionalIncome?.penalty?.amount < 0,
+        }"
+        [money]="order?.additionalIncome?.penalty"
+      ></upf-money>
+    </div>
+  </div>
+</div>

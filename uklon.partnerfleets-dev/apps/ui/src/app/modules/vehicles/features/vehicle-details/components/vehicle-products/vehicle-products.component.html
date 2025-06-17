@@ -1,0 +1,47 @@
+<div class="tw-grid tw-grid-cols-12 tw-gap-4">
+  <div class="tw-flex tw-flex-col tw-col-span-12 sm:tw-col-span-9 tw-gap-2">
+    <span class="tw-text-heading">
+      {{ 'Vehicles.Details.Products.Title' | translate }}
+    </span>
+
+    <span class="tw-text-md tw-text-neutral-granit">
+      {{ 'Vehicles.Details.Products.Description' | translate }}
+    </span>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-col-span-12 sm:tw-col-span-9 tw-shadow-sm tw-divide-y tw-rounded-lg tw-text-base">
+    @if (products$ | async; as products) {
+      @for (product of products; track product) {
+        <div
+          [formGroup]="getFormGroup($index)"
+          class="tw-flex tw-items-center tw-gap-md tw-h-cell-1 tw-px-4"
+          [attr.data-cy]="'product-' + product.product.id"
+        >
+          <mat-slide-toggle
+            formControlName="is_available"
+            [attr.data-cy]="'product-' + product.product.id + '-' + product.is_available"
+          ></mat-slide-toggle>
+
+          <div>
+            {{
+              ('Common.AvailableProduct.' + (product.product?.name | normalizeString) | translate) ||
+                product.product?.name
+            }}
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="tw-col-span-12">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="productsFormArray?.invalid"
+      (click)="updateProductsConfiguration()"
+      class="sm:tw-self-start tw-w-full sm:tw-w-fit"
+    >
+      {{ 'Vehicles.VehicleAccess.SaveButton' | translate }}
+    </button>
+  </div>
+</div>

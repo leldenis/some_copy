@@ -1,0 +1,41 @@
+<div class="tw-flex tw-flex-col tw-gap-y-4 sm:tw-flex-row sm:tw-justify-between">
+  <div class="tw-flex tw-flex-col tw-gap-y-4 sm:tw-gap-4 tw-min-w-[320px]">
+    <div class="tw-flex tw-flex-row tw-gap-2">
+      <h3 class="text-title">{{ 'FleetProfile.RRO.Title' | translate }}</h3>
+
+      <a
+        class="info-link"
+        href="https://docs.google.com/document/d/1olRmrwlsHP185aeZ83UAWJjSwqZnIIWFMtx0rwjQ8FA/edit#heading=h.tnau0qpw9rfk"
+        target="_blank"
+        data-cy="how-to-activate-link"
+      >
+        <mat-icon>open_in_new</mat-icon>
+        {{ 'FleetProfile.RRO.HowActivate' | translate }}
+      </a>
+    </div>
+
+    <div>
+      <mat-slide-toggle
+        *upfLet="fiscalizationStatus$ | async as status"
+        [checked]="status"
+        (change)="toggleFiscalization($event)"
+        data-cy="fiscal-activation-toggle"
+      >
+        <span class="tw-text-base">
+          {{ (status ? 'FleetProfile.RRO.Toggle.Active' : 'FleetProfile.RRO.Toggle.Inactive') | translate }}
+        </span>
+      </mat-slide-toggle>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-flex-row tw-gap-2 btn-wrap">
+    <button mat-flat-button color="accent" (click)="openSettings()" data-cy="fiscal-setting-btn">
+      {{ 'FleetProfile.RRO.Settings' | translate }}
+    </button>
+
+    <a mat-flat-button color="accent" href="https://web.cashdesk.com.ua/login" target="_blank" data-cy="partner-link">
+      <mat-icon>open_in_new</mat-icon>
+      {{ 'FleetProfile.RRO.PartnerLink' | translate }}
+    </a>
+  </div>
+</div>

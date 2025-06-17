@@ -1,0 +1,104 @@
+<ng-container *upfLet="isMobileView$ | async as isMobileView">
+  <div
+    *upfLet="count$ | async as count"
+    infiniteScroll
+    [scrollWindow]="false"
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    class="tw-overflow-auto tw-h-full tw-flex tw-flex-col"
+  >
+    <div class="header">
+      <div class="tw-text-title tw-flex tw-items-center tw-gap-3">
+        {{ 'NotificationCenter.Title' | translate }}
+        <div class="counter" [ngClass]="{ empty: !count, 'has-custom': hasCustomNotifications$ | async }">
+          {{ count | countMask: 10 }}
+        </div>
+      </div>
+
+      <div class="tw-flex tw-items-center tw-gap-md">
+        <div class="read-all" [ngClass]="{ 'all-read': !count }" (click)="markAllNotificationsAsRead(count)">
+          <mat-icon class="tw-text-icon !tw-w-5 !tw-h-5">done_all</mat-icon>
+          {{ 'NotificationCenter.ReadAll' | translate }}
+        </div>
+
+        <mat-icon
+          class="!tw-text-2xl !tw-leading-6 tw-cursor-pointer"
+          (click)="onCloseSidenav(analyticsEvent.NOTIFICATIONS_SIDENAV_CLOSE_ICON_CLICK, count)"
+        >
+          close
+        </mat-icon>
+      </div>
+    </div>
+
+    <div
+      *upfLet="notifications$ | async as notifications"
+      (cdkScrolled)="onLoadNext()"
+      class="tw-flex tw-flex-col tw-gap-md tw-py-5 tw-grow tw-items-start"
+      [ngClass]="{ 'tw-items-center': !notifications.size }"
+    >
+      @if (pinnedNotifications$ | async; as pinned) {
+        @if (pinned.length) {
+          <div class="tw-grid tw-gap-2 tw-w-full" data-cy="pinned-notifications">
+            @for (notification of pinned; track notification.id) {
+              <upf-notification
+                [notification]="notification"
+                [isMobileView]="isMobileView"
+                [isPinned]="true"
+                (viewNotificationDetails)="onViewNotificationDetails($event)"
+                data-cy="notification"
+              ></upf-notification>
+            }
+          </div>
+        }
+      }
+
+      @if (notifications.size) {
+        @for (group of notifications | keyvalue: preserveOrder; track group.key) {
+          <div class="tw-grid tw-gap-md tw-w-full">
+            <div class="tw-text-center tw-text-sm tw-font-medium tw-text-neutral-shale">
+              {{ group.key | notificationDate: locale }}
+            </div>
+
+            <div class="tw-grid tw-gap-2">
+              @for (notification of group.value; track notification.id) {
+                <upf-notification
+                  [notification]="notification"
+                  [isMobileView]="isMobileView"
+                  (readStateChange)="toggleNotificationReadState(group.key, notification, $index, count)"
+                  (viewNotificationDetails)="onViewNotificationDetails($event, group.key, $index)"
+                  (click)="onNotificationClick($event, notification, group.key, $index, count)"
+                  data-cy="notification"
+                ></upf-notification>
+              }
+            </div>
+          </div>
+        }
+
+        @if (isLoading) {
+          <ng-container [ngTemplateOutlet]="loading"></ng-container>
+        }
+      } @else if (!isLoading) {
+        <upf-empty-state [state]="emptyState.NO_DATA_CUSTOM">
+          {{ 'NotificationCenter.EmptyState' | translate }}
+        </upf-empty-state>
+      } @else {
+        <ng-container [ngTemplateOutlet]="loading"></ng-container>
+      }
+    </div>
+
+    <div class="tw-sticky tw-bottom-0 tw-bg-white tw-p-md tw-shadow-lg tw-flex tw-justify-end">
+      <button
+        color="accent"
+        mat-flat-button
+        (click)="onCloseSidenav(analyticsEvent.NOTIFICATIONS_SIDENAV_CLOSE_CLICK, count)"
+        class="tw-w-full sm:tw-w-fit"
+      >
+        {{ 'NotificationCenter.CloseBtn' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <upf-loading-indicator [size]="36" [title]="'Common.LoadingData'"></upf-loading-indicator>
+</ng-template>

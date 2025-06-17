@@ -1,0 +1,14 @@
+@use "map" as m;
+
+:host {
+  @include m.map-panel();
+}
+
+.panel-header {
+  @apply tw-flex tw-p-md tw-gap-md tw-items-center tw-sticky tw-bottom-0 tw-bg-white;
+
+  @screen sm {
+    @apply tw-top-0;
+  }
+}
+

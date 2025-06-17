@@ -1,0 +1,23 @@
+@use "map" as m;
+
+:host {
+  @include m.map-panel(1rem, 1rem);
+  @apply tw-text-neutral-graphite max-sm:tw-pb-0;
+}
+
+.panel-header {
+  @apply tw-pb-md tw-bg-white tw-flex-col tw-gap-2 tw-sticky tw-bottom-0;
+  @apply sm:tw-static sm:tw-pb-0;
+}
+
+.panel-info {
+  @include m.map-panel-info();
+}
+
+.label {
+  @apply tw-text-base tw-text-neutral-granit;
+}
+
+.rating-icon {
+  @apply tw-w-md tw-h-md tw-text-tmp tw-leading-4 tw-text-yellow-500;
+}

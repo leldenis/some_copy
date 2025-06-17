@@ -1,0 +1,69 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+.mat-dialog-no-padding {
+  .mat-mdc-dialog-container {
+    padding: 0;
+  }
+}
+
+.merchant-info-dialog {
+  max-width: 100% !important;
+  @apply tw-p-md;
+  @apply sm:tw-max-w-[80vw] sm:tw-p-0;
+}
+
+.mat-mdc-dialog-content {
+  letter-spacing: normal !important;
+}
+
+.navigate-link {
+  @include m.set-font(f.px2rem(14), f.px2rem(17), 400, var(--light-color));
+  cursor: pointer;
+}
+
+.mat-drawer-backdrop {
+  background-color: transparent;
+}
+
+.mat-expansion-indicator::after {
+  @apply tw-border-neutral-graphite;
+}
+
+.mat-expansion-panel-content {
+  @apply tw-text-base;
+}
+
+.mat-content.mat-content-hide-toggle {
+  margin-right: 0 !important;
+}
+
+.autocomplete-viewport .cdk-virtual-scroll-content-wrapper {
+  width: 100%;
+}
+
+.shell-menu {
+  @apply tw-max-h-80 tw-mt-1.5 tw-ml-md sm:tw-ml-0;
+  width: calc(21.25rem - 32px);
+  max-width: 100% !important;
+
+  @screen sm {
+    width: auto;
+  }
+
+  &.language {
+    @apply tw-ml-md tw-mt-0;
+
+    @screen sm {
+      width: calc(17.5rem - 32px);
+    }
+  }
+
+  &.phone {
+    @apply tw-ml-md tw-mt-0 ;
+
+    @screen sm {
+      @apply tw-w-auto;
+    }
+  }
+}

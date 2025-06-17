@@ -1,0 +1,41 @@
+@use '../functions';
+
+@mixin upfData {
+  .upf-data {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(0, max-content));
+    grid-row-gap: functions.remify(4);
+
+    dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+      grid-column-gap: functions.remify(4);
+      grid-row-gap: functions.remify(1);
+      grid-auto-rows: max-content;
+
+      dt {
+        min-width: functions.remify(21.5);
+        grid-column: span 1;
+        grid-row: 1;
+      }
+
+      dd {
+        min-width: functions.remify(21.5);
+        grid-column: span 1;
+        grid-row: 2;
+      }
+    }
+  }
+}
+
+@mixin upfDataGroup {
+  .upf-data-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+    grid-column-gap: functions.remify(6);
+    grid-auto-rows: max-content;
+
+    @include upfData;
+  }
+
+}

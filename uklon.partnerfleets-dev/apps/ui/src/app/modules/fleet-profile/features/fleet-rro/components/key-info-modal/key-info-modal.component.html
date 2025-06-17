@@ -1,0 +1,50 @@
+<div data-cy="key-info-modal">
+  <header>
+    <h3>
+      {{ 'FleetProfile.RRO.Modals.KeyInfo.Title' | translate: { name: data?.display_name } }}
+    </h3>
+
+    <button mat-icon-button (click)="handlerCancel()">
+      <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+    </button>
+  </header>
+
+  <section class="content">
+    <div class="item">
+      <span class="title">{{ 'FleetProfile.RRO.Modals.KeyInfo.KeyId' | translate }}</span>
+      <span>{{ data.key_id }}</span>
+    </div>
+
+    <div class="item">
+      <span class="title">{{ 'FleetProfile.RRO.Modals.KeyInfo.Serial' | translate }}</span>
+      <span>{{ data.serial }}</span>
+    </div>
+
+    <div class="item">
+      <span class="title">{{ 'FleetProfile.RRO.Modals.KeyInfo.PublicKey' | translate }}</span>
+      <span>{{ data.public_key }}</span>
+    </div>
+
+    <div class="item">
+      <span class="title">{{ 'FleetProfile.RRO.Modals.KeyInfo.DRFO' | translate }}</span>
+      <span>{{ data.drfo }}</span>
+    </div>
+
+    <div class="item">
+      <span class="title">{{ 'FleetProfile.RRO.Modals.KeyInfo.Expired' | translate }}</span>
+      <span>{{ data.expiration_date ? (data.expiration_date | seconds2Date: 'dd.MM.yyyy HH:mm:ss') : '-' }}</span>
+    </div>
+  </section>
+
+  <footer>
+    <button
+      mat-flat-button
+      class="action-btn"
+      color="accent"
+      (click)="handlerCancel()"
+      data-cy="key-info-modal-btn-close"
+    >
+      {{ 'Common.Buttons.B_Close' | translate }}
+    </button>
+  </footer>
+</div>

@@ -1,0 +1,33 @@
+<upf-info-panel color="warn" [hideToggle]="false" [expanded]="false">
+  <ng-template upfInfoPanelIcon>
+    <mat-icon class="outlined">schedule</mat-icon>
+  </ng-template>
+
+  <ng-template upfInfoPanelTitle>
+    {{ 'DriverRestriction.DelayedTitle' | translate }}
+  </ng-template>
+
+  <ul class="tw-grid tw-gap-2 -tw-ml-7">
+    @for (restriction of restrictions(); track restriction) {
+      @for (item of restriction.restriction_items; track item) {
+        <li class="tw-flex tw-gap-2">
+          <upf-dot-marker-icon className="tw-text-[#EEBA14]" />
+
+          <div class="tw-grid">
+            <div>
+              {{ restrictionReasonIntl.get(restriction.restricted_by) | translate }}
+              ({{ restrictionTypeIntl.get(item.type) | translate }})
+            </div>
+
+            @if (item?.actual_from) {
+              <div class="tw-font-medium tw-text-alerts-text-yellow">
+                {{ 'DriverRestriction.ActualFrom' | translate }}
+                {{ item.actual_from | uklToClientDate | date: 'dd.MM.YYYY HH:mm' }}
+              </div>
+            }
+          </div>
+        </li>
+      }
+    }
+  </ul>
+</upf-info-panel>

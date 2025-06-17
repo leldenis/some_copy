@@ -1,0 +1,244 @@
+<cdk-table
+  multiTemplateDataRows
+  matSort
+  matSortStart="desc"
+  [formGroup]="formGroup"
+  [dataSource]="drivers"
+  class="flt-table"
+  data-cy="table"
+>
+  <ng-container cdkColumnDef="IsWithdrawAll">
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell--large tw-col-span-6 sm:tw-col-span-9"
+      data-cy="withdraw--all-to-fleet"
+    >
+      <div class="tw-flex tw-flex-col tw-gap-2 tw-justify-center">
+        <mat-checkbox
+          formControlName="isWithdrawAll"
+          color="primary"
+          disableRipple
+          (change)="handleIsWithdrawAllChange($event)"
+        >
+          <span class="tw-text-base tw-font-medium sm:tw-font-normal">
+            {{ 'Finance.DriversBalances.List.WithdrawUntil' | translate }}
+          </span>
+        </mat-checkbox>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Remaining">
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell--large tw-col-span-6 sm:tw-col-span-3"
+    >
+      <div class="tw-flex tw-items-center tw-gap-2">
+        <mat-icon
+          [svgIcon]="icons.info"
+          [ngxTippy]="'Finance.DriversBalances.List.Tooltip' | translate"
+          [tippyProps]="{ trigger: 'click', maxWidth: '13rem' }"
+          class="tw-text-accent-mint-light"
+          data-cy="withdraw-all-to-fleet-tooltip"
+        ></mat-icon>
+
+        <mat-form-field floatLabel="always" hideRequiredMarker class="tw-grow auto-width">
+          <mat-label class="sm:tw-hidden">
+            {{ 'DriverBalancesList.Remaining.Caption' | translate }}
+          </mat-label>
+
+          @if (rtlCurrencies[driversCurrency]) {
+            <span matTextSuffix>
+              {{ driversCurrency | currencySymbol }}
+            </span>
+          } @else {
+            <span class="tw-pr-1" matTextPrefix>
+              {{ driversCurrency | currencySymbol }}
+            </span>
+          }
+
+          <input
+            matInput
+            formControlName="remaining"
+            [mask]="'separator.2'"
+            placeholder="0.00"
+            (input)="handleRemainingChange()"
+            (blur)="reportWithdrawalSum()"
+            autocomplete="off"
+            data-cy="amount-control"
+            type="tel"
+          />
+        </mat-form-field>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Driver">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-4">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <span class="tw-text-body tw-text-neutral-smoke" data-cy="header-cell-driver">
+          {{ 'Finance.DriversBalances.List.Driver' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let driver" class="flt-table-cell flt-table-cell--visible tw-col-span-7 sm:tw-col-span-4">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <a
+          [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.driver_id]"
+          class="tw-flex tw-flex-col tw-justify-center tw-gap-1 tw-w-fit"
+        >
+          <span class="tw-font-medium sm:tw-font-normal hover:tw-underline focus:tw-underline">
+            {{ driver?.last_name }} {{ driver?.first_name }}
+          </span>
+        </a>
+
+        <a
+          href="tel:{{ driver?.phone }}"
+          class="tw-text-accent-mint-light tw-w-fit tw-text-md hover:tw-underline focus:tw-underline sm:tw-text-base sm:tw-text-neutral-granit"
+        >
+          {{ driver?.phone }}
+        </a>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Divider">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell flt-table-cell--divider"></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let driver"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell--divider tw-mx-2 tw-col-span-12 tw-border-t tw-border-solid tw-border-neutral-silver"
+    ></cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Signal">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <span class="tw-text-body tw-text-neutral-smoke" data-cy="header-cell-signal">
+          {{ 'Finance.DriversBalances.List.Signal' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let driver"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell--large tw-col-span-7 tw-order-3 sm:tw-order-none sm:tw-col-span-3"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span class="tw-font-medium tw-text-md tw-text-neutral-granit sm:tw-hidden">
+          {{ 'Finance.DriversBalances.List.Signal' | translate }}
+        </span>
+        <span
+          class=""
+          [ngClass]="{
+            'tw-text-accent-coral-light': driver?.wallet?.balance?.amount < 0,
+          }"
+        >
+          {{ driver?.signal }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Balance">
+    <cdk-header-cell *cdkHeaderCellDef mat-sort-header class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center tw-gap-1">
+        <span class="tw-text-body tw-text-neutral-smoke" data-cy="header-cell-balance">
+          {{ 'Finance.DriversBalances.List.Balance' | translate }}
+        </span>
+
+        <upf-sort-icon [direction]="sort.direction"></upf-sort-icon>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let driver"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2"
+      [attr.data-cy]="'balance-cell'"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span class="tw-font-medium tw-text-md tw-text-neutral-granit sm:tw-hidden">
+          {{ 'Finance.DriversBalances.List.Balance' | translate }}
+        </span>
+        <span
+          class=""
+          [ngClass]="{
+            'tw-text-accent-coral-light': driver?.wallet?.balance?.amount < 0,
+          }"
+          [attr.data-cy]="driver?.wallet?.balance?.amount < 0 ? 'driver-balance-negative' : 'driver-balance-positive'"
+        >
+          {{ driver?.wallet?.balance?.amount / 100 | upfMoney: driver?.wallet?.balance?.currency }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="Sum" formArrayName="withdrawals">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <span class="tw-text-body tw-text-neutral-smoke" data-cy="header-cell-sum">
+          {{ 'Finance.DriversBalances.List.EnterAmount' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let driver; let index = dataIndex"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell--large tw-col-span-5 tw-order-4 sm:tw-order-none sm:tw-col-span-3"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <div class="sm:tw-flex sm:tw-ml-7">
+          <mat-form-field floatLabel="always" hideRequiredMarker class="tw-grow auto-width">
+            <mat-label class="sm:tw-hidden">
+              {{ 'Finance.DriversBalances.List.EnterAmount' | translate }}
+            </mat-label>
+
+            @if (rtlCurrencies[driversCurrency]) {
+              <span matTextSuffix>
+                {{ driversCurrency | currencySymbol }}
+              </span>
+            } @else {
+              <span class="tw-pr-1" matTextPrefix>
+                {{ driversCurrency | currencySymbol }}
+              </span>
+            }
+
+            <input
+              matInput
+              [formControlName]="index"
+              [mask]="'separator.2'"
+              [prefix]="shouldShowPrefix(input.value) ? '-' : ''"
+              placeholder="0.00"
+              (input)="handleDriverWalletAmountChange(index)"
+              type="tel"
+              autocomplete="off"
+              #input
+              data-cy="amount-input"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    *cdkHeaderRowDef="columns"
+    class="flt-table-row flt-table-header-row tw-bg-neutral-white"
+    [attr.data-cy]="'header-row'"
+  ></cdk-header-row>
+
+  @if (walletTransfersAllowed) {
+    <cdk-row *cdkRowDef="let driver; columns: withdrawAllColumns; when: isFirstRow" class="flt-table-row"></cdk-row>
+  }
+
+  <cdk-row
+    *cdkRowDef="let driver; columns: columns; let index = dataIndex"
+    [ngClass]="{
+      'flt-selected-row': selection.isSelected(index),
+      'flt-remove-top-border': noTopBorder(index),
+    }"
+    class="flt-table-row flt-selectable"
+    [attr.data-cy]="'row-' + driver.phone + (selection.isSelected(index) ? '-selected-row' : '')"
+  ></cdk-row>
+</cdk-table>

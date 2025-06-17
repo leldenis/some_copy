@@ -1,0 +1,44 @@
+<div class="tw-grid tw-gap-2">
+  <div class="tw-text-sm">{{ 'Orders.Trips.List.Merchant' | translate }}</div>
+  <upf-money [money]="merchantsProfit"></upf-money>
+</div>
+
+@if (merchantsProfit.amount > 0) {
+  <div class="tw-grid tw-gap-2">
+    @for (entrepreneur of groupedSplits | keyvalue; track $index) {
+      <div class="tw-grid tw-gap-2">
+        <div class="tw-text-sm tw-leading-5 tw-font-medium">{{ entrepreneur.key }}</div>
+
+        <div class="tw-flex tw-flex-col tw-gap-0.5">
+          <div class="merchant-row tw-text-sm tw-leading-5 tw-text-neutral-smoke">
+            <div>{{ 'Orders.Trips.List.Merchant' | translate }}</div>
+            <div class="tw-text-left">{{ 'Orders.Trips.List.Cost' | translate }}</div>
+            <div class="tw-text-left">{{ 'Orders.Trips.List.Commission' | translate }}</div>
+          </div>
+
+          @for (split of entrepreneur.value; track $index) {
+            <div class="merchant-row tw-text-sm tw-leading-5">
+              <div>{{ split.payment_provider }} {{ split.merchant_id }}</div>
+
+              <upf-money
+                class="tw-text-left tw-font-medium"
+                [money]="split.total"
+                [ngClass]="{ 'tw-text-neutral-granit': !split.total.amount }"
+              ></upf-money>
+
+              <upf-money
+                class="tw-text-left tw-font-medium"
+                [money]="split?.fee"
+                [ngClass]="{ 'tw-text-neutral-granit': !split?.fee?.amount }"
+              ></upf-money>
+            </div>
+          }
+        </div>
+
+        @if (!$last) {
+          <mat-divider></mat-divider>
+        }
+      </div>
+    }
+  </div>
+}

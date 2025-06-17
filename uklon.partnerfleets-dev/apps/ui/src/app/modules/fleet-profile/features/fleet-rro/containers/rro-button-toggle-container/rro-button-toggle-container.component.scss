@@ -1,0 +1,39 @@
+:host {
+  @apply tw-grid tw-gap-4 sm:tw-block;
+
+  height: calc(100% - 150px);
+}
+
+.upload-btn {
+  ::ng-deep {
+    .mdc-button__label {
+      @apply tw-w-fit;
+    }
+  }
+}
+
+.tab-wraps {
+  @apply tw-flex tw-flex-col tw-gap-4;
+
+  @screen sm {
+    @apply tw-flex-row tw-justify-between tw-items-center tw-mt-8 tw-mb-4;
+  }
+}
+
+.tabs {
+  @apply tw-text-base tw-grid tw-grid-cols-2;
+
+  @screen sm {
+    @apply tw-items-center;
+  }
+
+  button {
+    @apply tw-px-md tw-py-3 tw-border;
+    @apply tw-border-neutral-silver tw-text-neutral-graphite tw-bg-neutral-silver;
+    @apply tw-transition-colors tw-duration-300;
+
+    &.active {
+      @apply tw-text-accent-mint-light tw-border-accent-mint-light tw-bg-[#EBFAF6];
+    }
+  }
+}

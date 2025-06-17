@@ -1,0 +1,4053 @@
+{
+  "Account": {
+    "Details": {
+      "CreatePassword": "Create password",
+      "Email": "Fleet email",
+      "Language": "Language",
+      "Mfa": {
+        "DisabledNotification": "Two-factor authentication disabled",
+        "EnabledNotification": "Two-factor authentication enabled",
+        "Subtitle": "Additional protection for fleet data and your account. Each time you enter the fleet, you will need to enter a password and a confirmation code from SMS.",
+        "Title": "Two-factor authentication"
+      },
+      "Password": "Password",
+      "PasswordInfoPanel": "<b>Important!</b> The created password will also be valid for logging in Uklon Driver",
+      "Phone": "Phone number",
+      "SmsInfoPanel": "<b>Login to your account</b> is via <b>SMS code</b> sent to your phone number. To log in using a password, you must create a password in profile"
+    },
+    "MfaConfirmModal": {
+      "Disable": {
+        "Subtitle": "Turning off two-factor authentication will decrease the security level of your account.",
+        "Title": "Turn off two-factor authentication?",
+        "YesButton": "Disable two-factor authentication",
+        "YesButtonShort": "Disable"
+      },
+      "Enable": {
+        "Subtitle": "Add another layer of protection to your account. If you enable this setting, we will send you a security code when you enter your account.",
+        "Title": "Enable two-factor authentication",
+        "YesButton": "Enable two-factor authentication",
+        "YesButtonShort": "Enable"
+      },
+      "NoButton": "Cancel"
+    },
+    "Title": "Personal Information",
+    "UserAgreementLink": "Terms and conditions"
+  },
+  "AddCard": {
+    "LegalNotice": "The security of processing data of payment cards and payments is determined by the fact that all data is transmitted via a secure ssl protocol and stored in accordance with the requirements of Visa and MasterCard payment systems. The Uklon taxi ordering service does not receive, store or process payment card data on its side, but displays native interfaces for entering payment information from banks or other payment systems. Thus, for its part, the Site Administration guarantees the absolute security of payments and storage of data of payment card holders."
+  },
+  "Auth": {
+    "Description": "Business development, loyalty programs and financial reporting",
+    "Forbidden": {
+      "AccessDenied": "Access denied",
+      "AccessDeniedDescriptionEnd": "to set up fleet",
+      "AccessDeniedDescriptionStart": "You do not have permission to use this resource.",
+      "SendRequest": "Submit a request"
+    },
+    "Login": {
+      "CredentialError": "Incorrect login or password",
+      "CredentialErrorOTC": "Incorrect login or code",
+      "EnterOTC": "Enter the 4-digit code that was sent to the number {{ phone }}",
+      "EnterPassword": "Enter your account password",
+      "EnterPhone": "Enter your phone number to log in",
+      "Entrance": "Log in",
+      "EntranceDescription": "Enter your phone number and password to log in",
+      "LoggedOutError": "You have been logged out, please log in again",
+      "PasswordLabel": "Password",
+      "PasswordMaxLength": "You have entered too long password",
+      "PasswordRecoveryLink": "Forgot password ?",
+      "PhoneLabel": "Phone number",
+      "PublicOfferAndPrivacyPolicy": "By clicking the \"Sign in\" button, you confirm that you have read, agreed, and accepted the terms of the <a href=\"https://uklon.com.ua/en/user-agreement-en/?tab=offer\" class=\"tw-text-accent-mint-light\" target=\"_blank\">Public Offer</a> and the <a href=\"https://uklon.com.ua/en/user-agreement-en\" class=\"tw-text-accent-mint-light\" target=\"_blank\">Privacy Policy</a> and give your consent to processing your personal data.",
+      "RememberMe": "Remember me",
+      "ResetPasswordDialog": {
+        "Message": "Your password will be deleted and all next logins to your account will be done using an SMS code. You can set up a login using a password through your personal account.",
+        "Question": "Send an SMS code to enter your account?",
+        "SendBtn": "Send"
+      },
+      "ServerError": "Service is temporarily unavailable",
+      "ThrottlingError": "The number of attempts is over. Please try again later"
+    },
+    "NoAccount": "Still don't have an account?",
+    "PasswordRecovery": {
+      "BackToAuthenticationLink": "Back to login page",
+      "CodeControl": {
+        "Label": "Enter the confirmation code received from SMS",
+        "MobileLabel": "Confirmation code"
+      },
+      "Errors": {
+        "HasNoAttemptsLeft": "You have used {{maxAttempts}} attempts. If you can't log in, contact your Uklon manager",
+        "InvalidConfirmationCode": "Wrong code (remaining attempts: {{attemptsLeft}})",
+        "InvalidPhoneNumber": "Wrong phone number",
+        "PasswordMissMatch": "Passwords do not match",
+        "SomethingWentWrong": "Oops, An error occurred, please try again. If error repeat again, contact our support"
+      },
+      "NavigateToPreviousStepLink": "Back",
+      "Notifications": {
+        "PasswordRecoveryConfirmationSuccess": "Password changed successfully"
+      },
+      "PasswordConfirmationControl": {
+        "Label": "Confirm the password"
+      },
+      "PasswordConfirmation": {
+        "Description": "Enter the new password that you will use to log in to the system"
+      },
+      "PasswordControl": {
+        "Label": "New password"
+      },
+      "PhoneNumberControl": {
+        "Label": "Phone number",
+        "Timer": "Resend via {{time}}"
+      },
+      "ProceedButton": "Proceed",
+      "ReceiveCode": {
+        "Description": "Enter the phone number on which you registered, an SMS with a confirmation code will be sent to it"
+      },
+      "ReceiveRecoveryCodeButton": "Submit code",
+      "ReceiveRecoveryCodeButtonAgain": "Submit code again",
+      "RecoverPasswordButton": "Change password",
+      "Title": "Forgot your password?",
+      "ValidationCriterionMessage": {
+        "Digits": "Required number",
+        "LowerCase": "Lowercase letter required (Latin or Cyrillic)",
+        "MinMaxLength": "Length from 8 to 36 characters",
+        "UpperCase": "Mandatory capital letter (Latin or Cyrillic)"
+      }
+    },
+    "PasswordRecoveryError": {
+      "AccountNotFount": "Account not found. Please contact support",
+      "IncorrectPassword": "The password you entered does not match security requirements. You must use a more complicated password",
+      "InvalidContact": "You have entered an incorrect phone number. Check and try again",
+      "InvalidVerificationCode": "The SMS verification code was entered incorrectly. Try again",
+      "PasswordDuplicateConflict": "The use of the current password is prohibited. To reset, enter a new password",
+      "SendCodeRequestLimitReached": "You have reached your limit. Please try again later or contact support"
+    },
+    "Request": "Submit a request",
+    "ResetPassword": {
+      "ConfirmPassword": "Confirm password",
+      "CreateSaveBtn": "Create",
+      "CreateTitle": "Creating a password",
+      "NewPassword": "New password",
+      "Notifications": {
+        "Error": "Server is not available",
+        "PasswordIsAlreadyUsed": "You are currently using the specified password",
+        "Success": "Password successfully changed",
+        "SuccessCreate": "Password successfully created"
+      },
+      "SaveBtn": "Change password",
+      "Subtitle": "Choose a strong password and don't use it for other accounts",
+      "Title": "Change password",
+      "ValidationError": {
+        "digits": "Required digit",
+        "lowerCase": "Mandatory lowercase letter (Latin or Cyrillic)",
+        "minMaxLength": "Length from 8 to 36 characters",
+        "PasswordMismatch": "Passwords do not match",
+        "upperCase": "Mandatory capital letter (Latin or Cyrillic)"
+      }
+    },
+    "Verify": {
+      "InvalidCode": "Unfortunately, the code is incorrect. Please try again",
+      "NoCode": "Didn't get code?",
+      "SendAgain": "Send again",
+      "SendAgainIn": "Send again in",
+      "Subtitle": "We have sent the code to {{contact}}.<br> Check your phone and enter the code in the field.",
+      "Title": "Log in"
+    }
+  },
+  "BlockedList": {
+    "AccessDenied": "Access denied",
+    "Blocked": "Blocked",
+    "Blocking": "Block",
+    "Cars": {
+      "CarBlocked": "Car is blocked",
+      "CarUnblocked": "Car unblocked",
+      "Filters": {
+        "All": "All cars",
+        "Blocked": "Blocked cars"
+      }
+    },
+    "Contacts": {
+      "ContactBlocked": "Contact is blocked",
+      "ContactUnblocked": "Contact unblocked"
+    },
+    "Drivers": {
+      "DriverBlocked": "Driver is blocked",
+      "DriverUnblocked": "Driver unblocked",
+      "Filters": {
+        "All": "All drivers",
+        "Blocked": "Blocked drivers"
+      }
+    },
+    "ProfileBlocked": "Profile blocked",
+    "Reason": "Reason",
+    "Reasons": {
+      "AccountSharing": "Providing an account to third parties for work",
+      "ActiveDeferredOrdersLimit": "The number of active orders has been exceeded (Scheduled orders)",
+      "BypassBlocking": "Blocking avoidance",
+      "ByPhotoControl": "Photocontrol not passed",
+      "BySelfEmployment": "The flag of self-employed driver is missing",
+      "BySelfEmploymentOrUklonCollaboration": "There is no flag of self-employed and Uklon is not set as commission agent",
+      "ByTaxiLicenseAbsence": "No car license",
+      "ByUklonCollaboration": "Uklon is not set as commission agent",
+      "ByUserBlock": "User is blocked",
+      "ConflictResolved": "Conflict resolved",
+      "CriticalState": "Car condition is critical",
+      "DriverProfileDataBlocked": "Editing profile data and removing a driver from the fleet is not available while he is blocked",
+      "FakePhotoshop": "Removing damage with Photoshop",
+      "ForgeryDocuments": "Documents/photos forgery",
+      "FraudActionClosed": "Fraud issue is closed",
+      "FraudActionResolved": "Fraud issue is closed",
+      "FraudActions": "Systematic fraud",
+      "FraudActionWithOrder": "Fraud with orders",
+      "LowRating": "Critical rating and reviews",
+      "ManipulationsIssueClosed": "Fraud issue is closed",
+      "MissBlocking": "Erroneous blocking",
+      "OtherBlocked": "Violation of service rules",
+      "OtherUnblocked": "Matches the requirements of the service",
+      "PhotoControlPassed": "Photo control passed",
+      "SystematicManipulations": "Systematic fraud",
+      "VehicleProfileDataBlocked": "Editing profile data and removing a blocked car from the fleet is not available",
+      "VehicleRepaired": "Car repaired"
+    },
+    "Unblocking": "Unblock"
+  },
+  "Bonuses": {
+    "Commissions": {
+      "Errors": {
+        "RequirementsNotDone": "The program requirements are not met"
+      },
+      "List": {
+        "CurrentCommission": "Current commission",
+        "CurrentValue": "Current indicators",
+        "DriverRating": "Driver rating",
+        "FullName": "Last name and first name",
+        "Indicators": "Indicators",
+        "MinCommission": "Minimum commission",
+        "MinOrdersForMinCommission": "Number of orders",
+        "MinRating": "Rating requirements",
+        "OrdersCompleted": "Completed orders",
+        "OrdersOfMinCommission": "Orders for min commission",
+        "Period": "Period",
+        "Phone": "Phone number",
+        "ProfitBudget": "Savings budget",
+        "Program": "Program name",
+        "Progress": "Enrollment of progress",
+        "ProgressActive": "When the program is active",
+        "ProgressAlways": "Always",
+        "RatingAndRequirements": "Rating and requirements",
+        "Requirements": "Requirements",
+        "RequirementsFrom": "from",
+        "Signal": "Signal",
+        "Tooltip": {
+          "ProfitBudget": "Saving budget – the total amount of savings allocated within the commission program.",
+          "ProgressActive": "\"When the program is active\" - completed orders will be added to the progress of the program if it is the most profitable for the driver amongst all programs.",
+          "ProgressAlways": "\"Always\" - as long as the program matches the order parameters, they will be taken into account even if another program is active.",
+          "UsedProfitBudget": "Saving Amount – The actual amount saved within the commission program."
+        },
+        "UsedProfitBudget": "Saving amount"
+      },
+      "Program": {
+        "Archived": {
+          "Title": "Completed commission programs are displayed for the last 30 days"
+        },
+        "Tooltip": {
+          "Rule1": "Commission programs are programs for drivers that allow them to receive a reduced commission after completing the required number of orders",
+          "Rule2": "By completing orders during the program, the driver receives a lower commission percentage for all trips until the end of the program"
+        },
+        "WhatIsCommissionProgram": "What are commission programs?"
+      },
+      "Tabs": {
+        "Active": "Active",
+        "Archived": "Completed",
+        "Planned": "Planned"
+      }
+    },
+    "CSV": {
+      "Filename": "Car bonuses - {{today}}",
+      "HeaderRow": {
+        "CancellationPercentage": "Cancellation percentage by car",
+        "Car": "Car",
+        "DriverOnCar": "Car driver",
+        "GuaranteedEarnings": "Achieved",
+        "LicencePlate": "License plate",
+        "OrdersCompleted": "Accounted orders",
+        "ProgramRequirements": "Branding program requirements"
+      },
+      "Notification": {
+        "Error": "The data could not be loaded, please reload the page and try again. If you see the error again - inform the support service.",
+        "Success": "Data successfully uploaded to file {{filename}}"
+      },
+      "Row": {
+        "Program": {
+          "CancellationPercentage": "Cancellation percentage - up to {{0}}",
+          "Days": "Days of the week - {{days}}",
+          "Maximum": "Maximum - {{value}} {{currency}}",
+          "Period": "Period - {{from}} - {{to}}",
+          "Rating": "Rating - from {{value}}"
+        }
+      }
+    },
+    "Filters": {
+      "Period": {
+        "Label": "Period"
+      }
+    },
+    "Program": {
+      "BrandingType": {
+        "Label": "Branding type",
+        "Options": {
+          "All": "All",
+          "Business": "Business",
+          "ClassicOld": "Classic Old / Old Brand",
+          "Green": "Green",
+          "Inclusive": "Inclusive",
+          "Marine": "Sea (with Lifebuoy)",
+          "Metalist": "Metalist",
+          "NewYear": "New Year",
+          "NewYear2023": "New Year 2023",
+          "Patriotic": "Patriotic",
+          "ThreeTrips70Persents": "70% Off on First 3 Orders",
+          "ValentineDay": "Valentine's Day / February 14th",
+          "YourMove": "Classic / Your Move"
+        }
+      },
+      "CancellationPercentage": "cancellations",
+      "Days": "Days of the week",
+      "Details": {
+        "CancellationPercentage": "Cancellations by car",
+        "CurrentValues": "Current indicators",
+        "Requirement": "Requirements",
+        "Showcases": "Indicators"
+      },
+      "Maximum": "Maximum",
+      "Percent": {
+        "To": "under {{value}}"
+      },
+      "Period": "Period",
+      "Rating": {
+        "DriverTitle": "Driver rating",
+        "From": "over {{value}}",
+        "Title": "Rating"
+      },
+      "Requirements": {
+        "Subtitle": "The data is updated once a day",
+        "Title": "Current branding program requirements"
+      }
+    },
+    "Tabs": {
+      "CommissionPrograms": "Commission programs",
+      "Vehicle": "Bonuses for branding (old)",
+      "BrandingBonus": "Bonuses for branding"
+    },
+    "VehicleList": {
+      "CancellationPercentage": "Driver cancellation percentage",
+      "CancellationPercentageByCar": "Cancellation percentage by car",
+      "CancellationPercentageByCarTooltip": "Calculation is done on a per-car and program duration basis",
+      "CurrentOrdersCompleted": "Completed orders",
+      "DriverOnCar": "Car driver",
+      "DriverRating": "Current driver rating",
+      "GuaranteedEarnings": "Achieved",
+      "LicencePlace": {
+        "Subtitle": "Car",
+        "Title": "License plate"
+      },
+      "OrdersCompleted": "Accounted orders",
+      "OrdersCompletedTooltip": "Accounted only orders in which the driver's parameters met the program's requirements at the time the orders were executed",
+      "Program": {
+        "Orders": "orders"
+      },
+      "Tooltips": {
+        "BrandedNotAvailable": "Currently, car without branding"
+      }
+    }
+  },
+  "CannotRemoveDialog": {
+    "Courier": {
+      "Buttons": {
+        "NavigateToWithdraw": "Go to withdrawal"
+      },
+      "NavigationPath": "Finance > Couriers' balances",
+      "Text": "You cannot delete a courier with a non-zero balance. First, withdraw funds from the courier's balance on the page:",
+      "Title": "Unable to delete courier"
+    },
+    "Driver": {
+      "Buttons": {
+        "NavigateToWithdraw": "Go to withdrawal"
+      },
+      "NavigationPath": "Finance > Drivers balances",
+      "Text": "You cannot delete a driver with a non-zero balance. First, withdraw funds from the driver's balance on the page:",
+      "Title": "Unable to delete driver"
+    }
+  },
+  "CannotRemoveDriverDialog": {
+    "Buttons": {
+      "NavigateToWithdraw": "Go to withdrawal"
+    },
+    "NavigationPath": "Finance > Drivers balances",
+    "Text": "You cannot delete a driver with a non-zero balance. First, withdraw funds from the driver's balance on the page:",
+    "Title": "Unable to delete driver"
+  },
+  "Common": {
+    "Abbreviation": {
+      "Hours": "{{hours}} h",
+      "Minutes": "{{minutes}} m"
+    },
+    "Abbreviations": {
+      "Kilometers": "km"
+    },
+    "AdvancedOptions": {
+      "AirConditioner": "Air conditioning",
+      "BabyBoosterSeat": "Booster",
+      "BabyChair": "Children's chair",
+      "BoosterCable": "Terminals",
+      "CovidProtected": "Covid protection",
+      "ElectricEngine": "Electric motor",
+      "InclusiveEquipment": "Inclusive equipment",
+      "Licensed": "Taxi license",
+      "MarketingCampaign": "Marketing campaign",
+      "TyreCompressor": "Compressor"
+    },
+    "All": "All",
+    "AvailableProduct": {
+      "business": "Business",
+      "buyoutcourier": "With redemption",
+      "cargo": "Cargo",
+      "comfort": "Comfort ",
+      "comfort+": "Comfort+",
+      "comfortplus": "Comfort+",
+      "courierbuyout": "Delivery (with buyout)",
+      "courierdelivery(todoor)": "Delivery (Door-door)",
+      "covidprotected": "AntiCOVID",
+      "delivery(byaddress)": "Delivery (Address-address)",
+      "deliverycourier": "Door - to - door",
+      "delivery(extraweight)": "Additional load",
+      "delivery(postpayment)": "Post-payment by the recipient",
+      "delivery(todoor)": "Delivery (Door-door)",
+      "driver(auto)": "Driver (Automatic)",
+      "driver(manual)": "Driver (Manual)",
+      "econom": "Lite",
+      "enginestart": "Booster cables",
+      "evacuation": "Intercity",
+      "evacuationmd": "EvacuationMd",
+      "green": "Green",
+      "inclusive": "Inclusive",
+      "kids": "Kids (Booster)",
+      "kids(chair)": "Kids (Child seat)",
+      "minivan(6)": "Minivan (6)",
+      "minivan(8)": "Minibus (8)",
+      "premium": "Comfort",
+      "prime": "Prime",
+      "share": "Uklon Share",
+      "standard": "Standard",
+      "taxi": "Taxi",
+      "tyreinflation": "Tire inflation",
+      "volunteer": "Volunteer",
+      "wagon": "Wagon",
+      "women": "Women"
+    },
+    "BodyTypes": {
+      "Cargo": "Lorry",
+      "Coupe": "Coupe",
+      "Crossover": "Crossover",
+      "Estate": "Estate",
+      "Hatchback": "Hatchback",
+      "Minivan": "Minivan",
+      "Pickup": "Pickup",
+      "Sedan": "Sedan",
+      "SportVehicle": "SportVehicle",
+      "Van": "Van",
+      "Liftback": "Liftback"
+    },
+    "Buttons": {
+      "Authenticate": "Sign in",
+      "B_Activate": "Activate",
+      "B_AddCourier": "Add courier",
+      "B_AddVehicle": "Add car",
+      "B_Apply": "Apply",
+      "B_ApplyTicket": "Submit a request",
+      "B_Back": "Back",
+      "B_BackToList": "Back",
+      "B_Cancel": "Cancel",
+      "B_Clear": "Clear",
+      "B_Close": "Close",
+      "B_Confirm": "Confirm",
+      "B_Continue": "Continue",
+      "B_Deactivate": "Deactivate",
+      "B_Delete": "Delete",
+      "B_DeleteFromFleet": "Remove car from fleet",
+      "B_Enter": "Login",
+      "B_Filter": "Filter",
+      "B_Hide": "Hide",
+      "B_Read": "Read",
+      "B_Reject": "Cancel",
+      "B_RejectApplication": "Reject",
+      "B_Remove": "Stop cooperation",
+      "B_Save": "Save",
+      "B_Send": "Send",
+      "B_ShowFilter": "Filter",
+      "B_Unlink": "Unlink",
+      "B_Upload": "Upload",
+      "Export": {
+        "CSV": "Export CSV"
+      },
+      "WithdrawMoney": "Withdraw money"
+    },
+    "Colors": {
+      "Aqua": "Aqua",
+      "Beige": "Beige",
+      "Black": "Black",
+      "Blue": "Blue",
+      "Brown": "Brown",
+      "Fuchsia": "Fuchsia",
+      "Gray": "Gray",
+      "Green": "Green",
+      "Lime": "Lime",
+      "Maroon": "Maroon",
+      "Navy": "Navy",
+      "Olive": "Olive",
+      "Orange": "Orange",
+      "Purple": "Purple",
+      "Red": "Red",
+      "Silver": "Silver",
+      "Teal": "Teal",
+      "White": "White",
+      "Yellow": "Yellow"
+    },
+    "CountryCode": {
+      "AC": "Ascension Island",
+      "AD": "Andorra",
+      "AE": "United Arab Emirates",
+      "AF": "Afghanistan",
+      "AG": "Antigua and Barbuda",
+      "AI": "Anguilla",
+      "AL": "Albania",
+      "AM": "Armenia",
+      "AN": "Netherlands Antilles",
+      "AO": "Angola",
+      "AR": "Argentina",
+      "AS": "American Samoa",
+      "AT": "Austria",
+      "AU": "Australia",
+      "AW": "Aruba",
+      "AX": "Åland Islands",
+      "AZ": "Azerbaijan",
+      "BA": "Bosnia and Herzegovina",
+      "BB": "Barbados",
+      "BD": "Bangladesh",
+      "BE": "Belgium",
+      "BF": "Burkina Faso",
+      "BG": "Bulgaria",
+      "BH": "Bahrain",
+      "BI": "Burundi",
+      "BJ": "Benin",
+      "BL": "Saint Barthélemy",
+      "BM": "Bermuda",
+      "BN": "Brunei Darussalam",
+      "BO": "Bolivia",
+      "BQ": "Caribbean Netherlands",
+      "BR": "Brazil",
+      "BS": "Bahamas",
+      "BT": "Bhutan",
+      "BV": "Bouvet Island",
+      "BW": "Botswana",
+      "BY": "Belarus",
+      "BZ": "Belize",
+      "CA": "Canada",
+      "CC": "Cocos (Keeling) Islands",
+      "CD": "Democratic Republic of the Congo",
+      "CF": "Central African Republic",
+      "CG": "Congo",
+      "CH": "Switzerland",
+      "CI": "Côte d'Ivoire",
+      "CK": "Cook Islands",
+      "CL": "Chile",
+      "CM": "Cameroon",
+      "CN": "China",
+      "CO": "Colombia",
+      "CR": "Costa Rica",
+      "CU": "Cuba",
+      "CV": "Cabo Verde",
+      "CW": "Curaçao",
+      "CX": "Christmas Island",
+      "CY": "Cyprus",
+      "CZ": "Czech Republic",
+      "DE": "Germany",
+      "DJ": "Djibouti",
+      "DK": "Denmark",
+      "DM": "Dominica",
+      "DO": "Dominican Republic",
+      "DZ": "Algeria",
+      "EC": "Ecuador",
+      "EE": "Estonia",
+      "EG": "Egypt",
+      "EH": "Western Sahara",
+      "ER": "Eritrea",
+      "ES": "Spain",
+      "ET": "Ethiopia",
+      "FI": "Finland",
+      "FJ": "Fiji",
+      "FK": "Falkland Islands",
+      "FM": "Federated States of Micronesia",
+      "FO": "Faroe Islands",
+      "FR": "France",
+      "GA": "Gabon",
+      "GB": "United Kingdom",
+      "GD": "Grenada",
+      "GE": "Georgia",
+      "GF": "French Guiana",
+      "GG": "Guernsey",
+      "GH": "Ghana",
+      "GI": "Gibraltar",
+      "GL": "Greenland",
+      "GM": "Gambia",
+      "GN": "Guinea",
+      "GP": "Guadeloupe",
+      "GQ": "Equatorial Guinea",
+      "GR": "Greece",
+      "GS": "South Georgia and the South Sandwich Islands",
+      "GT": "Guatemala",
+      "GU": "Guam",
+      "GW": "Guinea-Bissau",
+      "GY": "Guyana",
+      "HK": "Hong Kong",
+      "HM": "Heard Island and McDonald Islands",
+      "HN": "Honduras",
+      "HR": "Croatia",
+      "HT": "Haiti",
+      "HU": "Hungary",
+      "ID": "Indonesia",
+      "IE": "Ireland",
+      "IL": "Israel",
+      "IM": "Isle of Man",
+      "IN": "India",
+      "IO": "British Indian Ocean Territory",
+      "IQ": "Iraq",
+      "IR": "Iran",
+      "IS": "Iceland",
+      "IT": "Italy",
+      "JE": "Jersey",
+      "JM": "Jamaica",
+      "JO": "Jordan",
+      "JP": "Japan",
+      "KE": "Kenya",
+      "KG": "Kyrgyzstan",
+      "KH": "Cambodia",
+      "KI": "Kiribati",
+      "KM": "Comoros",
+      "KN": "Saint Kitts and Nevis",
+      "KP": "North Korea",
+      "KR": "South Korea",
+      "KW": "Kuwait",
+      "KY": "Cayman Islands",
+      "KZ": "Kazakhstan",
+      "LA": "Lao People's Democratic Republic",
+      "LB": "Lebanon",
+      "LC": "Saint Lucia",
+      "LI": "Liechtenstein",
+      "LK": "Sri Lanka",
+      "LR": "Liberia",
+      "LS": "Lesotho",
+      "LT": "Lithuania",
+      "LU": "Luxembourg",
+      "LV": "Latvia",
+      "LY": "Libya",
+      "MA": "Morocco",
+      "MC": "Monaco",
+      "MD": "Moldova",
+      "ME": "Montenegro",
+      "MF": "Saint Martin",
+      "MG": "Madagascar",
+      "MH": "Marshall Islands",
+      "MK": "North Macedonia",
+      "ML": "Mali",
+      "MM": "Myanmar",
+      "MN": "Mongolia",
+      "MO": "Macao",
+      "MP": "Northern Mariana Islands",
+      "MQ": "Martinique",
+      "MR": "Mauritania",
+      "MS": "Montserrat",
+      "MT": "Malta",
+      "MU": "Mauritius",
+      "MV": "Maldives",
+      "MW": "Malawi",
+      "MX": "Mexico",
+      "MY": "Malaysia",
+      "MZ": "Mozambique",
+      "NA": "Namibia",
+      "NC": "New Caledonia",
+      "NE": "Niger",
+      "NF": "Norfolk Island",
+      "NG": "Nigeria",
+      "NI": "Nicaragua",
+      "NL": "Netherlands",
+      "NO": "Norway",
+      "NP": "Nepal",
+      "NR": "Nauru",
+      "NU": "Niue",
+      "NZ": "New Zealand",
+      "OM": "Oman",
+      "PA": "Panama",
+      "PE": "Peru",
+      "PF": "French Polynesia",
+      "PG": "Papua New Guinea",
+      "PH": "Philippines",
+      "PK": "Pakistan",
+      "PL": "Poland",
+      "PM": "Saint Pierre and Miquelon",
+      "PN": "Pitcairn",
+      "PR": "Puerto Rico",
+      "PS": "Palestine",
+      "PT": "Portugal",
+      "PW": "Palau",
+      "PY": "Paraguay",
+      "QA": "Qatar",
+      "RE": "Réunion",
+      "RO": "Romania",
+      "RS": "Serbia",
+      "RU": "Russian Federation",
+      "RW": "Rwanda",
+      "SA": "Saudi Arabia",
+      "SB": "Solomon Islands",
+      "SC": "Seychelles",
+      "SD": "Sudan",
+      "SE": "Sweden",
+      "SG": "Singapore",
+      "SH": "Saint Helena, Ascension and Tristan da Cunha",
+      "SI": "Slovenia",
+      "SJ": "Svalbard and Jan Mayen",
+      "SK": "Slovakia",
+      "SL": "Sierra Leone",
+      "SM": "San Marino",
+      "SN": "Senegal",
+      "SO": "Somalia",
+      "SR": "Suriname",
+      "SS": "South Sudan",
+      "ST": "Sao Tome and Principe",
+      "SV": "El Salvador",
+      "SX": "Sint Maarten",
+      "SY": "Syrian Arab Republic",
+      "SZ": "Eswatini",
+      "TA": "Tristan da Cunha",
+      "TC": "Turks and Caicos Islands",
+      "TD": "Chad",
+      "TF": "French Southern Territories",
+      "TG": "Togo",
+      "TH": "Thailand",
+      "TJ": "Tajikistan",
+      "TK": "Tokelau",
+      "TL": "Timor-Leste",
+      "TM": "Turkmenistan",
+      "TN": "Tunisia",
+      "TO": "Tonga",
+      "TR": "Türkiye",
+      "TT": "Trinidad and Tobago",
+      "TV": "Tuvalu",
+      "TW": "Taiwan",
+      "TZ": "Tanzania",
+      "UA": "Ukraine",
+      "UG": "Uganda",
+      "UM": "United States Minor Outlying Islands",
+      "US": "United States of America",
+      "UY": "Uruguay",
+      "UZ": "Uzbekistan",
+      "VA": "Holy See",
+      "VC": "Saint Vincent and the Grenadines",
+      "VE": "Venezuela",
+      "VG": "British Virgin Islands",
+      "VI": "United States Virgin Islands",
+      "VN": "Viet Nam",
+      "VU": "Vanuatu",
+      "WF": "Wallis and Futuna",
+      "WS": "Samoa",
+      "XK": "Kosovo",
+      "YE": "Yemen",
+      "YT": "Mayotte",
+      "ZA": "South Africa",
+      "ZM": "Zambia",
+      "ZW": "Zimbabwe"
+    },
+    "DayOfWeek": {
+      "Friday": "Friday",
+      "FridayShort": "Fri",
+      "Monday": "Monday",
+      "MondayShort": "Mon",
+      "Saturday": "Saturday",
+      "SaturdayShort": "Sat",
+      "Sunday": "Sunday",
+      "SundayShort": "Sun",
+      "Thursday": "Thursday",
+      "ThursdayShort": "Thu",
+      "Tuesday": "Tuesday",
+      "TuesdayShort": "Tue",
+      "Wednesday": "Wednesday",
+      "WednesdayShort": "Wed"
+    },
+    "DaysShort": {
+      "friday": "Fri",
+      "monday": "Mon",
+      "saturday": "Sat",
+      "sunday": "Sun",
+      "thursday": "Thu",
+      "tuesday": "Tue",
+      "wednesday": "Wed"
+    },
+    "Enum": {
+      "BodyType": {
+        "CARGO": "Lorry",
+        "COUPE": "Coupe",
+        "CROSSOVER": "Crossover",
+        "ESTATE": "Estate",
+        "HATCHBACK": "Hatchback",
+        "MINIVAN": "Minivan",
+        "PICKUP": "Pickup",
+        "SEDAN": "Sedan",
+        "SPORT_VEHICLE": "Sport vehicle",
+        "VAN": "Van"
+      },
+      "Currency": {
+        "AZN": "AZN",
+        "EUR": "EUR",
+        "GEL": "GEL",
+        "MDL": "MDL",
+        "TRY": "TRY",
+        "UAH": "UAH",
+        "USD": "USD"
+      },
+      "DriverRemovalReason": {
+        "BreakingCooperationRules": "Breaking the cooperation rules",
+        "BreakingTrafficRules": "Breaking of traffic rules",
+        "CarAccident": "Road accident",
+        "FiredFromFleet": "Stop cooperating",
+        "Other": "Other"
+      },
+      "DriverStatus": {
+        "All": "All",
+        "Blocked": "Blocked",
+        "Fired": "Fired",
+        "Working": "Working"
+      },
+      "FleetType": {
+        "Commercial": "Commercial fleet",
+        "CourierFinanceMediator": "Mediator (Couriers)",
+        "Private": "Private fleet",
+        "PrivateCourier": "Private fleet",
+        "Rental": "Rental fleet"
+      },
+      "FleetVehicleColor": {
+        "Aqua": "Aqua",
+        "Beige": "Beige",
+        "Black": "Black",
+        "Blue": "Blue",
+        "Brown": "Brown",
+        "Fuchsia": "Fuchsia",
+        "Gray": "Gray",
+        "Green": "Green",
+        "Lime": "Lime",
+        "Maroon": "Maroon",
+        "Navy": "Navy",
+        "Olive": "Olive",
+        "Orange": "Orange",
+        "Purple": "Purple",
+        "Red": "Red",
+        "Silver": "Silver",
+        "Teal": "Teal",
+        "White": "White",
+        "Yellow": "Yellow"
+      },
+      "FleetVehicleComfortLevel": {
+        "Business": "Business",
+        "Comfort": "Comfort",
+        "Econom": "Lite",
+        "Prime": "Prime",
+        "Standard": "Standard"
+      },
+      "FleetVehicleOption": {
+        "AirConditioner": "Air conditioning",
+        "BabyBoosterSeat": "Booster",
+        "BabyChair": "Children's chair",
+        "CovidProtected": "Covid protection",
+        "ElectricEngine": "Electric motor",
+        "InclusiveEquipment": "Inclusive equipment",
+        "Licensed": "Taxi license",
+        "MarketingCampaign": "Marketing campaign"
+      },
+      "KarmaGroup": {
+        "Blocked": "Blocked",
+        "FirstPriority": "1 group",
+        "OffersBlocked": "Offers blocked",
+        "SecondPriority": "2 group"
+      },
+      "TransactionType": {
+        "Adjustment": "Compensating transaction",
+        "BalanceCharge": "Write-off from the balance",
+        "BalanceRecharge": "Balance replenishment",
+        "ChargeCardTransferring": "Transfer to card",
+        "ChargeCardTransferringCom": "Commission write-off",
+        "ChargeCardTransferringReverse": "Return transfer to the card",
+        "ChargeComissionTransferringReverse": "Return of withdrawal fee",
+        "ChargeCommissionFromDriver": "Order commission charged",
+        "ChargeCommissionFromDriverReverse": "Order commission refund",
+        "ChargeFeeFromDriver": "Charging a subscription fee",
+        "ChargeFeeFromDriverReverse": "Subscription fee refund",
+        "ChargeIncomeFromDriverMiw": "Refund of the order cost from the driver's balance (MoneyInWay)",
+        "ChargeIncomeFromDriverMiwReverse": "Failed attempt to withdraw funds to the card",
+        "CommissionProgram": "Commission program",
+        "DriverAdjustment": "The balance has been adjusted",
+        "DriverBalanceCharge": "Debt cancellation",
+        "DriverBalanceMove": "Transfer of funds on the balance",
+        "DriverBalanceRecharge": "Balance replenished",
+        "DriverBalanceRechargeViaTerminal": "Replenishment of balance through the terminal",
+        "DriverBalanceRechargeViaTerminalReverse": "Refund of balance replenishment via the terminal",
+        "DriverCompensationRecharge": "Balance replenished",
+        "DriverFineCharge": "Debt cancellation",
+        "MerchantWithdrawal": "Adjustment based on merchant billing",
+        "OrderBonusIncomeToDriver": "Order bonuses accrued",
+        "OrderBonusIncomeToDriverReverse": "Refund of accrued bonuses for the order",
+        "OrderIncomeToDriver": "The cost of the order is credited to the balance",
+        "RechargeBonus": "Bonuses accrued",
+        "RechargeBonusReverse": "Cancellation of bonus accrual",
+        "RechargeBonusToDriver": "Bonuses accrued",
+        "RechargeDriverCardFromWallet": "Debt accrued",
+        "RechargeDriverWalletByCard": "Debt cancellation",
+        "RechargeFromCard": "Replenishment of balance using a card",
+        "RechargeIncomeToDriverMiw": "Crediting the cost of the order to the driver's balance (MoneyInWay)",
+        "RechargeIncomeToDriverMiwReverse": "Cancellation of crediting the cost of the order to the driver's balance (MoneyInWay)",
+        "RechargeOrderBonusToDriver": "Balance replenished",
+        "RechargeOrderBonusToDriverReverse": "Refund",
+        "ReturnChargeDebtToDriver": "Return of the accrued debt to the driver",
+        "RiderToDriverCompensationRecharge": "Balance replenished",
+        "TipsIncomeToDriver": "Tips received",
+        "vb_balance_charge": "Withdraw funds",
+        "vb_balance_recharge": "Deposit funds"
+      },
+      "VehicleRemovalReason": {
+        "CarAccident": "Road accident",
+        "CarCondition": "Car condition",
+        "CarSold": "Car sold",
+        "MisRegistration": "Wrong registration",
+        "Other": "Other"
+      }
+    },
+    "Enums": {
+      "CourierRestriction": {
+        "Description": {
+          "Cash": "Regulates the ability to receive cash orders"
+        },
+        "Title": {
+          "Cash": "Receiving cash orders"
+        }
+      },
+      "Fuel": {
+        "Diesel": "Diesel",
+        "Electro": "Electro",
+        "Gas": "Gas",
+        "Gasoline": "Petrol",
+        "Hybrid": "Hybrid",
+        "MethaneGas": "Methane gas",
+        "Other": "Other",
+        "PropaneButaneGas": "Propane-butane gas"
+      },
+      "OrderStatus": {
+        "Canceled": "Canceled",
+        "Completed": "Completed",
+        "Running": "Running"
+      },
+      "Restriction": {
+        "Description": {
+          "BroadCast": "Affects access to Ether orders",
+          "Cash": "Affects the driver's ability to receive orders with payment for cash",
+          "FilterOffer": "Affects access to work with automatic modes"
+        },
+        "Title": {
+          "BroadCast": "Working with Ether",
+          "Cash": "Receiving cash orders",
+          "FilterOffer": "Work with filters "
+        }
+      },
+      "RestrictionReason": {
+        "Title": {
+          "Fleet": "Fleet",
+          "Manager": "Uklon manager"
+        }
+      }
+    },
+    "Error": {
+      "TemporarilyUnavailable": "The server is temporarily unavailable, please try again later"
+    },
+    "Exit": "Log out",
+    "FileUpload": {
+      "ExtensionError": "File extension is not supported",
+      "SizeError": "File should not exceed {{data}} mb",
+      "TimeError": "Outdated photo",
+      "UploadError": "Upload error",
+      "UploadSuccess": "Photo successfully uploaded"
+    },
+    "Filters": {
+      "LicencePlate": {
+        "Caption": "Search",
+        "Placeholder": "License plate"
+      },
+      "Name": {
+        "Caption": "Search",
+        "Placeholder": "Surname and name"
+      },
+      "NoMatch": "No results found",
+      "Period": {
+        "Label": "Period"
+      },
+      "Phone": {
+        "Caption": "Search",
+        "Placeholder": "Phone number"
+      },
+      "Status": {
+        "Caption": "Status"
+      }
+    },
+    "Hour": "h",
+    "InfinityScroll": {
+      "Loading": "Data loading"
+    },
+    "Km": "km",
+    "Language": "Language",
+    "LoadingData": "Loading data",
+    "LocaleName": {
+      "Az": "Azərbaycanca",
+      "En": "English",
+      "Ru": "Русский",
+      "Uk": "Українська",
+      "Uz": "O'zbek"
+    },
+    "Months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    },
+    "Of": "from",
+    "PhotoType": {
+      "combatant_status_certificate": "Combat veteran certificate",
+      "criminal_record_certificate": "Police clearance certificate (full)",
+      "driver_avatar_photo": "Profile photo",
+      "driver_car_back_photo": "Back view",
+      "driver_car_front_photo": "Front view",
+      "driver_car_right_sight_photo": "Left side view",
+      "driver_car_sight_photo": "Right side view",
+      "driver_insurance_front_copy": "Front side",
+      "driver_insurance_reverse_copy": "Back side",
+      "driver_license_front_copy": "Front side",
+      "driver_license_reverse_copy": "Back side",
+      "driver_taxi_license_front_copy": "Taxi license (front side)",
+      "driver_taxi_license_reverse_copy": "Taxi license (back side)",
+      "driver_vehicle_registration_front_copy": "Front side",
+      "driver_vehicle_registration_reverse_copy": "Back side",
+      "id_card_front": "Front side",
+      "id_card_reverse": "Back side",
+      "residence": "Residence permit",
+      "vehicle_angled_back": "Angled from back",
+      "vehicle_angled_front": "Angled from the front",
+      "vehicle_interior_back_photo": "Salon at the back",
+      "vehicle_interior_front_photo": "Front passenger seat",
+      "vehicle_safety_belts": "Seat belts",
+      "vehicle_third_seats_row": "Third row of seats",
+      "vehicle_trunk": "Trunk",
+      "vehicle_wheels": "Wheels"
+    },
+    "PhotoTypeFull": {
+      "combatant_status_certificate": "Combat veteran certificate",
+      "criminal_record_certificate": "Police clearance certificate (full)",
+      "driver_avatar_photo": "Profile photo",
+      "driver_car_back_photo": "Car photo (back view)",
+      "driver_car_front_photo": "Car photo (front view)",
+      "driver_car_right_sight_photo": "Car photo (right view)",
+      "driver_car_sight_photo": "Car photo (left view)",
+      "driver_insurance_front_copy": "Car insurance (front side)",
+      "driver_insurance_reverse_copy": "Car insurance (back side)",
+      "driver_license_front_copy": "Driver's license (front side)",
+      "driver_license_reverse_copy": "Driver's license (back side)",
+      "driver_taxi_license_front_copy": "Taxi license (front side)",
+      "driver_taxi_license_reverse_copy": "Taxi license (back side)",
+      "driver_vehicle_registration_front_copy": "Vehicle license (front side)",
+      "driver_vehicle_registration_reverse_copy": "Vehicle license (back side)",
+      "id_card_front": "ID Card (front side)",
+      "id_card_reverse": "ID Card (reverse side)",
+      "residence": "Residence permit",
+      "vehicle_angled_back": "Car photo (angled from back)",
+      "vehicle_angled_front": "Car photo (angled from the front)",
+      "vehicle_interior_back_photo": "Salon at the back",
+      "vehicle_interior_front_photo": "Front passenger seat",
+      "vehicle_safety_belts": "Seat belts",
+      "vehicle_third_seats_row": "Third row of seats",
+      "vehicle_trunk": "Trunk",
+      "vehicle_wheels": "Wheels"
+    },
+    "ProductConditions": {
+      "by_address": "Delivery address-address",
+      "cash": "Buyout in cash",
+      "extra_weight": "Additional load",
+      "repurchase": "Buyout in cash",
+      "to_door": "Door-to-door delivery"
+    },
+    "ProductTypes": {
+      "all": "All",
+      "business": "Business",
+      "comfortplus": "Comfort+",
+      "covidprotected": "AntiCOVID",
+      "delivery": "Delivery",
+      "driver": "Driver",
+      "econom": "Lite",
+      "enginestart": "Booster cables",
+      "evacuation": "Intercity",
+      "evacuationmd": "EvacuationMd",
+      "green": "Green",
+      "kids": "Kids",
+      "minivan": "Minivan-6",
+      "pool": "Pool",
+      "premium": "Comfort ",
+      "prime": "Prime",
+      "share": "Uklon Share",
+      "standard": "Standard",
+      "standart": "Standard",
+      "taxi": "Taxi",
+      "tyreinflation": "Tire inflation",
+      "van": "Minibus-8",
+      "volunteer": "Volunteer",
+      "wagon": "Wagon",
+      "women": "Women",
+      "fastest": "Fastest",
+      "inclusive": "Inclusive"
+    },
+    "Select": {
+      "ByEnum": {
+        "OrderStatus": {
+          "All": "Any status"
+        },
+        "ProductType": {
+          "All": "Any product type"
+        }
+      }
+    }
+  },
+  "Const": {
+    "RestrictionReasonGroup": {
+      "Enum": {
+        "Restriction": {
+          "BroadCast": "Broadcast",
+          "Cash": "Cash orders",
+          "Cashless": "Сashless",
+          "FastSearch": "Chain",
+          "FilterOffer": "Filters",
+          "FinancialVerification": "No RNTAC",
+          "SectorQueue": "Sector with a queue"
+        }
+      },
+      "RestrictedBy": {
+        "RestrictionReason": {
+          "ActiveOrdersLimit": "Work is limited due to the number of active orders",
+          "Balance": "Work is limited due to low balance",
+          "CancelFrequency": "Work is limited due to frequent order cancellations",
+          "Cashless": "Сashless",
+          "Fleet": "Work manually limited by Uklon/Fleet Manager",
+          "Karma": "Work is limited due to low karma",
+          "Manager": "Work manually limited by Uklon/Fleet Manager",
+          "Ticket": "Work is limited to a system"
+        }
+      },
+      "Type": {
+        "Restriction": {
+          "ActivityRate": "Work is limited due to low activity",
+          "Cash": "Manager Uklon/Fleet manually block work with cash orders"
+        }
+      }
+    }
+  },
+  "Contacts": {
+    "ContactCard": {
+      "Email": "e-mail",
+      "PhoneNumber": "Phone number"
+    },
+    "ContactsList": {
+      "FleetContacts": "Fleet contacts",
+      "FleetManagers": "Fleet managers",
+      "FleetOwners": "Fleet owners"
+    }
+  },
+  "CourierFinance": {
+    "CouriersWallets": {
+      "Tooltip": "This amount will remain with each courier after the withdrawal of money",
+      "TotalWalletsSum": "On couriers balances",
+      "TransferToCouriers": "Top up the couriers balance"
+    },
+    "Tabs": {
+      "CouriersWallets": "Couriers balances",
+      "CourierTransactions": "Couriers transactions"
+    }
+  },
+  "CourierHistory": {
+    "ActivityProperties": {
+      "value": "Activity"
+    },
+    "Author": "Author",
+    "ChangeType": {
+      "ActivityRateManuallyChanged": "Activity change",
+      "ActivityRateReseted": "Reset activity",
+      "AddedToFleet": "Added to fleet",
+      "All": "All events",
+      "Blocked": "Blocked",
+      "PhoneChanged": "Phone number changed",
+      "PictureUploaded": "Photo uploaded",
+      "ProductAvailabilityChanged": "Availability of products",
+      "ProfileChanged": "Changing the courier data",
+      "Registered": "Registration",
+      "RemovedFromFleet": "Removed from fleet",
+      "RestrictionsChanged": "Restrictions",
+      "Unblocked": "Unblocked"
+    },
+    "EventType": "Event type",
+    "NoAdditionalData": "No additional data available",
+    "OccurrenceDate": "OccurrenceDate",
+    "Pictures": {
+      "courier_avatar_photo": "Courier photo",
+      "id_card_front": "Identity card (Front side)",
+      "id_card_reverse": "ID Card (Reverse Side)"
+    },
+    "ProductAvailabilityChanged": "Availability of products",
+    "ProfileChangeProperties": {
+      "date_of_birth": "Date of birth",
+      "email": "E-mail",
+      "first_name": "First name",
+      "id_number": "ID number",
+      "last_name": "Last name",
+      "locale": "Language",
+      "patronymic": "Patronymic",
+      "sex": "Sex"
+    },
+    "Role": "Role",
+    "Roles": {
+      "FleetManager": "Fleet manager",
+      "FleetOwner": "Fleet Owner",
+      "System": "System",
+      "UklonManager": "Uklon Manager"
+    },
+    "Titles": {
+      "AppliedRestrictions": "Applied",
+      "CanceledRestrictions": "Canceled",
+      "DataTypes": "Data type",
+      "Disabled": "Turn off",
+      "Enabled": "Turn on",
+      "NewProperty": "Became",
+      "OldProperty": "Was",
+      "Photo": "Name of the photo",
+      "Property": "Field"
+    }
+  },
+  "CourierRestriction": {
+    "Title": "Restrictions on courier work ({{size}})",
+    "Tooltip": "Restrictions on courier work"
+  },
+  "CouriersAutocomplete": {
+    "AllCouriers": "All couriers",
+    "Placeholder": "Select the courier",
+    "Title": "Courier"
+  },
+  "Couriers": {
+    "ChangeType": {
+      "ActivityRateManuallyChanged": "Activity change"
+    },
+    "CourierDetails": {
+      "Activity": {
+        "ActivationDate": "Activation date",
+        "ActivationDateAt": "{{ date }} at {{ time }}",
+        "CancelledOrders": "Total cancellations",
+        "CompletedOrders": "Completed orders",
+        "EstimatedData": "Estimated data",
+        "NotActive": "Inactive",
+        "RejectedOrders": "Total unaccepted orders",
+        "Title": "Activity"
+      },
+      "Data": {
+        "AddedDate": "Date added",
+        "Phone": "Phone number",
+        "ThermalBag": {
+          "Desc": "In stock",
+          "Label": "Thermal bag"
+        },
+        "Title": "Courier details"
+      },
+      "ExpandedFilters": {
+        "Title": "Order types"
+      },
+      "Rating": "Rating",
+      "Restrictions": {
+        "OrderGroup": {
+          "Subtitle": "Settings activator",
+          "Title": "Methods for accepting orders"
+        },
+        "Title": "Courier restrictions"
+      },
+      "Tabs": {
+        "Deliveries": "Deliveries",
+        "ExpandedFilters": "Advanced filters",
+        "History": "Changes history",
+        "Reports": "Courier report",
+        "Restrictions": "Restriction settings",
+        "Statistics": "Job statistics"
+      },
+      "Title": "Courier page {{ last_name }} {{ first_name }}"
+    },
+    "Filters": {
+      "Name": {
+        "Caption": "Search",
+        "Placeholder": "Search by Last Name and First Name"
+      },
+      "Phone": {
+        "Caption": "Phone number",
+        "Placeholder": "Search by phone number"
+      }
+    },
+    "List": {
+      "Header": {
+        "ActivityRate": "Activity",
+        "FullName": "Last name First name",
+        "Phone": "Phone",
+        "Rating": "Rating"
+      },
+      "Row": {
+        "ActivityRate": "Activity",
+        "Phone": "Phone number",
+        "Rating": "Rating"
+      }
+    },
+    "Tabs": {
+      "Couriers": "List of couriers",
+      "Tickets": "Connection requests"
+    },
+    "Title": "Couriers"
+  },
+  "CourierStatistic": {
+    "Filters": {
+      "Title": "Statistics of earnings in the park"
+    }
+  },
+  "Dashboard": {
+    "Statistics": {
+      "AverageOrderCost": "Average check",
+      "AveragePrice": "Average price",
+      "Commission": "Uklon commission",
+      "DateRangeTitle": {
+        "CurrentWeek": "current week",
+        "LastWeek": "last week",
+        "Quarter": "{{ quarter }} quarter"
+      },
+      "EarningForPeriod": "Earnings for",
+      "EarningsByProduct": "Earnings by products",
+      "EarningsByProductTotal": "Total",
+      "FulfilledOrders": "Fulfilled orders",
+      "IncomeType": {
+        "total_bonus": "Bonuses",
+        "total_cash_earnings": "Cash",
+        "total_cashless_earnings": "Cashless",
+        "total_compensations": "Compensation",
+        "total_fee": "Uklon commission",
+        "total_penalties": "Fines",
+        "total_tips": "Tips"
+      },
+      "Mileage": "Mileage with a passenger",
+      "NetEarnings": "Net earnings",
+      "Subtitle": "Data freshness 15 min",
+      "Title": "Fleet statistics",
+      "TopDrivers": {
+        "CancelationCount": "Cancellations percentage ",
+        "Driver": "Driver",
+        "Karma": "Uklon Karma",
+        "OrderCancelationRatio": "Orders/Cancellations",
+        "OrderCount": "Fulfilled orders",
+        "Rating": "Rating",
+        "Title": "Top 10 drivers by earnings",
+        "TotalIncome": "Earnings"
+      },
+      "TotalEarnings": "Total earnings"
+    }
+  },
+  "DateRangeType": {
+    "Caption": {
+      "Custom": "Custom",
+      "LastMonth": "Last month",
+      "LastQuarter": "Last quarter",
+      "LastWeek": "Last week",
+      "ThisMonth": "This month",
+      "ThisQuarter": "This quarter",
+      "ThisWeek": "This week",
+      "Today": "Today",
+      "Yesterday": "Yesterday"
+    }
+  },
+  "DenyList": {
+    "ClearSuccess": "Blacklist cleared",
+    "Dialog": {
+      "CancelBtn": "Cancel",
+      "Message": "Clearing the black list will cause the driver to receive orders from those passengers who previously rated 1. Do you want to clear it?",
+      "Title": "Clear blacklist?"
+    },
+    "PassangesCount": "Passengers: {{ count }}",
+    "Title": "Passenger black list"
+  },
+  "Dialogs": {
+    "ApproveGarageApplication": {
+      "ApproveContent": "After the request is confirmed, the driver will receive a notification about the need to complete registration in the Uklon service </br></br>If the driver already has an account in Uklon, he will be automatically added to this fleet",
+      "ApproveTitle": "Confirm this request?",
+      "RejectContent": "After the request is declined, the driver will receive a notification about the impossibility of cooperation with the fleet",
+      "RejectTitle": "Decline this request?"
+    },
+    "BulkNotification": {
+      "ConfirmationCheckboxMessage": "I have read the information",
+      "ConfirmBtn": "Acknowledged",
+      "ConfirmedMessage": "You have confirmed the acknowledgment",
+      "SkipBtn": "Skip"
+    },
+    "WithdrawToCard": {
+      "CloseDialogWarning": "The transaction status will not be displayed if you close the pop-up",
+      "Notification": {
+        "Max": "per time: max {{ max }} {{ currency }}",
+        "MaxAmountPerCard": "max withdrawal amount per 1 card - {{ maxAmountPerCard }} {{ currency }}",
+        "MaxAttempts": "number of attempts - {{ maxAttempts }}",
+        "Min": "per time: min {{ min }} {{ currency }}"
+      },
+      "PassportInfo": {
+        "LimitInfo": "If the amount of payment transactions in the amount of UAH 29,999 per passport number is exceeded",
+        "LimitInstruction": "You will need to pass identification at the indicated passport number",
+        "Title": "Payment system limits"
+      },
+      "PendingTransaction": {
+        "ConfirmBtn": "Close",
+        "Message": "The transaction is being processed by the payment system. If it passed successfully, you'll see it in your transaction list later",
+        "Title": "Transaction is processing"
+      },
+      "ProcessingTransactionMessage": "<b>Attention!</b> Do not close the pop-up until the transaction is complete",
+      "TINError": {
+        "Title": "Unable to transfer funds"
+      },
+      "TINInfo": {
+        "LimitInfo": "If the amount of payment transactions in the amount of UAH 29,999 per RNOKPP (ITN) is exceeded, you will need to pass identification at the indicated RNOKPP (ITN)",
+        "LimitInstruction": "After passing identification, the amount of the limit will increase to UAH 150 000 per month",
+        "Title": "Payment system limits"
+      },
+      "Title": "Payment transaction to a personal card",
+      "TransactionError": {
+        "CancelBtn": "",
+        "ConfirmBtn": "",
+        "PassportMessage": "Transfer of funds using passport number <b>{{ tax_number }}</b> is blocked by the payment system. You have exceeded the limit of UAH 29,999. To transfer money to the specified passport number, you must pass identification. After identification, your limit will be increased to 150,000 UAH.",
+        "TINMessage": "Transfer of funds using TIN <b>{{ tax_number }}</b> is blocked by the payment system. You have exceeded the limit of UAH 29,999. To transfer money to the specified TIN, you must pass identification. After identification, your limit will be increased to 150,000 UAH."
+      },
+      "TransferButton": "Transfer funds",
+      "WithdrawInfo": {
+        "MaxAmountPerDay": "Maximum amount of payment per day: {{ maxAmountPerCard }} {{ currency }}.",
+        "MaxTransactionsPerDay": "Number of transactions per day: {{ maxAttempts }} pcs.",
+        "SingleTransactionMaxAmount": "Available withdrawal amount: {{ min }} {{ currency }} - {{ max }} {{ currency }}."
+      }
+    }
+  },
+  "Dictionary": {
+    "Region": {
+      "Ukraine": {
+        "Berdiansk": "Berdiansk",
+        "Bila Tserkva": "Bila Tserkva",
+        "Cherkasy": "Cherkasy",
+        "Chernihiv": "Chernihiv",
+        "Chernivtsi": "Chernivtsi",
+        "Chervonohrad": "Chervonohrad",
+        "Dnipro": "Dnipro",
+        "Drohobych": "Drohobych",
+        "Ivano-Frankivsk": "Ivano-Frankivsk",
+        "Kamianets-Podilskyi": "Kamianets-Podilskyi",
+        "Kamianske": "Kamianske",
+        "Kharkiv": "Kharkiv",
+        "Kherson": "Kherson",
+        "Khmelnytskyi": "Khmelnytskyi",
+        "Konotop": "Konotop",
+        "Kremenchuk": "Kremenchuk",
+        "Kropyvnytskyi": "Kropyvnytskyi",
+        "Kryvyi Rih": "Kryvyi Rih",
+        "Kyiv": "Kyiv",
+        "Kyshyniv": "Kyshyniv",
+        "Lutsk": "Lutsk",
+        "Lviv": "Lviv",
+        "Malta": "Malta",
+        "Mariupol": "Mariupol",
+        "Melitopol": "Melitopol",
+        "Mukachevo": "Mukachevo",
+        "Mykolaiv": "Mykolaiv",
+        "Nikopol": "Nikopol",
+        "Odesa": "Odesa",
+        "Oleksandriia": "Oleksandriia",
+        "Pavlohrad": "Pavlohrad",
+        "Poltava": "Poltava",
+        "Rivne": "Rivne",
+        "Rovenky": "Rovenky",
+        "Sumy": "Sumy",
+        "Ternopil": "Ternopil",
+        "Tunisia": "Tunisia",
+        "Uman": "Uman",
+        "Uzhhorod": "Uzhhorod",
+        "Vinnytsia": "Vinnytsia",
+        "Zaporizhia": "Zaporizhia",
+        "Zhytomyr": "Zhytomyr"
+      }
+    }
+  },
+  "Driver": {
+    "AllDrivers": "All drivers",
+    "Filters": {
+      "Driver": {
+        "Label": "Driver"
+      },
+      "SelectDriver": "Select the driver"
+    }
+  },
+  "DriverBalancesFilter": {
+    "Name": {
+      "Caption": "Search",
+      "Placeholder": "Search by Last Name and First Name"
+    },
+    "Phone": {
+      "Caption": "Phone number",
+      "Placeholder": "Search by phone number"
+    },
+    "Sort": {
+      "Caption": "Sort by current balance",
+      "Options": {
+        "Asc": "From smallest to largest",
+        "Default": "No sorting",
+        "Desc": "From largest to smallest"
+      }
+    }
+  },
+  "DriverBalancesInfo": {
+    "WithdrawalAmount": {
+      "Title": "Amount to transfer"
+    }
+  },
+  "DriverBalancesList": {
+    "Remaining": {
+      "Caption": "Remaining amount"
+    }
+  },
+  "DriverDetailsInfo": {
+    "Tooltips": {
+      "KarmaGroups": {
+        "DriverHaveNoVehicle": "The karma group will be displayed when the driver selects a vehicle."
+      }
+    }
+  },
+  "DriverFilter": {
+    "Name": {
+      "Caption": "Search",
+      "Placeholder": "Search by Last Name and First Name"
+    },
+    "Phone": {
+      "Caption": "Phone number",
+      "Placeholder": "Search by phone number"
+    },
+    "Status": {
+      "Caption": "Status"
+    }
+  },
+  "DriverFilters": {
+    "Broadcast": "Filter (ether)",
+    "Chain": "Chain",
+    "NoFilters": "Not selected",
+    "Offer": "Filter (auto)",
+    "Title": "Method"
+  },
+  "DriverHistory": {
+    "Allowed": "Allowed",
+    "Author": "Author",
+    "AvailabilitySettings": {
+      "availability_rules_activations": "Availability criteria",
+      "driver_fleet_type_enabled": "Fleet car",
+      "editing_availability_rules_activations": "Editing criteria",
+      "min_completed_order_count_enabled": "Number of completed orders",
+      "min_rating_enabled": "Rating",
+      "min_work_time_days_enabled": "Experience in days"
+    },
+    "ChangeType": {
+      "AddedToFleet": "Added to fleet",
+      "All": "All events",
+      "B2BSplitAdjustmentChanged": "Change the type of adjustment",
+      "B2BSplitDistributionChanged": "Changing the split method",
+      "BlackListCleared": "Black List Cleaned",
+      "Blocked": "Blocked",
+      "FinanceProfileChanged": "Financial settings",
+      "IndividualEntrepreneurChanged": "Payee (Add, Edit, Delete)",
+      "KarmaReseted": "Karma is reset",
+      "PasswordChanged": "Password changed",
+      "PasswordReset": "Password reset",
+      "PaymentIdentificationStatusChanged": "Financial identification status changed",
+      "PhoneChanged": "Phone number changed",
+      "PictureUploaded": "Photo uploaded",
+      "ProductAvailabilityChanged": "Availability of products",
+      "ProductEditByDriverChanged": "Availability of product editing",
+      "ProductRulesActivationsChanged": "Product criteria",
+      "ProfileChanged": "Changing the driver data",
+      "Registered": "Registration",
+      "RemovedFromFleet": "Removed from fleet",
+      "RestrictionsChanged": "Restrictions",
+      "Unblocked": "Unlocked",
+      "Unregistered": "Deleted",
+      "WithdrawalTypeChanged": "Payments to the payee (Activate / Deactivate)"
+    },
+    "Enums": {
+      "Deaf": "Deafness",
+      "HardOfHearing": "Hearing impaired",
+      "Individual": "Individual",
+      "LegalEntity": "Legal entity",
+      "Nothing": "Without individuality"
+    },
+    "EventType": "Event type",
+    "NoAdditionalData": "No additional data avaliable",
+    "NotAllowed": "Forbidden",
+    "OccurrenceDate": "Occurrence date",
+    "Pictures": {
+      "driver_avatar_photo": "Driver photo",
+      "driver_license_front_copy": "Driver's license (Front side)",
+      "driver_license_reverse_copy": "Driver's license (Back side)",
+      "id_card_front": "Identity document (Front side)",
+      "id_card_reverse": "Identity document (Front side)",
+      "residence": "Residence permit"
+    },
+    "ProfileChangeProperties": {
+      "B2BSplitBalance": {
+        "BalanceDependent": "according to the balance amount",
+        "PerSplit": "for each order (according to the driver's balance)",
+        "ProportionalToCommission": "according to the commission in the order",
+        "TimeRange": "once a day (according to the fleet balance)"
+      },
+      "date_of_birth": "Date of birth",
+      "email": "E-mail",
+      "entrepreneur_name": "Name of IE / LLC",
+      "feature_type": "Driver individuality",
+      "first_name": "First name",
+      "has_citizenship": "Citizenship",
+      "id_number": "ID number",
+      "last_name": "Last name",
+      "license": "Driver licence number",
+      "license_till": "Driver licence expire date",
+      "locale": "Language",
+      "patronymic": "Patronymic",
+      "payment_details": "Payment data",
+      "PaymentDetails": {
+        "account_number": "Account number",
+        "account_owner": "Account holder name",
+        "account_type": "Account type",
+        "address": "The address",
+        "bank_name_or_swift_code": "Bank name/SWIFT code",
+        "company_name": "Company name",
+        "registration_number": "Registration number",
+        "vat_payer_number": "VAT payer number (TIN)"
+      },
+      "PaymentIdentificationStatusNotPassed": "identification failed",
+      "PaymentIdentificationStatusPassed": "identification passed",
+      "PaymentProviders": {
+        "Fondy": "Merchant Fondy",
+        "IPay": "IPay merchant",
+        "Platon": "Merchant Platon"
+      },
+      "sex": "Sex"
+    },
+    "RideHailing": {
+      "Available": "Available",
+      "NotAvailable": "Not available"
+    },
+    "Role": "Role",
+    "Roles": {
+      "Driver": "Driver",
+      "FleetManager": "Fleet manager",
+      "FleetOwner": "Fleet Owner",
+      "System": "System",
+      "UklonManager": "Uklon Manager"
+    },
+    "Titles": {
+      "Added": "Added",
+      "AppliedRestrictions": "Applied",
+      "CanceledRestrictions": "Сanceled",
+      "Comment": "Comment",
+      "Disabled": "Turned off",
+      "DriverEditability": "Driver availability to edit",
+      "Enabled": "Turned on",
+      "NewProperty": "Became",
+      "OldProperty": "Was",
+      "Photo": "Name of the photo",
+      "ProductName": "Product name",
+      "Property": "Field",
+      "Removed": "Deleted"
+    },
+    "VehicleAccessType": {
+      "All": "Available to all",
+      "Nobody": "Not available to anyone",
+      "SpecificDrivers": "Available to selected drivers:"
+    },
+    "VehicleChangeProperties": {
+      "body_type": "Body type",
+      "color": "Color",
+      "comfort_level": "Car class",
+      "fuels": "Fuel",
+      "insurance_policy_actual_to": "Validity of car insurance",
+      "insurance_policy_number": "Car insurance number",
+      "load_capacity": "Carrying capacity",
+      "model_details": "Model",
+      "passenger_seats_count": "Number of seats",
+      "production_year": "Manufacture year"
+    },
+    "VehicleChangeType": {
+      "AccessToVehicleChanged": "Accessibility to the car changed",
+      "AddedToFleet": "Added to fleet",
+      "All": "All events",
+      "Blocked": "Blocked",
+      "Created": "Added a new car",
+      "OptionsChanged": "Car attributes change",
+      "PhotoControlFailed": "Photo control not passed",
+      "PhotoControlPassed": "Photo control passed",
+      "PhotoControlTicketCreationRejected": "Photo control not created",
+      "PictureUploaded": "Photo uploaded",
+      "ProductAvailabilityChanged": "Availability of products",
+      "ProfileChanged": "Car data change",
+      "RemovedFromFleet": "Removed from the fleet",
+      "RideHailingEnabledChanged": "Change in RideHailing availability for vehicles",
+      "Unblocked": "Unlocked"
+    },
+    "VehiclePictures": {
+      "driver_car_back_photo": "Car photo (Back view)",
+      "driver_car_front_photo": "Car photo (Front view)",
+      "driver_car_right_sight_photo": "Car photo (Left view)",
+      "driver_car_sight_photo": "Car photo (Right view)",
+      "driver_insurance_front_copy": "Car insurance (Front side)",
+      "driver_insurance_reverse_copy": "Car insurance (Back side)",
+      "driver_taxi_license_front_copy": "Taxi license (Front side)",
+      "driver_taxi_license_reverse_copy": "Taxi license (Back side)",
+      "driver_vehicle_registration_front_copy": "Vehicle license (Front side)",
+      "driver_vehicle_registration_reverse_copy": "Vehicle license (Back side)",
+      "vehicle_interior_back_photo": "Salon at the back",
+      "vehicle_interior_front_photo": "Front passenger seat",
+      "vehicle_safety_belts": "Seat belts",
+      "vehicle_third_seats_row": "Third row of seats",
+      "vehicle_trunk": "Trunk",
+      "vehicle_wheels": "Wheels"
+    },
+    "WithdrawalTypeChanged": {
+      "IndividualEntrepreneur": "Funds are deposited to merchants",
+      "None": "-",
+      "PaymentCard": "Withdrawn cashless funds using the card"
+    }
+  },
+  "DriverListExpandedView": {
+    "Header": {
+      "Karma": "Karma",
+      "Phone": "Phone",
+      "Rating": "Rating",
+      "Signal": "Call sign",
+      "Vehicle": "Vehicle"
+    },
+    "VehicleNotSelected": "Vehicle not selected"
+  },
+  "DriverList": {
+    "Header": {
+      "FullName": "Full name",
+      "Karma": "Karma",
+      "Phone": "Phone",
+      "Rating": "Rating",
+      "Signal": "Call sign",
+      "Status": "Status",
+      "Vehicle": "Vehicle"
+    },
+    "KarmaTooltip": "Only obligatory orders canceled by the driver negatively affect karma",
+    "NoVehicle": "Vehicle not selected",
+    "OnlineTooltip": "Driver is online. Details on the Live map page"
+  },
+  "DriverPaymentInfo": {
+    "AccountNumber": "Account number",
+    "AccountOwner": "Account holder name",
+    "AccountType": "Account type",
+    "Address": "The address",
+    "BankName": "Bank name/SWIFT code",
+    "CompanyName": "Company name",
+    "Individual": "Individual",
+    "LegalEntity": "Legal entity",
+    "RegistrationNumber": "Registration number",
+    "Title": "Payment data",
+    "VATNumber": "VAT payer number (TIN)",
+    "VATPayer": "I am a VAT payer"
+  },
+  "DriverPhotoControl": {
+    "ClarificationReason": {
+      "document_damaged": "The document is damaged and requires reissue",
+      "document_expired": "The document is expired and requires reissue",
+      "document_is_not_in_frame": "The document is not fully in the frame",
+      "low_quality_photo": "Photo is blurry / low quality",
+      "mismatch_person_data": "Personal data mismatch",
+      "need_photo_without_glasses": "Need colored photo without glasses or hat",
+      "need_portrait_photo": "Portrait format photo required",
+      "need_state_model_document": "Document of the state sample is required",
+      "other": "Other",
+      "photo_has_poor_lighting": "Poor lighting in the photo",
+      "photo_is_duplicated": "Duplicate photo (one photo uploaded twice)"
+    },
+    "Panel": {
+      "InstructionMessage": "",
+      "DriverPhotoSharpnessInstruction": "Add clear, legible photos taken in good lighting"
+    },
+    "RejectionReason": {
+      "document_expired": "The document is expired",
+      "driver_registration_deadline_expired": "The deadline for filling has passed",
+      "fraud": "Blocked by security department",
+      "other": "Photos do not meet the requirements",
+      "youcontrol": "Blocked by security department"
+    },
+    "TicketsList": {
+      "Deadline": "Deadline",
+      "Name": "Surname and name",
+      "Phone": "Phone number",
+      "Reason": "Reason",
+      "Reasons": {
+        "AdditionalDocumentsGathering": "Request for additional documents",
+        "AfterFirstOrders": "After the first N orders",
+        "DocumentsActualization": "Overdue document",
+        "DocumentsOrPhotoAbsence": "Missing driver photo/documents",
+        "Other": "Other",
+        "ProfileDataActualization": "Update profile information"
+      },
+      "RequiredPhotos": "Required photos",
+      "Status": "Status"
+    },
+    "DriverLicenseTitle": "Driver's license",
+    "PassportTitle": "Passport",
+    "Title": "{{ data }} - Driver photo control"
+  },
+  "DriverRestriction": {
+    "Reason": {
+      "ActiveOrdersLimit": "Work is limited due to the number of active orders",
+      "Balance": "Work is limited due to low balance",
+      "CancelFrequency": "Work is limited due to frequent order cancellations",
+      "Karma": "Work is limited due to low karma",
+      "Manager": "Work manually limited by Uklon/Fleet Manager",
+      "Ticket": "Work is limited to a system"
+    },
+    "RestrictedByAccessabilityRules": "Availability criteria don't pass",
+    "Title": "Restrictions on driver work ({{size}})",
+    "Type": {
+      "BroadCast": "Ether",
+      "Cash": "Cash Orders",
+      "FastSearch": "Chain of orders",
+      "FilterOffer": "Auto-accept",
+      "FinancialVerification": "No RNTAC",
+      "SectorQueue": "Sector with a queue"
+    }
+  },
+  "Drivers": {
+    "AddDriverLink": "Add driver",
+    "DriverDetails": {
+      "Title": "Driver Page {{ last_name }} {{ first_name }}"
+    },
+    "Drivers": {
+      "Details": {
+        "Autoblocked": "Auto mode disabled",
+        "AvailabilityRules": "Accessibility criteria",
+        "AvailableForDriver": "Available to the driver",
+        "Blocked": "Work is blocked",
+        "BlockEditing": "Block product editing",
+        "CancelButton": "Cancel",
+        "CancelledOrders": "Total cancellations",
+        "CompletedOrders": "Completed orders",
+        "DocumentsPictures": "Documents pictures",
+        "DriverLicense": "Driver's license",
+        "DriverRestrictions": "Driver Restrictions",
+        "DriverRideCondition": {
+          "AvailableSectionTitle": "Included",
+          "EmptyState": "No additional options",
+          "NotAvailableSectionTitle": "Not included",
+          "Options": {
+            "Animal": "Animal transport",
+            "Babychair": "Baby chair",
+            "Baggage": "Extra luggage in car",
+            "Conditioner": "Conditioner",
+            "Courierdelivery": "Courier",
+            "Driverloader": "Help with cargo loading",
+            "Englishspeaker": "English speaking driver",
+            "Nonsmoker": "Non-smoking driver",
+            "Silence": "Silence in car",
+            "Smoker": "Smoking allowed",
+            "Withsign": "Meet with a sign"
+          },
+          "Title": "Additional options"
+        },
+        "EstimatedData": "Estimated data (last 100 rides)",
+        "ExperienceInDays": "Experience in days",
+        "Form": {
+          "AddedDate": "Added date",
+          "Phone": "Phone number",
+          "Signal": "Call sign"
+        },
+        "From": "from",
+        "Group": "Group",
+        "GroupTypes": "Group gradation",
+        "Hint1": "When the criteria are completed, the driver can receive orders for this product.",
+        "Hint2": "When the criteria are done, the driver has the option to turn products on and off. When the block is enabled, the driver will not have access for editing.",
+        "IdCard": "Identity document",
+        "Karma": {
+          "OffersBlocked": "Auto mode is blocked",
+          "OffersBroadcastBlocked": "Work is blocked",
+          "Priority": "Priority level"
+        },
+        "LicensePhotos": "Documents pictures",
+        "NoSelectedVehicle": "Car is not connected",
+        "OrdersCount": "Number of orders",
+        "OrdersTillKarma": "Orders before Uklon Karma impact",
+        "OrderType": "Order types",
+        "Priority1": "Priority level",
+        "Priority2": "Automatic mode is blocked",
+        "Rating": "Rating",
+        "RejectedOrders": "Total unaccepted orders",
+        "ResetCount": "Number of resets",
+        "Residence": "Residence permit (for foreign citizens)",
+        "SaveButton": "Save Changes",
+        "SelectedVehicle": "Current car",
+        "Tabs": {
+          "ExpandedFilters": "Advanced filters",
+          "History": "Changes history",
+          "Photo": "Photo",
+          "Restrictions": "Restriction setting",
+          "Statistics": "Job statistics",
+          "Trips": "Trips"
+        },
+        "Title": "Driver data",
+        "UklonKarma": "Uklon Karma",
+        "UklonKarmaLink": "How Uklon Karma works",
+        "UnavailableForVehicle": "Not available for cars",
+        "YourExperience": "Your experience",
+        "YourOrders": "Your orders",
+        "YourRating": "Your rating"
+      },
+      "DriverStatus": {
+        "All": "All statuses",
+        "Blocked": "Blocked",
+        "Fired": "Fired",
+        "Working": "Works"
+      },
+      "KarmaGroup": {
+        "Blocked": "Work is blocked",
+        "FirstPriority": "1st group",
+        "OffersBlocked": "Auto block",
+        "SecondPriority": "2nd group"
+      },
+      "List": {
+        "Condition": "State",
+        "Fullname": "Last name and first name",
+        "isVehicleSelected": "Vehicle",
+        "Karma": "Uklon Karma",
+        "Phone": "Phone",
+        "Rating": "Rating",
+        "SearchByName": "Search by employees",
+        "SearchByPhone": "Search by phone number",
+        "Signal": "Call sign"
+      },
+      "PhotoCategories": {
+        "combatant_status_certificate": "Combat veteran certificate",
+        "criminal_record_certificate": "Police clearance certificate (full)",
+        "driver_avatar_photo": "Profile photo",
+        "driver_license_front_copy": "Front side",
+        "driver_license_reverse_copy": "Back side",
+        "id_card_front": "Front side",
+        "id_card_reverse": "Back side",
+        "residence": "Residence permit"
+      },
+      "Restriction": {
+        "FinanceGroup": {
+          "ConfiguredByMap": {
+            "FleetOwner": "Fleet",
+            "UklonManager": "Uklon manager"
+          },
+          "DisabledTooltip": "Editing is not available",
+          "OrderPaymentToCard": {
+            "Subtitle": "Allows receiving money for non-cash orders on a linked card",
+            "Title": "Receiving money on the card"
+          },
+          "Title": "Financial settings",
+          "WalletToCardTransfer": {
+            "Subtitle": "Allows withdrawal from the virtual balance to the linked card",
+            "Title": "Withdraw money to a card"
+          }
+        },
+        "OrderGroup": {
+          "BroadCast": {
+            "Subtitle": "Affects access to Ether orders",
+            "Title": "Working with Ether"
+          },
+          "FilterOffer": {
+            "Subtitle": "Affects access to work with automatic modes",
+            "Title": "Work with filters"
+          },
+          "RestrictedByMap": {
+            "ActiveOrdersLimit": "ActiveOrdersLimit",
+            "Balance": "Balance",
+            "CancelFrequency": "CancelFrequency",
+            "Karma": "Karma",
+            "Manager": "Manager",
+            "Ticket": "Ticket"
+          },
+          "Subtitle": "Settings activator",
+          "Title": "Methods for accepting orders"
+        }
+      }
+    },
+    "Tabs": {
+      "Drivers": "List of drivers",
+      "DriversTickets": "Connection requests",
+      "PhotoControl": "Driver photocontrol",
+      "UklonGarage": "\"Drivers for fleets\" applications"
+    }
+  },
+  "DriverStatistic": {
+    "Courier": {
+      "Title": "Information about the courier"
+    },
+    "Data": {
+      "Accrual": "Accrual",
+      "AdditionalFees": "Additional incomes and withdrawals",
+      "AveragePricePerKm": {
+        "Label": "Average price per kilometer"
+      },
+      "CancellationPercentage": {
+        "Label": "Cancel"
+      },
+      "CompletedOrders": {
+        "Label": "Completed trips"
+      },
+      "EarningsForPeriod": {
+        "Description": "Less Uklon commission and fines",
+        "Label": "Earnings per period"
+      },
+      "GrossIncome": {
+        "Description": "Without commission and penalty deduction",
+        "Label": "Total amount"
+      },
+      "Loss": {
+        "Order": {
+          "Total": {
+            "Label": "Uklon commission"
+          }
+        }
+      },
+      "Profit": {
+        "Bonus": {
+          "Label": "Bonuses"
+        },
+        "Compensation": {
+          "Label": "Compensation"
+        },
+        "Fine": {
+          "Label": "Fines"
+        },
+        "Order": {
+          "Card": {
+            "Label": "To card"
+          },
+          "Cash": {
+            "Label": "Cash"
+          },
+          "Wallet": {
+            "Label": "To balance"
+          }
+        },
+        "Tips": {
+          "Label": "Tips"
+        }
+      },
+      "Rating": {
+        "Label": "Rating"
+      },
+      "TotalDistanceMeters": {
+        "Label": "Orders mileage"
+      },
+      "TotalExecutingTime": {
+        "Label": "Trips duration"
+      },
+      "Withdrawal": "Withdrawal"
+    },
+    "Driver": {
+      "Title": "Driver information"
+    },
+    "Filters": {
+      "DateTimeRange": {
+        "Label": "Period"
+      },
+      "Title": "Fleet earning statistics"
+    },
+    "PieChart": {
+      "DriverOrderProfit": {
+        "Card": {
+          "Label": "To card"
+        },
+        "Cash": {
+          "Label": "Cash"
+        },
+        "Wallet": {
+          "Label": "To balance"
+        }
+      }
+    }
+  },
+  "DriverTicket": {
+    "AddDriverLink": "Add driver",
+    "Filter": {
+      "PhoneLabel": "Phone number",
+      "PhonePlaceholder": "Search by phone number",
+      "StatusLabel": "Status"
+    },
+    "FromUklonGarageTooltip": "Confirmed with \"Drivers for fleets\"",
+    "Table": {
+      "Date": "Date the application was added",
+      "Name": "Last name and first name",
+      "Phone": "Phone",
+      "Status": "Status"
+    },
+    "TicketStatusAll": "All statuses",
+    "TicketStatus": {
+      "Clarification": "Clarification",
+      "Draft": "Draft",
+      "Rejected": "Rejected",
+      "Review": "Review",
+      "Sent": "Sent"
+    },
+    "UklonGarageApplicationStatus": {
+      "Approved": "Confirmed",
+      "ApprovedByManager": "Processed by Uklon manager",
+      "ClosedByParallelRegistration": "Confirmed",
+      "New": "New",
+      "Rejected": "Rejected"
+    }
+  },
+  "ED": {
+    "Requirements": {
+      "UZ": ""
+    }
+  },
+  "EmptyStates": {
+    "Bonus": {
+      "Subtitle": "Data will be accessible within 24 hours after the program's period start",
+      "Title": "No information about available bonuses"
+    },
+    "ChooseDriverForTx": {
+      "Title": "Select a driver to download his transaction history"
+    },
+    "ChoseCourier": {
+      "Title": "Select a courier to download his transaction history"
+    },
+    "Error": {
+      "Title": "Error"
+    },
+    "General": {
+      "Subtitle": "We are also working on other sections and pages, when they are available, it will be possible to get to them from the main menu",
+      "Title": "There will soon be a dashboard with useful statistics and infographics for your fleet."
+    },
+    "NoData": {
+      "Title": "There is no data"
+    }
+  },
+  "Feedback": {
+    "FeedbackTemplate": {
+      "AnotherVehicle": "Інше авто",
+      "AntiUkrainianPosition": "Anti-Ukrainian position",
+      "Clean": "Чисто та охайно",
+      "DamagedCar": "The driver damaged the car",
+      "DirtyInterior": "Dirty interior",
+      "DirtyVehicle": "Брудне авто",
+      "DriverBehaviour": "Манера спілкування",
+      "DriverSkills": "Driving style",
+      "DriverWasLate": "The driver was late",
+      "DriverWithoutMask": "Водій без маски",
+      "ExpertNavigation": "Знає місто",
+      "GreatService": "Чудовий сервіс",
+      "IncorrectCalculation": "Incorrect calculation by the driver",
+      "NiceDriver": "Nice driver",
+      "NiceService": "Nice service",
+      "NiceVehicle": "Хороше авто",
+      "NoBelts": "Немає ременів",
+      "NoBootSpace": "No space in the boot",
+      "NoChange": "Немає здачі",
+      "NoExpertNavigation": "The driver is not familiar with the city",
+      "NoTools": "The driver didn’t have the tools",
+      "NotSolveProblem": "The driver didn’t solve my problem",
+      "Recommend": "Рекомендую",
+      "RussianLanguageMusic": "Russian music",
+      "RussianLanguage": "Russian language",
+      "TrafficViolation": "Traffic rules violation",
+      "SuboptimalRoute": "Неоптимальний маршрут",
+      "UnpleasantConversations": "Inappropriate conversations",
+      "UnpleasantMusic": "Unacceptable music in the car",
+      "UnpleasantOdours": "Unpleasant odours in the interior",
+      "UnpleasantTemperature": "Uncomfortable temperature in the car",
+      "UnprofessionalBehavior": "The driver's behavior was unprofessional",
+      "VehicleState": "Стан авто",
+      "WonderfulCompanion": "Чудовий співрозмовник",
+      "WrongDriver": "A different driver arrived",
+      "WrongVehicleClass": "The car does not match the declared class"
+    },
+    "Filter": {
+      "DriverLabel": "Driver",
+      "DriverOptionAll": "All",
+      "PeriodLabel": "Period"
+    },
+    "Table": {
+      "Comment": "Custom comment",
+      "Courier": "Courier",
+      "Date": "Date",
+      "Driver": "Driver",
+      "Rate": "Rate",
+      "Template": "Template comment",
+      "Time": "Time"
+    },
+    "Title": "Feedbacks",
+    "Tooltip": {
+      "AffectsRating": "The rating affects the rating, it will be processed by the quality control department",
+      "NoAffectsRating": "Оцінка була оброблена відділом ВКЯ та перестала впливати на рейтинг"
+    }
+  },
+  "FilterGroup": {
+    "Caption": "Filters"
+  },
+  "Finance": {
+    "DriversBalances": {
+      "Filter": {
+        "Fullname": "Last name and first name",
+        "SearchByName": "Search by employees",
+        "SearchByPhone": "Search by phone number",
+        "TransferToDrivers": "Top up the driver's balance",
+        "TransferToFleet": "Transfer to fleet balance"
+      },
+      "Info": {
+        "Title": "On drivers' balances"
+      },
+      "List": {
+        "Balance": "Current balance",
+        "Driver": "Driver",
+        "EnterAmount": "Enter amount",
+        "Signal": "Call sign",
+        "Tooltip": "This amount will remain with each driver after the withdrawal of money",
+        "WithdrawUntil": "Withdraw all money with the rest"
+      }
+    },
+    "FleetEntrepreneur": {
+      "ChangeRecipientBtn": "Change payee",
+      "ChangeRecipientLabel": "SP/LLC",
+      "CheckRecipientBtn": "Check other recipients",
+      "CurrentRecipient": "Current payee",
+      "Dialog": {
+        "CheckMerchantDataMessage": "Check the correctness of the data according to your contracts with the financial organization, if you find an error, contact the Uklon manager. You can choose and keep the primary payments recipient, but payouts will start after activation on the Uklon side.",
+        "Disclaimer": "Installing a new recipient! After the change, all funds for all subsequent created non-cash orders will be credited to the selected recipient.",
+        "FinanceModel": "Financial model",
+        "SplitAdjustment": {
+          "Field": "Balance adjustment",
+          "PerSplitAdjustment": "for each order (according to the driver's balance)",
+          "TimeRangeSplitAdjustment": "once a day (according to the fleet balance)"
+        },
+        "SplitDistribution": {
+          "Field": "Payment distribution",
+          "FocusedOnWalletBalanceDistributionSplit": "according to the balance amount",
+          "IgnoreWalletBalanceDistributionSplit": "according to the commission in the order"
+        },
+        "Title": "Change current payee"
+      },
+      "Merchant": "{{ merchant }} merchant",
+      "NoEntrepreneurs": "No data on entrepreneurs",
+      "Notifiactions": {
+        "Error": "An error has occurred. The recipient selection has not been saved.",
+        "Success": "Setting up a new recipient. After the change, all funds for all subsequent non-cash orders created will be sent to the selected recipient.",
+        "SuccessB2BNotActive": "New recipient is selected. Currently, you can still withdraw funds to the card before activation the withdrawal to the SP/LLC. "
+      },
+      "NumberOfMerchants": "Merchants",
+      "PaymentCardDisclaimer": "Important! Currently, you can still withdraw funds to the card. Check the correctness of the entered merchant data for your recipients (SP/LLC)",
+      "Settings": "Settings"
+    },
+    "Tabs": {
+      "DriversBalances": "Drivers' balances",
+      "DriversTransactions": "Drivers' transactions",
+      "FleetWallet": "Fleet balance"
+    },
+    "TransactionTypes": {
+      "persplit_cashless_withdrawal": "Enrollment to merchant",
+      "vb_adjustment": "Compensating transaction",
+      "vb_b2b_fleet_adjustment": "Adjustment based on merchant billing",
+      "vb_b2b_persplit_adjustment": "Transfer to the account",
+      "vb_balance_charge": "Write-off from the balance",
+      "vb_balance_recharge": "Deposit funds",
+      "vb_charge_card_transfering": "Transfer to card",
+      "vb_charge_card_transfering_com": "Commission write-off",
+      "vb_charge_card_transfering_com_reverse": "Return of withdrawal fee",
+      "vb_charge_card_transfering_reverse": "Return transfer to the card",
+      "vb_charge_commission_from_driver": "Order commission charged",
+      "vb_charge_commission_from_driver_reverse": "Order commission refund",
+      "vb_charge_fee_from_driver": "Charging a subscription fee",
+      "vb_charge_fee_from_driver_reverse": "Subscription fee refund",
+      "vb_charge_income_from_driver_miw": "Refund of the cost of the order from the balance of the driver (MoneyInWay)",
+      "vb_charge_income_from_driver_miw_reverse": "Unsuccessful attempt to withdraw funds to the card",
+      "vb_customer_absence_order_compensation": "Compensation for an order due to passenger no-show",
+      "vb_driver_adjustment": "The balance has been adjusted",
+      "vb_driver_balance_charge": "Debt cancellation",
+      "vb_driver_balance_move": "Transfer of funds on the balance",
+      "vb_driver_balance_recharge": "Balance replenished",
+      "vb_driver_balance_recharge_via_terminal": "Replenishment of balance through the terminal",
+      "vb_driver_balance_recharge_via_terminal_reverse": "Refund of balance replenishment via the terminal",
+      "vb_driver_compensation_recharge": "Balance replenished",
+      "vb_driver_fine_charge": "Debt cancellation",
+      "vb_order_bonus_income_to_driver": "Order bonuses",
+      "vb_order_bonus_income_to_driver_reverse": "Refund of accrued bonuses for the order",
+      "vb_order_income_to_driver": "The cost of the order is credited to the balance",
+      "vb_partner_commission_program_profit": "Commission program",
+      "vb_recharge_bonus": "Bonuses accrued",
+      "vb_recharge_bonus_reverse": "Cancellation of bonus accrual",
+      "vb_recharge_bonus_to_driver": "Bonuses accrued",
+      "vb_recharge_driver_card_from_wallet": "Debt accrued",
+      "vb_recharge_driver_wallet_by_card": "Debt cancellation",
+      "vb_recharge_from_card": "Replenishment of balance using a card",
+      "vb_recharge_income_to_driver_miw": "Crediting the cost of the order to the driver's balance (MoneyInWay)",
+      "vb_recharge_income_to_driver_miw_reverse": "Cancellation of crediting the cost of the order to the driver's balance (MoneyInWay)",
+      "vb_recharge_order_bonus_to_driver": "Balance replenished",
+      "vb_recharge_order_bonus_to_driver_reverse": "Refund",
+      "vb_return_charge_debt_to_driver": "Return of the accrued debt to the driver",
+      "vb_rider_to_driver_compensation_recharge": "Balance replenished",
+      "vb_tips_income_to_driver": "Tips received"
+    },
+    "Wallet": {
+      "NegativeBalanceDisclaimer": "Fleet balance is negative, it is necessary to transfer funds from the drivers' to the fleet",
+      "Title": "List of transactions",
+      "TransactionsList": {
+        "Amount": "Amount",
+        "Balance": "Balance",
+        "BalanceAfterTransaction": "Balance after transaction",
+        "Date": "Date",
+        "Delta": "Change",
+        "Driver": "Driver",
+        "Time": "Time",
+        "TxType": "Transaction type"
+      },
+      "WalletCard": {
+        "AddCard": "Add",
+        "NoCard": "There are no connected cards for withdrawing money",
+        "RemoveCard": "Delete card",
+        "Title": "My cards"
+      },
+      "WalletInfo": {
+        "Title": "On the fleet balance",
+        "Withdraw": "Withdrawal to a card"
+      }
+    }
+  },
+  "FleetMaintainer": {
+    "ContactBtn": "Contact manager",
+    "Messengers": "Messengers",
+    "ReserveMaintainerTooltip": "A temporary manager has been assigned to your fleet. Your personal manager will be available from {{ date }}",
+    "Title": "Personal Uklon manager",
+    "WorkHours": "Working hours: Mon-Fri 9:00 - 18:00"
+  },
+  "FleetOrderRecordList": {
+    "GoToTrip": "Go to trip",
+    "Header": {
+      "PrimaryCaption": {
+        "Cost": "Sum",
+        "CostAndDistance": "Cost",
+        "CourierPickupTime": "Date",
+        "Distance": "Distance along the route",
+        "Driver": "Driver",
+        "ExpandedView": {
+          "PaymentType": "Payment type",
+          "PickupTime": "Pickup time",
+          "ProductType": "Product"
+        },
+        "LicensePlate": "License plate",
+        "PaymentType": "Payment type",
+        "PickupTime": "Pickup time",
+        "ProductType": "Product",
+        "Route": "Route",
+        "Status": "Status"
+      },
+      "SecondaryCaption": {
+        "CostAndDistance": "Distance by route",
+        "PickupTime": ""
+      }
+    },
+    "Row": {
+      "Messages": {
+        "DriverWasRemoved": "The driver was removed from the fleet",
+        "VehicleWasRemoved": "The vehicle was removed from the fleet"
+      }
+    }
+  },
+  "FleetProfile": {
+    "Contacts": {
+      "ContactInfo": {
+        "Email": "e-mail",
+        "Me": "me",
+        "PhoneNumber": "Phone number"
+      },
+      "EmptyState": "This fleet has no managers yet",
+      "FleetManagersTitle": "Fleet managers",
+      "FleetOwnersTitle": "Fleet owners"
+    },
+    "FleetHistory": {
+      "ChangeType": {
+        "B2BSplitAdjustmentChanged": "Change the type of adjustment",
+        "B2BSplitDistributionChanged": "Changing the split method",
+        "CommercialCreated": "Fleet created",
+        "DriverAdded": "Driver added",
+        "DriverRegistered": "Driver registered",
+        "DriverRemoved": "Driver removed",
+        "FiscalizationDisabled": "Fiscalization deactivated",
+        "FiscalizationEnabled": "Fiscalization activated",
+        "FiscalizationFarePaymentType": "Order types",
+        "FiscalizationPosBinded": "Auto linked to cash register",
+        "FiscalizationPosUnbinded": "Auto unlinked from cash register",
+        "FiscalizationVatTypeChanged": "Change of fiscal settings",
+        "IndividualEntrepreneurSelected": "Payee - primary",
+        "IndividualEntrepreneurUpdated": "Payee (Add, Edit, Delete)",
+        "ManagerAdded": "New fleet manager added",
+        "ManagerDeleted": "Fleet manager deleted",
+        "OwnerAdded": "New fleet owner added",
+        "OwnerDeleted": "Fleet owner removed",
+        "ProfileChanged": "Fleet data changed",
+        "RegionChanged": "Region changed",
+        "Unregistered": "Fleet deleted",
+        "VehicleAdded": "Vehicle added",
+        "VehicleRegistered": "Vehicle registered",
+        "VehicleRemoved": "Vehicle deleted",
+        "WalletTransfersAllowedChanged": "Changing funds transfer settings",
+        "WithdrawalTypeChanged": "B2B payouts activated"
+      },
+      "NoHistory": "This fleet has no history yet",
+      "ProfileChangeProperties": {
+        "B2BSplitBalance": {
+          "BalanceDependent": "according to the balance amount",
+          "PerSplit": "for each order (according to the driver's balance)",
+          "ProportionalToCommission": "according to the commission in the order",
+          "TimeRange": "once a day (according to the fleet balance)"
+        },
+        "email": "E-mail",
+        "entrepreneur_name": "Name of IE / LLC",
+        "Fiscalization": {
+          "FarePayment": {
+            "Cash": "Cash",
+            "Cashless": "Cashless",
+            "Corporate": "Corporate"
+          },
+          "Field": {
+            "CashierRegister": "Cash register",
+            "FarePayment": "Order types",
+            "VatType": "Tax rate",
+            "Vehicle": "Vehicle"
+          },
+          "VatType": {
+            "Rate0": "VAT B 0%",
+            "Rate20": "VAT A 20%",
+            "TaxFree": "Exempt from taxation",
+            "WithoutVat": "No VAT"
+          }
+        },
+        "fleet_type": "Fleet type",
+        "id": "Region",
+        "merchant_id": "Merchant Fondy",
+        "name": "Fleet name",
+        "PaymentProviders": {
+          "Fondy": "Merchant Fondy",
+          "IPay": "IPay merchant",
+          "Platon": "Merchant Platon"
+        },
+        "tax_number": "ITN",
+        "WalletTransfersAllowedChanged": {
+          "Allow": "<span class=\"tw-text-accent-mint-light\">Allowed</span> transfer of funds between driver and fleet balances",
+          "Disallow": "Transfer of funds between driver and fleet balances is <span class=\"tw-text-accent-coral-light\">prohibited</span>"
+        }
+      },
+      "Type": "Data type",
+      "WithdrawalTypeChanged": {
+        "IndividualEntrepreneur": "Funds are deposited to merchants",
+        "None": "-",
+        "PaymentCard": "Withdrawn cashless funds using the card"
+      }
+    },
+    "FleetInfo": {
+      "City": "City",
+      "CouriersCount": "Number of couriers",
+      "CreatedAt": "Date of connection",
+      "DriversCount": "Number of drivers",
+      "VehiclesCount": "Number of cars"
+    },
+    "RRO": {
+      "CarsFiscalization": "Fiscalization of cars",
+      "HowActivate": "How to activate fiscalization?",
+      "KeyList": {
+        "Header": {
+          "Actions": "Actions",
+          "DRFO": "TIN (Taxpayer Identification Number)",
+          "Key": "Key",
+          "LinkCasa": "Linked cash register",
+          "TimeCreateAt": "Key activation time",
+          "TimeExpired": "Key deactivation time"
+        },
+        "List": {
+          "Btn": {
+            "KeyDetails": "View key details",
+            "LinkCasa": "Link cash register",
+            "RemoveKey": "Delete key"
+          },
+          "Tooltip": {
+            "ExpirationTimeKey": "The key's validity period is about to expire"
+          }
+        }
+      },
+      "Modals": {
+        "Confirmation": {
+          "Content": "Changes will not be saved",
+          "Title": "Are you sure you want to close?"
+        },
+        "Fiscalization": {
+          "Content": {
+            "Activate": "Are you sure you want to activate fiscalization? After activation, all orders that match the settings will be fiscalized.",
+            "Deactivate": "Are you sure you want to deactivate fiscalization?",
+            "Unavailable": "To activate, you need to set up taxation and select the types of orders and the tax rate there."
+          },
+          "Notification": {
+            "Activate": {
+              "Error": "Fiscalization could not be activated",
+              "Success": "Fiscalization is activated"
+            },
+            "Deactivate": {
+              "Error": "Fiscalization could not be deactivated",
+              "Success": "Fiscalization is deactivated"
+            }
+          },
+          "Title": {
+            "Activate": "Activate fiscalization",
+            "Deactivate": "Deactivate fiscalization",
+            "Unavailable": "Unable to activate fiscalization"
+          }
+        },
+        "HowToGetKey": {
+          "Period": {
+            "Item1": "The validity period of EDS certificates does not exceed two years.",
+            "Item2": "After this period, it is necessary to obtain EDS services again due to information security requirements.",
+            "Title": "Certificate validity period:"
+          },
+          "Services": {
+            "Item1": "An individual or legal entity can obtain EDS services at one of the 24 accredited key certification centers in Ukraine. ",
+            "Item2": "Information about these centers can be found in the Electronic Registry of Entities on the website of the Central Certification Authority of the Ministry of Justice of Ukraine.",
+            "Title": "Obtaining EDS services:"
+          },
+          "Title": "How to obtain a QES/EDS key?"
+        },
+        "KeyInfo": {
+          "DRFO": "TIN (Taxpayer Identification Number):",
+          "Expired": "Key deactivation time:",
+          "KeyId": "Unique identifier of EDS key:",
+          "PublicKey": "Public key:",
+          "Serial": "Certificate serial number:",
+          "Title": "Details {{ name }}"
+        },
+        "LinkCashToKey": {
+          "Notification": {
+            "Success": "Cash register successfully linked to key"
+          },
+          "Select": {
+            "Label": "List of cash registers",
+            "Placeholder": "Select a cash register"
+          },
+          "Title": "Select the required cash register"
+        },
+        "LinkCashToVehicle": {
+          "Notification": {
+            "Success": "Cash register successfully linked to vehicle"
+          },
+          "SelectedCar": "Selected vehicle",
+          "Select": {
+            "Label": "List of cash registers",
+            "Placeholder": "Select the checkout"
+          },
+          "Title": "Linking vehicle to cash register"
+        },
+        "RemoveKey": {
+          "Content": "Are you sure you want to delete the key: {{name}}?",
+          "Notification": {
+            "Success": "Key successfully deleted"
+          },
+          "Title": "Deleting a key"
+        },
+        "Settings": {
+          "FarePayment": {
+            "Description": "Orders that will be fiscalized:",
+            "Label": "Types of orders",
+            "Placeholder": "Select types of orders",
+            "Type": {
+              "cash": "Cash",
+              "cashless": "Cashless",
+              "corporate": "Corporate"
+            }
+          },
+          "Notification": {
+            "Error": "The fiscalization settings could not be changed",
+            "Success": "Fiscalization settings have been changed"
+          },
+          "ServiceProductName": {
+            "Description": "Fiscal receipt description text",
+            "Label": "Receipt text"
+          },
+          "Title": "Fiscalization settings",
+          "VatType": {
+            "Description": "Tax rate that will be used when creating receipts for the fleet:",
+            "Label": "Corporate",
+            "Placeholder": "Select rate",
+            "Type": {
+              "rate0": "VAT B 0%",
+              "rate20": "VAT A 20%",
+              "tax_free": "Exempt from taxation",
+              "without_vat": "No VAT"
+            }
+          }
+        },
+        "UnLinkCashFromVehicle": {
+          "Cashier": "Cash register",
+          "Notification": {
+            "Success": "Cash register successfully unlinked from vehicle"
+          },
+          "SelectedCar": "Selected vehicle",
+          "Title": "Unlink from vehicle?"
+        },
+        "UploadKey": {
+          "Btn": {
+            "UploadAgain": {
+              "Label": "Uploaded key:",
+              "Name": "Choose another key"
+            },
+            "Upload": {
+              "Error": {
+                "FileExtension": "Invalid file type. Allowed types: dat, zs2, sk, jks, pk8, pfx.",
+                "FileMaxSize": "The file size exceeds the maximum limit of 5 MB.",
+                "FileUpload": "Failed to load key. Try again",
+                "IncorrectPasswordOrInvalidKey": "Incorrect password or key is damaged"
+              },
+              "Label": "Upload QES/EDS key",
+              "Name": "Upload key from computer"
+            }
+          },
+          "HowToUse": "How to obtain a QES/EDS key?",
+          "Info": "This can be a key obtained from any accredited certification center in Ukraine, such as the one you use for signing tax invoices. Usually, these are files with the following extensions: dat (key-6.dat), zs2, sk, jks, pk8, pfx",
+          "Input": {
+            "KeyName": {
+              "Label": "Key name",
+              "Placeholder": "Enter key name"
+            },
+            "Password": {
+              "Label": "Password",
+              "Placeholder": "Enter key password"
+            }
+          },
+          "Notification": {
+            "Success": "Key successfully added"
+          },
+          "Title": "Key upload"
+        }
+      },
+      "PartnerLink": "Visit Partner Site",
+      "Settings": "Settings",
+      "Title": "Fiscalization",
+      "Toggle": {
+        "Active": "activated",
+        "Inactive": "not activated"
+      },
+      "UploadedKeys": "Uploaded keys",
+      "UploadKey": "Upload key",
+      "Vehicles": {
+        "Header": {
+          "Car": "Vehicle",
+          "Cashier": "Cash register",
+          "Status": "Status"
+        },
+        "List": {
+          "Status": {
+            "Active": "Fiscalizing",
+            "ShiftClosed": "Shift is closed",
+            "ShiftOpened": "no cash register"
+          }
+        }
+      }
+    },
+    "Tabs": {
+      "Contacts": "Contacts",
+      "History": "Changes history",
+      "RRO": {
+        "Name": "PRO",
+        "Tooltip": "Available only for FOP"
+      }
+    }
+  },
+  "FleetWalletCard": {
+    "AddCard": "Add card",
+    "DeleteCard": "Delete card",
+    "NoCardAttached": "No card added",
+    "Title": "Link card"
+  },
+  "FleetWalletInfo": {
+    "Buttons": {
+      "Withdrawal": "Withdraw",
+      "WithdrawalTooltip": "No attached cards",
+      "WithdrawalTooltipNoBalance": "Withdrawal not available, wallet balance is zero"
+    },
+    "Title": "On the fleet balance"
+  },
+  "FleetWalletTransactionsList": {
+    "Header": {
+      "Balance": "Balance",
+      "BalanceDelta": "Changes",
+      "Date": "Date",
+      "Time": "Time",
+      "TransactionType": "Type of transaction"
+    }
+  },
+  "Header": {
+    "Title": {
+      "CourierDeliveryDetails": "Delivery details",
+      "CourierDetails": "Courier page",
+      "DriverDetails": "Driver Page",
+      "OrderTripsDetails": "Trip details",
+      "VehicleCreate": "Application for adding a car",
+      "VehicleDetails": "Vehicle page"
+    }
+  },
+  "LiveMap": {
+    "ActiveOrderStatus": {
+      "Accepted": "Accepted",
+      "Arrived": "Arrived",
+      "Running": "In progress"
+    },
+    "AllDriversTitle": "Drivers by car ({{ count }})",
+    "Car": "Car",
+    "Couriers": {
+      "AllCouriersTitle": "Couriers online ({{ count }})",
+      "CourierTitle": "Courier",
+      "GoToDelivery": "Details about delivery",
+      "GroupStatus": {
+        "Active": "Not busy couriers ({{ count }})",
+        "Blocked": "Blocked couriers ({{ count }})",
+        "Inactive": "Inactive couriers ({{ count }})",
+        "OrderExecution": "Couriers on order ({{ count }})"
+      },
+      "NoCouriersTitle": "Couriers not found",
+      "Search": {
+        "CouriersTitle": "Search for couriers"
+      },
+      "Tooltips": {
+        "Active": "Couriers who can fulfill orders using the methods available to them",
+        "Blocked": "Couriers who have all types of orders blocked",
+        "Inactive": "Couriers from whom we do not receive GPS coordinates, but they log into the application",
+        "OrderExecution": "Couriers with an active order"
+      }
+    },
+    "DriverStatus": {
+      "Active": "Free",
+      "Blocked": "With restrictions",
+      "Inactive": "Not active",
+      "OrderExecution": "Fulfills the order"
+    },
+    "GroupStatus": {
+      "Active": "Available drivers ({{ count }})",
+      "Blocked": "Blocked drivers ({{ count }})",
+      "Inactive": "Inactive drivers ({{ count }})",
+      "OrderExecution": "Drivers on order ({{ count }})"
+    },
+    "LastUpdated": "Updated {{ time }}",
+    "LocationTitle": "Location",
+    "MapDisclaimer": "Geolocation may be inaccurate and cannot be used as a GPS tracker",
+    "NoDriversTitle": "Drivers not found",
+    "OrderDetailsTitle": "Delivery details",
+    "RefreshBtn": "Update",
+    "RefreshCounterBtn": "Update after {{ time }}",
+    "RefreshTimeDisclaimer": "Map updates every {{ time }} seconds",
+    "Search": {
+      "CarPlaceholder": "License plate",
+      "CarTitle": "Car search",
+      "DriverPlaceholder": "Last name, First name",
+      "DriverTitle": "Driver search",
+      "LicensePlateError": "Use latin characters",
+      "NoMatch": "No results found",
+      "Results": "Search results"
+    },
+    "Subtitle": "Relevance of data with an inaccuracy of 15 minutes",
+    "Title": "Live map",
+    "Tooltips": {
+      "Active": "Car drivers can fulfill orders using the methods available to them.",
+      "Blocked": "Drivers who have all types of orders blocked",
+      "Inactive": "Drivers from whom we do not receive GPS coordinates, but they have chosen a car in the application.",
+      "NoGeolocation": "Temporarily geolocation not known",
+      "OrderExecution": "Drivers with an active order"
+    },
+    "UnknownGeolocation": "Geolocation unknown"
+  },
+  "Locale": {
+    "Long": {
+      "en": "English",
+      "ro": "Romanian",
+      "ru": "Russian",
+      "uk": "Ukrainian"
+    },
+    "Short": {
+      "en": "en",
+      "ro": "ro",
+      "ru": "ru",
+      "uk": "uk"
+    }
+  },
+  "Modals": {
+    "AddCard": {
+      "Step1": {
+        "CardNumber": "Card number",
+        "InvalidDate": "Card has expired",
+        "InvalidFormat": "Wrong format",
+        "Required": "The field is required",
+        "ValidTo": "Expiration date"
+      },
+      "Step2": {
+        "AddCard": "Add a card",
+        "InvalidCode": "Unfortunately the code is wrong. Please, try again",
+        "NoCode": "Didn't get the code?",
+        "Notification": "SMS with a confirmation code has been sent to your number {{0}}",
+        "SendAgain": "Resend",
+        "SendAgainIn": "Send again in"
+      },
+      "Title": "Add new card"
+    },
+    "Confirmation": {
+      "Accept": "Yes",
+      "Decline": "No",
+      "Title": "Your request will be deleted, continue?"
+    },
+    "DeleteCard": {
+      "Cancel": "Cancel",
+      "Delete": "Delete",
+      "Notification": "Your card details will be removed from our database",
+      "Title": "Removing a card"
+    },
+    "PhotoCard": {
+      "FormatError": "Available formats ({{0}})",
+      "SizeError": "File size must not exceed {{ data }} Mb",
+      "UploadError": "Error ",
+      "UploadSuccess": "Image uploaded successfully"
+    },
+    "RemoveCourierFromFleet": {
+      "Description": "Are you sure you want to remove {{0}} from the fleet?",
+      "Title": "The cooperation with courier terminated"
+    },
+    "RemoveFromFleet": {
+      "CommentLabel": "Comment",
+      "CommentPlaceholder": "You can add details, they will be available to you and the Uklon manager",
+      "Description": "Data on trips and earnings of the driver in your fleet will remain available after the termination of cooperation",
+      "Driver": "Stop cooperation with {{0}}?",
+      "ReasonLabel": "Specify the reason",
+      "Reasons": {
+        "Accident": "Road accident",
+        "Fraud": "Fraud",
+        "Misregistration": "Wrong registration",
+        "Other": "Other",
+        "Released": "Work with the driver terminated (Fired from the fleet)",
+        "Sold": "Car sold",
+        "TrafficRulesViolation": "Traffic violation",
+        "VehicleCondition": "Car condition",
+        "VehicleRequirementsMissmatch": "The car does not match the requirements of the service",
+        "ViolationOfCooperationRules": "Violation of cooperation rules"
+      },
+      "Vehicle": "Remove {{0}} from fleet?"
+    },
+    "SelectPeriod": {
+      "DatePlaceholder": "dd.mm.yyyy",
+      "DateRangeLabel": "Date from - to",
+      "Errors": {
+        "CurrentTime": "”Time to” cannot be greater than the current time",
+        "DateRange": "Period cannot exceed 92 days",
+        "FromTime": "“Time from” cannot be greater than “Time to”",
+        "ToTime": "“Time to” must be greater than “Time from”"
+      },
+      "FromTimeLabel": "Time from",
+      "Title": "Choose a period",
+      "ToTimeLabel": "Time to"
+    },
+    "UnlinkVehicle": {
+      "Cancel": "Cancel",
+      "DescriptionDriver": "You will not be able to restore the connection with the driver from the fleet account. Restoring connection with the car is available only to the driver in the Driver app.",
+      "DescriptionVehicle": "You will not be able to restore the connection with car from the Fleet Cabinet. Restoring connection with the car is available only to the driver in the Driver app.",
+      "TitleDriver": "Break the connection with driver {{0}}?",
+      "TitleVehicle": "Break the connection with car {{0}}?",
+      "Unlink": "Break the connection"
+    },
+    "WithdrawToCard": {
+      "Amount": "Cost",
+      "AmountError": "Incorrect amount",
+      "ITNError": "An incorrect ITN was entered",
+      "Notification": "Here you need to write the conditions for the withdrawal of funds, how much they will be credited, maybe there is a max amount",
+      "Passport": "Passport number",
+      "Required": "The field is required",
+      "Title": "Withdrawal of money to a personal card",
+      "VAT": "ITN",
+      "VATError": "VAT number should consist of 10 numbers"
+    },
+    "WithdrawToDrivers": {
+      "Cancel": "Cancel",
+      "CouriersDescription2": "to the balance of couriers?",
+      "Description1": "Do you really want to transfer",
+      "Description2": "on the balance of drivers?",
+      "Title": "Money transfer confirmation",
+      "TransferMoney": "Transfer money"
+    },
+    "WithdrawToFleet": {
+      "Cancel": "Cancel",
+      "Description1": "Do you really want to transfer",
+      "Description2": "to the fleet balance?",
+      "Title": "Transferring money to the fleet balance",
+      "TransferMoney": "Transfer money"
+    }
+  },
+  "NotificationCenter": {
+    "CloseBtn": "Close",
+    "EmptyState": "You don't have any new notifications yet",
+    "Indicator": {
+      "MarkAsRead": "Mark as read",
+      "MarkAsUnread": "Mark as unread"
+    },
+    "ReadAll": "Mark all as read",
+    "Title": "Notifications",
+    "Today": "Today",
+    "UnreadCount": "Messages: {{ count }}",
+    "Yesterday": "Yesterday"
+  },
+  "Notification": {
+    "Courier": {
+      "RemoveCourierError": "An attempt to terminate cooperation with the courier failed. Try again later.",
+      "RemoveCourierSuccess": "Cooperation with the courier terminated"
+    },
+    "Drivers": {
+      "DriverHasSelectedVehicle": "The deletion is not available due to an active connection with the car",
+      "RemoveDriverError": "The server is temporarily unavailable, please try again later",
+      "RemoveDriverSuccess": "Driver cooperation terminated"
+    },
+    "Finance": {
+      "AddCardFailed": "Failed to add card",
+      "AddCardSuccess": "Payment card successfully added",
+      "AddDeleteCardNotAllowed": "You are not allowed to add/delete a card. Please contact support.",
+      "DeleteCardFailed": "Failed to delete the card",
+      "DeleteCardSuccess": "Payment card removed",
+      "FondyID": "<b class='tw-font-medium'>Get identified</b> in the Fondy ID payment service to have access to barrier-free withdrawal of funds. <b class='tw-font-medium'>Register via the link – <a class='tw-underline' href='https://id.fondy.ua/account/registration' target='_blank'>Fondy ID</a></b>.</br> After identification, your limit for receiving funds will be increased to UAH 150 000 monthly.  <b class='tw-text-[#845700] tw-font-medium'>Full instructions at the link – <a class='tw-underline' href='https://docs.google.com/presentation/d/1N7GJxK2-Ai4OdCDzMIemdSgnrYMPcoTLxBBhtpr1CwQ/edit#slide=id.g29dbbbad725_0_7' target='_blank'>Verification instructions</a><b>",
+      "WithdrawFailed": "Failed to withdraw money to a personal card",
+      "WithdrawSuccess": "The money was successfully withdrawn to a personal card"
+    },
+    "ReleaseVehicle": {
+      "Error": "It is not possible to break the session, the service is temporarily unavailable",
+      "InvalidError": "It is impossible to break the session, as the driver is fulfilling the order",
+      "Success": "The \"Driver-Car\" connection was successfully terminated"
+    },
+    "SomethingWentWrong": "Oops, An error occurred, please try again. If error repeat again, contact our support",
+    "UklonGarage": {
+      "ApplicationAlreadyApproved": "The request has already been processed by the Uklon manager",
+      "CannotApproveApplication": "This driver cannot be added to the fleet automatically, please contact the Uklon manager for help"
+    },
+    "Vehicles": {
+      "RemoveVehicleError": "The deletion is not available due to the presence of a driver on this car",
+      "RemoveVehicleSuccess": "Car removed from the fleet"
+    },
+    "WithdrawToCard": {
+      "Error": "Funds withdrawal for personal card failed",
+      "MonthLimitError": "Monthly withdrawal limit exceeded",
+      "Success": "Payment transaction successfully completed"
+    }
+  },
+  "NPS": {
+    "CloseBtn": "Close",
+    "Comment": {
+      "Label": "How can we become better?",
+      "Placeholder": "Write your suggestions here",
+      "Title": "What should we change to increase your loyalty? (optional)"
+    },
+    "LaterBtn": "Later",
+    "Mark": {
+      "Negative": "Very NOT satisfied",
+      "Positive": "Very satisfied",
+      "Title": "How likely are you to recommend Uklon for cooperation to your partners or potential investors?"
+    },
+    "RespondBtn": "Respond",
+    "SkipSurvey": "Don't show anymore",
+    "Subtitle": "Help us improve by sharing your thoughts",
+    "SuccessNotification": "Thank you for your feedback! Your comments are important for improving the cabinet",
+    "Title": "Do you like our service?",
+    "Tooltip": "For sending, select a rating"
+  },
+  "OrderReportInformation": {
+    "Data": {
+      "Activity": {
+        "Broadcast": "Filter (ether)",
+        "Chain": "Chain",
+        "Label": "Activity",
+        "Offer": "Filter (auto)",
+        "Passenger": "With a passenger"
+      },
+      "AdditionalIncome": {
+        "Bonus": {
+          "BrandingBonus": "For branding",
+          "GuaranteedBonus": "Guaranteed income",
+          "IndividualBonus": "Individual",
+          "Label": "Bonuses",
+          "OrderBonus": "By order",
+          "WeekBonus": "Weekly"
+        },
+        "Label": "Additional income",
+        "Promotion": {
+          "Label": "Compensation",
+          "PassengerAbsence": "Passenger non-exit",
+          "Support": "Through support"
+        },
+        "Tips": {
+          "Label": "Tips"
+        }
+      },
+      "Expenses": {
+        "Commission": {
+          "Label": "Uklon commission",
+          "Tooltip": "The amount of commission paid to the Uklon service for the selected period"
+        },
+        "CommissionProgram": {
+          "Tooltip": "Actual commission and discount when participating in commission programs"
+        },
+        "Fine": {
+          "Label": "Fine"
+        },
+        "Label": "Expenses"
+      },
+      "Refill": {
+        "Balance": "From fleet balance",
+        "Label": "Driver refill",
+        "Self": "Self"
+      },
+      "TotalCost": {
+        "Card": {
+          "Label": "To card"
+        },
+        "Cash": {
+          "Label": "Cash"
+        },
+        "Label": "Total cost",
+        "Wallet": {
+          "Label": "Balance"
+        }
+      }
+    }
+  },
+  "OrderReportList": {
+    "Courier": "Courier",
+    "Driver": {
+      "Subtitle": "Driver",
+      "Title": "Call sign"
+    },
+    "OnlineTime": {
+      "Title": "Time online"
+    },
+    "OrdersPerHour": {
+      "Title": "Orders per hour"
+    },
+    "Rides": {
+      "Title": "Trips"
+    },
+    "RidesTotalAmount": {
+      "Title": "Total cost"
+    },
+    "TotalAmount": {
+      "Title": "Total",
+      "Tooltip": "Total = (Total Cost + Compensation + Tips + Bonuses) - (Penalties + Uklon Commission)."
+    },
+    "TotalDistance": {
+      "PickUp": "Distance to pick up",
+      "Title": "Distance under order"
+    },
+    "TotalExecutingTime": {
+      "Title": "Order performance time"
+    }
+  },
+  "Orders": {
+    "Csv": {
+      "ColumnName": {
+        "Activity": {
+          "Broadcast": "Filter (ether), hours",
+          "Chain": "Chain, hours",
+          "Offer": "Filter (auto), hours",
+          "Passenger": "With a passenger, hours"
+        },
+        "AveragePricePerHour": "",
+        "AveragePricePerKm": "Price per 1 km, {{ currency }}/km",
+        "Bonus": "Bonuses (All), {{currency}}",
+        "BonusDetails": {
+          "BrandingBonus": "Branding bonuses, {{ currency }}",
+          "GuaranteedBonus": "Bonuses Guaranteed income, {{ currency }}",
+          "IndividualBonus": "Bonuses Individual, {{ currency }}",
+          "OrderBonus": "Order bonuses, {{ currency }}",
+          "WeekBonus": "Bonuses Weekly, {{ currency }}"
+        },
+        "Card": "Cost to the card, {{currency}}",
+        "Cash": "Cost in cash, {{currency}}",
+        "Commission": "Uklon Commission, {{currency}}",
+        "CommissionDiscount": "Commission discount, {{ currency }}",
+        "Compensation": "Compensations (All), {{ currency }}",
+        "Distance": "Distance under order, km",
+        "Driver": "Driver",
+        "Fine": "Penalties, {{currency}}",
+        "Merchant": "Merchant {{ merchant }}, {{currency}}",
+        "MerchantsTotal": "Cost per merchant, {{ currency }}",
+        "OnlineTime": "Time online, hours",
+        "PickUp": "Distance to pick up, km",
+        "Promotion": {
+          "PassengerAbsence": "Compensation for passenger no-show, {{ currency }}",
+          "Support": "Compensation via support, {{ currency }}"
+        },
+        "Refill": {
+          "Balance": "Refills from the park balance, {{ currency }}",
+          "Self": "Refills by self, {{ currency }}"
+        },
+        "RidesCount": "Number of orders",
+        "RidesPerHour": "Orders per hour",
+        "Signal": "Call sign",
+        "Tips": "Tips, {{currency}}",
+        "Total": "Total, {{currency}}",
+        "TotalExecutingTime": "Duration of orders, hours",
+        "TotalProfit": "Cost (All), {{currency}}",
+        "Wallet": "Cost to the balance, {{currency}}"
+      },
+      "Filename": "Rides report - {{from}} - {{to}}",
+      "Notification": {
+        "Error": "The data could not be loaded, please reload the page and try again. If you see the error again - inform the support service.",
+        "Success": "Data successfully uploaded to file {{filename}}"
+      }
+    },
+    "NoData": {
+      "Subtitle": "The data was stolen without a trace. Try changing the request",
+      "Title": "Unfortunately we didn't find anything :("
+    },
+    "Tabs": {
+      "Trips": "Trips",
+      "TripsReports": "Trip report",
+      "VehicleReports": "Vehicle report"
+    },
+    "Trips": {
+      "CancellationInitiator": {
+        "Courier": "Canceled by courier",
+        "Dispatcher": "Canceled by dispatcher",
+        "Driver": "Canceled by driver",
+        "Rider": "Canceled by the client",
+        "System": "Canceled by system"
+      },
+      "Details": {
+        "CompletedAt": "Completion",
+        "Cost": "Price",
+        "CreatedAt": "Pick up",
+        "Date": "Date",
+        "DeliveryPeriods": "Pick up - Arrive - Completion",
+        "Distance": "Path length",
+        "Driver": "Driver",
+        "LicensePlate": "License plate",
+        "MakeModel": "Car make",
+        "Name": "Name",
+        "Phone": "Phone number",
+        "PickupTime": "Arrive",
+        "Rating": "Driver rating",
+        "Routing": "route on request",
+        "Signal": "Call sign",
+        "Surname": "Surname",
+        "TimeInTravel": "Travel time",
+        "Title": "Trip details",
+        "Vehicle": "Car"
+      },
+      "Filter": {
+        "DateRangeLabel": {
+          "ChoosePeriod": "Choose a period",
+          "CurrentMonth": "Current month",
+          "CurrentQuarter": "Current quarter",
+          "CurrentWeek": "Current week",
+          "LastMonth": "Last month",
+          "LastQuarter": "Last quarter",
+          "LastWeek": "Last week",
+          "Today": "Today",
+          "Yesterday": "Yesterday"
+        },
+        "Driver": "Driver",
+        "LicensePlate": "License plate",
+        "OrderStatus": {
+          "accepted": "Accepted",
+          "all": "All",
+          "arrived": "Arrived",
+          "canceled": "Canceled",
+          "completed": "Completed",
+          "running": "Running"
+        },
+        "ProductType": "Product type",
+        "Status": "Status"
+      },
+      "List": {
+        "Commission": "Commission",
+        "Cost": "Cost",
+        "Distance": "Route distance",
+        "Driver": "Driver",
+        "LicensePlate": "License plate",
+        "Merchant": "Merchant",
+        "OrderCost": "Order cost",
+        "PaymentType": "Payment type",
+        "PickUp": "Pickup time",
+        "ProductType": "Product type",
+        "Route": "Route",
+        "Status": "Status",
+        "Tooltip": {
+          "Cash": "Cash",
+          "Cashless": "Cashless",
+          "Mixed": "Mixed",
+          "OptionalOrder": "Optional order",
+          "ToBalance": "Accrued to balance"
+        }
+      }
+    }
+  },
+  "PhoneInput": {
+    "AllCountries": "All countries",
+    "CountryCode": "Country or country code",
+    "NoMatch": "No match",
+    "PopularCountries": "Popular",
+    "Search": "Search by country"
+  },
+  "PhotoControl": {
+    "ClarificationReason": {
+      "cleaning_seats": "Cleaning seats",
+      "damaged_seats": "Damaged seats",
+      "dirty_vehicle": "Dirty vehicle",
+      "extraneous_things": "Stuff on the seat",
+      "install_covers": "Covers required",
+      "low_quality_photo": "Low quality photo",
+      "missed_headrests": "Headrests are missing",
+      "missed_vehicle_licence": "Vehicle registration certificate is missing",
+      "need_outside_photos": "Take a photo of a vehicle on the street",
+      "other_car": "The photo shows other car",
+      "other_car_documents": "Documents for another vehicle",
+      "photo_dont_match_angle": "Photos do not match the angle",
+      "photo_has_poor_lighting": "Poor lighting in the photo",
+      "photo_is_duplicated": "Duplicate photo (one photo uploaded twice)",
+      "photo_not_relevant": "Photo not relevant",
+      "required_photos": "No vehicle photos",
+      "safety_belt_required": "Photo of seats with seat belts required"
+    },
+    "Form": {
+      "ClarificationReason": "Reason for data clarification:",
+      "InvalidPhotoMessage": "Photo {{ type }} is not relevant. Please take a photo from your phone camera",
+      "PhotosInstruction": "All photos of the car must be clear and taken in the afternoon",
+      "PhotosInstruction1": "The car must <b>fit completely into the frame</b> without cropped edges",
+      "PhotosInstruction2": "Remove <b>all extra items</b> from the seats",
+      "PhotosInstruction3": "The photo should show <b>seat belts and their fastenings</b>",
+      "SubmitButton": "Submit for review",
+      "SuccessSubTitle": "We will provide an answer within the next few hours during the working day",
+      "SuccessTitle": "The photos have been successfully submitted for review!",
+      "VehicleButton": "Go to car page"
+    },
+    "Panel": {
+      "ClarificationReason": "Reason for needing revision:",
+      "ClarificationTitle": "Photocontrol. Data revision",
+      "DaysRemaining": "days remaining",
+      "DeadlinePassed": "until {{ till }} deadline expired",
+      "DesktopTooltip": "You can only pass photocontrol from a mobile phone",
+      "Expired": "deadline expired",
+      "InstructionMessageDesktop": "You can only pass photocontrol from a mobile phone. To continue working with the car, you need to take the following photos: ",
+      "InstructionMessageMobile": "To continue working with the car, you need to take the following photos:",
+      "PassedDeadline": "until {{ till }} (days overdue: {{ days }})",
+      "PassedDeadlineShort": "Days overdue: {{ days }}",
+      "PhotoControlButton": "Pass photocontrol",
+      "RejectedMessage": "To re-pass photocontrol, contact the Uklon manager.",
+      "Till": "until",
+      "TillDeadline": "until {{ till }} (days remaining: {{ days }})",
+      "TillDeadlineShort": "Days remaining: {{ days }}",
+      "Title": "Photocontrol"
+    },
+    "RejectionReason": {
+      "car_doesnt_pass_uklon_requirements": "The car does not meet the service requirements",
+      "closed_automatically": "The deadline has passed",
+      "damaged_paintwork": "Damage to the car paintwork",
+      "damaged_seats": "Seats are damaged",
+      "different_colors": "Different colors of the body",
+      "dirty_seats": "Dirty seats",
+      "dirty_vehicle": "Dirty vehicle",
+      "driver_registration_deadline_expired": "The deadline has passed",
+      "extraneous_things": "Stuff on the seat",
+      "mechanical_damage": "Mechanical damage of the body",
+      "missed_headrests": "Headrests are missing",
+      "missed_seat_belts": "Seat belts are missing",
+      "not_matched_rubber": "Rubber does not match the season",
+      "other_car": "The photo shows the other car",
+      "poor_body_condition": "Critical state of the car",
+      "replace_covers": "Replace the covers"
+    },
+    "TicketsList": {
+      "CustomComment": "Comment",
+      "Deadline": "Deadline",
+      "LicensePlate": "License plate",
+      "Reason": "Reason",
+      "Reasons": {
+        "AfterFirstOrders": "Photos of the vehicle are required after registration",
+        "ByVehicleModel": "Checking a vehicle model in the service",
+        "Complaint": "Checking the vehicle condition after the rider's feedback",
+        "Other": "Vehicle photo update",
+        "Regular": "Regular check of the vehicle condition"
+      },
+      "RequiredPhotos": "Required photos",
+      "Status": "Status",
+      "Vehicle": "Vehicle"
+    },
+    "TicketStatus": {
+      "All": "All",
+      "Approved": "Сonfirmed",
+      "Clarification": "Data refinement",
+      "Draft": "Waiting for fc",
+      "Rejected": "Rejected",
+      "Review": "Under review",
+      "Sent": "Sent"
+    },
+    "Tooltips": {
+      "LiveMap": {
+        "BlockImmediately": "This car needs to pass a photocontrol. At the end of the trip, the car will be blocked",
+        "BlockMessage": "At the end of the trip, the car will be blocked. You can pass photo control from your mobile phone from the",
+        "ClarificationAfterDeadline": "Photocontrol for this car needs clarification. At the end of the trip, the car will be blocked",
+        "ClarificationBeforeDeadline": "Photocontrol for this car needs clarification",
+        "DraftAfterDeadline": "The deadline for photocontrol has expired. At the end of the trip, the car will be blocked",
+        "DraftBeforeDeadline": "This car needs to pass a photocontrol",
+        "DraftMessage": "You can pass photocontrol from your mobile phone from the",
+        "DriverVehicleLink": "car profile page",
+        "Rejected": "This car has not passed photocontrol. At the end of the trip, the car will be blocked",
+        "RejectedMessage": "This car has not passed photocontrol. It will be blocked after the completion of the current order"
+      },
+      "VehiclesList": {
+        "ClarificationTitle": "Photocontrol for this car needs clarification",
+        "DraftTitle": "This car needs to pass a photo control"
+      }
+    }
+  },
+  "ProductAccessibility": {
+    "Metric": {
+      "Title": {
+        "DriverExperience": "Your experience",
+        "DriverOrders": "Your orders",
+        "DriverRating": "Your rating"
+      },
+      "Value": {
+        "DriverExperience": "{{ metric }}",
+        "DriverOrders": "{{ metric }}",
+        "DriverRating": "from {{ metric }}"
+      }
+    },
+    "Rule": {
+      "Title": {
+        "DriverExperience": "Experience (in days)",
+        "DriverOrders": "Orders count",
+        "DriverRating": "Rating"
+      },
+      "Value": {
+        "DriverExperience": "from {{ rule }}",
+        "DriverOrders": "from {{ rule }}",
+        "DriverRating": "from {{ rule }}"
+      }
+    }
+  },
+  "ProductConfiguration": {
+    "Hint": "Some requirements for editing metrics are not met. When they are executed, editing will become available."
+  },
+  "ProfileLocaleMenu": {
+    "Caption": "Language:"
+  },
+  "ProfileLogout": {
+    "Caption": "Logout"
+  },
+  "ProfileMenu": {
+    "Actions": {
+      "EditProfile": {
+        "Caption": "Edit profile"
+      }
+    },
+    "Caption": "Fleets",
+    "FleetOption": {
+      "Actions": {
+        "Tooltip": {
+          "Copied": "Copied",
+          "Copy": "Copy"
+        }
+      }
+    }
+  },
+  "Regions": {
+    "Baku": "Baku",
+    "Berdiansk": "Berdiansk",
+    "Bila Tserkva": "Bila Tserkva",
+    "Cherkasy": "Cherkasy",
+    "Chernihiv": "Chernihiv",
+    "Chernivtsi": "Chernivtsi",
+    "Chervonohrad": "Chervonohrad",
+    "Dnipro": "Dnipro",
+    "Drohobych": "Drohobych",
+    "Ivano-Frankivsk": "Ivano-Frankivsk",
+    "Kamianets-Podilskyi": "Kamianets-Podilskyi",
+    "Kamianske": "Kamianske",
+    "Kharkiv": "Kharkiv",
+    "Kherson": "Kherson",
+    "Khmelnytskyi": "Khmelnytskyi",
+    "Konotop": "Konotop",
+    "Kremenchuk": "Kremenchuk",
+    "Kropyvnytskyi": "Kropyvnytskyi",
+    "Kryvyi Rih": "Kryvyi Rih",
+    "Kyiv": "Kyiv",
+    "Kyshyniv": "Kyshyniv",
+    "Lutsk": "Lutsk",
+    "Lviv": "Lviv",
+    "Malta": "Malta",
+    "Mariupol": "Mariupol",
+    "Melitopol": "Melitopol",
+    "Mukachevo": "Mukachevo",
+    "Mykolaiv": "Mykolaiv",
+    "Nikopol": "Nikopol",
+    "Odesa": "Odesa",
+    "Oleksandriia": "Oleksandriia",
+    "Pavlohrad": "Pavlohrad",
+    "Poltava": "Poltava",
+    "Rivne": "Rivne",
+    "Rovenky": "Rovenky",
+    "Sumy": "Sumy",
+    "Tashkent": "Tashkent",
+    "Ternopil": "Ternopil",
+    "Tunisia": "Tunisia",
+    "Uman": "Uman",
+    "Uzhhorod": "Uzhhorod",
+    "Vinnytsia": "Vinnytsia",
+    "Zaporizhia": "Zaporizhia",
+    "Zhytomyr": "Zhytomyr"
+  },
+  "RideList": {
+    "VehicleNotAttached": "Car removed from fleet"
+  },
+  "SecondaryCaptionFleetOrderRecordList": {
+    "Header": {
+      "PickupTime": "Time"
+    }
+  },
+  "SidebarProfile": {
+    "Description": "Fleet {{ fleetName }}, {{ region }}"
+  },
+  "SideNav": {
+    "AccountInfo": {
+      "CodeCopied": "Code copied",
+      "CopyCode": "Copy fleet code",
+      "EditProfile": "Edit profile",
+      "Fleet": "Fleet",
+      "Fleets": "Fleets",
+      "FleetShort": "Fleet"
+    },
+    "Menu": {
+      "Bonus": "Bonuses",
+      "Contacts": "Contacts",
+      "Dashboard": "Main",
+      "Drivers": "Drivers",
+      "Finance": "Finance",
+      "Orders": "Statistics and orders",
+      "Rating": "Driver ratings",
+      "Vehicles": "Cars"
+    }
+  },
+  "Support": {
+    "Messenger": "",
+    "Messengers": "",
+    "Phone": "",
+    "Phones": "",
+    "Type": {
+      "FleetDriver": "",
+      "Fleets": "",
+      "Messengers": "",
+      "PrivateDriverAndCourier": "",
+      "Tickets": ""
+    }
+  },
+  "SupportWidget": {
+    "Capital": {
+      "AZ": "Baku",
+      "UA": "Kyiv",
+      "UZ": "Tashkent"
+    },
+    "Country": "Ukraine",
+    "Header": "Support",
+    "PhoneTitle": "Contact is available in Telegram",
+    "Regions": "Regions",
+    "ScheduleTitle": "Schedule"
+  },
+  "VehicleDetailsInfo": {
+    "Driver": {
+      "Caption": "Current driver"
+    },
+    "Fields": {
+      "AddedAt": "Added at",
+      "BodyType": "Body type",
+      "Color": "Color",
+      "ComfortLevel": "Comfort level",
+      "Fiscalization": "Fiscalization",
+      "LoadCapacity": "Carrying capacity",
+      "Options": "Options",
+      "PassengerSeatsCount": "Seats count",
+      "TaxiLicense": "Taxi license",
+      "VINCode": "VIN"
+    },
+    "FiscalizationStatus": {
+      "NoFiscalization": "Not fiscalized",
+      "ShiftClosed": "Shift is closed"
+    },
+    "Menu": {
+      "RemoveVehicle": {
+        "Caption": "Remove vehicle"
+      }
+    },
+    "NoDriver": "Vehicle with no driver",
+    "RemoveFromFleet": {
+      "Caption": "Remove from fleet"
+    },
+    "TaxiLicenseOptions": {
+      "NoLicense": "No license",
+      "WithLicense": "With license"
+    },
+    "Title": "Vehicle data"
+  },
+  "VehicleDetails": {
+    "Title": "Vehicle page {{ make }} {{ model }} {{ license_plate }}"
+  },
+  "VehicleList": {
+    "HasPriority": "Active",
+    "Header": {
+      "Availability": "Availability",
+      "Branding": "Branding",
+      "Driver": "Driver",
+      "LicencePlate": "Licence plate",
+      "Priority": "Priority",
+      "Vehicle": "Vehicle",
+      "VehicleClass": "Comfort class"
+    },
+    "NoDriver": "Vehicle with no driver",
+    "NoPriority": "Not active",
+    "Tooltips": {
+      "All": "Available to all",
+      "Nobody": "Unavailable for drivers",
+      "SpecificDrivers": "Selected drivers"
+    }
+  },
+  "VehicleOrderReport": {
+    "Details": {
+      "AdditionalIncome": {
+        "Bonuses": "",
+        "Compensation": "",
+        "Tips": "",
+        "Title": ""
+      },
+      "AverageCostOrder": {
+        "Cash": "",
+        "Cashless": "",
+        "CostPerKm": "",
+        "Title": "",
+        "Total": ""
+      },
+      "EarningPerOrders": {
+        "Cash": "",
+        "Cashless": "",
+        "Title": ""
+      },
+      "Expenses": {
+        "Commission": "",
+        "Penalties": "",
+        "Title": ""
+      }
+    },
+    "LicencePlace": {
+      "Subtitle": "",
+      "Title": "",
+      "Tooltip": {
+        "Branded": {
+          "Description": "",
+          "Text": ""
+        },
+        "BrandedWithPriority": {
+          "Description": "",
+          "Text": ""
+        },
+        "Priority": {
+          "Description": "",
+          "Text": ""
+        }
+      }
+    },
+    "NetEarning": {
+      "Title": "",
+      "Tooltip": ""
+    },
+    "Orders": {
+      "Completed": "",
+      "Distance": ""
+    },
+    "TotalEarning": {
+      "Title": ""
+    }
+  },
+  "VehicleOrderReportList": {
+    "Csv": {
+      "Filename": "Vehicle report - {{from}} - {{to}}",
+      "Header": {
+        "GroupRow": {
+          "AdditionalIncome": "Additional income",
+          "AverageOrderCost": "Average order cost",
+          "Expenses": "Expenses",
+          "Orders": "General data",
+          "TotalEarning": "Total earnings",
+          "VehicleInfo": "Car data"
+        },
+        "Row": {
+          "AverageCashlessOrderCost": "Cashless, {{currency}}",
+          "AverageCashOrderCost": "Cash, {{currency}}",
+          "AverageOrderCost": "Total, {{currency}}",
+          "AveragePricePerKilometer": "Cost of {{km}}",
+          "BrandedAndPriority": "Брендирование и приоритет",
+          "FeeAmount": "Сommission Uklon, {{currency}}",
+          "GrossIncome": "General earnings, {{currency}}",
+          "LicensePlate": "Plate car number",
+          "Make": "Make",
+          "Model": "Model",
+          "OnlineTime": "",
+          "OrdersExecutionTime": "Time under order, hours",
+          "OrdersPerHour": "Orders per hour",
+          "ProfitAmount": "Net earnings, {{currency}}",
+          "TotalBonus": "Bonuses, {{currency}}",
+          "TotalCashEarnings": "Cash, {{currency}}",
+          "TotalCashlessEarnings": "Cashless, {{currency}}",
+          "TotalCompensations": "Compensation, {{currency}}",
+          "TotalDistanceMeters": "Mileage (on order), {{km}}",
+          "TotalOrdersCount": "Number of completed orders",
+          "TotalPenalties": "Fines, {{currency}}",
+          "TotalTips": "Tips, {{currency}}"
+        }
+      },
+      "Notification": {
+        "Error": "The data could not be loaded, please reload the page and try again. If you see the error again - inform the support service.",
+        "Success": "Data successfully downloaded to file {{filename}}"
+      }
+    },
+    "Details": {
+      "AdditionalIncome": {
+        "Bonuses": "Bonuses",
+        "Compensation": "Compensation",
+        "Idle": "Idle",
+        "Promo": "Promo",
+        "Tips": "Tip",
+        "Title": "Additional income"
+      },
+      "AverageCostOrder": {
+        "Cash": "Cash",
+        "Cashless": "Cashless",
+        "CostPerKm": "Cost of km",
+        "Title": "Average order cost",
+        "Total": "Total"
+      },
+      "EarningPerOrders": {
+        "Cash": "Cash",
+        "Cashless": "Cashless",
+        "Title": "Earnings per order"
+      },
+      "Expenses": {
+        "Commission": "Commission Uklon",
+        "Penalties": "Fines",
+        "Title": "Expenses"
+      },
+      "OrdersExecutionTime": {
+        "Title": "Time under order"
+      },
+      "OrdersPerHour": {
+        "Title": "Orders per hour"
+      }
+    },
+    "LicencePlace": {
+      "Subtitle": "Car",
+      "Title": "Number plate",
+      "Tooltip": {
+        "Branded": {
+          "Description": "Branded: {{ days }} d.",
+          "Text": "Branded car"
+        },
+        "BrandedWithPriority": {
+          "Description": "Branded: {{ days }}, Priority: {{ additionalDays }}",
+          "Text": "Branded car with priority"
+        },
+        "Priority": {
+          "Description": "Priority: {{ days }} d.",
+          "Text": "Car with priority"
+        }
+      }
+    },
+    "NetEarning": {
+      "Title": "Net earnings",
+      "Tooltip": "All receipts for orders made on cars minus fines and commission Uklon."
+    },
+    "OnlineTime": {
+      "Title": ""
+    },
+    "Orders": {
+      "Completed": "Completed orders",
+      "Distance": "Distance (for order)"
+    },
+    "TotalEarning": {
+      "Title": "Total earnings"
+    }
+  },
+  "VehicleOrders": {
+    "Filters": {
+      "ProductType": {
+        "Caption": "Product"
+      },
+      "Status": {
+        "Caption": "Status"
+      }
+    }
+  },
+  "Vehicles": {
+    "Creation": {
+      "AddCar": "Add a new car",
+      "AdvancedOptions": "Additional options",
+      "BodyType": "Body type",
+      "Color": "Color",
+      "HeaderTitle": "Application for adding a car",
+      "Info": {
+        "Cargo": "Only shipping available (delivery and cargo)"
+      },
+      "InfoPanel": {
+        "GoToTicket": "Open",
+        "Message": "You can only add cars to your private fleet.",
+        "TicketExistsMessage": "Request for adding a car with this number plate has already been created",
+        "Title": "Attention!"
+      },
+      "LicensePlate": "License plate",
+      "LicensePlateFull": "Car license plate",
+      "Model": "Model",
+      "Notify": {
+        "Error": "The data you entered will not be saved",
+        "SimpleTicketSuccess": "Ticket for adding a car has been successfully created",
+        "Success": "Ticket for adding a car {{ carNumber }} has been successfully created",
+        "Warning": "You need to upload all the photos so that the manager takes your ticket into work"
+      },
+      "Product": "Make",
+      "Stepper": {
+        "StepFirst": "Add car details",
+        "StepSecond": "Add documents and car photos",
+        "Title": "Step {{ step }}"
+      },
+      "TicketReason": {
+        "CustomCommentOwner": "Manager's comment",
+        "Title": "Reason"
+      },
+      "Title": "Vehicle data",
+      "TransportType": {
+        "Cargo": "Cargo",
+        "Passenger": "Ride hailing"
+      },
+      "VehiclesDocumentsAndPhotos": "Documents and car photos",
+      "VehicleTicketActiveLogs": {
+        "cleaning_seats": "Needs interior/seat cleaning",
+        "damaged_seats": "Damaged seats",
+        "dirty_vehicle": "Dirty vehicle",
+        "extraneous_things": "Remove extra objects from seats",
+        "inappropriate_angle": "Vehicle photo does not match the angle",
+        "invalid_insurance_policy": "Invalid insurance policy",
+        "low_quality_photo": "Low quality photo",
+        "missed_headrests": "Headrests are missing",
+        "missed_vehicle_licence": "Vehicle registration certificate is missing",
+        "need_outside_photos": "Take a photo of a vehicle on the street",
+        "other": "For details, contact the Uklon manager",
+        "other_car_documents": "Documents for another vehicle",
+        "photo_has_poor_lighting": "Poor lighting in the photo",
+        "photo_is_duplicated": "Duplicate photo (one photo uploaded twice)",
+        "photo_not_match_requirements": "Photos of the car do not match the requirements",
+        "photo_not_relevant": "Take up-to-date photos of the vehicle",
+        "safety_belt_required": "Photo of seats with seat belts"
+      },
+      "VehicleTicketActiveLogsTitle": "Improvement notes",
+      "VehicleTicketStatus": {
+        "All": "All conditions",
+        "Approved": "Approved",
+        "Clarification": "Sent for revision",
+        "Draft": "Draft",
+        "Rejected": "Rejected",
+        "Review": "Under the manager's consideration",
+        "Sent": "Sent",
+        "Status": "Status"
+      },
+      "VehicleTicketStatusHint": {
+        "Clarification": "the manager has sent your request for clarification, upload new photos so that we can complete the check",
+        "Draft": "fill in all the data to send your request for verification to the manager",
+        "Review": "your request is under review by the manager",
+        "Sent": "Your request has been sent to the manager for processing"
+      },
+      "Year": "Year"
+    },
+    "Details": {
+      "AddedDate": "Date added",
+      "AdditionPhotosInfo": "Please, upload additional photos for confirming your request ",
+      "BodyType": "Body type - number of seats",
+      "Classes": "Comfort class",
+      "Color": "Color",
+      "Equipment": "Equipment",
+      "InsuranceConsent": "I confirm that I have valid insurance policy",
+      "InteriorInfo": "Remove all extra items from the seats",
+      "LicensePlate": "License plate",
+      "NotSelectedByDriver": "Driver is not connected",
+      "PhotoInfoFirst": "Add a photo of car documents so that the manager can take the ticket for work.",
+      "PhotoInfoFirstNew": "Add a photo of the documents on the car so that<br/> the manager can accept the application for work.",
+      "PhotoInfoSecond": "All photos must be clear, taken during the day and no later than a week ago.",
+      "Photos": {
+        "AdditionalCategories": {
+          "driver_insurance_front_copy": "Autocivil",
+          "driver_taxi_license_front_copy": "Taxi license (front side)",
+          "driver_taxi_license_reverse_copy": "Taxi license (back side)"
+        },
+        "AdditionalPhotos": "Additional photos",
+        "Categories": {
+          "driver_car_back_photo": "Back view",
+          "driver_car_front_photo": "Front view",
+          "driver_car_right_sight_photo": "Left side view",
+          "driver_car_sight_photo": "Right side view",
+          "driver_insurance_front_copy": "Front side",
+          "driver_insurance_reverse_copy": "Back side",
+          "driver_taxi_license_front_copy": "Front side",
+          "driver_taxi_license_reverse_copy": "Back side",
+          "driver_vehicle_registration_front_copy": "Front side",
+          "driver_vehicle_registration_reverse_copy": "Back side",
+          "vehicle_angled_back": "Angled from back (passenger's side)",
+          "vehicle_angled_front": "Angled from the front (driver's side)",
+          "vehicle_interior_back": "Interior back view",
+          "vehicle_interior_back_photo": "Salon at the back",
+          "vehicle_interior_front_photo": "Front passenger seat",
+          "vehicle_safety_belts": "Seat belts",
+          "vehicle_third_seats_row": "Third row of seats",
+          "vehicle_trunk": "Trunk",
+          "vehicle_wheels": "Wheels"
+        },
+        "License": "Taxi license",
+        "LimitSize": "The file size must not bigger 25 mb",
+        "Osago": "Car insurance (compulsory insurance)",
+        "TechPassport": "Vehicle license",
+        "VehiclesPhotos": "Car photo"
+      },
+      "Products": {
+        "Description": "By enabling or disabling a product, you control whether the driver will be able to fulfill orders for this product on this vehicle.",
+        "Title": "Available car product types"
+      },
+      "SelectedByDriver": "Current driver",
+      "Tabs": {
+        "Access": "Access",
+        "ChangesHistory": "History of changes",
+        "Drivers": "Drivers",
+        "History": "Changes history",
+        "Marks": "Ratings",
+        "Photo": "Photo",
+        "Products": "Products",
+        "Settings": "Settings",
+        "Trips": "Trips"
+      },
+      "Title": "Vehicle data",
+      "Titles": {
+        "1": "All photos must be <b>clear</b>, taken during the <b>day</b> and <b>no later than a week</b> ago",
+        "2": "The car must <b>fit completely into the frame</b> without cropped edges",
+        "3": "Remove <b>all extra items</b> from the seats",
+        "4": "The photo should show <b>seat belts and their fastenings</b>"
+      },
+      "Vehicle": "Make - model - year"
+    },
+    "DriverAccess": {
+      "Accessibility": "Availability",
+      "AccessTitle": "What cars to give access to?",
+      "AccessType": {
+        "All": "All cars",
+        "Nobody": "Cars are not available",
+        "SpecificVehicles": "Selected cars"
+      },
+      "AllCars": "All cars",
+      "AvaliableCars": "Available cars",
+      "Nobody": "Deny access to all cars",
+      "SaveButton": "Save changes",
+      "SearchForCars": {
+        "Caption": "Car search",
+        "NoVehicleSelectedError": "At least one car should be selected to save"
+      },
+      "SelectedVehicles": "Featured cars",
+      "Tooltips": {
+        "NobodyAccess": "The driver is in the car now. To use the \"Deny access to all cars\" mode - break the connection with the car",
+        "RemoveAccess": "The driver is in the car now. To restrict access - break the connection with the driver"
+      },
+      "UpdateAccessSuccess": "The car availability setting for the driver has been successfully saved"
+    },
+    "Filters": {
+      "Availability": {
+        "All": "Available to all",
+        "AllTypes": "All types",
+        "Caption": "Availability type",
+        "Nobody": "Unavailable for drivers",
+        "Placeholder": "All types",
+        "SpecificDrivers": "Selected drivers"
+      },
+      "BodyType": {
+        "All": "All",
+        "Caption": "Body type",
+        "Placeholder": "All body types"
+      },
+      "HasBranding": {
+        "All": "All vehicles",
+        "Caption": "Branding",
+        "False": "Without branding",
+        "Placeholder": "All vehicles",
+        "True": "With branding"
+      },
+      "HasPriority": {
+        "All": "All",
+        "Caption": "Priority",
+        "False": "Without priority",
+        "Placeholder": "All",
+        "True": "With priority"
+      },
+      "LicencePlate": {
+        "Caption": "Search",
+        "Placeholder": "Licence plate"
+      }
+    },
+    "List": {
+      "Filter": {
+        "LicensePlate": "License plate"
+      },
+      "MobileView": {
+        "Branding": "Branding sign",
+        "Vehicle": "Car"
+      },
+      "Table": {
+        "Brand": "Branding",
+        "Condition": "State",
+        "Driver": "Driver",
+        "LicensePlate": "License plate",
+        "ProductTypes": "Classes",
+        "Status": "Status",
+        "Vehicle": "Car"
+      }
+    },
+    "LoadCapacity": {
+      "Description": {
+        "Large": "380×180×180 cm, 1400 kg",
+        "Medium": "260×130×150 cm, 700 kg",
+        "Small": "170×100×90 cm, 300 kg"
+      },
+      "Name": {
+        "Large": "Big body",
+        "Medium": "Medium body",
+        "Small": "Small body"
+      }
+    },
+    "Tabs": {
+      "Map": "Car on the map",
+      "Tickets": "Connection requests",
+      "VehicleList": "Car list"
+    },
+    "Tickets": {
+      "List": {
+        "AddedDate": "Date of pickup",
+        "ColorAndYear": "Color and year",
+        "LicensePlate": "License plate",
+        "LicensePlateAbsent": "Absent",
+        "LicensePlateAbsentMobile": "State number is missing",
+        "MakeModel": "Brand",
+        "RemoveTicket": "Delete the application",
+        "Status": "Status",
+        "Vehicle": "Car"
+      },
+      "NoData": {
+        "Subtitle": "Add a request on the car list page!",
+        "Title": "You don't have any open requests to add a car at the moment!"
+      }
+    },
+    "VehicleAccess": {
+      "AccessTitle": "Who should have access to the car?",
+      "AccessType": {
+        "All": "To all drivers",
+        "Nobody": "To nobody",
+        "SpecificDrivers": "Selected drivers"
+      },
+      "AvaliableCars": "Available cars",
+      "ConfirmButton": "Confirm",
+      "RemoveAccessComment": {
+        "Caption": "Add car unavailability reason",
+        "Placeholder": "You can add a reason for unavailability, such as a car breakdown."
+      },
+      "SaveButton": "Save Changes",
+      "SearchForDrivers": {
+        "Caption": "Search for drivers",
+        "NoDriverSelectedError": "You must select at least one driver to save"
+      },
+      "Tooltips": {
+        "NobodyAccess": "Driver in car, to use Nobody mode - unlink the driver",
+        "RemoveAccess": "Driver in car, to restrict access - unlink the driver"
+      },
+      "UpdateAccessSuccess": "The vehicle availability settings have been saved successfully."
+    }
+  },
+  "WhatIsMerchant": {
+    "Examples": {
+      "1": "There is no promo code in the order. Order amount = 100 hryvnias. The amount subject to distribution is 100 hryvnias. 100 UAH (minus Uklon's commission and payment system's commission) equals the amount credited to the park's account.",
+      "2": "There is a promo code available. Order amount = 100 hryvnias, of which 30 hryvnias are from the promo code. The amount subject to distribution is 70 hryvnias (payment from the rider). 70 UAH (minus the payment system's commission) equals the amount credited to the park's account.",
+      "3": "There is a promo code and paid waiting time. Order amount is 100 hryvnias and waiting time amount is 10 hryvnias. The amount subject to distribution is 100 hryvnias + 10 hryvnias. 110 UAH (minus Uklon's commission and payment system's commission) equals the amount credited to the park's account.</br></br> Balance adjustment of the park occurs once a day: All receipts to the merchant and all amounts of Uklon's commission paid for the previous day are summed up, and the balance is adjusted accordingly.</br></br> For some orders, full crediting may be made to the driver's balance.\n",
+      "Title": "Example {{ example }}"
+    },
+    "Glossary": {
+      "Balance": "<b>Balance Adjustment</b> - reflecting in the park's balance the sum of all payments made to the merchant, taking into account Uklon's commission payouts.",
+      "Merchant": "<b>Merchant Account (Merchant)</b> - an intermediary account linked to the main (bank) settlement account. Initially, the funds received for the services payment accumulate in the merchant",
+      "Rider": "<b>Rider</b> - a person who is a customer of the park's transportation and/or courier delivery services or other services that such person can order from the park as a user of the Uklon service. ",
+      "Title": "Meaning:"
+    },
+    "InfoPanel": {
+      "Message1": "Only the payment amount received from the rider for order fulfillment is distributed. In the case of a promo code in the order, the entire payment amount excluding the payment system's commission will be credited to the park's account.",
+      "Message2": "Amount after paying Uklon's commission does not equal the amount credited to the park's settlement account, as the financial provider retains its commission.",
+      "Title": "Note!"
+    },
+    "Splits": {
+      "1": "<b>1. What is payment distribution?</b></br> Payment distribution is the transfer of Uklon's commission by a financial company on behalf of the merchant owner from the funds received by the latter for such merchant. After paying Uklon's commission, the remaining funds received for order fulfillment are credited to the park's account.",
+      "2": "<b>2. For which orders can payment distribution be applied?</b></br> Payment distribution occurs only for cashless payment orders. There are exceptions when payment distribution does not occur, and the order amount is fully reflected in the balance.",
+      "3": "<b>3. How does payment distribution occur?</b></br> The difference between the payment received by the merchant and the commission paid to Uklon is automatically transferred (once a day) to the park's settlement account for the previous working day.\n",
+      "4": "<b>4. Why is there a positive/negative balance?</b></br> As a result of payment distribution and balance adjustment, a positive or negative balance may be formed for the park.</br></br> Why the balance may go negative - the park's balance is not replenished from the drivers' balances. That is, funds accumulate on the drivers' balances, while a negative balance accumulates on the park's balance.</br></br> For cash orders, it is expected that the deducted commission will be covered by replenishing the balance.\n"
+    },
+    "Title": "What is a merchant?"
+  },
+  "Workspace": {
+    "Navigation": {
+      "Bonuses": "Bonuses",
+      "Contacts": "Contacts",
+      "Couriers": "Couriers",
+      "CouriersFeedbacks": "Feedbacks",
+      "Dashboard": "Fleet statistics",
+      "Drivers": "Drivers",
+      "Feedbacks": "Feedbacks",
+      "Finance": "Finances",
+      "FleetProfile": "Fleet page",
+      "Forbidden": "Profile blocked",
+      "Orders": "Orders",
+      "Vehicles": "Vehicles"
+    }
+  }
+}

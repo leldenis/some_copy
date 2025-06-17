@@ -1,0 +1,14 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+.select-period {
+  padding: 1rem;
+
+  &__header {
+    margin-bottom: 1rem;
+
+    .title {
+      @include m.set-font(f.px2rem(16), f.px2rem(24), 400, var(--black10-color));
+    }
+  }
+}

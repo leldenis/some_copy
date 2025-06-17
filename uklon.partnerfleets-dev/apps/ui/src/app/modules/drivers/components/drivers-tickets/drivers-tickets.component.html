@@ -1,0 +1,117 @@
+@if (fleetId) {
+  <section class="tw-flex tw-items-center sm:tw-justify-between">
+    <upf-filters-container
+      direction="row"
+      class="tw-w-full"
+      [filterKey]="filterKey"
+      [defaultFilters]="filtersForm.getRawValue()"
+      (filtersChange)="onFiltersChange($event)"
+    >
+      <form [formGroup]="filtersForm" upfNotificationsQueryParams class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+        <mat-form-field floatLabel="always">
+          <mat-label>
+            {{ 'Common.Filters.Phone.Caption' | translate }}
+          </mat-label>
+
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="phone"
+            mask="000 (00) 000 00 00"
+            data-cy="driver-ticket-filter-Phone"
+            type="tel"
+            placeholder="{{ 'Common.Filters.Phone.Placeholder' | translate }}"
+          />
+
+          <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field data-cy="drivers-ticket-filter-Status">
+          <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+          <mat-select formControlName="status" data-cy="drivers-tickets-Status">
+            <mat-option id="mat-option-0" [value]="''">
+              {{ 'DriverTicket.TicketStatusAll' | translate }}
+            </mat-option>
+
+            @for (status of ticketStatusColorMap | keyvalue; track status) {
+              @if (status.key !== ticketStatus.BLOCKED_BY_MANAGER) {
+                <mat-option [value]="status.key" id="mat-option-{{ $index }}">
+                  {{ 'DriverTicket.TicketStatus.' + status.key | translate }}
+                </mat-option>
+              }
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <ng-template #createDriverBtn upfFiltersActionButton>
+          @if (registrationLink$ | async; as registrationLink) {
+            <a
+              [href]="registrationLink"
+              mat-flat-button
+              color="primary"
+              target="_blank"
+              class="!tw-flex tw-flex-col tw-justify-center tw-w-full sm:tw-w-auto sm:!tw-py-1"
+              data-cy="add-vehicle-btn"
+            >
+              <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+                <mat-icon class="tw-text-icon">open_in_new</mat-icon>
+                <span>
+                  {{ 'Drivers.AddDriverLink' | translate }}
+                </span>
+              </div>
+            </a>
+          }
+        </ng-template>
+      </form>
+    </upf-filters-container>
+
+    <div class="tw-hidden sm:tw-block">
+      <ng-container [ngTemplateOutlet]="createDriverBtn"></ng-container>
+    </div>
+  </section>
+
+  @if (tickets$ | async; as tickets) {
+    @if (tickets?.items?.length) {
+      <section class="grid-table">
+        <div class="grid-row header" data-cy="header-row">
+          <div data-cy="header-cell-Name">{{ 'DriverTicket.Table.Name' | translate }}</div>
+          <div data-cy="header-cell-Phone">{{ 'DriverTicket.Table.Phone' | translate }}</div>
+          <div data-cy="header-cell-Date">{{ 'DriverTicket.Table.Date' | translate }}</div>
+          <div data-cy="header-cell-Status">{{ 'DriverTicket.Table.Status' | translate }}</div>
+        </div>
+
+        @for (ticket of tickets.items; track ticket) {
+          <div class="grid-row">
+            <div data-cy="cell-Name">{{ ticket.last_name }} {{ ticket.first_name }}</div>
+
+            <div data-cy="cell-Phone">
+              <span class="tw-hidden sm:tw-block">{{ ticket.phone }}</span>
+              <a href="tel:{{ ticket.phone }}" class="sm:tw-hidden tw-text-accent-mint-light">{{ ticket.phone }}</a>
+            </div>
+
+            <div data-cy="cell-Date" class="date-cell">{{ ticket.created_at | seconds2Date }}</div>
+
+            <div class="tw-flex tw-gap-2 tw-flex-row-reverse sm:tw-flex-row">
+              <upf-status-badge
+                data-cy="cell-Status"
+                [color]="ticketStatusColorMap[ticket.status]"
+                class="tw-whitespace-nowrap tw-justify-self-end sm:tw-justify-self-start"
+              >
+                {{ 'DriverTicket.TicketStatus.' + ticket.status | translate }}
+              </upf-status-badge>
+
+              @if (ticket?.origin === ticketOrigin.UG) {
+                <upf-status-badge ngxTippy="{{ 'DriverTicket.FromUklonGarageTooltip' | translate }}" color="success">
+                  UG
+                </upf-status-badge>
+              }
+            </div>
+          </div>
+        }
+      </section>
+    } @else {
+      <upf-empty-state></upf-empty-state>
+    }
+  }
+}

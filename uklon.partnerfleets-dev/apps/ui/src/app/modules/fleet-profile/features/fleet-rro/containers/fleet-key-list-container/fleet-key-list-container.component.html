@@ -1,0 +1,14 @@
+@if (signatureKeys$ | async; as keys) {
+  @if (keys.length > 0) {
+    <upf-fleet-key-list
+      [keys]="keys"
+      [isMobileView]="isMobileView$ | async"
+      (openRemoveKeyModal)="handlerOpenRemoveKeyModal($event)"
+      (openKeyInfoModal)="handlerOpenKeyInfoModal($event)"
+      (openLinkCashToKeyModal)="handlerOpenLinkCashToKeyModal($event)"
+      data-cy="fleet-key-list"
+    ></upf-fleet-key-list>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+  }
+}

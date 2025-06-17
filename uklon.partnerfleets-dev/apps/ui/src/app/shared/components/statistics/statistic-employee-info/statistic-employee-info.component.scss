@@ -1,0 +1,22 @@
+.employee-info {
+  @apply tw-flex tw-flex-col tw-gap-3;
+  @screen sm {
+    @apply tw-rounded tw-shadow tw-p-4 tw-gap-4 tw-h-full;
+  }
+}
+
+.employee-info-item {
+  @apply tw-flex tw-justify-between;
+
+  @screen sm {
+    @apply tw-grid tw-grid-cols-[150px_minmax(0,_1fr)];
+  }
+}
+
+.employee-info-item-label {
+  @apply tw-text-base tw-m-0 tw-font-normal tw-text-neutral-smoke;
+}
+
+.employee-info-item-value {
+  @apply tw-text-base tw-text-neutral-shale;
+}

@@ -1,0 +1,79 @@
+<div class="tw-grid tw-grid-cols-12 tw-grow tw-gap-4">
+  <div class="tw-col-span-12">
+    <span class="tw-text-heading tw-font-medium">
+      {{ 'Vehicles.Details.Photos.VehiclesPhotos' | translate }}
+    </span>
+  </div>
+
+  <div class="tw-grid tw-grid-cols-12 tw-gap-4 tw-col-span-12 sm:tw-col-span-8">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Vehicles.Details.Photos.TechPassport' | translate }}
+      </span>
+    </div>
+
+    @for (category of driverRegistrationPhotoCategories; track $index) {
+      <upf-photo-card-new
+        class="tw-col-span-6 tw-h-28 sm:tw-h-44"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'vehicle-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+
+  <div class="tw-grid tw-grid-cols-12 tw-gap-4 tw-col-span-12 sm:tw-col-span-4">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Vehicles.Details.Photos.Osago' | translate }}
+      </span>
+    </div>
+
+    @for (category of driverInsurancePhotoCategories; track $index) {
+      <upf-photo-card-new
+        class="tw-col-span-6 sm:tw-col-span-12 tw-h-28 sm:tw-h-44"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'vehicle-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+
+  <div class="tw-grid tw-grid-cols-12 tw-gap-4 tw-col-span-12">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Vehicles.Details.Photos.VehiclesPhotos' | translate }}
+      </span>
+    </div>
+
+    @for (category of vehiclePhotoCategories; track $index) {
+      <upf-photo-card-new
+        class="tw-col-span-6 sm:tw-col-span-4 tw-h-28 sm:tw-h-44"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'vehicle-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+
+  <div class="tw-grid tw-grid-cols-12 tw-gap-4 tw-col-span-12">
+    <div class="tw-col-span-12">
+      <span class="tw-text-heading">
+        {{ 'Vehicles.Details.Photos.License' | translate }}
+      </span>
+    </div>
+
+    @for (category of driverTaxiLicenses; track $index) {
+      <upf-photo-card-new
+        class="tw-col-span-6 sm:tw-col-span-4 tw-h-28 sm:tw-h-44"
+        [category]="category"
+        [photoUrl]="photos?.[category]?.data?.url"
+        [attr.data-cy]="'vehicle-photo-' + category"
+        (photoClick)="onPhotoOpen($event)"
+      ></upf-photo-card-new>
+    }
+  </div>
+</div>

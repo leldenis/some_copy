@@ -1,0 +1,30 @@
+.mat-icon {
+  @apply tw-h-10 tw-w-10;
+}
+
+.flt-divider {
+  @apply tw-text-neutral-smoke;
+  @apply tw-relative;
+
+  &::before {
+    @apply tw-content-[''];
+    @apply tw-absolute;
+    @apply tw-block;
+    @apply tw-w-px;
+    @apply tw-h-full;
+    @apply tw-bg-neutral-cloud;
+    @apply tw-left-1/2;
+  }
+
+  &-icon {
+    @apply tw-h-6 tw-w-6;
+    @apply tw-rounded-full;
+    @apply tw-bg-neutral-white;
+    @apply tw-z-[1];
+    @apply tw-border tw-border-solid tw-border-neutral-cloud;
+  }
+
+  .mat-icon {
+    @apply tw-w-5 tw-h-5;
+  }
+}

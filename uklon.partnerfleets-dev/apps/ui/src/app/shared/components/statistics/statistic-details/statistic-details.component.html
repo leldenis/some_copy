@@ -1,0 +1,304 @@
+<div class="upf-detailed-data">
+  <dl>
+    <dt>
+      <div class="tw-text-neutral-graphite tw-font-medium tw-text-tmp tw-leading-4">
+        {{ 'DriverStatistic.Data.GrossIncome.Label' | translate }}
+      </div>
+
+      <div class="tw-text-neutral-granit tw-text-base tw-mb-4 sm:tw-hidden">
+        {{ 'DriverStatistic.Data.GrossIncome.Description' | translate }}
+      </div>
+    </dt>
+
+    <dd class="!tw-font-normal !tw-text-xl" data-cy="total-income">
+      <ng-container
+        *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic()?.profit?.order?.total }"
+      ></ng-container>
+    </dd>
+  </dl>
+</div>
+
+<div class="tw-hidden sm:tw-grid sm:-tw-mt-1.5 chart-grid tw-mb-6">
+  <div class="tw-w-full tw-text-base tw-text-neutral-granit">
+    {{ 'DriverStatistic.Data.GrossIncome.Description' | translate }}
+  </div>
+
+  <div></div>
+</div>
+
+<div class="tw-flex tw-flex-col lg:tw-grid tw-gap-md chart-grid">
+  <div class="tw-grid tw-gap-md tw-items-center sm:tw-flex sm:tw-flex-col sm:tw-gap-2.5">
+    @if (statistic().profit?.order; as order) {
+      <div class="statistic-pie-chart tw-relative tw-justify-self-center">
+        <upf-statistic-pie-chart
+          data-cy="income-pie-chart"
+          [profit]="order"
+          [colors]="orderProfitColorMap"
+          [labels]="chartLabels()"
+        ></upf-statistic-pie-chart>
+      </div>
+    }
+
+    <dl class="upf-data-list upf-statistic-list">
+      <dt data-cy="statistic-list-cash-title">
+        <i class="i-circle" [style.color]="orderProfitColorMap['cash']"></i>
+        {{ 'DriverStatistic.Data.Profit.Order.Cash.Label' | translate }}
+      </dt>
+      <dd class="tw-flex tw-gap-2 tw-justify-end" data-cy="statistic-list-cash-amount">
+        <ng-container
+          *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic()?.profit?.order?.cash }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            percentageOutOfTotalTpl;
+            context: {
+              money: statistic()?.profit?.order?.cash,
+              total: statistic()?.profit?.order?.total,
+            }
+          "
+        ></ng-container>
+      </dd>
+
+      <dt data-cy="statistic-list-card-title">
+        <i class="i-circle" [style.color]="orderProfitColorMap['card']"></i>
+        {{ 'DriverStatistic.Data.Profit.Order.Card.Label' | translate }}
+      </dt>
+      <dd class="tw-flex tw-gap-2 tw-justify-end" data-cy="statistic-list-card-amount">
+        <ng-container
+          *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic()?.profit?.order?.card }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            percentageOutOfTotalTpl;
+            context: {
+              money: statistic()?.profit?.order?.card,
+              total: statistic()?.profit?.order?.total,
+            }
+          "
+        ></ng-container>
+      </dd>
+
+      <dt data-cy="statistic-list-wallet-title">
+        <i class="i-circle" [style.color]="orderProfitColorMap['wallet']"></i>
+        {{ 'DriverStatistic.Data.Profit.Order.Wallet.Label' | translate }}
+      </dt>
+      <dd class="tw-flex tw-gap-2 tw-justify-end" data-cy="statistic-list-wallet-amount">
+        <ng-container
+          *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic()?.profit?.order?.wallet }"
+        ></ng-container>
+
+        <ng-container
+          *ngTemplateOutlet="
+            percentageOutOfTotalTpl;
+            context: {
+              money: statistic()?.profit?.order?.wallet,
+              total: statistic()?.profit?.order?.total,
+            }
+          "
+        ></ng-container>
+      </dd>
+
+      @if (!isCourier()) {
+        <dt data-cy="statistic-list-merchant-title">
+          <i class="i-circle" [style.color]="orderProfitColorMap['merchant']"></i>
+          {{ 'Orders.Trips.List.Merchant' | translate }}
+
+          @if (statistic()?.profit?.order?.merchant?.amount) {
+            <upf-split-payments-tooltip
+              [groupedSplits]="statistic().grouped_splits"
+              class="!tw-mt-0"
+              data-cy="statistic-list-merchant-tooltip"
+            ></upf-split-payments-tooltip>
+          }
+        </dt>
+        @if (statistic()?.profit?.order?.merchant?.amount) {
+          <dd class="tw-flex tw-gap-2 tw-justify-end" data-cy="statistic-list-merchant-amount">
+            <ng-container
+              *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic()?.profit?.order?.merchant }"
+            ></ng-container>
+
+            <ng-container
+              *ngTemplateOutlet="
+                percentageOutOfTotalTpl;
+                context: {
+                  money: statistic()?.profit?.order?.merchant,
+                  total: statistic()?.profit?.order?.total,
+                }
+              "
+            ></ng-container>
+          </dd>
+        } @else {
+          <dd data-cy="statistic-list-merchant-amount">&mdash;</dd>
+        }
+      }
+    </dl>
+  </div>
+
+  <div>
+    <mat-divider vertical class="tw-hidden sm:tw-block tw-h-full"></mat-divider>
+    <mat-divider class="sm:tw-hidden tw-block"></mat-divider>
+  </div>
+
+  <div class="upf-panel-group">
+    <div class="upf-panel-group-item">
+      <div class="tw-text-base tw-text-neutral-shale">
+        {{ 'DriverStatistic.Data.Withdrawal' | translate }}
+      </div>
+
+      <div data-cy="fees-panel" class="tw-flex tw-gap-md tw-items-center">
+        <div class="tw-w-2 tw-h-full tw-bg-accent-coral-light tw-rounded"></div>
+
+        <dl class="upf-data-list tw-w-full !tw-gap-2">
+          <dt data-cy="statistic-list-fine-title">
+            {{ 'DriverStatistic.Data.Profit.Fine.Label' | translate }}
+          </dt>
+
+          @if (statistic().loss?.total) {
+            <dd
+              data-cy="statistic-list-fine-amount"
+              [ngClass]="{ 'tw-text-accent-coral-light': statistic().loss.total.amount < 0 }"
+            >
+              <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic().loss.total }"></ng-container>
+            </dd>
+          } @else {
+            <dd data-cy="statistic-list-fine-amount">&mdash;</dd>
+          }
+
+          <dt data-cy="statistic-list-commission-title">
+            {{ 'DriverStatistic.Data.Loss.Order.Total.Label' | translate }}
+          </dt>
+
+          @if (statistic().loss?.order?.total) {
+            <dd
+              data-cy="statistic-list-commission-amount"
+              [ngClass]="{
+                'tw-text-accent-coral-light': statistic().loss.order.total.amount < 0,
+              }"
+            >
+              @if (hasCommissionProgram()) {
+                <div
+                  class="tw-flex tw-gap-2"
+                  *upfLet="
+                    statistic().loss.order.total
+                      | upfCommission: statistic().profit.commission_programs_profit as commission
+                  "
+                >
+                  <span class="tw-line-through tw-text-neutral-granit">
+                    <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: commission.total }"></ng-container>
+                  </span>
+
+                  <ng-container *ngTemplateOutlet="moneyTpl; context: { $implicit: commission.profit }"></ng-container>
+                </div>
+              } @else {
+                <ng-container
+                  *ngTemplateOutlet="moneyTpl; context: { $implicit: statistic().loss.order.total }"
+                ></ng-container>
+              }
+            </dd>
+          } @else {
+            <dd data-cy="statistic-list-commission-amount">&mdash;</dd>
+          }
+        </dl>
+      </div>
+    </div>
+
+    <div class="upf-panel-group-item">
+      <div class="tw-w-full tw-text-base tw-text-neutral-shale">
+        {{ 'DriverStatistic.Data.Accrual' | translate }}
+      </div>
+
+      <div data-cy="tips-panel" class="tw-flex tw-gap-md tw-items-center">
+        <div class="tw-w-2 tw-h-full tw-bg-accent-mint-light tw-rounded"></div>
+
+        <dl class="upf-data-list tw-w-full !tw-gap-2">
+          <dt data-cy="statistic-list-tips-title">
+            {{ 'DriverStatistic.Data.Profit.Tips.Label' | translate }}
+          </dt>
+          @if (statistic().profit?.tips) {
+            <dd
+              data-cy="statistic-list-tips-amount"
+              [ngClass]="{ 'tw-text-accent-mint-light': statistic().profit.tips.amount > 0 }"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  moneyTpl;
+                  context: {
+                    $implicit: statistic().profit.tips,
+                    displayType: 'both',
+                  }
+                "
+              ></ng-container>
+            </dd>
+          } @else {
+            <dd data-cy="statistic-list-tips-amount">&mdash;</dd>
+          }
+
+          <dt data-cy="statistic-list-bonus-title">
+            {{ 'DriverStatistic.Data.Profit.Bonus.Label' | translate }}
+          </dt>
+          @if (statistic().profit?.promotion) {
+            <dd
+              data-cy="statistic-list-bonus-amount"
+              [ngClass]="{ 'tw-text-accent-mint-light': statistic().profit.promotion.amount > 0 }"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  moneyTpl;
+                  context: {
+                    $implicit: statistic().profit.promotion,
+                    displayType: 'both',
+                  }
+                "
+              ></ng-container>
+            </dd>
+          } @else {
+            <dd data-cy="statistic-list-bonus-amount">&mdash;</dd>
+          }
+
+          <dt data-cy="statistic-list-compensation-title">
+            {{ 'DriverStatistic.Data.Profit.Compensation.Label' | translate }}
+          </dt>
+          @if (statistic().profit?.compensation) {
+            <dd
+              data-cy="statistic-list-compensation-amount"
+              [ngClass]="{ 'tw-text-accent-mint-light': statistic().profit.compensation.amount > 0 }"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  moneyTpl;
+                  context: {
+                    $implicit: statistic().profit.compensation,
+                    displayType: 'both',
+                  }
+                "
+              ></ng-container>
+            </dd>
+          } @else {
+            <dd data-cy="statistic-list-compensation-amount">&mdash;</dd>
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template let-money let-addAmount="addAmount" let-displayType="displayType" #moneyTpl>
+  @if (money) {
+    <span data-cy="money-amount">
+      {{ (money.amount + (addAmount || 0)) / 100 | upfMoney: money.currency : displayType }}
+    </span>
+  } @else {
+    &mdash;
+  }
+</ng-template>
+
+<ng-template let-total="total" let-money="money" #percentageOutOfTotalTpl>
+  @if (total && money) {
+    <span class="tw-text-neutral-granit tw-font-normal" data-cy="money-percent">
+      @if ((money.amount / total.amount) * 100 < this.minPercent) {
+        <
+      }
+      {{ money.amount / total.amount | percent: '1.2-2' }}
+    </span>
+  }
+</ng-template>

@@ -1,0 +1,19 @@
+.rating {
+  @apply tw-flex tw-items-center tw-gap-[4px];
+
+  &-icon {
+    @apply tw-text-xl tw-text-yellow-400;
+
+    &.icon-size-sm {
+      @apply tw-w-4 tw-h-4;
+    }
+
+    &.icon-size-md {
+      @apply tw-w-5 tw-h-5;
+    }
+  }
+
+  &-value {
+    @apply tw-text-base tw-text-[var(--grey20-color)];
+  }
+}

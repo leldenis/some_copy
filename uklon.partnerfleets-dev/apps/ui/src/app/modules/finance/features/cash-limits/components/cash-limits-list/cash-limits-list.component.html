@@ -1,0 +1,192 @@
+<div class="list-container" [class.mobile]="isMobileView() && !selection.isEmpty()" (cdkScrolled)="loadMore.emit()">
+  <div class="driver-row header">
+    <mat-checkbox
+      (change)="onSelectAll()"
+      [checked]="allSelected()"
+      [indeterminate]="selection.hasValue() && !allSelected()"
+      data-cy="cash-limits-list-master-checkbox-desktop"
+    ></mat-checkbox>
+    <div>{{ 'Finance.DriversBalances.List.Driver' | translate }}</div>
+    <div>{{ 'CashLimits.List.LimitType' | translate }}</div>
+    <div>{{ 'CashLimits.List.Limit' | translate }}</div>
+    <div>{{ 'CashLimits.List.UsedLimit' | translate }}</div>
+    <div class="tw-text-end">{{ 'CashLimits.List.EditLimit' | translate }}</div>
+
+    @if (selection.hasValue()) {
+      <ng-container [ngTemplateOutlet]="editMenu"></ng-container>
+    }
+  </div>
+
+  @for (driver of drivers(); track driver.id) {
+    @let limitType = driver?.cash_limit?.type;
+    @let noLimit = !limitType || limitType === cashLimitType.NO_LIMITS;
+    @let hasRestriction = driver?.restrictions | hasRestriction: restrictionReason.CASH_LIMIT : fleetId();
+
+    <ng-container
+      [ngTemplateOutlet]="isMobileView() ? mobileRow : desktopRow"
+      [ngTemplateOutletContext]="{ $implicit: driver, hasRestriction, limitType, noLimit }"
+    ></ng-container>
+  }
+</div>
+
+@if (isMobileView() && selection.hasValue()) {
+  <ng-container [ngTemplateOutlet]="editMenu"></ng-container>
+}
+
+<ng-template #mobileRow let-driver let-hasRestriction="hasRestriction" let-limitType="limitType" let-noLimit="noLimit">
+  <div class="driver-card" [class.selected]="selection.isSelected(driver.id)">
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-grid">
+        <a
+          [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.id]"
+          class="hover:tw-underline focus:tw-underline"
+        >
+          {{ driver | fullName }}
+        </a>
+
+        <a class="tw-text-sm tw-text-accent-mint-light" href="tel:{{ driver.phone }}">{{ driver.phone }}</a>
+      </div>
+
+      <mat-checkbox
+        class="tw-pr-2"
+        [checked]="selection.isSelected(driver.id)"
+        (change)="toggleDriverSelection(driver.id)"
+      ></mat-checkbox>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="limit-data">
+      <div class="tw-flex tw-flex-col tw-gap-1">
+        <div class="tw-text-xs tw-leading-3 tw-text-neutral-granit">{{ 'CashLimits.List.LimitType' | translate }}</div>
+
+        <div [class.tw-text-neutral-granit]="noLimit">
+          @if (noLimit) {
+            {{ 'CashLimits.LimitType.NoLimits' | translate }}
+          } @else {
+            <div class="tw-grid">
+              {{ 'CashLimits.LimitType.' + limitType | translate }}
+              <upf-money [money]="driver?.cash_limit?.limit"></upf-money>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="tw-flex tw-flex-col tw-gap-1">
+        <div class="tw-text-xs tw-leading-3 tw-text-neutral-granit">{{ 'CashLimits.List.UsedLimit' | translate }}</div>
+
+        <div class="tw-flex tw-items-center tw-gap-1">
+          <upf-money
+            [money]="driver?.cash_limit?.used_amount"
+            [class.!tw-text-accent-coral-light]="hasRestriction"
+          ></upf-money>
+
+          @if (hasRestriction) {
+            <mat-icon
+              class="outlined tw-text-accent-coral-light"
+              ngxTippy="{{ 'CashLimits.List.LimitReachedTooltip' | translate }}"
+            >
+              info
+            </mat-icon>
+          }
+        </div>
+      </div>
+
+      @if (selection.isEmpty()) {
+        <button [@fadeIn] mat-icon-button (click)="onEditSingleDriver(driver)">
+          <mat-icon class="outlined">stylus</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #desktopRow let-driver let-hasRestriction="hasRestriction" let-limitType="limitType" let-noLimit="noLimit">
+  <div class="driver-row" data-cy="cash-limit-list-row">
+    <mat-checkbox
+      class="tw-text-center"
+      [checked]="selection.isSelected(driver.id)"
+      (change)="toggleDriverSelection(driver.id)"
+      data-cy="cash-limits-list-checkbox"
+    ></mat-checkbox>
+
+    <div class="tw-grid">
+      <a
+        [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPaths.DETAILS, driver.id]"
+        class="hover:tw-underline focus:tw-underline"
+      >
+        {{ driver | fullName }}
+      </a>
+
+      <div class="tw-text-sm tw-text-neutral-granit">{{ driver.phone }}</div>
+    </div>
+
+    <div [class.tw-text-neutral-granit]="noLimit" data-cy="cash-limit-list-limit-type">
+      {{ 'CashLimits.LimitType.' + (limitType ?? cashLimitType.NO_LIMITS) | translate }}
+    </div>
+
+    @if (noLimit) {
+      <div class="tw-text-neutral-granit" data-cy="cash-limit-list-no-limit">
+        {{ 'CashLimits.LimitType.NoLimits' | translate }}
+      </div>
+    } @else {
+      <upf-money data-cy="cash-limit-list-limit-amount" [money]="driver?.cash_limit?.limit"></upf-money>
+    }
+
+    <div class="tw-flex tw-items-center tw-gap-1">
+      <upf-money
+        data-cy="cash-limit-list-used-amount"
+        [class.!tw-text-accent-coral-light]="hasRestriction"
+        [money]="driver?.cash_limit?.used_amount"
+      ></upf-money>
+
+      @if (hasRestriction) {
+        <mat-icon
+          data-cy="cash-limit-list-used-amount-tooltip"
+          class="outlined tw-text-accent-coral-light"
+          ngxTippy="{{ 'CashLimits.List.LimitReachedTooltip' | translate }}"
+        >
+          info
+        </mat-icon>
+      }
+    </div>
+
+    <div class="tw-flex tw-justify-end">
+      @if (selection.isEmpty()) {
+        <button mat-icon-button data-cy="cash-limit-list-edit-btn" [@fadeIn] (click)="onEditSingleDriver(driver)">
+          <mat-icon class="outlined">stylus</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #editMenu>
+  <div [@fadeIn] class="edit-menu" data-cy="cash-limits-list-edit-header">
+    <div class="tw-flex tw-items-center tw-gap-2 sm:tw-gap-6">
+      <mat-checkbox
+        (change)="onSelectAll()"
+        [checked]="allSelected()"
+        [indeterminate]="selection.hasValue() && !allSelected()"
+        data-cy="cash-limits-list-master-checkbox"
+      ></mat-checkbox>
+
+      <div>
+        {{ 'CashLimits.List.SelectedCount' | translate }}:
+        <b>{{ selectedCount() }}</b>
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-gap-6 sm:tw-gap-8">
+      <div class="action" (click)="onEditDrivers()" data-cy="cash-limits-list-action-edit">
+        <mat-icon class="outlined">stylus</mat-icon>
+        {{ 'Common.Buttons.B_Edit' | translate }}
+      </div>
+
+      <div class="action" (click)="clearSelection(true)" data-cy="cash-limits-list-action-cancel">
+        <mat-icon class="outlined">close</mat-icon>
+        {{ 'Common.Buttons.B_Cancel' | translate }}
+      </div>
+    </div>
+  </div>
+</ng-template>

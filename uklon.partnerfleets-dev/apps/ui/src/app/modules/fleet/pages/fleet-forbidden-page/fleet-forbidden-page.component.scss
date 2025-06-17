@@ -1,0 +1,26 @@
+@use "variables" as v;
+
+:host {
+  @apply tw-flex tw-flex-col tw-gap-4 tw-pl-4 tw-pr-4;
+}
+
+.header {
+  color: var(--grey10-color);
+  @apply tw-p-4 tw-pt-3.5 tw-pb-3.5 -tw-ml-4 -tw-mr-4 tw-bg-white tw-text-xl tw-leading-7;
+}
+
+.content {
+  height: calc(100vh - 88px);
+  @apply tw-flex tw-flex-col tw-justify-center tw-p-4 tw-bg-white tw-w-full tw-rounded-lg;
+
+  &__description {
+    color: var(--grey20-color);
+    @apply tw-text-3xl sm:tw-text-5xl sm:tw-leading-7 tw-mt-2;
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .content {
+    height: calc(100vh - 162px);
+  }
+}

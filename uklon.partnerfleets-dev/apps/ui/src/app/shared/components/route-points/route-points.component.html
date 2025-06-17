@@ -1,0 +1,48 @@
+@if (route()?.points) {
+  <div
+    class="tw-flex tw-items-center tw-gap-2 tw-w-fit tw-truncate"
+    ngxTippy
+    [tippyProps]="{ allowHTML: true, content: (route() | routeTooltip) }"
+  >
+    @if (route().points.length <= 2 || isMobile()) {
+      <mat-icon
+        [class]="orderCanceled() ? 'sm:tw-text-neutral-granit' : 'tw-text-neutral-graphite'"
+        [svgIcon]="icons.multiAddressFull"
+        class="tw-shrink-0"
+      ></mat-icon>
+    } @else {
+      <div class="tw-relative tw-grid tw-place-items-center">
+        <mat-icon
+          [class]="orderCanceled() ? 'sm:tw-text-neutral-granit' : 'tw-text-neutral-graphite'"
+          [svgIcon]="icons.multiAddress"
+          class="tw-shrink-0 !tw-h-8"
+        ></mat-icon>
+
+        <span class="tw-absolute tw-text-accent-mint-light tw-text-sm">
+          {{ route().points.length }}
+        </span>
+      </div>
+    }
+
+    <div
+      class="tw-grid"
+      (click)="isRouteLink() ? navigate.emit() : null"
+      [ngClass]="{ 'tw-cursor-pointer': isRouteLink() }"
+    >
+      @for (point of route().points; track $index) {
+        @if ($first || $last || isMobile()) {
+          <div
+            [class]="orderCanceled() ? 'sm:tw-text-neutral-granit' : 'tw-text-neutral-graphite'"
+            class="tw-text-base tw-truncate"
+            [ngClass]="{ '!tw-text-accent-mint-light': isRouteLink() && !orderCanceled() }"
+            data-cy="pickup-address"
+          >
+            {{ point.address }}
+          </div>
+        }
+      }
+    </div>
+  </div>
+} @else {
+  -
+}

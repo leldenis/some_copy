@@ -1,0 +1,81 @@
+<div>
+  <div class="menu-toggle-container" [ngClass]="{ 'tw-border-b': hasScroll() }">
+    @if (isMobileView()) {
+      <div class="mobile-menu-header">
+        <button mat-icon-button (click)="closeDrawer.emit()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+        <ng-content></ng-content>
+      </div>
+    } @else {
+      <div
+        class="navigation-item"
+        data-cy="menu-toggle-btn"
+        [ngClass]="{ opened: drawerOpened() }"
+        (click)="toggleSidebar.emit()"
+      >
+        <div class="icon-container" [ngClass]="{ 'tw-text-neutral-granit': drawerOpened() }">
+          <mat-icon>{{ drawerOpened() ? 'chevron_left' : 'menu' }}</mat-icon>
+        </div>
+
+        <span class="menu-item-name tw-text-neutral-granit">{{ 'Common.Buttons.B_Hide' | translate }}</span>
+      </div>
+    }
+  </div>
+
+  @for (route of routes(); track $index) {
+    @if (!route.hidden) {
+      <a
+        (click)="navigationChange.emit(route.path)"
+        [routerLink]="route.path"
+        [routerLinkActiveOptions]="{ exact: route.exact ?? false }"
+        [ngClass]="{ opened: drawerOpened(), disabled: route.disabled || fleetBlocked() }"
+        [attr.data-cy]="'side-nav-menu-' + route.path"
+        routerLinkActive="active"
+        class="navigation-item"
+      >
+        <div class="icon-container">
+          <mat-icon [svgIcon]="route.icon"></mat-icon>
+
+          @if (route.indicator && showRROIndicator()) {
+            <upf-indicator class="indicator"></upf-indicator>
+          }
+        </div>
+
+        <span class="menu-item-name">{{ route.name | translate }}</span>
+      </a>
+    }
+  }
+</div>
+
+<div class="bottom-nav" [ngClass]="{ 'has-scroll': hasScroll() }">
+  @if (appConfig()?.showFleetManager) {
+    @if (displayMainMaintainer() || displayReserveMaintainer(); as maintainer) {
+      <upf-shell-fleet-maintainer
+        [drawerOpened]="drawerOpened()"
+        [maintainer]="maintainer"
+        [absentTill]="absentTill()"
+        data-cy="fleet-manager-btn"
+      ></upf-shell-fleet-maintainer>
+    }
+  }
+
+  @if (account().user_id | id2Color; as color) {
+    <a
+      class="navigation-item sticky"
+      routerLinkActive="active"
+      [routerLink]="accountRoute"
+      [ngClass]="{ opened: drawerOpened() }"
+      (click)="navigationChange.emit(accountRoute)"
+    >
+      <div class="icon-container">
+        <div class="user-avatar" [style.background-color]="color.back" [style.color]="color.fore">
+          {{ account().last_name | slice: 0 : 1 }}
+        </div>
+      </div>
+
+      <span class="menu-item-name tw-font-medium">{{ account().last_name }} {{ account().first_name }}</span>
+    </a>
+  }
+</div>

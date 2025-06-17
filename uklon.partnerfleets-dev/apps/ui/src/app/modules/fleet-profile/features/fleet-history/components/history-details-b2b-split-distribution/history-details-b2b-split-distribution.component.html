@@ -1,0 +1,32 @@
+@if (balance()?.amount_cent) {
+  <p data-cy="b2b-split-balance-amount-title">
+    @if (balanceGreater()) {
+      {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.B2BSplitBalance.BalanceGreaterOrEqual' | translate }}:
+    } @else {
+      {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.B2BSplitBalance.BalanceLessOrEqual' | translate }}:
+    }
+    <span data-cy="b2b-split-balance-amount-value">{{ balance().amount_cent / 100 | upfMoney: null }}</span>
+  </p>
+
+  <ul class="tw-grid tw-gap-1">
+    @if (balance()?.uklon_percentage) {
+      <li class="tw-flex tw-items-center tw-text-sm">
+        <upf-dot-marker-icon />
+        <span data-cy="b2b-split-distribution-uklon-percentage-title">
+          {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.B2BSplitBalance.UklonPercentage' | translate }}:
+        </span>
+        <span data-cy="b2b-split-distribution-uklon-percentage-value">{{ balance().uklon_percentage }}%</span>
+      </li>
+    }
+
+    @if (balance()?.partner_percentage) {
+      <li class="tw-flex tw-items-center tw-text-sm">
+        <upf-dot-marker-icon />
+        <span data-cy="b2b-split-distribution-partner-percentage-title">
+          {{ 'FleetProfile.FleetHistory.ProfileChangeProperties.B2BSplitBalance.PartnerPercentage' | translate }}:
+        </span>
+        <span data-cy="b2b-split-distribution-partner-percentage-value">{{ balance().partner_percentage }}%</span>
+      </li>
+    }
+  </ul>
+}

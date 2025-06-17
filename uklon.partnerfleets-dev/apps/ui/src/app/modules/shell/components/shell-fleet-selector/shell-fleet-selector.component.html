@@ -1,0 +1,92 @@
+<div
+  class="fleet-selector"
+  data-cy="fleets-list-button"
+  [matMenuTriggerFor]="fleets()?.length === 1 ? $any(null) : fleetMenu"
+  (click)="toggleMenuOpened(true)"
+  [ngClass]="{ 'single-fleet': fleets().length === 1 }"
+>
+  @if (selectedFleet().id | id2Color; as color) {
+    <div
+      class="fleet-avatar"
+      [style.background-color]="color.back"
+      [style.color]="color.fore"
+      data-cy="fleet-avatar-selected"
+    >
+      {{ selectedFleet().name | slice: 0 : 1 }}
+    </div>
+  }
+
+  <div class="tw-grid">
+    <div class="tw-flex tw-gap-1">
+      <div class="fleet-name">
+        <div class="tw-truncate">{{ selectedFleet().name }}</div>
+      </div>
+
+      @if (fleets().length === 1) {
+        <button
+          mat-icon-button
+          (click)="onCopyFleetId($event, fleets()[0].id)"
+          [ngxTippy]="
+            (copiedId() === fleets()[0].id
+              ? 'ProfileMenu.FleetOption.Actions.Tooltip.Copied'
+              : 'ProfileMenu.FleetOption.Actions.Tooltip.Copy'
+            ) | translate
+          "
+          class="!tw-h-5 !tw-w-5"
+        >
+          <mat-icon [svgIcon]="isMobileView() ? icons.copyMobile : icons.copyBlack" class="menu-icon"></mat-icon>
+        </button>
+      }
+    </div>
+    <div class="tw-text-sm tw-leading-3 tw-text-neutral-granit sm:tw-leading-4">
+      @if (selectedFleet().region_id | regionById | async; as region) {
+        {{ 'Regions.' + region.code | translate }}
+      }
+    </div>
+  </div>
+
+  <mat-icon class="icon-expand-more" [ngClass]="{ opened: opened() }">expand_more</mat-icon>
+</div>
+
+<mat-menu #fleetMenu yPosition="below" xPosition="before" (closed)="toggleMenuOpened(false)" class="shell-menu">
+  <ng-template matMenuContent>
+    <div class="menu-title">{{ 'ProfileMenu.Caption' | translate }}</div>
+
+    @for (fleet of fleets(); track fleet.id) {
+      <button mat-menu-item disableRipple (click)="onSelectFleet(fleet)">
+        <div class="menu-item" [attr.data-cy]="'fleet-item-' + fleet.id">
+          @if (fleet.id | id2Color; as color) {
+            <div class="fleet-avatar" [style.background-color]="color.back" [style.color]="color.fore">
+              {{ fleet.name | slice: 0 : 1 }}
+            </div>
+          }
+
+          <div class="tw-grid">
+            <div [ngClass]="{ 'tw-text-accent-mint-light': selectedFleet().id === fleet.id }">
+              {{ fleet.name }}
+            </div>
+
+            @if (notificationsCount()?.[fleet.id]; as count) {
+              <div [@growVertical] class="unread-notifications" [attr.data-cy]="'fleet-unread-' + fleet.id">
+                {{ 'NotificationCenter.UnreadCount' | translate: { count } }}
+              </div>
+            }
+          </div>
+
+          <button
+            mat-icon-button
+            (click)="onCopyFleetId($event, fleet.id)"
+            [ngxTippy]="
+              (copiedId() === fleet.id
+                ? 'ProfileMenu.FleetOption.Actions.Tooltip.Copied'
+                : 'ProfileMenu.FleetOption.Actions.Tooltip.Copy'
+              ) | translate
+            "
+          >
+            <mat-icon [svgIcon]="icons.copyBlack" class="menu-icon"></mat-icon>
+          </button>
+        </div>
+      </button>
+    }
+  </ng-template>
+</mat-menu>

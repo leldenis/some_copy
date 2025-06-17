@@ -1,0 +1,18 @@
+@if (src || defaultSrc) {
+  <img
+    class="rounded tw-w-{{ size }} tw-h-{{ size }}"
+    upfDefaultImgSrc
+    [src]="src | uklSafe: 'url'"
+    [defaultSrc]="defaultSrc | uklSafe: 'url'"
+    alt="avatar"
+  />
+} @else {
+  <div
+    *upfLet="id | id2Color as colors"
+    class="rounded avatar-placeholder tw-w-{{ size }} tw-h-{{ size }}"
+    [style.background-color]="colors.back"
+    [style.color]="colors.fore"
+  >
+    {{ firstName.slice(0, 1) }}{{ lastName.slice(0, 1) }}
+  </div>
+}

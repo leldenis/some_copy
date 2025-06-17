@@ -1,0 +1,29 @@
+<div class="tw-text-dialogTitle tw-text-accent-coral-light">
+  {{ 'Modals.DeleteCard.Title' | translate }} **** **** **** {{ pan?.slice(-4) }}
+</div>
+
+<div class="flt-dialog-close">
+  <button mat-icon-button (click)="onCancelClick()">
+    <mat-icon [svgIcon]="icons.close"></mat-icon>
+  </button>
+</div>
+
+<div class="tw-flex tw-flex-col tw-gap-4 tw-grow tw-justify-between">
+  <div class="tw-flex tw-flex-col tw-gap-6">
+    <div>
+      {{ 'Modals.DeleteCard.Notification' | translate }}
+    </div>
+    <div class="tw-flex tw-grow tw-justify-center">
+      <div class="placeholder"></div>
+    </div>
+  </div>
+  <div class="tw-flex tw-justify-between">
+    <button mat-flat-button color="accent" (click)="onCancelClick()">
+      {{ 'Modals.DeleteCard.Cancel' | translate }}
+    </button>
+
+    <button mat-flat-button color="warn" (click)="onAcceptClick()">
+      {{ 'Modals.DeleteCard.Delete' | translate }}
+    </button>
+  </div>
+</div>

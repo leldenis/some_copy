@@ -1,0 +1,31 @@
+<upf-courier-info
+  [id]="courier.id"
+  [avatarLink]="courier.profile_photo.link"
+  [firstName]="courier.first_name"
+  [lastName]="courier.last_name"
+></upf-courier-info>
+
+<upf-courier-activity
+  [rating]="courier.rating.value"
+  [activity]="courier.activity_rate"
+  [activitySettings]="courier.activitySettings"
+  [registeredAt]="courier.registered_at"
+></upf-courier-activity>
+
+@if (restrictions.length) {
+  <upf-employee-restriction-panel
+    [restrictions]="$any(restrictions)"
+    restrictionTitleKey="CourierRestriction.Title"
+  ></upf-employee-restriction-panel>
+}
+
+<upf-courier-data [phone]="courier.phone" [createdAt]="courier.registered_at"></upf-courier-data>
+
+<mat-divider class="sm:!tw-hidden"></mat-divider>
+
+<upf-profile-remove-btn
+  [btnName]="'Common.Buttons.B_Remove' | translate"
+  (remove)="removeCourier.emit()"
+></upf-profile-remove-btn>
+
+<mat-divider class="sm:!tw-hidden"></mat-divider>

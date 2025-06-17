@@ -1,0 +1,64 @@
+<div
+  *upfLet="!url() && !disabled() && formControl as active"
+  [ngClass]="{ 'photo-uploaded': !!url(), invalid: invalid, disabled: disabled() }"
+  [tabindex]="active ? 0 : -1"
+  (blur)="active ? onTouched() : null"
+  class="photo-container"
+>
+  @if (!url()) {
+    <img
+      class="category"
+      ngSrc="assets/images/{{ category() }}.{{ extension() }}"
+      fill
+      [alt]="category()"
+      [style.padding.px]="padding()"
+      (click)="formControl ? fileInput.click() : null"
+    />
+  } @else {
+    <img (click)="photoClick.emit(category())" [ngSrc]="url()" [alt]="category()" data-cy="photo" fill priority />
+  }
+
+  @if (uploadProgress$ | async; as progress) {
+    <mat-spinner class="buffer" mode="determinate" diameter="60" strokeWidth="8" [value]="100"></mat-spinner>
+    <mat-spinner mode="determinate" diameter="60" strokeWidth="8" [value]="progress"></mat-spinner>
+  }
+
+  @if (!uploading() && !disabled() && formControl) {
+    <button
+      [@fade]
+      [disableRipple]="true"
+      (click)="$event.stopPropagation(); fileInput.click()"
+      mat-mini-fab
+      type="button"
+    >
+      <mat-icon class="outlined">{{ url() ? 'edit' : 'add' }}</mat-icon>
+    </button>
+  }
+
+  @if (errorMessages().length) {
+    <div [@fade] class="info-panel error">
+      @for (error of errorMessages(); track $index) {
+        <div>{{ error.message | translate: { data: error.data } }}</div>
+      }
+    </div>
+  }
+
+  @if (uploadSuccess$ | async) {
+    <div [@fade] class="info-panel success">
+      {{ 'Common.FileUpload.UploadSuccess' | translate }}
+    </div>
+  }
+
+  <input
+    type="file"
+    #fileInput
+    hidden
+    [accept]="allowedExtensions()"
+    [attr.capture]="capture()"
+    (change)="onFileSelect($event)"
+  />
+</div>
+
+@if (!hideLabel()) {
+  <div class="label">{{ 'Common.PhotoType.' + category() | translate }}</div>
+}

@@ -1,0 +1,28 @@
+<section class="sm:tw-flex sm:tw-items-center sm:tw-justify-between">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    (filtersReset)="resetFiltersForm()"
+  >
+    <form [formGroup]="filtersForm" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+      <upf-drivers-autocomplete
+        [fleetId]="fleetData().id"
+        formControlName="driver_id"
+        data-cy="program-filter-by-driver"
+      ></upf-drivers-autocomplete>
+    </form>
+  </upf-filters-container>
+</section>
+
+@if (activePrograms().length) {
+  <upf-driver-active-commission-programs-list
+    data-cy="active-commission-programs-list"
+    [currency]="fleetData().currency"
+    [programs]="activePrograms()"
+    (cdkScrolled)="onLoadNext()"
+  ></upf-driver-active-commission-programs-list>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA" data-cy="empty-state"></upf-empty-state>
+}

@@ -1,0 +1,47 @@
+@if (fleetId) {
+  <div class="fleet-wallet tw-gap-4">
+    <upf-driver-transactions-filter
+      [fleetId]="fleetId"
+      (filtersChange)="onFiltersChange($event)"
+      (filtersReset)="onFiltersReset()"
+    ></upf-driver-transactions-filter>
+
+    <section class="upf-section tw-h-full">
+      @let error = isDriverTransactionsCollectionError$ | async;
+      @if (transactions$ | async; as transactions) {
+        @if (loadingState$ | async; as loadingState) {
+          @if (transactions?.length) {
+            <upf-driver-transactions-list
+              [transactionsList]="transactions"
+              (cdkScrolled)="onLoadNext(loadingState.hasNext, loadingState.isLoaded)"
+            ></upf-driver-transactions-list>
+          } @else {
+            <div class="tw-flex tw-grow tw-justify-center tw-h-full">
+              <upf-empty-state
+                [state]="
+                  (error && emptyState.ERROR) ||
+                  (!this.driverId && emptyState.SELECT_DRIVER_FOR_SEARCH) ||
+                  emptyState.NO_DATA
+                "
+              ></upf-empty-state>
+            </div>
+          }
+
+          @if (!loadingState.isLoaded) {
+            <upf-progress-spinner class="tw-static tw-w-full tw-bottom-0"></upf-progress-spinner>
+          }
+        }
+      } @else {
+        <div class="tw-flex tw-grow tw-justify-center tw-h-full">
+          <upf-empty-state
+            [state]="
+              (error && emptyState.ERROR) ||
+              (!this.driverId && emptyState.SELECT_DRIVER_FOR_SEARCH) ||
+              emptyState.NO_DATA
+            "
+          ></upf-empty-state>
+        </div>
+      }
+    </section>
+  </div>
+}

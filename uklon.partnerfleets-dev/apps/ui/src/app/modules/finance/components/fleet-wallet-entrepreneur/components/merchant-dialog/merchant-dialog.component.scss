@@ -1,0 +1,14 @@
+.modal {
+  .header {
+    @apply tw-flex tw-items-center tw-justify-between;
+    @apply tw-text-neutral-graphite tw-p-2 tw-pl-md;
+  }
+
+  .content {
+    @apply tw-p-md tw-pt-2 tw-pb-11 tw-grid tw-gap-md tw-border-b tw-border-neutral-silver;
+  }
+
+  .footer {
+    @apply tw-p-md tw-flex tw-justify-between;
+  }
+}

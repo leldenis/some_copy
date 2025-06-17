@@ -1,0 +1,74 @@
+@if (role$ | async; as role) {
+  <div
+    infiniteScroll
+    [scrollWindow]="false"
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    class="tw-w-full tw-flex tw-flex-col tw-overflow-auto tw-p-md"
+  >
+    @if (fleet$ | async; as fleet) {
+      <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white tw-relative">
+        @let selectedTabIndex = selectedTabIndex$ | async;
+
+        <mat-tab-group
+          color="primary"
+          [selectedIndex]="selectedTabIndex$ | async"
+          (selectedIndexChange)="handleFragmentChange($event)"
+          class="tw-grow"
+          data-cy="finance-tabs"
+        >
+          @if (role === fleetRoleRef.OWNER) {
+            <mat-tab>
+              <span *matTabLabel [attr.data-cy]="'finance-tabs-fleet-wallet'">
+                {{ 'Finance.Tabs.FleetWallet' | translate }}
+              </span>
+              <upf-fleet-wallet [fleet]="fleet" [showFinanceSettings]="true"></upf-fleet-wallet>
+            </mat-tab>
+          }
+
+          <mat-tab>
+            <span *matTabLabel [attr.data-cy]="'finance-tabs-drivers-balances'">
+              {{ 'Finance.Tabs.DriversBalances' | translate }}
+            </span>
+            <ng-template matTabContent>
+              <upf-driver-balances></upf-driver-balances>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab>
+            <span *matTabLabel [attr.data-cy]="'finance-tabs-drivers-transactions'">
+              {{ 'Finance.Tabs.DriversTransactions' | translate }}
+            </span>
+            <ng-template matTabContent>
+              <upf-driver-transactions [fleetId]="fleet.id"></upf-driver-transactions>
+            </ng-template>
+          </mat-tab>
+
+          @let cashLimitsSettings = cashLimitsSettings$ | async;
+          @let cashLimitsAvailableInRegion = cashLimitsAvailableRegions$ | async;
+
+          @if (cashLimitsSettings || cashLimitsAvailableInRegion) {
+            <mat-tab>
+              <span *matTabLabel [attr.data-cy]="'finance-tabs-cash-limits'">
+                {{ 'Finance.Tabs.CashLimits' | translate }}
+              </span>
+
+              <ng-template matTabContent>
+                <upf-cash-limits-container
+                  [fleetId]="fleet.id"
+                  [settings]="cashLimitsSettings"
+                ></upf-cash-limits-container>
+              </ng-template>
+            </mat-tab>
+          }
+        </mat-tab-group>
+
+        @if (selectedTabIndex === financeTabs.CASH_LIMITS && (cashLimitsSettings || cashLimitsAvailableInRegion)) {
+          <upf-cash-limits-info-dialog-trigger
+            class="tw-absolute tw-top-3.5 tw-right-0 tw-hidden sm:tw-block"
+          ></upf-cash-limits-info-dialog-trigger>
+        }
+      </div>
+    }
+  </div>
+}

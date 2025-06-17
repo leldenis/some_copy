@@ -1,0 +1,112 @@
+:host {
+  @apply tw-flex tw-flex-col tw-items-center tw-gap-2;
+  @apply tw-h-[150px] sm:tw-h-[184px];
+
+  &.no-label {
+    @apply tw-h-[132px] sm:tw-h-[162px];
+  }
+}
+
+.photo-container {
+  --border-color: #cfd0d2;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+  background-image: repeating-linear-gradient(0deg, var(--border-color), var(--border-color) .5rem, transparent .5rem, transparent 1rem, var(--border-color) 1rem), repeating-linear-gradient(90deg, var(--border-color), var(--border-color) .5rem, transparent .5rem, transparent 1rem, var(--border-color) 1rem), repeating-linear-gradient(180deg, var(--border-color), var(--border-color) .5rem, transparent .5rem, transparent 1rem, var(--border-color) 1rem), repeating-linear-gradient(270deg, var(--border-color), var(--border-color) .5rem, transparent .5rem, transparent 1rem, var(--border-color) 1rem);
+  background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+
+  &.invalid {
+    --border-color: #E97171;
+  }
+
+  &:not(.photo-uploaded, .invalid, .disabled):hover {
+    --border-color: #33CCA1;
+
+    .mdc-fab {
+      background: #33CCA1;
+      color: white;
+      box-shadow: 0 1px 3px #4547543d;
+    }
+  }
+}
+
+.category {
+  @apply tw-object-contain;
+}
+
+.mdc-fab {
+  width: 28px;
+  height: 28px;
+  color: #73757E;
+  background: white;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  box-shadow: 0 1px 3px #4547543d;
+  transition: color 0.15s ease-in-out;
+  z-index: 10;
+
+  .mat-icon {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+  }
+
+  &:hover, &:focus {
+    background: #33CCA1;
+    color: white;
+    box-shadow: 0 1px 3px #4547543d;
+  }
+}
+
+.label {
+  font-size: 12px;
+  line-height: 14px;
+  color: #ACACB2;
+}
+
+.info-panel {
+  position: absolute;
+  inset: 0.5rem;
+  bottom: unset;
+  padding: 8px;
+  display: grid;
+  gap: 0.5rem;
+  line-height: 16px;
+  font-size: 12px;
+  word-break: break-word;
+
+  &.success {
+    background-color: #EBFAF6;
+  }
+
+  &.error {
+    background-color: #FFE8E8;
+  }
+}
+
+mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.buffer::ng-deep {
+  circle {
+    stroke: rgb(255 255 255 / 30%);
+  }
+}

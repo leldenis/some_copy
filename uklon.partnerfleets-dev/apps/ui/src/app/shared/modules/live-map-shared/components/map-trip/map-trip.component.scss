@@ -1,0 +1,13 @@
+@use "map" as m;
+
+:host {
+  @include m.map-panel(1rem, 1rem);
+}
+
+.panel-info {
+  @include m.map-panel-info();
+}
+
+.status {
+  @apply tw-px-2 tw-py-1.5 tw-uppercase tw-text-xs tw-rounded tw-leading-3;
+}

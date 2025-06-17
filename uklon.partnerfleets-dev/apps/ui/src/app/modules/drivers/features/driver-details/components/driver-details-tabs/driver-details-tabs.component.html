@@ -1,0 +1,102 @@
+<ng-container *upfLet="selectedTabIndex$ | async as tabIndex">
+  <mat-tab-group
+    class="flex-grow-1"
+    [selectedIndex]="tabIndex"
+    (selectedIndexChange)="handleFragmentChange($event)"
+    animationDuration="400ms"
+    color="primary"
+  >
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-statistic'">
+        {{ 'Drivers.Drivers.Details.Tabs.Statistics' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-statistics-container
+          [fleetId]="selectedFleet.id"
+          [driverId]="selectedDriver.id"
+        ></upf-driver-statistics-container>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-access'">
+        {{ 'Vehicles.Details.Tabs.Access' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-vehicle-access
+          [fleet]="selectedFleet"
+          [driver]="selectedDriver"
+          [isDriverBlocked]="isDriverBlocked"
+        ></upf-driver-vehicle-access>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-photo'">
+        {{ 'Drivers.Drivers.Details.Tabs.Photo' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-photos [selectedFleet]="selectedFleet" [isMobileView]="isMobileView"></upf-driver-photos>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-expandedFilters'">
+        {{ 'Drivers.Drivers.Details.Tabs.ExpandedFilters' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-expanded-filters
+          [selectedFleet]="selectedFleet"
+          [selectedVehicle]="selectedVehicle"
+          [isDriverBlocked]="isDriverBlocked"
+        ></upf-driver-expanded-filters>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-restrictions'">
+        {{ 'Drivers.Drivers.Details.Tabs.Restrictions' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-restriction
+          [fleetId]="selectedFleet.id"
+          [driverId]="selectedDriver.id"
+          [isDriverBlocked]="isDriverBlocked"
+        ></upf-driver-restriction>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-history'">
+        {{ 'Drivers.Drivers.Details.Tabs.History' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-history
+          [driverId]="selectedDriver.id"
+          [fleetId]="selectedFleet.id"
+          [tabIndex]="tabIndex"
+        ></upf-driver-history>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <span *matTabLabel [attr.data-cy]="'driver-details-tabs-orders'">
+        {{ 'Drivers.Drivers.Details.Tabs.Trips' | translate }}
+      </span>
+
+      <ng-template matTabContent>
+        <upf-driver-orders
+          [driverId]="selectedDriver.id"
+          [fleetId]="selectedFleet.id"
+          [tabIndex]="tabIndex"
+        ></upf-driver-orders>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>

@@ -1,0 +1,9 @@
+:host {
+  @apply tw-flex tw-flex-col tw-gap-2 sm:tw-gap-4;
+  @apply tw-h-full tw-w-full;
+  @apply tw-pt-4;
+}
+
+.mat-icon {
+  @apply tw-h-5 tw-w-5;
+}

@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.loader-button {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &__icon {
+    position: absolute;
+    inset: 0;
+    animation: loading 1s linear infinite;
+  }
+
+  &.loading {
+    pointer-events: none;
+  }
+
+  &:active,
+  &.cdk-focused,
+  &.loading,
+  &:not(:disabled):hover {
+    color: #FFFFFF;
+    background-color: #30B38F;
+  }
+
+  &[disabled] {
+    background-color: transparent;
+    border: solid 1px #CFD0D2;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,8 @@
+.commission-info {
+  @apply tw-flex tw-flex-initial tw-gap-1 tw-h-fit tw-mb-4 sm:tw-hidden;
+  @apply tw-text-accent-mint-light tw-text-base;
+
+  .mat-icon {
+    @apply tw-w-5 tw-h-5;
+  }
+}

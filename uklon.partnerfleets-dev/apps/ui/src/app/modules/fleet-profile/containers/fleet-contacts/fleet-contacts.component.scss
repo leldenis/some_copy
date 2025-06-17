@@ -1,0 +1,16 @@
+:host {
+  @apply tw-w-full;
+}
+
+.contacts-container {
+  @apply tw-px-md tw-py-5 tw-text-neutral-graphite tw-flex tw-flex-col tw-gap-md tw-h-full;
+}
+
+
+
+.cards-container {
+  @apply tw-grid tw-gap-md;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+

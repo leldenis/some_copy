@@ -1,0 +1,103 @@
+<ng-container *upfLet="isBlockedFleet$ | async as isBlockedFleet">
+  @if (fleet$ | async; as selectedFleet) {
+    <mat-drawer-container class="!tw-h-screen" *upfLet="isMobileView$ | async as isMobileView">
+      <mat-drawer
+        #drawer
+        class="sm:!tw-w-cell-2"
+        position="start"
+        [mode]="mode()"
+        [opened]="!isMobileView"
+        (opened)="reportSidebarToggle(false)"
+        (closed)="reportSidebarToggle(true)"
+      >
+        <div class="sidebar" [ngClass]="{ opened: drawerOpened() }">
+          <section class="tw-h-full tw-flex tw-flex-col">
+            <upf-shell-navigation
+              upfHasScroll="vertical"
+              #navigation="upfHasScroll"
+              [routes]="routes()"
+              [appConfig]="appConfig"
+              [drawerOpened]="drawerOpened()"
+              [hasScroll]="navigation.hasScroll()"
+              [isMobileView]="isMobileView"
+              [fleetBlocked]="isBlockedFleet"
+              [account]="account$ | async"
+              [fleetDetails]="fleetDetails$ | async"
+              [showRROIndicator]="showRROIndicator$ | async"
+              (closeDrawer)="drawer.close()"
+              (navigationChange)="onNavigation($event, isMobileView)"
+              (toggleSidebar)="reportSidebarToggle(drawerOpened()); drawerOpened.set(!drawerOpened())"
+            >
+              <ng-container
+                [ngTemplateOutlet]="fleetSelector"
+                [ngTemplateOutletContext]="{ $implicit: true }"
+              ></ng-container>
+            </upf-shell-navigation>
+          </section>
+
+          <section class="footer">
+            <div class="footer-item">
+              <upf-shell-language-selector
+                data-cy="lang-control-select"
+                [drawerOpened]="drawerOpened()"
+                (languageSelectOpened)="reportLanguageSelect()"
+              ></upf-shell-language-selector>
+            </div>
+
+            <div class="footer-item">
+              <div data-cy="logout" class="navigation-item" [ngClass]="{ opened: drawerOpened() }" (click)="onLogout()">
+                <div class="icon-container">
+                  <mat-icon>logout</mat-icon>
+                </div>
+
+                <span class="menu-item-name">{{ 'ProfileLogout.Caption' | translate }}</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </mat-drawer>
+
+      <mat-drawer>
+        <ng-container *upfDynamicComponentSidebar></ng-container>
+      </mat-drawer>
+
+      <mat-drawer-content class="!tw-flex tw-flex-col sm:tw-ml-cell-2">
+        @if (!isBlockedFleet && (config$ | async); as config) {
+          <upf-shell-header
+            [config]="config"
+            [isMobileView]="isMobileView"
+            [showNotificationsBtn]="appConfig?.notifications?.showNotificationCenter ?? false"
+            [title]="title$ | async"
+            [fullScreenMode]="fullScreen$ | async"
+            [notificationsCount]="unreadCount$ | async"
+            [customNotificationsCount]="unreadCustomCount$ | async"
+            (openSidebar)="drawer.open()"
+            (openNotificationsSidebar)="openNotificationsSidebar($event)"
+          >
+            @if (!isMobileView) {
+              <ng-container
+                [ngTemplateOutlet]="fleetSelector"
+                [ngTemplateOutletContext]="{ $implicit: false }"
+              ></ng-container>
+            }
+          </upf-shell-header>
+        }
+
+        <main class="tw-overflow-auto tw-grow tw-bg-white">
+          <router-outlet></router-outlet>
+        </main>
+      </mat-drawer-content>
+    </mat-drawer-container>
+
+    <ng-template #fleetSelector let-mobile="mobile">
+      <upf-shell-fleet-selector
+        [selectedFleet]="selectedFleet"
+        [fleets]="fleets$ | async"
+        [notificationsCount]="notificationsCount$ | async"
+        [isMobileView]="mobile"
+        (menuOpened)="fleetSelectorOpened$.next()"
+        (fleetSelected)="onSelectFleet($event)"
+      ></upf-shell-fleet-selector>
+    </ng-template>
+  }
+</ng-container>

@@ -1,0 +1,32 @@
+@use 'functions' as f;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.title {
+  margin: f.px2rem(-5) 0 f.px2rem(6);
+
+  .mat-icon {
+    @apply tw-w-5 tw-h-5 tw-text-neutral-graphite;
+  }
+}
+
+.mat-divider {
+  margin: 0 f.px2rem(-16);
+  @apply tw-text-neutral-silver;
+}
+
+.content {
+  margin: 0;
+  padding: f.px2rem(16) 0;
+  @apply tw-text-base tw-text-neutral-graphite;
+}
+
+.footer {
+  padding: f.px2rem(16) 0 0;
+
+  @apply tw-flex tw-justify-between tw-content-center tw-items-center;
+}

@@ -1,0 +1,68 @@
+<section class="notification-details">
+  @if (acceptanceRequired) {
+    <section class="notification-details-header">
+      <button
+        class="tw-hidden sm:tw-block"
+        mat-dialog-close
+        mat-flat-button
+        color="accent"
+        data-cy="notification-details-dialog-skip-mobile-btn"
+      >
+        {{ 'Dialogs.BulkNotification.SkipBtn' | translate }}
+      </button>
+    </section>
+  }
+
+  @if (data.image_base_64) {
+    <img
+      class="notification-details-img"
+      [src]="data.image_base_64"
+      alt=""
+      data-cy="notification-details-dialog-image"
+    />
+  }
+
+  <section class="notification-details-content">
+    <div
+      data-cy="notification-details-dialog-message"
+      class="tw-text-base tw-text-neutral-shale tw-leading-5"
+      [innerHTML]="data.details | replaceNbsp | uklSafe: 'html'"
+    ></div>
+
+    @if (acceptanceRequired) {
+      <mat-checkbox data-cy="notification-details-dialog-checkbox" [formControl]="acceptanceControl">
+        <div class="notification-details-checkbox-label">
+          {{ 'Dialogs.BulkNotification.ConfirmationCheckboxMessage' | translate }}
+        </div>
+      </mat-checkbox>
+    }
+  </section>
+
+  <section class="footer" [ngClass]="{ 'acceptance-required': data.type === notificationType.ACCEPTANCE_REQUIRED }">
+    @if (acceptanceRequired) {
+      <button
+        class="!tw-hidden sm:!tw-block"
+        mat-dialog-close
+        mat-flat-button
+        color="accent"
+        data-cy="notification-details-dialog-skip-btn"
+      >
+        {{ 'Dialogs.BulkNotification.SkipBtn' | translate }}
+      </button>
+    } @else if (data.type === notificationType.ACCEPTANCE_REQUIRED) {
+      <span class="tw-text-base tw-text-neutral-granit" data-cy="notification-details-dialog-accepted-message">
+        {{ 'Dialogs.BulkNotification.ConfirmedMessage' | translate }}
+      </span>
+    }
+
+    <button
+      [mat-dialog-close]="data"
+      [disabled]="acceptanceRequired && acceptanceControl.invalid"
+      mat-flat-button
+      color="primary"
+      data-cy="notification-details-dialog-accept-btn"
+    >
+      {{ (acceptanceRequired ? 'Common.Buttons.B_Confirm' : 'Dialogs.BulkNotification.ConfirmBtn') | translate }}
+    </button>
+  </section>
+</section>

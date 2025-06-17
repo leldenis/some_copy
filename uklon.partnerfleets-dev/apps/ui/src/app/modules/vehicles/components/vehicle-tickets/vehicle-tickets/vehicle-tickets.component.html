@@ -1,0 +1,26 @@
+@if (fleetId) {
+  <div class="vehicle-tickets">
+    <upf-vehicle-tickets-filter
+      (filtersChange)="onFiltersChange($event)"
+      (addVehicle)="onAddVehicle()"
+    ></upf-vehicle-tickets-filter>
+
+    @if (fleetVehiclesTicketsList$ | async; as fleetVehiclesTicketsList) {
+      @if (fleetVehiclesTicketsList?.length) {
+        <upf-vehicle-tickets-list
+          [ticketsList]="fleetVehiclesTicketsList"
+          [vehiclesTicketsListTotalCount]="vehiclesTicketsListTotalCount$ | async"
+          (deleteTicket)="onDeleteTicket($event)"
+        ></upf-vehicle-tickets-list>
+      } @else {
+        <upf-empty-state
+          [state]="(isVehiclesTicketsCollectionError$ | async) ? emptyState.ERROR : emptyState.NO_DATA"
+        ></upf-empty-state>
+      }
+    } @else {
+      <upf-empty-state
+        [state]="(isVehiclesTicketsCollectionError$ | async) ? emptyState.ERROR : emptyState.NO_DATA"
+      ></upf-empty-state>
+    }
+  </div>
+}

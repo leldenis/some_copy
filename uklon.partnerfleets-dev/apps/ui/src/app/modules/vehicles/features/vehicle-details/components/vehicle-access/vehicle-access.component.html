@@ -1,0 +1,66 @@
+@if (settings$ | async; as settings) {
+  <div class="tw-flex tw-flex-col tw-gap-md tw-w-full">
+    <div class="tw-grow">
+      <div class="tw-text-heading tw-mb-3">
+        {{ 'Vehicles.VehicleAccess.AccessTitle' | translate }}
+      </div>
+
+      <mat-radio-group
+        color="primary"
+        [formControl]="accessControl"
+        class="tw-flex tw-flex-wrap tw-gap-4 tw-mb-4 max-sm:tw-flex-col"
+      >
+        <mat-radio-button [value]="vehicleAccessType.ALL" [disabled]="isVehicleBlocked">
+          {{ 'Vehicles.VehicleAccess.AccessType.All' | translate }}
+        </mat-radio-button>
+
+        <mat-radio-button [value]="vehicleAccessType.SPECIFIC_DRIVERS" [disabled]="isVehicleBlocked">
+          {{ 'Vehicles.VehicleAccess.AccessType.SpecificDrivers' | translate }}
+        </mat-radio-button>
+
+        <mat-radio-button
+          [value]="vehicleAccessType.NOBODY"
+          [disabled]="!!currentDriver || isVehicleBlocked"
+          [ngxTippy]="!!currentDriver ? ('Vehicles.VehicleAccess.Tooltips.NobodyAccess' | translate) : null"
+          [tippyProps]="{ maxWidth: '300px' }"
+        >
+          {{ 'Vehicles.VehicleAccess.AccessType.Nobody' | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      @if (accessControl.value === vehicleAccessType.SPECIFIC_DRIVERS) {
+        <upf-drivers-selection-autocomplete
+          [formControl]="driverControl"
+          [fleetId]="fleet.id"
+          [currentDriver]="currentDriver"
+          [disabled]="isVehicleBlocked"
+          [inputClass]="'sm:tw-w-72 tw-w-full'"
+        ></upf-drivers-selection-autocomplete>
+      }
+
+      @if (accessControl.value === vehicleAccessType.NOBODY) {
+        <mat-form-field appearance="outline" floatLabel="always" class="tw-w-full">
+          <mat-label>{{ 'Vehicles.VehicleAccess.RemoveAccessComment.Caption' | translate }}</mat-label>
+
+          <textarea
+            type="text"
+            matInput
+            [formControl]="commentControl"
+            cdkTextareaAutosize="true"
+            placeholder="{{ 'Vehicles.VehicleAccess.RemoveAccessComment.Placeholder' | translate }}"
+          ></textarea>
+        </mat-form-field>
+      }
+    </div>
+
+    <button
+      class="sm:tw-self-start tw-w-full sm:tw-w-fit"
+      mat-flat-button
+      color="primary"
+      [disabled]="isVehicleBlocked"
+      (click)="!isVehicleBlocked ? handleSettingsUpdate() : null"
+    >
+      {{ 'Vehicles.VehicleAccess.SaveButton' | translate }}
+    </button>
+  </div>
+}

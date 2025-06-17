@@ -1,0 +1,13 @@
+@use "shared/photos";
+
+.photos-container {
+  @apply tw-w-full lg:tw-max-w-fit;
+}
+
+.photo-title {
+  @apply tw-px-3.5 tw-mb-2;
+}
+
+.info-panel {
+  max-width: 500px;
+}

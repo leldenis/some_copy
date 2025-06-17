@@ -1,0 +1,39 @@
+:host {
+  @apply tw-h-full tw-text-neutral-graphite;
+
+  .mat-mdc-icon-button {
+    @apply tw-h-7 tw-w-7 tw-leading-7;
+    @apply tw-bg-neutral-silver;
+    @apply tw-rounded-sm;
+    @apply tw-flex tw-justify-center tw-items-center;
+  }
+}
+
+dt {
+  @apply tw-text-neutral-granit;
+}
+
+.main-information {
+  margin-bottom: 2rem;
+}
+
+.avatar-placeholder {
+  @apply tw-w-14 tw-h-14 tw-rounded-full tw-object-center tw-object-cover tw-grid tw-place-items-center;
+  font-size: 1.75rem;
+}
+
+.access-status {
+  @apply tw-text-xs tw-leading-3 tw-px-2 tw-py-1.5 tw-rounded tw-w-fit;
+
+  &.all {
+    @apply tw-bg-green-100 tw-text-alert-grass-light;
+  }
+
+  &.nobody {
+    @apply tw-bg-alert-yellow-dark tw-text-alert-yellow-light;
+  }
+
+  &.specificvehicles {
+    @apply tw-bg-alert-violet-dark tw-text-alert-violet-light;
+  }
+}

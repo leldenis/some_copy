@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+$ripple-size: 36px;
+$font-size: 14px;
+$line-height: 18px;
+$padding: 0 !important;
+$label-padding: 12px !important;
+$disabled-color: #ACACB2 !important;
+$unchecked-color: #73757E !important;
+
+.mat-mdc-radio-button {
+  --mdc-radio-disabled-selected-icon-color: #{$disabled-color};
+  --mdc-radio-disabled-unselected-icon-color: #{$disabled-color};
+  --mat-radio-disabled-label-color: #{$disabled-color};
+  font-size: $font-size;
+  line-height: $line-height;
+  padding: $padding;
+  width: fit-content;
+
+  .mdc-radio {
+    padding: $padding;
+  }
+
+  .mdc-label {
+    padding-left: $label-padding;
+  }
+}

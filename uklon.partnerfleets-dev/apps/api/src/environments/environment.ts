@@ -1,0 +1,68 @@
+import { EnvironmentModel } from '@api-env/environment.model';
+
+export const environment: EnvironmentModel = {
+  production: false,
+  port: 8081,
+  clientId: '7bf6b66c26d840719442b09ca336977b',
+  clientSecret: 'AQdvAcZvzRJpBFmNnZnwp77kRN8JZ77T',
+  serviceRegistry: {
+    identityService: 'https://partnersidentity.dev.uklon.net/',
+    partnersService: 'https://partners.dev.uklon.net/',
+    orderService: 'https://orderreporting.dev.uklon.net/',
+    analyticsService: 'https://as.dev.uklon.com.ua/',
+    searchService: 'https://search.dev.uklon.net/',
+    ridersService: 'https://riderservice.dev.uklon.net/',
+    gpsService: 'https://gpsfetcher.dev.uklon.net/',
+    orderProcessingService: 'https://orderprocessor.dev.uklon.net/',
+    paymentProcessingService: 'https://paymentprocessor.dev.uklon.net/',
+    deliveryService: 'https://delivery.dev.uklon.net',
+    driverBonusService: 'https://driverbonus.dev.uklon.net',
+    fiscalizationService: 'https://fiscalizationservice.dev.uklon.net',
+    pregameService: 'https://pregameservice.dev.uklon.net',
+    driverOrderingService: 'https://driverordering.dev.uklon.net',
+  },
+  logging: {
+    level: 'debug',
+    customProps: true,
+    redact: ['Request.headers.authorization'],
+  },
+  tokenKey: {
+    exponent: 'AQAB',
+    modulus:
+      'knZJM4wbNQDY9g8zZWpR2Fd7As+8cQAfCqyXbk0CbR4uc/l3v8YNWPrwHzDF71jC7sKPxklC6c8ZDMNKNQ4iSSC5i0OstfcHG1wCvNGL7GIEMiesQ4ytrF+OHK71oLqawG11SUDOHI3MDvf5pXu9SfCmD+sqMayrl5uNknhDBWdt6M9U9yvgcJDumsCtIbxk6O6svAeknka30rlgcVNytMxbdtwtIIkHL2e5DG9SSdjYg43XiGC2B8j54RSVDSDEe6LM9N1UkbDzGcgbeDpmV+MUHPC7MOobYDsVIq6YDfivsbWp9M7oZtp+2kGet6+ZnmMrP8PdvEgz8+Sy2pvN/Q==',
+  },
+  cors: {
+    isActive: true,
+    origin: [/.*/g],
+    credentials: true,
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'x-transaction-id',
+      'x-skip-interceptor',
+      'x-amzn-trace-id',
+      'x-b3-sampled',
+      'x-b3-spanid',
+      'x-b3-traceid',
+      'traceparent',
+      'uber-trace-id',
+      'x-session-token',
+    ],
+    methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  },
+  kafka: {
+    clientId: 'partnerfleets',
+    schemaRegistry: {
+      host: 'https://kafka-connect-cp-schema-registry.dev.uklon.net/',
+    },
+    bootstrapServers: '',
+    topics: ['part.notification-events'],
+    saslPassword: '',
+    saslUsername: '',
+    saslMechanism: 'scram-sha-512',
+    sslEnabled: true,
+    connectionTimeout: 10_000,
+    heartbeatInterval: 10_000,
+    enabled: true,
+  },
+};

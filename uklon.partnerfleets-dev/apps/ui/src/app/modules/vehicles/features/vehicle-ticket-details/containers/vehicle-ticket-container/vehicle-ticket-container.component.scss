@@ -1,0 +1,34 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+@use 'variables' as v;
+
+:host {
+  @apply tw-grid tw-px-4;
+}
+
+.ticket-container {
+  @apply sm:tw-px-6 sm:tw-shadow-sm sm:tw-rounded-md;
+}
+
+.status {
+  @include m.set-font(f.px2rem(12), f.px2rem(14), 400, var(--grey40-color));
+  margin-right: 7px;
+}
+
+.footer {
+  &__btn-send {
+    height: f.px2rem(48);
+    width: f.px2rem(130);
+    letter-spacing: 0.0125em;
+  }
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .ticket-status {
+    margin-top: 0.25rem;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0.25rem;
+  }
+}

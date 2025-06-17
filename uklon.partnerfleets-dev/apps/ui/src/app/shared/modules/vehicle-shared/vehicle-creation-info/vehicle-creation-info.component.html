@@ -1,0 +1,115 @@
+<div data-cy="vehicle-creation-info" class="vehicle-creation-info">
+  <div class="tw-mb-2 sm:tw-mb-4" data-cy="vehicle-addition-title">{{ 'Vehicles.Creation.Title' | translate }}</div>
+
+  <div class="col-lg-12 col-md-12">
+    <form [formGroup]="formGroup" class="tw-flex tw-flex-col">
+      @if (showCargo()) {
+        <div class="tw-flex tw-mb-4">
+          <upf-vehicle-body-type-switcher
+            [selectedBodyType]="selectedBodyType()"
+            [disabled]="shouldDisabledBodyType()"
+            (changeBodyType)="changeBodyType($event)"
+          ></upf-vehicle-body-type-switcher>
+        </div>
+
+        @if (isSelectedBodyTypeCargo()) {
+          <div class="tw-mb-5">
+            <upf-info-panel class="sm:tw-w-fit">
+              {{ 'Vehicles.Creation.Info.Cargo' | translate }}
+            </upf-info-panel>
+          </div>
+        }
+      }
+
+      <div class="tw-flex tw-flex-col md:tw-flex-row md:tw-justify-between">
+        <div class="tw-flex tw-flex-col md:tw-flex-row md:tw-gap-4 tw-w-full">
+          <!-- License Plate -->
+
+          <div class="tw-flex tw-flex-col tw-relative">
+            <mat-form-field subscriptSizing="fixed" class="col-3 col-sm-12 !tw-w-full">
+              <mat-label>
+                {{ 'Vehicles.Creation.LicensePlateFull' | translate }}
+              </mat-label>
+
+              <input
+                data-cy="license-plate-control"
+                matInput
+                autocomplete="off"
+                formControlName="licensePlate"
+                (focus)="reportAnalyticsEvent('licensePlate')"
+                (blur)="reportAnalyticsEvent('licensePlate', false)"
+              />
+            </mat-form-field>
+
+            @if (ticketDuplicate()) {
+              <upf-info-panel color="error" class="ticket-duplicate-error" data-cy="ticket-duplicate-error">
+                <div class="tw-flex tw-gap-md tw-items-center">
+                  <span data-cy="ticket-duplicate-error-title">
+                    {{ 'Vehicles.Creation.InfoPanel.TicketExistsMessage' | translate }}
+                  </span>
+
+                  <a
+                    [routerLink]="['../', vehiclePaths.TICKET, ticketDuplicate().id]"
+                    class="link"
+                    data-cy="ticket-duplicate-error-link"
+                  >
+                    {{ 'Vehicles.Creation.InfoPanel.GoToTicket' | translate }}
+                    <mat-icon data-cy="ticket-duplicate-error-icon">chevron_right</mat-icon>
+                  </a>
+                </div>
+              </upf-info-panel>
+            }
+          </div>
+
+          <!-- Body Type -->
+          @if (isSelectedBodyTypeCargo()) {
+            <mat-form-field subscriptSizing="fixed" class="col-3 col-sm-12">
+              <mat-label>
+                {{ 'Vehicles.Creation.BodyType' | translate }}
+              </mat-label>
+
+              <mat-select data-cy="body-type-control" formControlName="bodyType">
+                @for (item of bodyTypesList$ | async; track $index) {
+                  @if (isSelectedBodyTypeCargo() || item.code !== bodyType.CARGO) {
+                    <mat-option data-cy="body-type-control-item" [value]="item.code">
+                      {{ 'Common.BodyTypes.' + item.code | translate }}
+                    </mat-option>
+                  }
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Load Capacity -->
+            <mat-form-field subscriptSizing="fixed" class="col-3 col-sm-12">
+              <mat-label>
+                {{ 'VehicleDetailsInfo.Fields.LoadCapacity' | translate }}
+              </mat-label>
+
+              <mat-select formControlName="loadCapacity">
+                @for (item of loadCapacityOptions; track $index) {
+                  <mat-option [value]="item">
+                    {{ item | translateLoadCapacity: 'full' }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          } @else {
+            <mat-form-field subscriptSizing="fixed" class="col-sm-12 col-6">
+              <mat-label>
+                {{ 'Vehicles.Creation.AdvancedOptions' | translate }}
+              </mat-label>
+
+              <mat-select data-cy="advanced-options-control" formControlName="options" multiple>
+                @for (options of advancedOptionsList$ | async; track $index) {
+                  <mat-option data-cy="advanced-options-control-item" [value]="options.code">
+                    {{ 'Common.AdvancedOptions.' + options.code | translate }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

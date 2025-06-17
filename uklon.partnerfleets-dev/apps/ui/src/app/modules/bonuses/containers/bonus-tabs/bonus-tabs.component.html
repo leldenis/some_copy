@@ -1,0 +1,124 @@
+<div
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  data-cy="bonuses-tab-infinite-scroll-wrap"
+  class="tw-w-full tw-p-4 tw-flex tw-flex-col tw-overflow-auto"
+>
+  <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white">
+    <div class="tw-flex tw-justify-between tw-grow tw-relative">
+      @let selectedTabIndex = selectedTabIndex$ | async;
+
+      <mat-tab-group
+        color="primary"
+        class="tw-grow !tw-touch-pan-y"
+        [selectedIndex]="selectedTabIndex"
+        (selectedIndexChange)="handleFragmentChange($event)"
+      >
+        @let fleetData = fleetData$ | async;
+
+        @if (appConfig?.showBrandingBonusOld) {
+          <mat-tab
+            labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+          >
+            <span *matTabLabel>
+              {{ 'Bonuses.Tabs.Vehicle' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              @if (calculationPeriods$ | async; as periods) {
+                <upf-branding-bonus-old-container
+                  [fleetId]="fleetData.id"
+                  [walletId]="walletId$ | async"
+                  [calculationPeriods]="periods?.items || []"
+                ></upf-branding-bonus-old-container>
+              }
+            </ng-template>
+          </mat-tab>
+        }
+
+        @if (appConfig?.showBrandingBonus) {
+          <mat-tab
+            labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+          >
+            <span *matTabLabel>
+              {{ 'Bonuses.Tabs.BrandingBonus' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              <upf-branding-bonus-container
+                [fleetId]="fleetData.id"
+                [regionId]="fleetData.region_id"
+                data-cy="branding-bonus-container"
+              ></upf-branding-bonus-container>
+            </ng-template>
+          </mat-tab>
+        }
+
+        <mat-tab>
+          <span *matTabLabel data-cy="commission-tab">
+            {{ 'Bonuses.Tabs.CommissionPrograms' | translate }}
+          </span>
+
+          <ng-template matTabContent>
+            <upf-driver-commission-programs [fleetData]="fleetData"></upf-driver-commission-programs>
+          </ng-template>
+        </mat-tab>
+
+        @if (appConfig?.showVehiclesCommissionPrograms) {
+          <mat-tab>
+            <span *matTabLabel data-cy="vehicle-commission-tab">
+              {{ 'Bonuses.Tabs.VehicleCommissionPrograms' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              <upf-vehicle-commission-programs [fleetData]="fleetData"></upf-vehicle-commission-programs>
+            </ng-template>
+          </mat-tab>
+        }
+      </mat-tab-group>
+
+      @if (selectedTabIndex === bonusTab.DRIVER_COMMISSION || selectedTabIndex === bonusTab.VEHICLE_COMMISSION) {
+        <div class="commission-info">
+          <mat-icon
+            class="tw-self-center"
+            data-cy="programs-tooltip"
+            [svgIcon]="icons.info"
+            [ngxTippy]="commissionProgramRules"
+            [tippyProps]="{ maxWidth: '290px' }"
+            (mouseenter)="reportAnalytics()"
+          ></mat-icon>
+          <span class="tw-self-center">{{ 'Bonuses.Commissions.Program.WhatIsCommissionProgram' | translate }}</span>
+        </div>
+
+        <ng-template #commissionProgramRules>
+          <div class="tw-py-2" data-cy="programs-tooltip-content">
+            <div class="tw-flex tw-gap-2 tw-mb-2">
+              <mat-icon svgIcon="i-cash-base" class="tw-text-accent-mint-light tw-shrink-0"></mat-icon>
+              <span data-cy="programs-tooltip-rule1">
+                {{
+                  (selectedTabIndex === bonusTab.DRIVER_COMMISSION
+                    ? 'Bonuses.Commissions.Program.Tooltip.Rule1'
+                    : 'Bonuses.Commissions.Program.Tooltip.VehicleRule1'
+                  ) | translate
+                }}
+              </span>
+            </div>
+            <div class="tw-flex tw-gap-2">
+              <mat-icon svgIcon="i-check-green" class="tw-shrink-0"></mat-icon>
+              <span data-cy="programs-tooltip-rule2">
+                {{
+                  (selectedTabIndex === bonusTab.DRIVER_COMMISSION
+                    ? 'Bonuses.Commissions.Program.Tooltip.Rule2'
+                    : 'Bonuses.Commissions.Program.Tooltip.VehicleRule2'
+                  ) | translate
+                }}
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      }
+    </div>
+  </div>
+</div>

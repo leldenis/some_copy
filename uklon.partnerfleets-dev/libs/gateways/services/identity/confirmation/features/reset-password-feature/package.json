@@ -1,0 +1,5 @@
+{
+  "name": "@uklon/gateways/services/identity/confirmation/reset-password-feature",
+  "version": "0.0.1",
+  "type": "commonjs"
+}

@@ -1,0 +1,68 @@
+import { EnvironmentModel } from '@api-env/environment.model';
+
+export const environment: EnvironmentModel = {
+  production: true,
+  port: 8081,
+  clientId: '7bf6b66c26d840719442b09ca336977b',
+  clientSecret: 'AQdvAcZvzRJpBFmNnZnwp77kRN8JZ77T',
+  serviceRegistry: {
+    identityService: 'https://partnersidentity.staging.uklon.net/',
+    partnersService: 'https://partners.staging.uklon.net/',
+    orderService: 'https://orderreporting.staging.uklon.net/',
+    analyticsService: 'https://as.staging.uklon.com.ua/',
+    searchService: 'https://search.staging.uklon.net/',
+    ridersService: 'https://riderservice.staging.uklon.net/',
+    gpsService: 'https://gpsfetcher.staging.uklon.net/',
+    orderProcessingService: 'https://orderprocessor.staging.uklon.net/',
+    paymentProcessingService: 'https://paymentprocessor.staging.uklon.net/',
+    deliveryService: 'https://delivery.staging.uklon.net',
+    driverBonusService: 'https://driverbonus.staging.uklon.net',
+    fiscalizationService: 'https://fiscalizationservice.staging.uklon.net',
+    pregameService: 'https://pregameservice.staging.uklon.net',
+    driverOrderingService: 'https://driverordering.staging.uklon.net',
+  },
+  logging: {
+    level: 'info',
+    customProps: true,
+    redact: ['Request.headers.authorization'],
+  },
+  tokenKey: {
+    exponent: 'AQAB',
+    modulus:
+      '39w2byVVD9aduuUsEETQdHRxMKw2ZbBqZ3Fstwu1qqanD/lFt+gJRvTCLJ4lF5SM63rjL8AfNyQoDCDSB7MAaxV0NlQAn0NjWrlRWFD5ktMTrrkLI1EPD0R7kYJPDa4EIfuKR3uOXkxD9PWZCXoyvXjoCnUhe7hRVPPQy2d3HypsJQeGsaY79TN/kOWXiUicqEMJGB9Fu6/u1bhS0rNiB5HZPUKoJHCRCi2BRp8bgg6Kvhz5xIsAmrAlduoGhQSH4t05pYlUV8Lr7UASCC1BFojLEG2tc99z1icya22o/UuPGMP4d7x8A4ZM7NC6wPZZ4vZcOVlo2v4I5xXNoaMfkQ==',
+  },
+  cors: {
+    isActive: true,
+    origin: ['*'],
+    credentials: true,
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'x-transaction-id',
+      'x-skip-interceptor',
+      'x-amzn-trace-id',
+      'x-b3-sampled',
+      'x-b3-spanid',
+      'x-b3-traceid',
+      'traceparent',
+      'uber-trace-id',
+      'x-session-token',
+    ],
+    methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  },
+  kafka: {
+    clientId: 'partnerfleets',
+    schemaRegistry: {
+      host: 'https://kafka-connect-cp-schema-registry.dev.uklon.net/',
+    },
+    bootstrapServers: '',
+    topics: ['part.notification-events'],
+    saslPassword: '',
+    saslUsername: '',
+    saslMechanism: 'scram-sha-512',
+    sslEnabled: true,
+    connectionTimeout: 10_000,
+    heartbeatInterval: 10_000,
+    enabled: false,
+  },
+};

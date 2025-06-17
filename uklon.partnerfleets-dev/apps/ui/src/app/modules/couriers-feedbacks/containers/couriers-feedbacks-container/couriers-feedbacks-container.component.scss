@@ -1,0 +1,9 @@
+:host {
+  @apply tw-flex tw-flex-col tw-bg-white;
+  @apply tw-max-h-full tw-min-h-full tw-text-neutral-graphite;
+}
+
+.feedback-wrap {
+  @apply tw-flex tw-flex-col tw-grow tw-gap-md sm:tw-gap-6 tw-overflow-auto;
+  @apply tw-h-full tw-min-h-full tw-p-4 tw-pt-0 sm:tw-pt-md;
+}

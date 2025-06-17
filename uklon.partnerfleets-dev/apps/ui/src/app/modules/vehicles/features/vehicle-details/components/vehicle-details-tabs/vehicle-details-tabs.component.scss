@@ -1,0 +1,8 @@
+:host {
+  @apply tw-flex sm:tw-bg-neutral-white;
+
+  ::ng-deep .mat-mdc-tab-body-wrapper {
+    flex-grow: 1;
+    height: 100%;
+  }
+}

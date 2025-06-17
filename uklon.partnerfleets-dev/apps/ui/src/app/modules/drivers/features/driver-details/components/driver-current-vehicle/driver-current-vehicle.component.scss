@@ -1,0 +1,18 @@
+.vehicle-info {
+  @apply tw-grid tw-gap-4 tw-items-center;
+  grid-template-columns: 3rem auto 1.75rem;
+}
+
+.vehicle-avatar-placeholder {
+  @apply tw-w-12 tw-h-12 tw-rounded-full tw-object-center tw-object-cover tw-grid tw-place-items-center tw-bg-gray-100;
+}
+
+.vehicle-unlink-btn {
+  &:not([disabled]) {
+    mat-icon {
+      &:hover {
+        @apply tw-text-accent-coral-light;
+      }
+    }
+  }
+}

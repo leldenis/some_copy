@@ -1,0 +1,118 @@
+<div class="tw-flex tw-flex-col tw-gap-md" data-cy="order-types">
+  <div class="tw-font-medium tw-text-heading tw-my-1">
+    {{ 'Drivers.Drivers.Details.OrderType' | translate }}
+  </div>
+
+  <div class="flex-row align-items-center tabs">
+    <button
+      class="tw-rounded-l"
+      data-cy="available-filters"
+      [ngClass]="{ active: displayActiveProducts }"
+      (click)="filterList(true)"
+    >
+      {{ 'Drivers.Drivers.Details.AvailableForDriver' | translate }}
+      ({{ displayActiveProducts ? productsListFiltered?.length : productsList?.length - productsListFiltered?.length }})
+    </button>
+
+    <button
+      class="tw-rounded-r"
+      data-cy="not-available-filters"
+      [ngClass]="{ active: !displayActiveProducts }"
+      [disabled]="
+        (displayActiveProducts && productsList?.length - productsListFiltered?.length <= 0) || !selectedVehicle
+      "
+      (click)="filterList(false)"
+    >
+      {{ 'Drivers.Drivers.Details.UnavailableForVehicle' | translate }}
+      ({{
+        !displayActiveProducts ? productsListFiltered?.length : productsList?.length - productsListFiltered?.length
+      }})
+    </button>
+  </div>
+
+  @if (getFleetDriversProductsConfigurations$ | async) {
+    @if (productsListFiltered?.length) {
+      <div class="product-wrap">
+        @for (product of productsListFiltered; track product) {
+          <div
+            [attr.data-cy]="'filter-option-' + product.product.id"
+            class="tw-flex tw-items-center tw-justify-between tw-py-3 tw-px-md tw-gap-md"
+            [formGroup]="getFormGroup(product.product.id)"
+            (click)="openConfiguration(product)"
+            [ngClass]="{ 'product-active': activeProductId === product.product.id }"
+          >
+            <div class="tw-flex tw-items-center tw-gap-4">
+              <mat-slide-toggle formControlName="is_available" (click)="stopPropagation($event)"></mat-slide-toggle>
+
+              <div class="tw-flex tw-flex-col tw-py-2 tw-gap-1">
+                <div class="tw-text-base">
+                  {{ 'Common.AvailableProduct.' + (product.product?.name | normalizeString) | translate }}
+                </div>
+
+                @if (product.availability.is_restricted_by_accessibility_rules) {
+                  <span
+                    class="tw-text-accent-coral-light tw-text-md"
+                    data-cy="restricted-by-accessability-rules-message"
+                  >
+                    {{ 'DriverRestriction.RestrictedByAccessabilityRules' | translate }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="tw-flex tw-items-center tw-gap-md">
+              @if (
+                product.availability.is_blocked ||
+                (!product.availability.is_available && !product.to_allow_edit_by_driver)
+              ) {
+                <upf-status-badge color="error" data-cy="blocked-badge">
+                  {{ 'Drivers.Drivers.DriverStatus.Blocked' | translate }}
+                </upf-status-badge>
+              }
+
+              <mat-icon [svgIcon]="activeProductId === product.product.id ? 'i-next-green' : 'i-next'"></mat-icon>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>
+
+@if (driverRideCondition$ | async; as rideConditions) {
+  @if (rideConditions?.length > 0) {
+    <upf-driver-ride-conditions [rideConditions]="rideConditions"></upf-driver-ride-conditions>
+  }
+}
+
+<div class="tw-flex tw-grow tw-col-span-full tw-items-end tw-justify-start tw-gap-md">
+  @if (productsListFiltered?.length) {
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="productsFormArray?.invalid && !configurationChanges.size"
+      (click)="updateProductsConfiguration()"
+      data-cy="filters-save-btn"
+    >
+      {{ 'Drivers.Drivers.Details.SaveButton' | translate }}
+    </button>
+  }
+</div>
+
+<ng-template #emptyDriverRideConditionTpl>
+  <span class="tw-text-neutral-granit tw-text-tmp">
+    {{ 'Drivers.Drivers.Details.DriverRideCondition.EmptyState' | translate }}
+  </span>
+</ng-template>
+
+<ng-template let-list="list" let-disabled="disabled" #conditionsTpl>
+  @if (list?.length) {
+    @for (item of list; track item) {
+      <div class="condition-badge" data-cy="condition-badge" [class.disabled]="disabled">
+        {{ 'Drivers.Drivers.Details.DriverRideCondition.Options.' + (item?.code | titlecase) | translate }}
+      </div>
+    }
+  } @else {
+    {{ 'EmptyStates.NoData.Title' | translate }}
+  }
+</ng-template>

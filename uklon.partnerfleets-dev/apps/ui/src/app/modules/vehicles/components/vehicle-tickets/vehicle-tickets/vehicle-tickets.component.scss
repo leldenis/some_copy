@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+.vehicle-tickets {
+  margin-top: 1rem;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}

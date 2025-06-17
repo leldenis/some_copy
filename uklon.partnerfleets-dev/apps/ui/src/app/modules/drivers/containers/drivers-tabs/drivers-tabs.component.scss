@@ -1,0 +1,28 @@
+:host {
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      @apply tw-flex tw-grow;
+    }
+
+    .mat-mdc-tab-body-wrapper,
+    .mat-mdc-tab-body.mat-mdc-tab-body-active,
+    .mat-mdc-tab-body-content {
+      @apply tw-flex tw-w-full tw-overflow-visible;
+    }
+  }
+
+  .tabs-container {
+    @apply tw-flex tw-flex-col tw-bg-neutral-white tw-min-h-full tw-p-4 tw-overflow-auto tw-h-full;
+    min-height: calc(100vh - 101px);
+
+    @screen sm {
+      min-height: calc(100vh - 56px);
+    }
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: -2px;
+  right: -10px;
+}

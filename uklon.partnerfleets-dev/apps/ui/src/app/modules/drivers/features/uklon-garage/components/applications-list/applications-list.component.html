@@ -1,0 +1,145 @@
+@if (applications().length) {
+  <div class="tw-flex tw-flex-col tw-gap-md sm:tw-block sm:tw-shadow-sm sm:tw-rounded">
+    <div class="list-row header">
+      <span>{{ 'DriverList.Header.FullName' | translate }}</span>
+      <span>{{ 'DriverList.Header.Phone' | translate }}</span>
+      <span>{{ 'DriverTicket.Table.Date' | translate }}</span>
+      <span>{{ 'DriverTicket.Table.Status' | translate }}</span>
+      <span>{{ 'DriverHistory.Titles.Comment' | translate }}</span>
+      <span></span>
+    </div>
+
+    @for (application of applications(); track application.id) {
+      <div class="list-row !tw-hidden sm:!tw-grid">
+        <span class="tw-font-medium">{{ application.last_name }} {{ application.first_name }}</span>
+
+        <span>{{ application.phone }}</span>
+
+        <span>{{ application.created_at | seconds2Date }}</span>
+
+        <div class="tw-flex tw-gap-2">
+          <upf-status-badge [color]="statusColorMap[application.status]" data-cy="garage-application-status">
+            {{ 'DriverTicket.UklonGarageApplicationStatus.' + application.status | translate }}
+          </upf-status-badge>
+
+          @if (application.status === applicationStatus.CLOSED_BY_PARALLEL_REGISTRATION) {
+            <upf-status-badge
+              ngxTippy="{{ 'DriverTicket.UklonGarageApplicationStatus.ApprovedByManager' | translate }}"
+              data-cy="garage-approved-by-manager-badge"
+            >
+              M
+            </upf-status-badge>
+          }
+        </div>
+
+        <span
+          class="tw-line-clamp-2 tw-w-fit"
+          upfHasScroll="vertical"
+          #comment="upfHasScroll"
+          [ngxTippy]="comment.hasScroll() ? application.comment : null"
+        >
+          {{ application.comment || '-' }}
+        </span>
+
+        @if (application.status === applicationStatus.NEW) {
+          <div class="review-btn" role="button" (click)="reviewApplication.emit($index)" data-cy="garage-review-btn">
+            <mat-icon class="outlined">stylus</mat-icon>
+            {{ 'DriverTicket.StartReview' | translate }}
+          </div>
+        }
+
+        @if (application.status === applicationStatus.REVIEW) {
+          <button
+            class="tw-justify-self-end"
+            mat-icon-button
+            [matMenuTriggerFor]="approveMenu"
+            data-cy="garage-approve-menu-btn"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #approveMenu>
+            <button mat-menu-item (click)="onHandleApplication(true, $index)" data-cy="garage-approve-btn">
+              <div class="tw-text-accent-mint-light application-btn">
+                <mat-icon class="!tw-text-current !tw-m-0">check</mat-icon>
+                <span class="tw-leading-5">{{ 'Common.Buttons.B_Confirm' | translate }}</span>
+              </div>
+            </button>
+
+            <button mat-menu-item (click)="onHandleApplication(false, $index)" data-cy="garage-reject-btn">
+              <div class="tw-text-accent-coral-light application-btn">
+                <mat-icon class="!tw-text-current !tw-m-0">close</mat-icon>
+                <span class="tw-leading-5">{{ 'Common.Buttons.B_RejectApplication' | translate }}</span>
+              </div>
+            </button>
+          </mat-menu>
+        }
+      </div>
+
+      <div class="list-card sm:!tw-hidden">
+        <div class="tw-flex tw-justify-between tw-gap-md">
+          <div class="tw-grid tw-gap-1">
+            <span class="tw-whitespace-nowrap">{{ application.last_name }} {{ application.first_name }}</span>
+            <a class="tw-text-accent-mint-light" href="tel:{{ application.phone }}">{{ application.phone }}</a>
+          </div>
+
+          <div class="tw-grid tw-gap-1 tw-text-end">
+            <span class="tw-text-sm tw-text-neutral-granit">{{ application.created_at | seconds2Date }}</span>
+
+            <div class="tw-flex tw-gap-2 tw-justify-self-end">
+              @if (application.status === applicationStatus.CLOSED_BY_PARALLEL_REGISTRATION) {
+                <upf-status-badge
+                  ngxTippy="{{ 'DriverTicket.UklonGarageApplicationStatus.ApprovedByManager' | translate }}"
+                >
+                  M
+                </upf-status-badge>
+              }
+
+              <upf-status-badge [color]="statusColorMap[application.status]" class="tw-justify-self-end">
+                {{ 'DriverTicket.UklonGarageApplicationStatus.' + application.status | translate }}
+              </upf-status-badge>
+            </div>
+          </div>
+        </div>
+
+        @if (application.comment) {
+          <div class="tw-flex tw-gap-2 tw-italic tw-leading-5">
+            <mat-icon class="outlined tw-shrink-0 tw-text-neutral-smoke">chat</mat-icon>
+            {{ application.comment }}
+          </div>
+        }
+
+        @if (application.status === applicationStatus.NEW) {
+          <div class="tw-p-3 tw-pt-5 tw-flex tw-justify-center tw-border-t tw-border-neutral-cloud">
+            <div class="review-btn" role="button" (click)="reviewApplication.emit($index)">
+              <mat-icon class="outlined">stylus</mat-icon>
+              {{ 'DriverTicket.StartReview' | translate }}
+            </div>
+          </div>
+        }
+
+        @if (application.status === applicationStatus.REVIEW) {
+          <div class="tw-flex tw-justify-around tw-pt-2 tw-border-t tw-border-neutral-cloud">
+            <button
+              class="tw-text-accent-mint-light application-btn tw-p-3"
+              (click)="onHandleApplication(true, $index)"
+            >
+              <mat-icon>check</mat-icon>
+              <span class="tw-leading-5">{{ 'Common.Buttons.B_Confirm' | translate }}</span>
+            </button>
+
+            <button
+              class="tw-text-accent-coral-light application-btn tw-p-3"
+              (click)="onHandleApplication(false, $index)"
+            >
+              <mat-icon>close</mat-icon>
+              <span class="tw-leading-5">{{ 'Common.Buttons.B_RejectApplication' | translate }}</span>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+} @else {
+  <upf-empty-state></upf-empty-state>
+}

@@ -1,0 +1,38 @@
+:host {
+  @apply tw-flex tw-flex-wrap tw-text-neutral-graphite tw-font-normal tw-gap-4 sm:tw-gap-8;
+}
+
+.upf-data-list {
+  @apply tw-grid tw-gap-x-4 tw-gap-y-2 tw-items-center;
+  grid-template-columns: 1fr auto;
+  grid-auto-flow: row;
+}
+
+.upf-grid-4 {
+  @apply max-sm:tw-grid-cols-4;
+}
+
+.upf-grid-col-3 {
+  @apply max-sm:tw-col-span-3;
+}
+
+.upf-data-row {
+  @apply tw-flex tw-flex-col tw-gap-2;
+  @apply tw-w-full sm:tw-w-auto tw-text-base;
+
+  &:not(:last-child) {
+    @apply tw-pb-2 sm:tw-pb-0 tw-border-b tw-border-neutral-cloud sm:tw-border-none;
+  }
+}
+
+.upf-data-row-header {
+  @apply tw-text-md sm:tw-text-base;
+}
+
+.upf-data-item-label {
+  @apply tw-text-label sm:tw-text-md tw-text-neutral-granit tw-font-medium;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5 tw-text-accent-mint-light;
+}

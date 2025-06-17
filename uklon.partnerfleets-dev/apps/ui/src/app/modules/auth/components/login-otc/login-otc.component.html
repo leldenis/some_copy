@@ -1,0 +1,41 @@
+<div [formGroup]="loginForm">
+  <upf-code-input data-cy="code-input" [codeLength]="4" formControlName="password"></upf-code-input>
+
+  <div class="tw-text-xs tw-text-accent-coral-light tw-h-6 tw-flex tw-pb-1 tw-items-end">
+    @if (loginForm.hasError('invalidCredentials')) {
+      <div data-cy="credential-error">
+        {{ 'Auth.Login.CredentialErrorOTC' | translate }}
+      </div>
+    }
+
+    @if (loginForm.hasError('unhandledError')) {
+      <div>
+        {{ 'Auth.Login.ServerError' | translate }}
+      </div>
+    }
+
+    @if (loginForm.hasError('throttlingError')) {
+      <div>
+        {{ 'Auth.Login.ThrottlingError' | translate }}
+      </div>
+    }
+  </div>
+</div>
+
+<div
+  *upfLet="this.resendTimer$ | async as timer"
+  data-cy="resend-countdown"
+  class="tw-text-base tw-flex tw-gap-1 tw-text-neutral-graphite tw-justify-center tw-mb-md"
+>
+  <div data-cy="resend-countdown-static">{{ 'Auth.Verify.NoCode' | translate }}</div>
+
+  <div data-cy="resend-countdown-dynamic">
+    @if (timer) {
+      <div class="tw-text-neutral-granit">{{ 'Auth.Verify.SendAgainIn' | translate }} {{ timer }}</div>
+    } @else {
+      <div role="button" class="tw-text-accent-mint-light" (click)="resendOtc()">
+        {{ 'Auth.Verify.SendAgain' | translate }}
+      </div>
+    }
+  </div>
+</div>

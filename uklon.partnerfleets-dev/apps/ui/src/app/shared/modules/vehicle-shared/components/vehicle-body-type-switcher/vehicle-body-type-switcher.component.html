@@ -1,0 +1,7 @@
+<mat-button-toggle-group class="vehicle-type" [disabled]="disabled" (change)="change($event.value)">
+  @for (item of options; track item) {
+    <mat-button-toggle [value]="item.value" [checked]="selectedBodyType === item.value" [disableRipple]="true">
+      {{ item.label | translate }}
+    </mat-button-toggle>
+  }
+</mat-button-toggle-group>

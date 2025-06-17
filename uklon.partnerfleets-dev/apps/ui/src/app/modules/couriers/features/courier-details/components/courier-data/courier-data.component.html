@@ -1,0 +1,29 @@
+<upf-expandable-info [headerTitle]="'Couriers.CourierDetails.Data.Title' | translate">
+  <dl class="tw-grid tw-grid-cols-2 tw-gap-4">
+    <dt>
+      {{ 'Couriers.CourierDetails.Data.Phone' | translate }}
+    </dt>
+    <dd>
+      <span class="max-sm:tw-hidden">
+        {{ phone }}
+      </span>
+      <a href="tel:{{ phone }}" class="sm:tw-hidden tw-font-medium">
+        {{ phone }}
+      </a>
+    </dd>
+
+    <dt>
+      {{ 'Couriers.CourierDetails.Data.AddedDate' | translate }}
+    </dt>
+    <dd>
+      {{ createdAt + '000' | date: 'dd.MM.YYYY' }}
+    </dd>
+
+    <dt>
+      {{ 'Couriers.CourierDetails.Data.ThermalBag.Label' | translate }}
+    </dt>
+    <dd>
+      {{ 'Couriers.CourierDetails.Data.ThermalBag.Desc' | translate }}
+    </dd>
+  </dl>
+</upf-expandable-info>

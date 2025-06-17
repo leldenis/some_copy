@@ -1,0 +1,192 @@
+<div class="tw-text-dialogTitle">
+  {{ 'Modals.AddCard.Title' | translate }}
+</div>
+
+<div class="flt-dialog-close">
+  <button mat-icon-button (click)="onCancelClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+@if (getAccountInfo$ | async; as getAccountInfo) {
+  <upf-stepper [formGroup]="formGroup" class="tw-grow">
+    <cdk-step>
+      <div class="tw-grid tw-grid-cols-12 tw-h-full tw-grid-rows-addCardDialog tw-gap-md">
+        <mat-form-field floatLabel="always" hideRequiredMarker subscriptSizing="fixed" class="tw-col-span-12">
+          <mat-label>
+            {{ 'Modals.AddCard.Step1.CardNumber' | translate }}
+          </mat-label>
+
+          <input
+            matInput
+            autocomplete="off"
+            type="tel"
+            placeholder="**** **** **** ****"
+            mask="0000 0000 0000 0000"
+            formControlName="pan"
+            [attr.data-cy]="'card-number'"
+          />
+
+          @if (formGroup.get('pan')?.hasError('mastercardOrVisa')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.InvalidFormat' | translate }}
+            </mat-error>
+          }
+
+          @if (formGroup.get('pan')?.hasError('required')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.Required' | translate }}
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always" subscriptSizing="fixed" hideRequiredMarker class="tw-col-span-6">
+          <mat-label>
+            {{ 'Modals.AddCard.Step1.ValidTo' | translate }}
+          </mat-label>
+
+          <input
+            matInput
+            autocomplete="off"
+            type="tel"
+            placeholder="MM"
+            mask="00"
+            formControlName="expiration_month"
+            [attr.data-cy]="'card-month-valid-to'"
+          />
+
+          @if (formGroup.get('expiration_month')?.hasError('pattern')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.InvalidFormat' | translate }}
+            </mat-error>
+          }
+
+          @if (formGroup.get('expiration_month')?.hasError('required')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.Required' | translate }}
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" subscriptSizing="fixed" hideRequiredMarker class="tw-col-span-6">
+          <input
+            matInput
+            autocomplete="off"
+            type="tel"
+            placeholder="YY"
+            mask="00"
+            formControlName="expiration_year"
+            [attr.data-cy]="'card-year-valid-to'"
+          />
+
+          @if (formGroup.get('expiration_year')?.hasError('pattern')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.InvalidFormat' | translate }}
+            </mat-error>
+          }
+
+          @if (formGroup.get('expiration_year')?.hasError('required')) {
+            <mat-error>
+              {{ 'Modals.AddCard.Step1.Required' | translate }}
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <upf-info-panel class="tw-col-span-12" color="success">
+          {{ 'AddCard.LegalNotice' | translate }}
+        </upf-info-panel>
+
+        <div class="tw-col-span-12">
+          @if (formGroup?.hasError('expError')) {
+            <div class="mat-mdc-form-field-error tw-text-label">
+              {{ 'Modals.AddCard.Step1.InvalidDate' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="tw-flex tw-justify-center tw-items-end tw-col-span-12">
+          <button
+            mat-flat-button
+            [disabled]="
+              formGroup.get('pan').invalid ||
+              formGroup.get('expiration_month').invalid ||
+              formGroup.get('expiration_year').invalid ||
+              formGroup?.hasError('expError')
+            "
+            (click)="onAddCardClick()"
+            color="primary"
+            class="tw-w-full"
+            [attr.data-cy]="'card-add-button'"
+          >
+            {{ 'Modals.AddCard.Step2.AddCard' | translate }}
+          </button>
+        </div>
+      </div>
+    </cdk-step>
+
+    <cdk-step>
+      <div class="tw-grid tw-grid-cols-12 tw-h-full tw-grid-rows-confirmAddCardDialog tw-gap-4">
+        <upf-info-panel class="tw-col-span-12">
+          {{ 'Modals.AddCard.Step2.Notification' | translate: { '0': getAccountInfo?.phone } }}
+        </upf-info-panel>
+
+        <div class="tw-col-span-12 tw-flex tw-flex-col tw-gap-2 tw-justify-center">
+          <upf-code-input
+            formControlName="verification_code"
+            [attr.data-cy]="'confirmation-code-input'"
+          ></upf-code-input>
+
+          @if (formGroup.get('verification_code').hasError('invalidCode')) {
+            <div class="mat-mdc-form-field-error tw-text-xs">
+              {{ 'Modals.AddCard.Step2.InvalidCode' | translate }}
+            </div>
+          }
+
+          @if (timer?.count) {
+            <div class="tw-flex tw-justify-center tw-text-neutral-shale">
+              {{ 'Modals.AddCard.Step2.SendAgainIn' | translate }}:&nbsp;
+              <span [counter]="timer?.counter" [interval]="1000" (value)="timer.count = $event">
+                {{ timer.count }}
+              </span>
+            </div>
+          }
+
+          @if (!timer?.count) {
+            <div class="tw-flex tw-justify-center tw-text-neutral-shale">
+              {{ 'Modals.AddCard.Step2.NoCode' | translate }}&nbsp;
+              <button
+                type="button"
+                (click)="
+                  sendCode();
+                  reportClickIteration(
+                    resendBtnClickCount,
+                    analyticsEventType.FINANCE_FLEET_WALLET_RESEND_PHONE_CODE_CONFIRMATION
+                  )
+                "
+                class="hover:tw-underline focus:tw-underline"
+              >
+                <span
+                  class="tw-text-base tw-font-normal tw-text-accent-mint-light hover:tw-underline focus:tw-underline"
+                >
+                  {{ 'Modals.AddCard.Step2.SendAgain' | translate }}
+                </span>
+              </button>
+            </div>
+          }
+        </div>
+
+        <div class="tw-flex tw-justify-center tw-items-end tw-col-span-12">
+          <button
+            mat-flat-button
+            (click)="onConfirmPhoneClick()"
+            [disabled]="formGroup.get('verification_code').invalid"
+            color="primary"
+            class="tw-w-full"
+          >
+            {{ 'Common.Buttons.B_Continue' | translate }}
+          </button>
+        </div>
+      </div>
+    </cdk-step>
+  </upf-stepper>
+}

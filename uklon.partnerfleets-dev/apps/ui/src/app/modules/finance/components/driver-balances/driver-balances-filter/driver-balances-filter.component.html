@@ -1,0 +1,55 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <div class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+    <form [formGroup]="filtersForm" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.Name.Caption' | translate }}
+        </mat-label>
+
+        <input
+          matInput
+          formControlName="name"
+          placeholder="{{ 'Common.Filters.Name.Placeholder' | translate }}"
+          data-cy="filter-Name"
+        />
+
+        <mat-icon [svgIcon]="icons.search" matSuffix data-cy="filter-suffix-Search"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>
+          {{ 'Common.Filters.Phone.Caption' | translate }}
+        </mat-label>
+
+        <input
+          matInput
+          formControlName="phone"
+          type="tel"
+          placeholder="{{ 'Common.Filters.Phone.Placeholder' | translate }}"
+          data-cy="input-driver-phone"
+        />
+
+        <mat-icon [svgIcon]="icons.search" matSuffix data-cy="filter-suffix-Search"></mat-icon>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field floatLabel="always" class="sm:!tw-hidden no-indent">
+      <mat-label>
+        {{ 'DriverBalancesFilter.Sort.Caption' | translate }}
+      </mat-label>
+
+      <mat-select [formControl]="sortControl" (selectionChange)="onSortChange($event.value)">
+        @for (option of sortOptions; track option) {
+          <mat-option [value]="option.value">
+            {{ option.key | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</upf-filters-container>

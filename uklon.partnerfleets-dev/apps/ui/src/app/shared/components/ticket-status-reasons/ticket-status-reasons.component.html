@@ -1,0 +1,35 @@
+<upf-info-panel color="warn" [hideInfoIcon]="true">
+  <ng-template upfInfoPanelIcon>
+    <mat-icon>error_outline</mat-icon>
+  </ng-template>
+
+  @if (showTitle) {
+    <ng-template upfInfoPanelTitle>
+      <span class="text-color">{{ 'Vehicles.Creation.VehicleTicketActiveLogsTitle' | translate }}</span>
+    </ng-template>
+  }
+
+  <div class="-tw-ml-7 tw-grid tw-gap-1">
+    @for (item of activeLogs; track $index) {
+      <ul class="tw-grid tw-gap-1">
+        <li class="tw-flex tw-items-center tw-gap-2">
+          <mat-icon [svgIcon]="icons.info" class="!tw-h-5 !tw-w-5 text-color">info_outline</mat-icon>
+
+          <span data-cy="ticket-reason">
+            {{ 'Vehicles.Creation.TicketReason.Title' | translate }}: {{ reasonPath + item.comment | translate }}
+          </span>
+        </li>
+      </ul>
+
+      @if (item?.clarification_details?.comment) {
+        <div class="tw-flex tw-gap-2">
+          <mat-icon [svgIcon]="icons.comment" class="!tw-w-5 !tw-h-5 text-color tw-shrink-0"></mat-icon>
+          <div class="tw-break-all" data-cy="ticket-reason-custom-comment">
+            {{ 'Vehicles.Creation.TicketReason.CustomCommentOwner' | translate }}:
+            {{ item.clarification_details?.comment }}
+          </div>
+        </div>
+      }
+    }
+  </div>
+</upf-info-panel>

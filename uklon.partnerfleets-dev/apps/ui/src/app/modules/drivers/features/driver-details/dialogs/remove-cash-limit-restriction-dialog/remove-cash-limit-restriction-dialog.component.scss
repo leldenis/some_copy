@@ -1,0 +1,17 @@
+:host {
+  @apply tw-text-base tw-text-neutral-graphite;
+}
+
+.header {
+  @apply tw-border-b tw-border-neutral-silver tw-text-dialogTitle;
+  @apply tw-flex tw-gap-md tw-items-center tw-justify-between tw-p-2 tw-pl-md;
+}
+
+.content {
+  @apply tw-p-md tw-grid tw-gap-md;
+}
+
+.footer {
+  @apply tw-flex tw-justify-between;
+  @apply tw-px-md tw-py-3.5 tw-text-right tw-border-t tw-border-neutral-silver;
+}

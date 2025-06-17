@@ -1,0 +1,5 @@
+@if (styling?.icon) {
+  <mat-icon class="outlined">{{ styling.icon }}</mat-icon>
+} @else {
+  <mat-icon class="svg-icon" [svgIcon]="icon">directions_car</mat-icon>
+}

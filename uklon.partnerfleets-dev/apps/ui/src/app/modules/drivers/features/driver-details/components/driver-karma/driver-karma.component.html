@@ -1,0 +1,136 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="opened.emit()">
+    <mat-expansion-panel-header collapsedHeight="48px" expandedHeight="48">
+      <mat-panel-title class="tw-flex tw-items-center tw-gap-2 tw-text-base">
+        <mat-icon class="tw-text-yellow-400 !tw-w-4 !tw-h-4 !tw-leading-4" svgIcon="i-star"></mat-icon>
+        {{ 'Drivers.Drivers.Details.Rating' | translate }}:
+        <span data-cy="driver-rating">{{ driver.rating / 100 }}</span>
+      </mat-panel-title>
+
+      <mat-panel-description class="tw-flex tw-items-center tw-gap-2 tw-text-base">
+        <mat-icon class="tw-w-6 tw-h-6" svgIcon="i-karma"></mat-icon>
+        {{ 'Drivers.Drivers.Details.UklonKarma' | translate }}:
+        <span data-cy="driver-karma">{{ driver.karma.value }}%</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="tw-flex tw-flex-col tw-gap-2">
+      <div class="tw-flex tw-justify-between tw-text-base">
+        <div class="tw-flex tw-items-center tw-text-neutral-smoke">
+          <mat-icon class="tw-w-6 tw-h-6" svgIcon="i-karma"></mat-icon>
+          {{ 'Drivers.Drivers.Details.UklonKarma' | translate }}:
+        </div>
+        <span>{{ driver.karma.value }}%</span>
+      </div>
+
+      <div class="tw-flex tw-my-2">
+        @for (index of sections; track $index) {
+          <div class="progress">
+            <div class="progress-filled" [style.width.%]="driver.karma.value | karmaBarWidth: index"></div>
+          </div>
+        }
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Drivers.Drivers.Details.OrdersTillKarma' | translate }}:
+        <span data-cy="driver-karma-calculation" class="tw-text-accent-mint-light">
+          {{ driver.karma.orders_to_calculation }}
+        </span>
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md tw-relative">
+        <div class="tw-flex tw-items-center groups-trigger">
+          {{ 'Drivers.Drivers.Details.Group' | translate }}:
+          <mat-icon
+            class="tw-ml-2 !tw-w-4 !tw-h-4 !tw-leading-4"
+            [svgIcon]="icons.info"
+            [ngClass]="driver.selected_vehicle ? 'tw-text-accent-mint-light' : 'tw-text-neutral-smoke'"
+          ></mat-icon>
+        </div>
+
+        <span data-cy="driver-karma-group" class="tw-text-neutral-graphite">
+          {{ 'Drivers.Drivers.KarmaGroup.' + driver.karma.group | translate }}
+        </span>
+
+        @if (driver.selected_vehicle && karmaGroupRanges) {
+          <div class="karma-groups">
+            <div>{{ 'Drivers.Drivers.Details.GroupTypes' | translate }}:</div>
+            <div class="flex-row justify-content-between align-items-center">
+              <span class="flex-row align-items-center karma-priority karma-priority-first">
+                {{ 'Drivers.Drivers.Details.Karma.Priority' | translate }}:
+              </span>
+              <span class="karma-priority-value">
+                {{ karmaGroupRanges.second_priority.from }} - {{ karmaGroupRanges.first_priority.to }}%
+              </span>
+            </div>
+
+            <div class="flex-row justify-content-between align-items-center">
+              <span class="flex-row align-items-center karma-priority karma-priority-second">
+                {{ 'Drivers.Drivers.Details.Karma.OffersBlocked' | translate }}:
+              </span>
+              <span class="karma-priority-value">
+                {{ karmaGroupRanges.offers_blocked.from }} - {{ karmaGroupRanges.offers_blocked.to }}%
+              </span>
+            </div>
+
+            <div class="flex-row justify-content-between align-items-center">
+              <span class="flex-row align-items-center karma-priority karma-priority-blocked">
+                {{ 'Drivers.Drivers.Details.Karma.OffersBroadcastBlocked' | translate }}:
+              </span>
+              <span class="karma-priority-value">
+                {{ karmaGroupRanges.offers_and_broadcast_blocked.from }} -
+                {{ karmaGroupRanges.offers_and_broadcast_blocked.to }}%
+              </span>
+            </div>
+          </div>
+        } @else {
+          <div class="karma-groups">
+            {{ 'DriverDetailsInfo.Tooltips.KarmaGroups.DriverHaveNoVehicle' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Drivers.Drivers.Details.ResetCount' | translate }}:
+        <span data-cy="driver-karma-reset" class="tw-text-neutral-graphite">{{ driver.karma.reset_count }}</span>
+      </div>
+
+      <mat-divider class="!tw-my-2"></mat-divider>
+
+      <div class="tw-text-neutral-smoke tw-text-md tw-font-medium">
+        {{ 'Drivers.Drivers.Details.EstimatedData' | translate }}
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Drivers.Drivers.Details.CompletedOrders' | translate }}:
+        <span data-cy="driver-karma-completed" class="tw-text-neutral-graphite">
+          {{ driver.karma.calculation_metrics.completed_count }}
+        </span>
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Drivers.Drivers.Details.RejectedOrders' | translate }}:
+        <span data-cy="driver-karma-rejected" class="tw-text-neutral-graphite">
+          {{ driver.karma.calculation_metrics.rejected_count }}
+        </span>
+      </div>
+
+      <div class="tw-flex tw-justify-between tw-text-neutral-smoke tw-text-md">
+        {{ 'Drivers.Drivers.Details.CancelledOrders' | translate }}:
+        <span data-cy="driver-karma-canceled" class="tw-text-neutral-graphite">
+          {{ driver.karma.calculation_metrics.canceled_count }}
+        </span>
+      </div>
+
+      <a
+        (click)="linkClicked.emit()"
+        class="tw-flex tw-items-center tw-text-accent-mint-light tw-text-base tw-gap-2 tw-mt-4"
+        target="_blank"
+        [href]="karmaManual"
+      >
+        <mat-icon class="tw-text-tmp !tw-w-4 !tw-h-4 !tw-leading-4">open_in_new</mat-icon>
+        {{ 'Drivers.Drivers.Details.UklonKarmaLink' | translate }}
+      </a>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

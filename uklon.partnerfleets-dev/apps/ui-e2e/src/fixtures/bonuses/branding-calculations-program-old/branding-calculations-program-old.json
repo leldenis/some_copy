@@ -1,0 +1,120 @@
+{
+  "id": "a13a1548-2f39-4489-bc6b-b3ee27ce0238",
+  "name": "inzer - COPY",
+  "life_time": {
+    "range": [
+      1717189200,
+      1721854799
+    ]
+  },
+  "status": "deleted",
+  "type": "branding",
+  "specification": {
+    "region": 7,
+    "rating": {
+      "last": [
+        {
+          "range": [
+            0,
+            5
+          ]
+        }
+      ]
+    },
+    "orders": {
+      "completed": {
+        "count": [
+          {
+            "value": 100,
+            "range": [
+              11,
+              20
+            ]
+          },
+          {
+            "value": 200,
+            "range": [
+              20,
+              50
+            ]
+          }
+        ]
+      },
+      "cancelled": {
+        "percent": [
+          {
+            "range": [
+              0,
+              100
+            ]
+          }
+        ]
+      }
+    },
+    "time": [],
+    "days": [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday"
+    ],
+    "currency": "UAH",
+    "time_zone": "Europe/Kiev",
+    "distance": null,
+    "order_acceptance_methods": [
+      "ByBroadcastFilter",
+      "ByChain",
+      "ByFastSearch",
+      "ByHomeFilter",
+      "ByOfferFilter",
+      "BySectorQueue",
+      "courier_offer"
+    ],
+    "product_types": [
+      "Business",
+      "Delivery",
+      "Driver",
+      "Econom",
+      "Inclusive",
+      "Prime",
+      "Standard",
+      "Wagon"
+    ],
+    "fleet_types": [],
+    "fleet_withdrawal_types": [],
+    "branding_types": []
+  },
+  "calculation_periods": [
+    {
+      "range": [
+        1717189200,
+        1718398800
+      ]
+    },
+    {
+      "range": [
+        1718485200,
+        1719694800
+      ]
+    },
+    {
+      "range": [
+        1719781200,
+        1720990800
+      ]
+    },
+    {
+      "range": [
+        1721077200,
+        1721854799
+      ]
+    }
+  ],
+  "calculation_period_duration": null,
+  "is_auto_calculation": true,
+  "is_auto_payment": false,
+  "driver_id": null
+}

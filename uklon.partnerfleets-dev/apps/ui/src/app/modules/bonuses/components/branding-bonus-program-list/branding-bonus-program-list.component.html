@@ -1,0 +1,365 @@
+<cdk-table [dataSource]="programItems()" class="flt-table flt-shadowless tw-mb-cell-1 sm:tw-mb-0">
+  <ng-container [cdkColumnDef]="'licencePlace'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-text-md tw-text-neutral-smoke">
+        <span data-cy="program-list-licence-title">{{ 'Bonuses.VehicleList.LicencePlace.Title' | translate }}</span>
+        <span data-cy="program-list-licence-subtitle">
+          {{ 'Bonuses.VehicleList.LicencePlace.Subtitle' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span class="tw-font-medium tw-flex tw-flex-row align-items-center tw-gap-1">
+          <a
+            [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, item.vehicle.vehicle_id]"
+            class="tw-font-medium hover:tw-underline flt-expanded-view-link"
+            data-cy="program-list-licence-link"
+          >
+            {{ item.vehicle.license_plate }}
+          </a>
+
+          @if (item.vehicle.is_branded) {
+            <mat-icon data-cy="program-list-vehicle-branded-icon" svgIcon="i-branded"></mat-icon>
+          } @else {
+            <mat-icon
+              data-cy="program-list-vehicle-branded-icon-inactive"
+              svgIcon="i-branded-inactive"
+              class="hover:tw-cursor-pointer"
+              [ngxTippy]="'Bonuses.VehicleList.Tooltips.BrandedNotAvailable' | translate"
+            ></mat-icon>
+          }
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit" data-cy="program-list-vehicle-make-model">
+          {{ item.vehicle.make }} {{ item.vehicle.model }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'cancellationPercentage'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke" data-cy="program-list-cancellation-percentage">
+          {{ 'Bonuses.VehicleList.CancellationPercentageByCar' | translate }}
+        </span>
+
+        <div class="tw-hidden sm:tw-flex tw-items-center tw-pl-2 tw-text-accent-mint-light">
+          <mat-icon
+            data-cy="program-list-cancellation-percentage-icon"
+            [svgIcon]="icons.info"
+            [ngxTippy]="'Bonuses.VehicleList.CancellationPercentageByCarTooltip' | translate"
+          ></mat-icon>
+        </div>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell tw-col-span-4 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center tw-justify-end sm:tw-justify-start">
+        <span
+          data-cy="program-list-cancellation-percentage-value"
+          [class.tw-text-accent-coral-light]="item.calculation_source | isCancellationPercentMore: programParameters()"
+        >
+          {{ item.calculation_source.orders.cancellation_percentage | number: '1.2-2' }}%
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'ordersCompleted'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke" data-cy="program-list-orders-completed">
+          {{ 'Bonuses.VehicleList.OrdersCompleted' | translate }}
+        </span>
+
+        <div class="tw-hidden sm:tw-flex tw-items-center tw-pl-2 tw-text-accent-mint-light">
+          <mat-icon
+            data-cy="program-list-orders-completed-icon"
+            [svgIcon]="icons.info"
+            [ngxTippy]="'Bonuses.VehicleList.OrdersCompletedTooltip' | translate"
+          ></mat-icon>
+        </div>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell flt-table-cell--visible tw-col-span-6 sm:tw-col-span-2">
+      <div class="tw-flex tw-flex-col sm:tw-flex-row tw-items-center tw-justify-center sm:tw-justify-start">
+        <div
+          class="tw-flex tw-flex-row tw-items-center tw-self-end sm:tw-self-center tw-w-[128px] sm:tw-w-[138px] tw-gap-2 sm:tw-gap-4"
+        >
+          <upf-progress-bar
+            data-cy="program-list-orders-completed-progress-bar"
+            class="progress-bar"
+            [inactive]="
+              !item.vehicle.is_branded ||
+              (item?.driver?.rating | isRatingLess: programParameters()?.driver_rating) ||
+              (item.calculation_source | isCancellationPercentMore: programParameters())
+            "
+            [value]="
+              item.calculation_source?.orders?.completed
+                | progressBarValue: (programParameters().orders.completed.count | totalOrdersByParameters)
+            "
+          ></upf-progress-bar>
+
+          <span class="tw-min-w-fit" data-cy="program-list-orders-completed-value">
+            {{ item.calculation_source | ordersCompleted: programParameters() }}
+          </span>
+        </div>
+        <div
+          class="tw-flex sm:tw-hidden tw-items-center tw-self-end sm:tw-self-center tw-gap-1 tw-text-accent-mint-light"
+        >
+          <mat-icon
+            [svgIcon]="icons.info"
+            [ngxTippy]="'Bonuses.VehicleList.OrdersCompletedTooltip' | translate"
+            [tippyProps]="{ trigger: 'click' }"
+          ></mat-icon>
+          <span class="tw-text-md tw-text-neutral-smoke tw-break-all">
+            {{ 'Bonuses.VehicleList.OrdersCompleted' | translate }}
+          </span>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'currentGuaranteedEarnings'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-1">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke" data-cy="program-list-earn">
+          {{ 'Bonuses.VehicleList.GuaranteedEarnings' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell tw-col-span-4 sm:tw-col-span-1">
+      <div class="tw-flex tw-items-center">
+        <span data-cy="program-list-earn-value">
+          {{ item.bonus.value | upfMoney: programParameters()?.currency || defaultCurrency }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'driverOnCar'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke" data-cy="program-list-driver">
+          {{ 'Bonuses.VehicleList.DriverOnCar' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell tw-col-span-4 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center tw-justify-start" data-cy="program-list-driver-link">
+        @if (item.driver && (item.driver?.first_name || item.driver?.last_name)) {
+          <a
+            [routerLink]="['/', corePaths.WORKSPACE, corePaths.DRIVERS, driverPath.DETAILS, item.driver?.driver_id]"
+            class="tw-font-medium hover:tw-underline focus:tw-underline tw-min-w-[86px]"
+          >
+            {{ item.driver?.first_name }} {{ item.driver?.last_name }}
+          </a>
+        } @else {
+          -
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'driverRating'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell tw-flex tw-items-center sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke" data-cy="program-list-driver-rating">
+          {{ 'Bonuses.VehicleList.DriverRating' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell tw-col-span-4 sm:tw-col-span-2">
+      <div class="tw-flex tw-items-center" data-cy="program-list-driver-rating-value">
+        @if (item?.driver?.rating > 0) {
+          <upf-rating
+            [value]="item?.driver.rating"
+            [inactive]="item?.driver.rating | isRatingLess: programParameters()?.driver_rating"
+            size="sm"
+          ></upf-rating>
+        } @else {
+          -
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'toggle'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell"></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let item; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-1 sm:tw-col-span-1"
+    >
+      <div
+        class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+        [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+      >
+        <button mat-icon-button (click)="toggle(index)" [ngClass]="selection.isSelected(index) ? 'tw-rotate-180' : ''">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'expandedView'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell flt-table-cell--hidden"></cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let item" class="flt-table-cell flt-toggleable tw-col-span-12">
+      <div class="tw-bg-neutral-silver tw-p-2 sm:tw-p-4 tw-flex tw-flex-col tw-gap-2">
+        <div>
+          <span>{{ 'Bonuses.VehicleList.CurrentOrdersCompleted' | translate }}:</span>
+          <span class="tw-text-accent-mint-light">&nbsp;{{ item.calculation_source?.orders?.completed }}</span>
+        </div>
+
+        <upf-branding-bonus-progress-values
+          class="tw-max-w-[800px]"
+          [currentStep]="item.calculation_source?.orders?.completed"
+          [steps]="programParameters().orders.completed.count"
+          [currency]="programParameters().currency"
+        ></upf-branding-bonus-progress-values>
+
+        <div class="tw-max-w-[800px] tw-flex tw-flex-row tw-gap-4 tw-items-center">
+          <upf-progress-bar
+            class="progress-bar"
+            size="md"
+            [inactive]="item.driver?.rating || 0 | ratingLessRequirement: item.min_rating"
+            [value]="
+              item.calculation_source?.orders?.completed
+                | progressBarValue: (programParameters().orders.completed.count | totalOrdersByParameters)
+            "
+          ></upf-progress-bar>
+
+          <span class="tw-text-nowrap">
+            {{ item.calculation_source | ordersCompleted: programParameters() }}
+          </span>
+        </div>
+
+        @if (isMobileView$ | async) {
+          <mat-divider></mat-divider>
+
+          <div class="tw-grid tw-grid-cols-3 tw-gap-2">
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <span class="tw-text-md tw-text-neutral-smoke">
+                {{ 'Bonuses.VehicleList.GuaranteedEarnings' | translate }}
+              </span>
+              <span>
+                {{ item.bonus.value | upfMoney: programParameters().currency }}
+              </span>
+            </div>
+
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <span class="tw-text-md tw-text-neutral-smoke">
+                {{ 'Bonuses.VehicleList.DriverOnCar' | translate }}
+              </span>
+
+              <div class="tw-flex tw-items-center tw-justify-start">
+                @if (item.driver && (item.driver?.first_name || item.driver?.last_name)) {
+                  <a
+                    [routerLink]="[
+                      '/',
+                      corePaths.WORKSPACE,
+                      corePaths.DRIVERS,
+                      driverPath.DETAILS,
+                      item.driver?.driver_id,
+                    ]"
+                    class="tw-font-medium hover:tw-underline focus:tw-underline"
+                  >
+                    {{ item?.driver?.first_name }} {{ item?.driver?.last_name }}
+                  </a>
+                } @else {
+                  -
+                }
+              </div>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="tw-grid tw-grid-cols-3 tw-gap-2.5">
+            <div class="tw-flex tw-flex-col tw-justify-around tw-gap-2">
+              <span class="tw-text-[10px] tw-text-neutral-smoke">
+                {{ 'Bonuses.Program.Details.Showcases' | translate }}
+              </span>
+              <span class="tw-text-md tw-text-neutral-smoke">
+                {{ 'Bonuses.Program.Rating.DriverTitle' | translate }}
+              </span>
+              <span class="tw-flex tw-items-center">
+                <div class="tw-text-md tw-text-neutral-smoke">
+                  {{ 'Bonuses.Program.Details.CancellationPercentage' | translate }}
+                </div>
+                <div class="tw-text-accent-mint-light tw-ml-0.5 tw-h-5 tw-w-5">
+                  <mat-icon
+                    [svgIcon]="icons.info"
+                    [ngxTippy]="'Bonuses.VehicleList.CancellationPercentageByCarTooltip' | translate"
+                  ></mat-icon>
+                </div>
+              </span>
+            </div>
+
+            <div class="tw-flex tw-flex-col tw-justify-center tw-gap-2">
+              <span class="tw-text-[10px] tw-text-neutral-smoke">
+                {{ 'Bonuses.Program.Details.Requirement' | translate }}
+              </span>
+              <span>
+                {{
+                  'Bonuses.Program.Rating.From'
+                    | translate: { value: programParameters().driver_rating?.range?.[0] ?? 0 }
+                }}
+              </span>
+              <span>
+                {{
+                  'Bonuses.Program.Percent.To'
+                    | translate
+                      : {
+                          value:
+                            (programParameters().orders.cancelled.percent?.[0]?.range?.[1] ?? 0 | number: '1.2-2') +
+                            '%',
+                        }
+                }}
+              </span>
+            </div>
+
+            <div class="tw-flex tw-flex-col tw-justify-center tw-gap-2">
+              <span class="tw-text-[10px] tw-text-neutral-smoke">
+                {{ 'Bonuses.Program.Details.CurrentValues' | translate }}
+              </span>
+              <span class="tw-flex tw-gap-1">
+                @if (item?.driver?.rating > 0) {
+                  <upf-rating
+                    [value]="item.driver.rating"
+                    [inactive]="item.driver.rating | isRatingLess: programParameters().driver_rating"
+                    size="sm"
+                  ></upf-rating>
+                } @else {
+                  -
+                }
+              </span>
+              <span
+                [class.tw-text-accent-coral-light]="
+                  item.calculation_source | isCancellationPercentMore: programParameters()
+                "
+              >
+                {{ item.calculation_source.orders.cancellation_percentage | number: '1.2-2' }}%
+              </span>
+            </div>
+          </div>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row cdk-header-row *cdkHeaderRowDef="columns" class="flt-table-row flt-table-header-row"></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: columns"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+    class="flt-table-row"
+    data-cy="bonus-programs-list-table-row"
+  ></cdk-row>
+</cdk-table>

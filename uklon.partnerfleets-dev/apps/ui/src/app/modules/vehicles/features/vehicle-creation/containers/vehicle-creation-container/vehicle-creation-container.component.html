@@ -1,0 +1,63 @@
+@let isMobileView = isMobileView$ | async;
+
+@if (selectedFleet$ | async; as selectedFleet) {
+  <div class="sm:tw-mt-6 tw-mb-24" data-cy="vehicle-addition-container">
+    <div class="create-container">
+      <upf-vehicle-creation-info
+        [isCreation]="true"
+        [showCargo]="showCargo$ | async"
+        [fleetId]="selectedFleet.id"
+        (creationFormChange)="handlerCreationFormChange($event)"
+        #creationInfo
+      ></upf-vehicle-creation-info>
+
+      @let config = ticketConfig();
+      @if (licensePlateConfirmed() && config) {
+        <upf-vehicle-creation-photos
+          data-cy="vehicle-addition-photos"
+          [isCreation]="true"
+          [hasBtnSend]="false"
+          [ticketId]="ticketId$ | async"
+          [vehicleId]="vehicleId"
+          [hasWarning]="hasWarning()"
+          [isMobileView]="isMobileView"
+          [ticketConfig]="config"
+          [regionId]="selectedFleet.region_id"
+          (createTicket)="handlerCreateTicket(selectedFleet.id)"
+          (send)="onSendClick()"
+          (insuranceConsentGiven)="changeInsuranceConsentGiven($event)"
+        ></upf-vehicle-creation-photos>
+      }
+    </div>
+  </div>
+
+  <upf-footer [leftPosition]="isMobileView ? 0 : 86" data-cy="vehicle-addition-footer">
+    @if (licensePlateConfirmed()) {
+      <button
+        data-cy="vehicle-add-btn"
+        mat-flat-button
+        color="primary"
+        class="footer__btn-send"
+        [disabled]="
+          !insuranceConsentGiven() ||
+          (selectedBodyType() | isCargoRequired: creationInfo?.formGroup?.get('loadCapacity')?.value)
+        "
+        (click)="onSendClick()"
+      >
+        {{ 'Common.Buttons.B_AddVehicle' | translate }}
+      </button>
+    } @else {
+      <button
+        type="button"
+        data-cy="vehicle-addition-continue-btn"
+        mat-flat-button
+        color="primary"
+        class="vehicle-creation-info__continue-btn"
+        [disabled]="!creationInfo.formGroup.valid"
+        (click)="onConfirmLicensePlate()"
+      >
+        {{ 'Common.Buttons.B_Continue' | translate }}
+      </button>
+    }
+  </upf-footer>
+}

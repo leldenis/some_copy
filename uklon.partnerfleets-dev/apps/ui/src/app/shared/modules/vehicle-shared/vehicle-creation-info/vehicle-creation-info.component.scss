@@ -1,0 +1,21 @@
+.vehicle-creation-info {
+  margin-bottom: 1.5rem;
+}
+
+.link {
+  @apply tw-shrink-0 tw-flex tw-items-center tw-text-neutral-onyx tw-text-base tw-underline tw-gap-1;
+
+  .mat-icon {
+    @apply tw-w-3 tw-h-3 tw-text-sm tw-leading-3;
+  }
+}
+
+.ticket-duplicate-error {
+  @apply tw-mb-md -tw-mt-3;
+
+  @screen md {
+    @apply -tw-mt-0;
+    @apply tw-absolute tw-top-14 tw-z-10;
+    @apply tw-min-w-[500px];
+  }
+}

@@ -1,0 +1,85 @@
+<div class="flex-grow-1 flex-col align-items-center justify-content-center no-data" data-cy="no-data">
+  @switch (state) {
+    @case (emptyStatesRef.SELECT_DRIVER_FOR_SEARCH) {
+      <div class="no-data--image select-to-search"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.ChooseDriverForTx.Title' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.SELECT_COURIER_FOR_SEARCH) {
+      <div class="no-data--image select-to-search"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.ChoseCourier.Title' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.ERROR) {
+      <div class="no-data--image error"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.Error.Title' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.GENERAL) {
+      <div class="no-data--image general"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.General.Title' | translate }}
+      </div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.General.Subtitle' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.DASHBOARD_INCOME) {
+      <div class="no-data--image dashboard-income"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.NoData.Title' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.DASHBOARD_PRODUCTS) {
+      <div class="no-data--image dashboard-products"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.NoData.Title' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.MAP) {
+      <div class="no-data--image map"></div>
+    }
+    @case (emptyStatesRef.NO_DATA_CUSTOM) {
+      <div class="no-data--image"></div>
+
+      <div class="no-data--title">
+        <ng-content></ng-content>
+      </div>
+    }
+    @case (emptyStatesRef.NO_BONUS_DATA) {
+      <div class="no-data--image bonus"></div>
+
+      <div class="bonus--title">
+        {{ 'EmptyStates.Bonus.Title' | translate }}
+      </div>
+
+      <div class="bonus--subtitle">
+        {{ 'EmptyStates.Bonus.Subtitle' | translate }}
+      </div>
+    }
+    @case (emptyStatesRef.UNSUPPORTED_DATA) {
+      <div class="no-data--image unsupported-data"></div>
+
+      <div class="unsupported-data--title">
+        {{ 'EmptyStates.UnsupportedData.Title' | translate }}
+      </div>
+    }
+    @default {
+      <div class="no-data--image"></div>
+
+      <div class="no-data--title">
+        {{ 'EmptyStates.NoData.Title' | translate }}
+      </div>
+    }
+  }
+</div>

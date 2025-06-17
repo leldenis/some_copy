@@ -1,0 +1,35 @@
+<ng-container *upfLet="interval$ | async">
+  <ng-container *upfLet="isMobileView$ | async as isMobileView">
+    <div class="map-header" [ngClass]="{ '!tw-hidden': isFullScreen }" data-cy="map-header">
+      <section class="tw-flex tw-gap-md tw-flex-col sm:tw-flex-row sm:tw-w-fit">
+        <upf-map-filters
+          [isMobileView]="isMobileView"
+          (filtersChange)="filtersChange$.next($event)"
+          (analyticsChange)="onReportAnalytics($event.type, $event.controlName)"
+        ></upf-map-filters>
+      </section>
+
+      @if (cacheTTLMs !== infinity) {
+        <div class="tw-flex tw-items-center tw-gap-2 tw-text-base tw-text-neutral-granit">
+          <div class="indicator"></div>
+
+          {{ 'LiveMap.RefreshTimeDisclaimer' | translate: { time: cacheTTLMs / 1000 } }}
+        </div>
+      }
+    </div>
+
+    @if (cityCenter$ | async; as cityCenter) {
+      @if (mapData$ | async; as mapData) {
+        <upf-map
+          [mapData]="{ employees: mapData.data, fleetId: mapData.fleetId }"
+          [lastRefreshed]="refreshedOn"
+          [cityCenter]="cityCenter"
+          [isMobileView]="isMobileView"
+          [regionId]="(fleet$ | async).region_id"
+          (resetFilters)="mapFilters.onResetFilters()"
+          (toggleFullScreen)="onToggleFullScreen($event)"
+        ></upf-map>
+      }
+    }
+  </ng-container>
+</ng-container>

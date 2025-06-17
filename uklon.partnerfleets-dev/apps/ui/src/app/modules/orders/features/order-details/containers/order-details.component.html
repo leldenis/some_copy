@@ -1,0 +1,32 @@
+<div class="tw-flex tw-flex-col tw-grow">
+  @if (order$ | async; as order) {
+    @let isMobileView = isMobileView$ | async;
+    <div
+      leaflet
+      [leafletOptions]="mapOptions"
+      (leafletMapReady)="onMapReady($event, order, isMobileView)"
+      (click)="enableMapInteractions()"
+      class="live-map"
+      data-cy="trip-map"
+    >
+      <upf-order-details-panel
+        [order]="order"
+        upfToggleMapInteractions
+        data-cy="order-details-panel"
+      ></upf-order-details-panel>
+
+      <div class="active-area"></div>
+
+      <div class="disclaimer">
+        {{ 'LiveMap.MapDisclaimer' | translate }}
+      </div>
+    </div>
+  }
+</div>
+
+@if (isLoading$ | async) {
+  <upf-empty-state
+    class="tw-absolute tw-inset-0 tw-top-[101px] sm:tw-top-14"
+    [state]="emptyState.MAP"
+  ></upf-empty-state>
+}

@@ -1,0 +1,10 @@
+<div class="rating">
+  <mat-icon class="rating-icon icon-size-{{ size }}" svgIcon="i-star"></mat-icon>
+
+  <span
+    class="rating-value"
+    [ngClass]="{ '!tw-text-accent-coral-light': inactive, '!tw-text-accent-mint-light': active }"
+  >
+    {{ value / 100 | number: digitsInfo }}
+  </span>
+</div>

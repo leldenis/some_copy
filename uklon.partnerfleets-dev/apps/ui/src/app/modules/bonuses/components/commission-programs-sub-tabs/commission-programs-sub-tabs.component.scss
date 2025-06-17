@@ -1,0 +1,8 @@
+.toggle-btn {
+  @apply tw-w-full sm:tw-w-auto;
+
+  &.active {
+    @apply tw-bg-[#EBFAF6] tw-text-accent-mint-light;
+    @apply tw-border-solid tw-border-accent-mint-light tw-border-[1px];
+  }
+}

@@ -1,0 +1,76 @@
+<div class="container-fluid tw-relative tw-h-full" *upfLet="loggedIn$ | async">
+  <div class="tw-flex tw-h-full tw-items-center">
+    <div class="login-navbar">
+      <div class="logo tw-cursor-pointer" routerLink="/">
+        <img
+          src="assets/images/uklon-fill-desktop.svg"
+          loading="lazy"
+          class="uklon-icon uklon-icon__desktop tw-hidden lg:tw-block"
+          alt="Uklon logo"
+        />
+
+        <img
+          src="assets/images/uklon-fill-mobile.svg"
+          loading="lazy"
+          class="uklon-icon uklon-icon__mobile lg:tw-hidden"
+          alt="Uklon logo"
+        />
+      </div>
+
+      <div class="navbar-actions">
+        <div class="navbar-actions__description tw-text-base">
+          {{ 'Auth.NoAccount' | translate }}
+        </div>
+
+        <a
+          (click)="handleApplyBtnClick()"
+          [href]="redirectUrl$ | async"
+          mat-flat-button
+          color="accent"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ 'Auth.Request' | translate }}
+        </a>
+
+        <upf-language-select
+          class="-tw-mr-1 sm:tw-m-0"
+          (localeChanged)="handleLocaleChange($event)"
+        ></upf-language-select>
+      </div>
+    </div>
+
+    <div class="col-lg-6 flex-grow-1 d-sm-none d-md-none uklon-preview">
+      <div class="uklon-preview__description">
+        <div class="text-center uklon-preview__description-title">Uklon Fleet Manager</div>
+
+        <div class="text-center uklon-preview__description-subtitle">
+          {{ 'Auth.Description' | translate }}
+        </div>
+      </div>
+
+      <div class="uklon-preview__vehicle">
+        <img
+          class="tw-object-contain"
+          ngSrc="assets/images/uklon-car@2x.png"
+          placeholder="assets/images/uklon-car.png"
+          fill
+          priority
+        />
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6 flex-grow-1 login-form">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+@if (supportWidget$ | async; as widget) {
+  <upf-support-widget
+    (opened)="handleSupportWidgetOpened()"
+    (widgetCountryChanged)="handleSupportWidgetCountryChanged($event)"
+    [data]="widget"
+    class="tw-p-4"
+  ></upf-support-widget>
+}

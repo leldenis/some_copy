@@ -1,0 +1,11 @@
+@if (b2bActivated) {
+  <upf-fiscalization-settings-container></upf-fiscalization-settings-container>
+  <upf-rro-button-toggle-container
+    [activeTab]="activeTab$ | async"
+    (toggleTab)="handlerToggleTab($event)"
+    (openUploadSignatureKeyModal)="openUploadSignatureKeyModal()"
+  >
+    <upf-fleet-key-list-container tab-keys></upf-fleet-key-list-container>
+    <upf-fleet-vehicles-container tab-cars></upf-fleet-vehicles-container>
+  </upf-rro-button-toggle-container>
+}

@@ -1,0 +1,17 @@
+.header {
+  @apply tw-flex tw-items-center tw-px-md tw-py-3.5 tw-justify-between tw-gap-md;
+  @apply tw-text-neutral-graphite tw-border-b tw-border-neutral-silver;
+
+  &.cancel {
+    @apply tw-border-b-0;
+  }
+}
+
+.success-icon {
+  @apply tw-w-10 tw-h-10 tw-text-[40px] tw-text-accent-mint-light;
+}
+
+.footer {
+  @apply tw-flex tw-justify-between;
+  @apply tw-border-t tw-border-neutral-silver tw-p-md;
+}

@@ -1,0 +1,12 @@
+.arrow-icon {
+  @apply tw-w-5 tw-h-5 tw-text-icon tw-absolute tw-right-0 tw-transition-all;
+
+  &.expanded {
+    @apply tw-rotate-180;
+  }
+}
+
+.filters-counter {
+  @apply tw-flex tw-justify-center tw-items-center tw-text-sm;
+  @apply tw-h-md tw-w-md tw-rounded-full tw-bg-neutral-white tw-transition-colors;
+}

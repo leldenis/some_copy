@@ -1,0 +1,29 @@
+<div class="custom-toast-container">
+  <div class="custom-toast-message">
+    @if (title) {
+      <div [class]="options.titleClass" [attr.aria-label]="title">
+        {{ title }}
+      </div>
+    }
+
+    <div class="icon">
+      <mat-icon class="outlined">{{ toastIcon }}</mat-icon>
+    </div>
+
+    @if (message && options.enableHtml) {
+      <div data-cy="toast-message" role="alert" [class]="options.messageClass" [innerHTML]="message"></div>
+    }
+
+    @if (message && !options.enableHtml) {
+      <div data-cy="toast-message" role="alert" [class]="options.messageClass" [attr.aria-label]="message">
+        {{ message }}
+      </div>
+    }
+  </div>
+
+  @if (options.closeButton) {
+    <mat-icon data-cy="toast-close-icon" class="tw-text-neutral-smoke" (click)="$event.stopPropagation(); onClose()">
+      close
+    </mat-icon>
+  }
+</div>

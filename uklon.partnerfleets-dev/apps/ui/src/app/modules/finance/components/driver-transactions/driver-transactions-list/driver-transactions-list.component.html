@@ -1,0 +1,181 @@
+<cdk-table [dataSource]="transactionsList" class="flt-table" data-cy="wallet-tx-list-table">
+  <!-- Date -->
+  <ng-container cdkColumnDef="Date">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="th-tx-date">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Finance.Wallet.TransactionsList.Date' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2"
+      data-cy="td-tx-date"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1 max-sm:tw-items-end">
+        <div class="tw-flex tw-flex-col tw-justify-center tw-justify-self-end sm:tw-justify-self-start tw-gap-1">
+          <span>{{ row.transaction_date | seconds2Date }}</span>
+          <span class="tw-text-md tw-text-neutral-granit sm:tw-hidden">{{ row.transaction_date | seconds2Time }}</span>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- Time -->
+  <ng-container cdkColumnDef="Time">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="th-tx-time">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Finance.Wallet.TransactionsList.Time' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell tw-col-span-6 sm:tw-col-span-2"
+      data-cy="td-tx-time"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>{{ row.transaction_date | seconds2Time }}</span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- Transaction Type -->
+  <ng-container cdkColumnDef="TransactionType">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-4" data-cy="th-tx-type">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Finance.Wallet.TransactionsList.TxType' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell tw-col-span-6 sm:tw-col-span-4"
+      data-cy="td-tx-type"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span>{{ 'Finance.TransactionTypes.' + row.transaction_type | translate }}</span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- BalanceDelta -->
+  <ng-container cdkColumnDef="BalanceDelta">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="th-balance-delta">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Finance.Wallet.TransactionsList.Amount' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell--visible tw-col-span-5 sm:tw-col-span-2 max-sm:tw-order-first"
+      data-cy="td-balance-delta"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <upf-money [money]="row.balance_delta" displayType="both"></upf-money>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- Balance -->
+  <ng-container cdkColumnDef="Balance">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-2" data-cy="th-tx-balance-after">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'Finance.Wallet.TransactionsList.BalanceAfterTransaction' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-table-cell tw-col-span-6 sm:tw-col-span-2"
+      data-cy="td-tx-balance-after"
+    >
+      <div class="tw-flex tw-flex-col tw-justify-center">
+        <upf-money [money]="row.balance"></upf-money>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- Toggle -->
+  <ng-container cdkColumnDef="Toggle">
+    <cdk-header-cell
+      *cdkHeaderCellDef
+      class="flt-table-cell tw-table-cell--visible tw-col-span-2 sm:!tw-hidden"
+      data-cy="header-cell-Toggle"
+    ></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-2 sm:tw-col-span-1 sm:!tw-hidden"
+      data-cy="cell-Toggle"
+    >
+      <div
+        class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+        [ngClass]="selection.isSelected(index) ? 'tw-rotate-180 tw-bg-neutral-silver' : ''"
+      >
+        <button mat-icon-button (click)="selection.toggle(index)">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <!-- ExpandedView -->
+  <ng-container cdkColumnDef="ExpandedView">
+    <cdk-header-cell
+      *cdkHeaderCellDef
+      class="flt-table-cell sm:!tw-hidden"
+      data-cy="header-cell-ExpandedView"
+    ></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let row"
+      class="flt-table-cell flt-toggleable tw-col-span-12 sm:tw-hidden"
+      data-cy="cell-ExpandedView"
+    >
+      <div class="tw-grid tw-gap-3 tw-px-3 tw-py-2 tw-bg-neutral-silver">
+        <div class="tw-grid tw-gap-1">
+          <span class="tw-text-neutral-smoke tw-text-xs">
+            {{ 'Finance.Wallet.TransactionsList.TxType' | translate }}
+          </span>
+
+          <span>{{ 'Finance.TransactionTypes.' + row.transaction_type | translate }}</span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="tw-grid tw-gap-1">
+          <span class="tw-text-neutral-smoke tw-text-xs">
+            {{ 'Finance.Wallet.TransactionsList.BalanceAfterTransaction' | translate }}
+          </span>
+
+          <upf-money [money]="row.balance"></upf-money>
+        </div>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    *cdkHeaderRowDef="columnsToDisplay"
+    class="flt-table-row flt-table-header-row tw-bg-neutral-white"
+    data-cy="wallet-tx-table-header-row"
+  ></cdk-header-row>
+
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: columnsToDisplay"
+    [ngClass]="[selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed']"
+    class="flt-table-row"
+    data-cy="wallet-tx-table-item-row"
+  ></cdk-row>
+</cdk-table>

@@ -1,0 +1,23 @@
+<upf-filters-container
+  direction="row"
+  [expandable]="false"
+  [defaultFilters]="filtersForm.getRawValue()"
+  [filterKey]="filterKey"
+  (filtersChange)="filtersChange.emit($event)"
+>
+  <form [formGroup]="filtersForm">
+    <mat-form-field class="tw-w-full sm:tw-w-64" (click)="reportEvent()">
+      <mat-label>{{ 'CourierHistory.EventType' | translate }}</mat-label>
+
+      <mat-select formControlName="changeType" (selectionChange)="onSelectionChange($event)" data-cy="history-select">
+        <mat-option [value]="''">{{ 'CourierHistory.ChangeType.All' | translate }}</mat-option>
+
+        @for (type of historyType | keyvalue; track type) {
+          <mat-option [value]="type.value" [attr.data-cy]="'history-select-item-' + type.value">
+            {{ ('FleetProfile.FleetHistory.ChangeType.' + type.value | translate) || type.value }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>

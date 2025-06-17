@@ -1,0 +1,36 @@
+{
+  "name": "@uklon/gateways/services/identity/account/reset-feature",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gateways/services/identity/account/features/reset-feature/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gateways/services/identity/account/features/reset-feature",
+        "tsConfig": "libs/gateways/services/identity/account/features/reset-feature/tsconfig.lib.json",
+        "packageJson": "libs/gateways/services/identity/account/features/reset-feature/package.json",
+        "main": "libs/gateways/services/identity/account/features/reset-feature/src/index.ts",
+        "assets": [
+          "libs/gateways/services/identity/account/features/reset-feature/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/gateways/services/identity/account/features/reset-feature"
+      ],
+      "options": {
+        "jestConfig": "libs/gateways/services/identity/account/features/reset-feature/jest.config.ts",
+        "testTimeout": 20000
+      }
+    }
+  },
+  "tags": []
+}

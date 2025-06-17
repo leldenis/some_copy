@@ -1,0 +1,13 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow tw-shrink tw-max-h-full tw-justify-between;
+  @apply sm:tw-shadow-sm sm:tw-rounded;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+  font-size: 1.25rem;
+}
+
+.restriction {
+  color: var(--custom-warning-10);
+}

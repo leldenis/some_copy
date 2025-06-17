@@ -1,0 +1,82 @@
+<section class="sm:tw-flex sm:tw-items-center sm:tw-justify-between">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersReset)="resetFiltersAndData()"
+  >
+    <form [formGroup]="filtersForm" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+      <mat-form-field>
+        <mat-label>{{ 'Common.Filters.Program.Label' | translate }}</mat-label>
+
+        <mat-select
+          data-cy="program-name-filter"
+          formControlName="program_id"
+          (selectionChange)="changeProgram($event.value)"
+        >
+          @for (item of programsNames(); track item.id) {
+            <mat-option data-cy="program-name-filter-option" class="tw-break-words" [value]="item.id">
+              {{ item.name }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+        <mat-select
+          formControlName="calculation"
+          [compareWith]="comparePeriodsFn"
+          data-cy="period-filter"
+          (selectionChange)="changePeriod($event.value)"
+        >
+          @for (item of calculationPeriods(); track item.calculation_id) {
+            <mat-option data-cy="period-filter-option" [value]="item">
+              {{ item.period.range | min | seconds2Date }} - {{ item.period.range | max | seconds2Date }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <upf-vehicle-autocomplete
+        formControlName="vehicle_id"
+        [fleetId]="fleetId()"
+        (vehicleChange)="changeVehicle()"
+        (resetVehicle)="changeVehicle()"
+      ></upf-vehicle-autocomplete>
+    </form>
+
+    <ng-template #exportBtn upfFiltersActionButton>
+      <upf-branding-bonus-export-btn
+        [fleetId]="fleetId()"
+        [calculation]="filtersForm.get('calculation').value"
+        [vehicleId]="filtersForm.get('vehicle_id').value"
+        [programDetails]="programDetails()"
+        [disabled]="!programsItems()?.length || !programDetails()?.parameters"
+        [loading]="isDownloading$ | async"
+      ></upf-branding-bonus-export-btn>
+    </ng-template>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block sm:tw-min-w-[146px]">
+    <ng-template [ngTemplateOutlet]="exportBtn" [ngTemplateOutletContext]="{ $implicit: true }"></ng-template>
+  </div>
+</section>
+
+@if (programDetails()) {
+  <upf-branding-program-details
+    [parameters]="programDetails().parameters"
+    (toggleBrandingPrograms)="toggleBrandingPrograms($event)"
+  ></upf-branding-program-details>
+}
+
+@if (programDetails()?.parameters && programsItems().length > 0 && calculationPeriods().length > 0) {
+  <upf-branding-bonus-program-list
+    [programItems]="programsItems()"
+    [programParameters]="programDetails().parameters"
+    data-cy="branding-bonus-programs-list"
+  ></upf-branding-bonus-program-list>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_BONUS_DATA"></upf-empty-state>
+}

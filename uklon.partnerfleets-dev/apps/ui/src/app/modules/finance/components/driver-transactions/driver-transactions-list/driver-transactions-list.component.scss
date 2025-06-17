@@ -1,0 +1,72 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+@use 'variables' as v;
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-BalanceDelta {
+  min-width: f.px2rem(120);
+}
+
+th.mat-mdc-header-cell:last-of-type,
+td.mat-mdc-cell:last-of-type,
+td.mat-mdc-footer-cell:last-of-type {
+  padding-right: f.px2rem(5);
+}
+
+th.mat-mdc-header-cell:first-of-type,
+td.mat-mdc-cell:first-of-type,
+td.mat-mdc-footer-cell:first-of-type {
+  padding-left: 1rem;
+}
+
+th.mat-mdc-header-cell,
+td.mat-mdc-cell,
+td.mat-mdc-footer-cell {
+  padding: f.px2rem(5) f.px2rem(10);
+}
+
+th {
+  @include m.set-font(f.px2rem(12), f.px2rem(14), 400, var(--grey40-color));
+}
+
+td {
+  @include m.set-font(f.px2rem(14), f.px2rem(18), 400, var(--grey20-color));
+}
+
+.mat-mdc-table-sticky-border-elem-left {
+  box-shadow: 6px 0 6px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 20%);
+}
+
+.negative-balance {
+  color: var(--danger-color);
+}
+
+.cdk-table-sticky {
+  top: 48px !important;
+}
+
+@media (min-width: v.$breakpoint-desktop-min) {
+  .table-wrap {
+    .mat-mdc-table-sticky-border-elem-left {
+      box-shadow: none;
+    }
+  }
+
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  :host {
+    height: calc(100vh - 35px);
+  }
+}

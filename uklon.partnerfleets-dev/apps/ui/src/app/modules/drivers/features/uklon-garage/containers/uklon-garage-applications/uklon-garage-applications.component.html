@@ -1,0 +1,10 @@
+<upf-applications-filters (filtersChange)="filters$.next($event)"></upf-applications-filters>
+
+@if (garageApplications$ | async) {
+  <upf-applications-list
+    (cdkScrolled)="loadNext$.next()"
+    (handleApprove)="handleApprove($event)"
+    (reviewApplication)="reviewApplication($event)"
+    [applications]="applications()"
+  ></upf-applications-list>
+}

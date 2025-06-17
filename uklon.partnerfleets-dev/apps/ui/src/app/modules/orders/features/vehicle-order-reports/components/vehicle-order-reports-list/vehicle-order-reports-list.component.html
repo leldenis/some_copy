@@ -1,0 +1,180 @@
+<cdk-table [dataSource]="reports" class="flt-table flt-grid-24 flt-shadowless tw-mb-cell-1 sm:tw-mb-0">
+  <ng-container [cdkColumnDef]="'licencePlace'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-6">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-text-md tw-text-neutral-smoke">
+        <span>{{ 'VehicleOrderReportList.LicencePlace.Title' | translate }}</span>
+        <span class="tw-text-neutral-granit">{{ 'VehicleOrderReportList.LicencePlace.Subtitle' | translate }}</span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell flt-table-cell--visible tw-col-span-12 sm:tw-col-span-6">
+      <div class="tw-flex tw-flex-col tw-justify-center tw-gap-1">
+        <span class="tw-font-medium">
+          <a
+            [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, report.vehicle_id]"
+            class="tw-font-medium hover:tw-underline flt-expanded-view-link"
+          >
+            {{ report.license_plate }}
+          </a>
+
+          <upf-vehicle-branded-icon
+            [isBrandedWithPriority]="report.is_branded && report.has_dispatching_priority"
+            [isBranded]="report.is_branded"
+            [isPriority]="report.has_dispatching_priority"
+            [brandedDays]="report.branded_days"
+            [priorityDays]="report.dispatching_priority_days"
+          ></upf-vehicle-branded-icon>
+        </span>
+        <span class="tw-text-md tw-text-neutral-granit">{{ report.make }} {{ report.model }}</span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'ordersCompleted'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleOrderReportList.Orders.Completed' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-4 sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span>
+          {{ report.total_orders_count || 0 }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'onlineTime'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleOrderReportList.OnlineTime.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-4 sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        @if (report.online_time_seconds | duration; as time) {
+          <span>
+            @if (time.hours) {
+              {{ 'Common.Abbreviation.Hours' | translate: time }}
+            }
+            {{ 'Common.Abbreviation.Minutes' | translate: time }}
+          </span>
+        }
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'orderDistance'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleOrderReportList.Orders.Distance' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-4 sm:tw-col-span-3">
+      <div class="tw-flex tw-items-center">
+        <span>
+          {{ report.total_distance_meters / 1000 || 0 | number: '1.2-2' }}
+          {{ 'Common.Km' | translate }}
+        </span>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'totalEarning'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell tw-flex tw-items-center sm:tw-col-span-4">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleOrderReportList.TotalEarning.Title' | translate }}
+        </span>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell flt-table-cell--visible tw-col-span-10 sm:tw-col-span-4">
+      <div class="tw-hidden sm:tw-flex tw-items-center">
+        <upf-money [money]="report.gross_income"></upf-money>
+      </div>
+
+      <div class="tw-flex tw-flex-col tw-justify-center tw-items-end tw-gap-1 tw-pr-2 sm:tw-hidden">
+        <span class="tw-text-md tw-text-neutral-granit tw-whitespace-nowrap">
+          {{ 'VehicleOrderReportList.TotalEarning.Title' | translate }}
+        </span>
+
+        <upf-money class="" [money]="report.gross_income"></upf-money>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'netEarning'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-4">
+      <div class="tw-flex tw-items-center">
+        <span class="tw-text-md tw-text-neutral-smoke">
+          {{ 'VehicleOrderReportList.NetEarning.Title' | translate }}
+        </span>
+        <div class="tw-flex tw-items-center tw-pl-2 tw-text-neutral-granit">
+          <mat-icon
+            class="outlined tw-text-accent-mint-light"
+            [ngxTippy]="'VehicleOrderReportList.NetEarning.Tooltip' | translate"
+            [tippyProps]="{ maxWidth: '50vw' }"
+          >
+            info
+          </mat-icon>
+        </div>
+      </div>
+    </cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell tw-col-span-4 sm:tw-col-span-4">
+      <div class="tw-flex tw-items-center tw-justify-end sm:tw-justify-start">
+        <upf-money [money]="report.profit_amount"></upf-money>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'toggle'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell sm:tw-col-span-1"></cdk-header-cell>
+
+    <cdk-cell
+      *cdkCellDef="let report; let index = index"
+      class="flt-table-cell flt-table-cell--visible flt-table-cell-toggle tw-col-span-2 sm:tw-col-span-1"
+    >
+      <div
+        class="tw-w-cell sm:tw-w-[52px] tw-flex tw-items-center tw-justify-center"
+        [ngClass]="selection.isSelected(index) ? 'tw-bg-neutral-silver' : ''"
+      >
+        <button mat-icon-button (click)="toggle(index)" [ngClass]="selection.isSelected(index) ? 'tw-rotate-180' : ''">
+          <mat-icon class="expand-icon">keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="'expandedView'">
+    <cdk-header-cell *cdkHeaderCellDef class="flt-table-cell flt-table-cell--hidden"></cdk-header-cell>
+
+    <cdk-cell *cdkCellDef="let report" class="flt-table-cell flt-toggleable tw-col-span-24">
+      <div class="tw-bg-neutral-silver tw-p-2 sm:tw-p-4 tw-flex tw-flex-col tw-gap-2">
+        <upf-vehicle-order-report-details [report]="report"></upf-vehicle-order-report-details>
+      </div>
+    </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row
+    cdk-header-row
+    *cdkHeaderRowDef="columns"
+    class="flt-table-row flt-grid-24 flt-table-header-row"
+  ></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; let index = index; columns: columns"
+    [ngClass]="selection.isSelected(index) ? 'flt-table-row--opened' : 'flt-table-row--closed'"
+    class="flt-table-row flt-grid-24"
+  ></cdk-row>
+</cdk-table>

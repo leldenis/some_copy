@@ -1,0 +1,130 @@
+@use "functions" as f;
+@use "mixins" as m;
+@use "variables" as v;
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100% - #{f.px2rem(20)});
+
+  input[type='file'] {
+    display: none;
+  }
+
+  .photo {
+    object-fit: cover;
+    border-radius: f.px2rem(4);
+    cursor: pointer;
+  }
+
+  .photo-placeholder {
+    @include m.custom-border();
+
+    .photo-category {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-origin: content-box;
+      @apply tw-p-6 sm:tw-p-9;
+    }
+
+    .creation {
+      width: 20%;
+    }
+
+    &.warn {
+      @include m.custom-border(var(--danger-color));
+    }
+
+    &:not(.warn):hover {
+      @include m.custom-border(var(--success-color));
+
+      .replace-photo {
+        color: var(--white-color);
+        background-color: var(--success-color);
+        box-shadow: 0 1px 3px rgb(69 71 84 / 24%);
+        transition: 0.3ms;
+      }
+    }
+  }
+}
+
+.photo-label {
+  margin-top: f.px2rem(8);
+  text-align: center;
+  @include m.set-font(f.px2rem(12), f.px2rem(14), 400, var(--grey50-color));
+}
+
+.cover-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.size-100 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .replace-photo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    border-radius: 50%;
+    color: var(--grey40-color);
+    width: 28px;
+    height: 28px;
+    background-color: var(--white-color);
+    box-shadow: 0 1px 3px rgb(69 71 84 / 24%);
+    cursor: pointer;
+
+    &__add-icon,
+    &__remove-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+  }
+}
+
+.progress-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-wrapper {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+}
+
+@media (max-width: v.$breakpoint-mobile-max) {
+  .size-100 {
+    .replace-photo {
+      bottom: 0.6rem;
+      right: 0.6rem;
+    }
+  }
+}

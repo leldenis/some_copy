@@ -1,0 +1,27 @@
+<dl class="tw-grid tw-grid-cols-2 tw-gap-4 tw-text-base">
+  <dt>{{ 'DriverPaymentInfo.AccountType' | translate }}</dt>
+  <dd>{{ 'DriverPaymentInfo.' + paymentInfo.account_type | translate }}</dd>
+
+  <dt>{{ 'DriverPaymentInfo.Address' | translate }}</dt>
+  <dd>{{ paymentInfo.address }}</dd>
+
+  <dt>{{ 'DriverPaymentInfo.AccountOwner' | translate }}</dt>
+  <dd>{{ paymentInfo.account_owner }}</dd>
+
+  <dt>{{ 'DriverPaymentInfo.AccountNumber' | translate }}</dt>
+  <dd>{{ paymentInfo.account_number }}</dd>
+
+  <dt>{{ 'DriverPaymentInfo.BankName' | translate }}</dt>
+  <dd>{{ paymentInfo.bank_name_or_swift_code }}</dd>
+
+  @if (paymentInfo.account_type === accountType.LEGAL_ENTITY) {
+    <dt>{{ 'DriverPaymentInfo.CompanyName' | translate }}</dt>
+    <dd>{{ paymentInfo.company_name }}</dd>
+
+    <dt>{{ 'DriverPaymentInfo.RegistrationNumber' | translate }}</dt>
+    <dd>{{ paymentInfo.registration_number }}</dd>
+
+    <dt>{{ 'DriverPaymentInfo.VATNumber' | translate }}</dt>
+    <dd>{{ paymentInfo.vat_payer_number }}</dd>
+  }
+</dl>

@@ -1,0 +1,7 @@
+:host {
+  @apply tw-text-base tw-text-neutral-graphite;
+
+  &.negative-balance {
+    @apply tw-text-accent-coral-light;
+  }
+}

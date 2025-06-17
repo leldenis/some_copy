@@ -1,0 +1,34 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [filterSubKey]="courierId"
+  [defaultFilters]="filtersGroup.getRawValue()"
+  (filtersChange)="getCourierDeliveries(false, $event)"
+  class="tw-p-md"
+>
+  <form [formGroup]="filtersGroup" class="upf-form-group upf-filter-form-group max-sm:tw-flex tw-flex-col">
+    <mat-form-field appearance="outline" floatLabel="always" color="primary">
+      <mat-label>
+        {{ 'Common.Filters.Period.Label' | translate }}
+      </mat-label>
+
+      <upf-date-time-range-control formControlName="date"></upf-date-time-range-control>
+    </mat-form-field>
+  </form>
+</upf-filters-container>
+
+@if (deliveries$ | async; as deliveries) {
+  @if (deliveries?.length) {
+    <div class="tw-p-md tw-pt-0 sm:tw-p-0 sm:tw-border-t sm:tw-border-neutral-200">
+      <upf-courier-deliveries-list [items]="deliveries" (cdkScrolled)="onLoadNext()"></upf-courier-deliveries-list>
+
+      @if (isLoading) {
+        <upf-progress-spinner></upf-progress-spinner>
+      }
+    </div>
+  } @else {
+    <div class="tw-flex tw-h-full tw-justify-center">
+      <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+    </div>
+  }
+}

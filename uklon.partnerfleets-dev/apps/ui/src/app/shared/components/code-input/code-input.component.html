@@ -1,0 +1,17 @@
+<div
+  class="tw-flex tw-items-center tw-justify-center tw-gap-md code-group"
+  [ngClass]="{ 'error-code': control.hasError(validationError) }"
+>
+  @for (control of codeFormArray.controls; track control) {
+    <input
+      #codeInput
+      type="tel"
+      autocomplete="off"
+      mask="0"
+      [formControl]="control"
+      (input)="onInput($index)"
+      (keyup.backspace)="onBackspaceKeyup($index)"
+      (paste)="onPaste($event)"
+    />
+  }
+</div>

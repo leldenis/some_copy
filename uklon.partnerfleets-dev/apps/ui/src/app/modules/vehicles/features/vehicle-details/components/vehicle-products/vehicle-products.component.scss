@@ -1,0 +1,10 @@
+:host {
+  @apply tw-flex tw-flex-col tw-p-4;
+}
+
+
+.mat-mdc-raised-button {
+  @apply tw-text-base sm:tw-text-inherit;
+  @apply tw-h-11 sm:tw-w-auto;
+  @apply tw-text-neutral-white;
+}

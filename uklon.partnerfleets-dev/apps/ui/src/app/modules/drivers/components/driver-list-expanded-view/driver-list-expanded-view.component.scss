@@ -1,0 +1,19 @@
+:host {
+  @apply tw-text-base tw-text-neutral-graphite;
+
+  &.fired {
+    @apply tw-text-neutral-granit;
+
+    a {
+      @apply tw-text-neutral-granit;
+    }
+  }
+}
+
+.info-icon {
+  @apply tw-text-icon tw-text-accent-mint-light tw-w-5 tw-h-5 tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-ml-1;
+}
+
+.filter-link {
+  @apply tw-text-accent-mint-light tw-cursor-pointer hover:tw-underline;
+}

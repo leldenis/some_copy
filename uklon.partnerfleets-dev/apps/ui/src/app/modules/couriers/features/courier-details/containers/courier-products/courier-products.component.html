@@ -1,0 +1,30 @@
+<div class="tw-flex tw-flex-col tw-gap-md">
+  <div class="tw-font-medium tw-text-heading tw-my-1">
+    {{ 'Couriers.CourierDetails.ExpandedFilters.Title' | translate }}
+  </div>
+
+  <div class="tw-shadow-sm tw-divide-y tw-rounded max-sm:-tw-mx-4">
+    @for (item of products$ | async; track item) {
+      <div class="tw-flex tw-items-center tw-justify-between tw-py-3 tw-px-md tw-gap-md">
+        <div class="tw-flex tw-items-center tw-gap-4">
+          <mat-slide-toggle
+            [class.tw-pointer-events-none]="pending$ | async"
+            [disabled]="!item.is_editable"
+            [checked]="item.availability.is_available"
+            (change)="toggleProduct(item)"
+          ></mat-slide-toggle>
+
+          <div class="tw-flex tw-flex-col tw-gap-1">
+            <span class="tw-text-base">
+              {{ 'Common.ProductTypes.delivery' | translate }}
+            </span>
+
+            <span class="tw-text-sm tw-text-neutral-granit">
+              {{ 'Common.AvailableProduct.' + (item.product?.name | normalizeString) | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

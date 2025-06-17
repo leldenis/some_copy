@@ -1,0 +1,296 @@
+<ng-container
+  *upfLet="{
+    pendingDialog: showPendingTransactionDialog$ | async,
+    transactionErrorDialog: showTransactionErrorDialog$ | async,
+  } as dialogConfig"
+>
+  @if (!dialogConfig.pendingDialog && !dialogConfig.transactionErrorDialog) {
+    <div class="dialog-header">
+      <span>{{ 'Dialogs.WithdrawToCard.Title' | translate }}</span>
+
+      <span>**** **** **** {{ data?.pan?.slice(-4) }}</span>
+    </div>
+
+    <div class="flt-dialog-close">
+      <button mat-icon-button (click)="onCancelClick()">
+        <mat-icon [svgIcon]="icons.close"></mat-icon>
+      </button>
+    </div>
+
+    <div
+      class="tw-flex tw-flex-col tw-gap-md tw-grow tw-justify-between tw-px-md dialog-content"
+      upfDetectHeight
+      [offset]="headerFooterHeight"
+      [shouldDetect]="isMobileView$ | async"
+    >
+      <div class="tw-flex tw-flex-col tw-gap-4">
+        <ng-container
+          [ngTemplateOutlet]="showPassportField ? PassportInfo : TINInfo"
+          [ngTemplateOutletContext]="{ $implicit: config }"
+        ></ng-container>
+
+        <div class="tw-grid tw-gap-1.5">
+          @if (showPassportField) {
+            <mat-form-field floatLabel="always" subscriptSizing="fixed">
+              <mat-label>
+                {{ 'Modals.WithdrawToCard.Passport' | translate }}
+              </mat-label>
+
+              <input matInput autocomplete="off" type="text" placeholder="XXXXXXXXXX" [formControl]="passportControl" />
+
+              @if (passportControl?.hasError('required')) {
+                <mat-error>
+                  {{ 'Modals.WithdrawToCard.Required' | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          } @else {
+            <mat-form-field floatLabel="always" subscriptSizing="fixed">
+              <mat-label>
+                {{ 'Modals.WithdrawToCard.VAT' | translate }}
+              </mat-label>
+
+              <input
+                matInput
+                autocomplete="off"
+                type="tel"
+                mask="0000000000"
+                placeholder="XXXXXXXXXX"
+                [formControl]="TINControl"
+              />
+
+              @if (TINControl?.hasError('minlength') || TINControl?.hasError('maxlength')) {
+                <mat-error>
+                  {{ 'Modals.WithdrawToCard.VATError' | translate }}
+                </mat-error>
+              }
+
+              @if (TINControl?.hasError('required')) {
+                <mat-error>
+                  {{ 'Modals.WithdrawToCard.Required' | translate }}
+                </mat-error>
+              }
+
+              @if (
+                TINControl?.hasError('itnError') &&
+                !TINControl?.hasError('required') &&
+                !TINControl?.hasError('minlength') &&
+                !TINControl?.hasError('maxlength')
+              ) {
+                <mat-error>
+                  {{ 'Modals.WithdrawToCard.ITNError' | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          }
+
+          <mat-form-field floatLabel="always" subscriptSizing="fixed">
+            <mat-label>
+              {{ 'Modals.WithdrawToCard.Amount' | translate }}
+            </mat-label>
+
+            @if (rtlCurrencies[data.balance.currency]) {
+              <span matTextSuffix>
+                {{ data.balance.currency | currencySymbol }}
+              </span>
+            }
+
+            @if (!rtlCurrencies[data.balance.currency]) {
+              <span class="tw-pr-1" matTextPrefix>
+                {{ data.balance.currency | currencySymbol }}
+              </span>
+            }
+
+            <input
+              matInput
+              autocomplete="off"
+              type="tel"
+              placeholder="0.00"
+              mask="separator.2"
+              [allowNegativeNumbers]="false"
+              [formControl]="amountControl"
+            />
+
+            @if (amountControl?.hasError('max')) {
+              <mat-error>
+                {{ 'Modals.WithdrawToCard.AmountError' | translate }}
+              </mat-error>
+            }
+
+            @if (amountControl?.hasError('required')) {
+              <mat-error>
+                {{ 'Modals.WithdrawToCard.Required' | translate }}
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <div class="tw-text-sm">
+            {{ 'FleetWalletInfo.Title' | translate }}:
+            {{ data.balance.amount / 100 | upfMoney: data.balance.currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="tw-flex tw-justify-end tw-p-md tw-border-t tw-border-neutral-fog dialog-footer"
+      [ngClass]="{ 'tw-justify-between tw-items-center': transactionInProgress }"
+    >
+      @if (transactionInProgress) {
+        <div
+          class="tw-text-base dialog-footer__text"
+          [innerHtml]="'Dialogs.WithdrawToCard.ProcessingTransactionMessage' | translate"
+        ></div>
+      }
+
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="amountControl?.invalid || actualFormControl?.invalid"
+        (click)="onAcceptClick()"
+      >
+        <div class="tw-relative tw-flex tw-items-center">
+          @if (transactionInProgress) {
+            <mat-spinner [diameter]="20" class="spinner"></mat-spinner>
+          }
+
+          <span [ngClass]="{ 'tw-opacity-0': transactionInProgress }" class="btn-text">
+            {{ 'Dialogs.WithdrawToCard.TransferButton' | translate }}
+          </span>
+        </div>
+      </button>
+    </div>
+  } @else {
+    <ng-container
+      [ngTemplateOutlet]="
+        dialogConfig.transactionErrorDialog ? secondaryTransactionErrorDialogTemplate : pendingTransactionDialog
+      "
+    ></ng-container>
+  }
+
+  <!-- Default dialog templates -->
+  <ng-template #TINInfo let-config>
+    <upf-info-panel color="warn">
+      <ng-template upfInfoPanelTitle>
+        {{ 'Dialogs.WithdrawToCard.TINInfo.Title' | translate }}
+      </ng-template>
+
+      <ng-template upfInfoPanelSubtitle>
+        {{ 'Dialogs.WithdrawToCard.TINInfo.LimitInfo' | translate }}
+      </ng-template>
+
+      {{ 'Dialogs.WithdrawToCard.TINInfo.LimitInstruction' | translate }}
+    </upf-info-panel>
+
+    <div class="tw-text-sm tw-leading-[18px] tw-grid tw-gap-1">
+      <ng-container *ngTemplateOutlet="transactionsInfo; context: { $implicit: config }"></ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #PassportInfo let-config>
+    <upf-info-panel color="warn">
+      <ng-template upfInfoPanelTitle>
+        {{ 'Dialogs.WithdrawToCard.PassportInfo.Title' | translate }}
+      </ng-template>
+
+      <ng-template upfInfoPanelSubtitle>
+        {{ 'Dialogs.WithdrawToCard.PassportInfo.LimitInfo' | translate }}
+      </ng-template>
+
+      {{ 'Dialogs.WithdrawToCard.PassportInfo.LimitInstruction' | translate }}
+    </upf-info-panel>
+
+    <div class="tw-text-sm tw-leading-[18px] tw-grid tw-gap-1">
+      <ng-container *ngTemplateOutlet="transactionsInfo; context: { $implicit: config }"></ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #transactionsInfo let-config>
+    <div>{{ 'Dialogs.WithdrawToCard.WithdrawInfo.SingleTransactionMaxAmount' | translate: config }}</div>
+    <div>{{ 'Dialogs.WithdrawToCard.WithdrawInfo.MaxTransactionsPerDay' | translate: config }}</div>
+    <div>{{ 'Dialogs.WithdrawToCard.WithdrawInfo.MaxAmountPerDay' | translate: config }}</div>
+  </ng-template>
+
+  <!-- Secondary transaction error dialog -->
+
+  <!-- Pending transaction template -->
+  <ng-template #pendingTransactionDialog>
+    <div class="dialog-header">
+      <span>{{ 'Dialogs.WithdrawToCard.PendingTransaction.Title' | translate }}</span>
+    </div>
+
+    <div class="flt-dialog-close">
+      <button mat-icon-button (click)="onCancelClick()">
+        <mat-icon [svgIcon]="icons.close"></mat-icon>
+      </button>
+    </div>
+
+    <div class="tw-flex tw-flex-col tw-gap-md tw-grow tw-justify-between tw-items-center tw-px-md">
+      <img src="assets/images/pending-transaction.svg" alt="" class="tw-w-40" />
+
+      <div class="tw-text-sm tw-leading-[18px]">
+        {{ 'Dialogs.WithdrawToCard.PendingTransaction.Message' | translate }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-justify-end tw-p-md tw-border-t tw-border-neutral-fog">
+      <button mat-flat-button color="accent" (click)="onCancelClick()">
+        <span>
+          {{ 'Dialogs.WithdrawToCard.PendingTransaction.ConfirmBtn' | translate }}
+        </span>
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Secondary transaction error template -->
+  <ng-template #secondaryTransactionErrorDialogTemplate>
+    <div class="dialog-header">
+      <span class="tw-text-accent-coral-light">{{ 'Dialogs.WithdrawToCard.TransactionError.Title' | translate }}</span>
+    </div>
+
+    <div class="flt-dialog-close">
+      <button mat-icon-button (click)="onCancelClick()">
+        <mat-icon [svgIcon]="icons.close"></mat-icon>
+      </button>
+    </div>
+
+    @if (showPassportField) {
+      <div
+        class="tw-text-base tw-px-md tw-leading-[22px]"
+        [innerHTML]="
+          'Dialogs.WithdrawToCard.TransactionError.PassportMessage'
+            | translate: { tax_number: this.passportControl.value }
+        "
+      ></div>
+    } @else {
+      <div
+        class="tw-text-base tw-px-md tw-leading-[22px]"
+        [innerHTML]="
+          'Dialogs.WithdrawToCard.TransactionError.TINMessage' | translate: { tax_number: this.TINControl.value }
+        "
+      ></div>
+    }
+
+    <div class="tw-flex tw-justify-between tw-p-md tw-border-t tw-border-neutral-fog">
+      <button mat-flat-button color="accent" (click)="onCancelClick()">
+        {{ 'Dialogs.WithdrawToCard.TransactionError.CancelBtn' | translate }}
+      </button>
+
+      <a
+        *upfLet="financialAuthLink$ | async as authLink"
+        mat-flat-button
+        color="primary"
+        [disabled]="!authLink"
+        [href]="authLink"
+        target="_blank"
+      >
+        <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+          <mat-icon class="tw-text-icon !tw-h-5 !tw-w-5">open_in_new</mat-icon>
+          <span>
+            {{ 'Dialogs.WithdrawToCard.TransactionError.ConfirmBtn' | translate }}
+          </span>
+        </div>
+      </a>
+    </div>
+  </ng-template>
+</ng-container>

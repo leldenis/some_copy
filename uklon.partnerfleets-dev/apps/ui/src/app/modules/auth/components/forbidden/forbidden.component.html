@@ -1,0 +1,16 @@
+<div class="forbidden-form-container flex-column flex-grow-1">
+  <div class="forbidden-form-container__description">
+    <div class="forbidden-form-container__description-title text-center">
+      {{ 'Auth.Forbidden.AccessDenied' | translate }}
+    </div>
+
+    <div class="forbidden-form-container__description-subtitle text-center">
+      {{ 'Auth.Forbidden.AccessDeniedDescriptionStart' | translate }}
+      <a [href]="redirectUrl$ | async" target="_blank" rel="noopener">
+        {{ 'Auth.Forbidden.SendRequest' | translate }}
+      </a>
+      ,
+      {{ 'Auth.Forbidden.AccessDeniedDescriptionEnd' | translate }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  class="tw-w-full tw-p-4 tw-flex tw-flex-col tw-overflow-auto"
+>
+  @if (fleetId$ | async; as fleetId) {
+    <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white">
+      <mat-tab-group
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedIndexChange)="handleFragmentChange($event)"
+        preserveContent="true"
+        animationDuration="400ms"
+        color="primary"
+        class="tw-grow !tw-touch-pan-y"
+      >
+        <mat-tab
+          [label]="'Orders.Tabs.TripsReports' | translate"
+          labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+          data-cy="orders-reports-tab"
+        >
+          <ng-template matTabContent>
+            <upf-order-reports [fleetId]="fleetId" class="upf-styles"></upf-order-reports>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab
+          [label]="'Orders.Tabs.Trips' | translate"
+          labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+          data-cy="orders-trips-tab"
+        >
+          <ng-template matTabContent>
+            <upf-trips [fleetId]="fleetId"></upf-trips>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab
+          [label]="'Orders.Tabs.VehicleReports' | translate"
+          labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+        >
+          <ng-template matTabContent>
+            <upf-vehicle-order-reports [fleetId]="fleetId"></upf-vehicle-order-reports>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  }
+</div>

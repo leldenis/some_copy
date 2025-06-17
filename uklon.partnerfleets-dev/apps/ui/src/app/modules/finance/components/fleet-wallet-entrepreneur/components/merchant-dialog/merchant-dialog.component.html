@@ -1,0 +1,60 @@
+<div class="modal">
+  <div class="header">
+    <div class="tw-text-dialogTitle">
+      {{ 'Finance.FleetEntrepreneur.Dialog.Title' | translate }}
+    </div>
+
+    <button mat-icon-button (click)="dialogClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div
+    class="content"
+    *upfLet="
+      data.b2bActivated
+        ? 'Finance.FleetEntrepreneur.Dialog.Disclaimer'
+        : 'Finance.FleetEntrepreneur.Dialog.CheckMerchantDataMessage' as message
+    "
+  >
+    <upf-info-panel>{{ message | translate }}</upf-info-panel>
+
+    <mat-form-field floatLabel="always" class="tw-w-full no-indent">
+      <mat-label>
+        {{ 'Finance.FleetEntrepreneur.ChangeRecipientLabel' | translate }}
+      </mat-label>
+
+      <mat-select [formControl]="entrepreneurControl" data-cy="selector-merchant">
+        @for (entrepreneur of data.availableEntrepreneurs; track entrepreneur.id) {
+          <mat-option [value]="entrepreneur" [attr.data-cy]="'merchant-' + entrepreneur.id">
+            {{ entrepreneur.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <upf-entrepreneur-card
+      [selectedEntrepreneur]="entrepreneurControl?.value"
+      [showMerchantDetails]="true"
+    ></upf-entrepreneur-card>
+
+    @if (data.showFinanceSettings && data.balanceSplitModel) {
+      <upf-entrepreneur-finance-settings
+        [balanceSplitModel]="data.balanceSplitModel"
+      ></upf-entrepreneur-finance-settings>
+    }
+  </div>
+
+  <div class="footer">
+    <button mat-flat-button color="accent" (click)="dialogClose()">{{ 'Common.Buttons.B_Close' | translate }}</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="dialogClose(entrepreneurControl?.value)"
+      class="tw-w-fit sm:!tw-py-1.5"
+      data-cy="confirm-button"
+    >
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<section cdkOverlayOrigin #origin="cdkOverlayOrigin">
+  <mat-form-field
+    class="upf-phone-input__form-field"
+    color="primary"
+    appearance="outline"
+    floatLabel="always"
+    [formGroup]="phoneGroup"
+    subscriptSizing="dynamic"
+  >
+    @if (hasLabel) {
+      <mat-label>
+        <ng-content select=".label"></ng-content>
+      </mat-label>
+    }
+
+    <div class="upf-phone-input" [ngClass]="{ 'with-suffix': hasSuffix }">
+      <div
+        class="tw-flex tw-justify-between tw-items-center tw-cursor-pointer tw-pl-md"
+        (click)="openOverlay($event)"
+        (keyup.enter)="openOverlay($event)"
+        matPrefix
+        tabindex="0"
+      >
+        <div class="tw-flex tw-items-center tw-gap-2">
+          @if (countryCode) {
+            <div
+              [style.background-image]="'url(assets/icons/flags/' + countryCode + '.svg)'"
+              class="tw-w-5 tw-h-[14px] tw-bg-cover"
+            ></div>
+          }
+          <span>{{ phoneGroup.value.prefix }}</span>
+        </div>
+
+        <mat-icon class="!tw-h-3 !tw-leading-3" [ngClass]="{ opened: isOpened }">expand_more</mat-icon>
+      </div>
+
+      <mat-divider vertical></mat-divider>
+
+      <input
+        [mask]="mask$ | async"
+        [placeholder]="placeholder$ | async"
+        formControlName="number"
+        matInput
+        name="phone"
+        type="tel"
+        data-cy="phone-number-control"
+      />
+
+      @if (hasSuffix) {
+        <mat-divider vertical></mat-divider>
+
+        <div (click)="$event.stopPropagation()" class="tw-grid tw-place-items-center">
+          <ng-content></ng-content>
+        </div>
+      }
+    </div>
+  </mat-form-field>
+</section>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayPanelClass="upf-phone-number-overlay"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="isOpened"
+  [cdkConnectedOverlayMinWidth]="panelWidth"
+  (backdropClick)="isOpened = false"
+>
+  <div
+    class="tw-flex tw-flex-col tw-bg-white tw-w-full tw-shadow-md tw-overflow-auto tw-rounded max-sm:!tw-w-full max-sm:tw-min-h-screen tw-h-fit tw-max-h-80"
+    [style.width.px]="panelWidth"
+  >
+    <div class="tw-flex tw-items-center tw-gap-md tw-sticky tw-top-0 tw-bg-white tw-p-md tw-z-10">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ translations['Search'] }}</mat-label>
+
+        <input
+          [formControl]="filterControl"
+          matInput
+          [placeholder]="translations['Search']"
+          type="text"
+          name="country-search"
+          autocomplete="off"
+        />
+
+        <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+      </mat-form-field>
+
+      <button mat-icon-button (click)="handleOverlayClose()" class="sm:!tw-hidden !tw-w-5 !tw-h-5 !tw-leading-5">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    @if (
+      {
+        popular: filteredCountriesPopular$ | async,
+        regular: filteredCountriesRegular$ | async,
+      };
+      as countries
+    ) {
+      @if (countries.popular.length || countries.regular.length) {
+        @if (countries.popular) {
+          <ng-container
+            *ngTemplateOutlet="
+              countriesOptions;
+              context: { $implicit: countries.popular, title: translations['PopularCountries'] }
+            "
+          ></ng-container>
+        }
+
+        @if (countries.regular) {
+          <ng-container
+            *ngTemplateOutlet="
+              countriesOptions;
+              context: { $implicit: countries.regular, title: translations['AllCountries'] }
+            "
+          ></ng-container>
+        }
+      } @else {
+        <div class="tw-p-md tw-pt-0 tw-text-base tw-font-medium">{{ translations['NoMatch'] }}</div>
+      }
+    }
+  </div>
+</ng-template>
+
+<ng-template #countriesOptions let-countries let-title="title">
+  @if (countries.length) {
+    <ul>
+      <div class="tw-py-2 tw-px-md tw-text-sm tw-text-neutral-smoke">
+        {{ title }}
+      </div>
+
+      @for (country of countries; track country) {
+        <li id="upf-country-code-{{ country.country_code }}">
+          <mat-option
+            (onSelectionChange)="handleCountryCodeChange(country)"
+            [ngClass]="{ selected: country.country_code === this.countryCode }"
+          >
+            <div class="tw-flex tw-items-center tw-gap-2">
+              <div
+                [style.background-image]="'url(assets/icons/flags/' + country.country_code + '.svg)'"
+                class="tw-w-5 tw-h-[14px] tw-bg-cover"
+              ></div>
+
+              <span class="tw-truncate">
+                {{ translations[country.country_code] }}
+                ({{ country.phone_prefix }})
+              </span>
+            </div>
+          </mat-option>
+        </li>
+      }
+    </ul>
+  }
+</ng-template>

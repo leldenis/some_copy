@@ -1,0 +1,72 @@
+<div
+  class="tabs-container"
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+>
+  <div class="tw-flex tw-flex-col tw-grow">
+    @if (fleetId$ | async; as fleetId) {
+      <mat-tab-group
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedIndexChange)="handleFragmentChange($event)"
+        animationDuration="400ms"
+        color="primary"
+        class="tw-grow !tw-touch-pan-y"
+        data-cy="drivers-tabs"
+      >
+        <mat-tab labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-1 sm:tw-w-auto">
+          <span *matTabLabel [attr.data-cy]="'tab-label-Drivers'">
+            {{ 'Drivers.Tabs.Drivers' | translate }}
+          </span>
+
+          <ng-template matTabContent>
+            <upf-drivers-container
+              [fleetId]="fleetId"
+              [regionId]="regionId$ | async"
+              data-cy="drivers-host"
+            ></upf-drivers-container>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-auto">
+          <span *matTabLabel [attr.data-cy]="'tab-label-DriversTickets'">
+            {{ 'Drivers.Tabs.DriversTickets' | translate }}
+          </span>
+
+          <ng-template matTabContent>
+            <upf-drivers-tickets [fleetId]="fleetId" data-cy="driversTickets-host"></upf-drivers-tickets>
+          </ng-template>
+        </mat-tab>
+
+        @if (fleetHasApplications$ | async) {
+          <mat-tab>
+            <span *matTabLabel [attr.data-cy]="'tab-label-GarageApplications'">
+              {{ 'Drivers.Tabs.UklonGarage' | translate }}
+            </span>
+
+            <ng-template matTabContent>
+              <upf-uklon-garage-applications></upf-uklon-garage-applications>
+            </ng-template>
+          </mat-tab>
+        }
+
+        @if (appConfig?.showDriverPhotoControl) {
+          <mat-tab>
+            <span *matTabLabel class="tw-relative" data-cy="driver-photo-control-tab">
+              {{ 'Drivers.Tabs.PhotoControl' | translate }}
+
+              @if (hasActiveTickets$ | async) {
+                <upf-indicator class="indicator" data-cy="driver-photo-control-tab-indicator"></upf-indicator>
+              }
+            </span>
+
+            <ng-template matTabContent>
+              <upf-drivers-photo-control-container [fleetId]="fleetId"></upf-drivers-photo-control-container>
+            </ng-template>
+          </mat-tab>
+        }
+      </mat-tab-group>
+    }
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="tw-col-span-full tw-grid tw-gap-2">
+  <div class="tw-text-neutral-granit tw-text-base">
+    {{ 'Orders.Trips.List.Route' | translate }}
+  </div>
+
+  <div class="tw-grid">
+    @for (route of routePoints; track route) {
+      <div>
+        <div class="tw-flex tw-items-center tw-gap-md">
+          <mat-icon class="!tw-w-3 !tw-h-3 tw-text-sm tw-text-neutral-smoke tw-shrink-0">
+            {{ $last ? 'location_on' : 'trip_origin' }}
+          </mat-icon>
+
+          <span>{{ route.address_name }}</span>
+        </div>
+
+        @if (!$last) {
+          <div class="tw-w-3 tw-h-3 tw-leading-3 tw-grid tw-place-items-center tw-text-neutral-smoke">•</div>
+        }
+      </div>
+    }
+  </div>
+</div>

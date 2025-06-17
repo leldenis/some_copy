@@ -1,0 +1,12 @@
+<div class="infinity-scroll-container">
+  <cdk-virtual-scroll-viewport #scroller class="infinity-scroll-list" [class]="classList" [itemSize]="itemSize">
+    <ng-content></ng-content>
+  </cdk-virtual-scroll-viewport>
+
+  @if (!(loadingState$ | async)?.isLoaded) {
+    <div class="flex-row align-items-center justify-content-center loading-state">
+      <mat-progress-spinner class="spinner" color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
+      {{ 'Common.InfinityScroll.Loading' | translate }}
+    </div>
+  }
+</div>

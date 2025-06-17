@@ -1,0 +1,79 @@
+<div
+  class="tw-w-full tw-p-4 tw-flex tw-flex-col tw-overflow-auto"
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+>
+  <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white">
+    @if (fleetId$ | async; as fleetId) {
+      <mat-tab-group
+        preserveContent="true"
+        animationDuration="400ms"
+        color="primary"
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedIndexChange)="handleFragmentChange($event)"
+        class="tw-grow !tw-touch-pan-y"
+        data-cy="vehicle-tabs"
+      >
+        <mat-tab>
+          <span *matTabLabel [attr.data-cy]="'vehicle-tabs-list'">
+            {{ 'Vehicles.Tabs.VehicleList' | translate }}
+          </span>
+          <ng-template matTabContent>
+            <upf-vehicles-wrap [fleetId]="fleetId" data-cy="vehicles-wrap"></upf-vehicles-wrap>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab>
+          <span *matTabLabel [attr.data-cy]="'vehicle-tabs-tickets'">{{ 'Vehicles.Tabs.Tickets' | translate }}</span>
+          <ng-template matTabContent>
+            <upf-vehicle-tickets [fleetId]="fleetId"></upf-vehicle-tickets>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab>
+          <span *matTabLabel [attr.data-cy]="'vehicle-photo-cotrol'" class="tw-relative">
+            {{ 'PhotoControl.Panel.Title' | translate }}
+
+            @if (hasActiveTickets$ | async) {
+              <upf-indicator class="indicator"></upf-indicator>
+            }
+          </span>
+
+          <ng-template matTabContent>
+            <upf-vehicle-photo-control-list-container [fleetId]="fleetId"></upf-vehicle-photo-control-list-container>
+          </ng-template>
+        </mat-tab>
+
+        @if (showVehicleBrandingPeriod$ | async) {
+          <mat-tab>
+            <span *matTabLabel class="tw-relative" [attr.data-cy]="'vehicle-branding-period-tab'">
+              <div class="tw-flex tw-items-center tw-gap-1.5">
+                {{ 'Vehicles.Tabs.VehicleBrandingPeriodTickets' | translate }}
+
+                @if (uploadCount()) {
+                  <div
+                    class="tw-relative tw-grid tw-place-items-center"
+                    data-cy="vehicle-branding-period-tab-upload-count"
+                  >
+                    <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
+                    <span class="tw-absolute tw-text-sm">{{ uploadCount() | countMask: 9 }}</span>
+                  </div>
+                }
+              </div>
+            </span>
+
+            <ng-template matTabContent>
+              <upf-vehicle-branding-period-tickets-container
+                [fleetId]="fleetId"
+                (filesUploadingCount)="uploadCount.set($event)"
+                data-cy="vehicle-branding-period-tickets-container"
+              ></upf-vehicle-branding-period-tickets-container>
+            </ng-template>
+          </mat-tab>
+        }
+      </mat-tab-group>
+    }
+  </div>
+</div>

@@ -1,0 +1,59 @@
+@let reports = reports$ | async;
+
+<section class="sm:tw-flex sm:tw-items-center sm:tw-justify-between">
+  <upf-filters-container
+    direction="row"
+    [filterKey]="filterKey"
+    [defaultFilters]="filtersForm.getRawValue()"
+    (filtersChange)="onFiltersChange($event)"
+    (filtersReset)="onFiltersReset()"
+  >
+    <form [formGroup]="filtersForm" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row">
+      <mat-form-field floatLabel="always" data-cy="orders-reports-date-filter">
+        <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+        <upf-date-time-range-control formControlName="date"></upf-date-time-range-control>
+      </mat-form-field>
+
+      <upf-drivers-autocomplete [fleetId]="fleetId" formControlName="driverId"></upf-drivers-autocomplete>
+    </form>
+
+    <ng-template #exportBtn upfFiltersActionButton let-desktop>
+      <upf-loader-button
+        [dataCY]="'export-csv-btn-' + (desktop ? 'desktop' : 'mobile')"
+        [disabled]="!reports.length"
+        [loading]="isDownloading$ | async"
+        (handlerClick)="handleExportClick()"
+      >
+        <div class="tw-flex tw-gap-2 tw-justify-center tw-items-center">
+          <mat-icon svgIcon="i-csv"></mat-icon>
+          <span>{{ 'Common.Buttons.Export.CSV' | translate }}</span>
+        </div>
+      </upf-loader-button>
+    </ng-template>
+  </upf-filters-container>
+
+  <div class="tw-hidden sm:tw-block sm:tw-min-w-[140px]">
+    <ng-template [ngTemplateOutlet]="exportBtn" [ngTemplateOutletContext]="{ $implicit: true }"></ng-template>
+  </div>
+</section>
+
+<section class="upf-section tw-flex tw-justify-center tw-flex-col tw-gap-md">
+  <div class="tw-flex tw-flex-wrap tw-items-center tw-gap-y-md tw-gap-x-6">
+    <upf-report-stats-explanation></upf-report-stats-explanation>
+
+    <upf-what-is-merchant></upf-what-is-merchant>
+  </div>
+
+  @let data = { loading: loading$ | async, hasNext: hasNextPage$ | async };
+  @if (reports?.length > 0) {
+    <upf-order-report-list
+      [reports]="reports"
+      [currency]="reports[0]?.currency"
+      (cdkScrolled)="!data.loading && data.hasNext ? handlerScrolled() : null"
+      class="tw-grow tw-shrink"
+    ></upf-order-report-list>
+  } @else {
+    <upf-empty-state></upf-empty-state>
+  }
+</section>

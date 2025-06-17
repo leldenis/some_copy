@@ -1,0 +1,79 @@
+<upf-filters-container
+  data-cy="vehicle-branding-period-filters"
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="onFiltersChange($event)"
+>
+  <form [formGroup]="filtersForm" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always" data-cy="vehicle-branding-period-ticket-filter-period">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="period"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>
+        {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+      </mat-label>
+
+      <input
+        matInput
+        formControlName="license_plate"
+        placeholder="{{ 'Common.Filters.LicencePlate.Placeholder' | translate }}"
+        data-cy="vehicle-branding-period-ticket-license-plate"
+      />
+
+      <mat-icon
+        matIconSuffix
+        [svgIcon]="icons.search"
+        data-cy="vehicle-branding-period-ticket-license-search-icon"
+      ></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+      <mat-select formControlName="status" multiple data-cy="vehicle-branding-period-ticket-status">
+        @for (status of ticketStatus | keyvalue; track $index) {
+          @if (status.value === ticketStatus.ALL) {
+            <upf-checkbox-select-all
+              [control]="filtersForm?.get('status')"
+              [controlOptions]="ticketStatusAvailable"
+            ></upf-checkbox-select-all>
+          } @else if (status.value !== ticketStatus.BLOCKED_BY_MANAGER) {
+            <mat-option [value]="status.value" data-cy="vehicle-branding-period-ticket-status-option">
+              {{ 'VehicleBrandingPeriod.TicketStatus.' + status.value | translate }}
+            </mat-option>
+          }
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>
+
+@if (monthlyCode()) {
+  <div class="tw-items-start tw-justify-between tw-hidden sm:tw-flex">
+    <upf-vehicle-branding-monthly-code [monthlyCode]="monthlyCode()"></upf-vehicle-branding-monthly-code>
+
+    @if (uploadCount()) {
+      <div class="tw-text-base tw-text-neutral-smoke" data-cy="vehicle-branding-period-upload-count">
+        {{ 'VehicleBrandingPeriod.FilesUploadingCount' | translate }} : {{ uploadCount() }}
+      </div>
+    }
+  </div>
+}
+
+@if (tickets().length) {
+  <upf-vehicle-branding-period-tickets-list
+    data-cy="vehicle-branding-period-list"
+    [tickets]="tickets()"
+    [isMobileView]="(isMobileView$ | async) ?? false"
+    [monthlyCode]="monthlyCode()"
+    (cdkScrolled)="onLoadNext()"
+    (uploadFileCount)="updateUploadCount($event)"
+    (ticketSent)="onTicketSent($event)"
+  ></upf-vehicle-branding-period-tickets-list>
+} @else {
+  <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+}

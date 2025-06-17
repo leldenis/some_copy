@@ -1,0 +1,15 @@
+.finance-model-title {
+  @apply tw-flex tw-text-base tw-font-medium tw-mb-4
+}
+
+.finance-model-content {
+  @apply tw-grid tw-grid-cols-3 tw-gap-2 tw-text-base
+}
+
+.finance-model-label {
+  @apply tw-col-span-1;
+}
+
+.finance-model-description {
+  @apply tw-col-span-2 tw-text-[#73757E];
+}

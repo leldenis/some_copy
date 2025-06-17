@@ -1,0 +1,124 @@
+<header>
+  <h3>
+    {{ 'FleetProfile.RRO.Modals.UploadKey.Title' | translate }}
+  </h3>
+
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+  </button>
+</header>
+
+<mat-divider></mat-divider>
+
+<form [formGroup]="formGroup" class="content" data-cy="upload-key-modal-content">
+  <upf-info-panel color="accent">
+    <p>
+      {{ 'FleetProfile.RRO.Modals.UploadKey.Info' | translate }}
+    </p>
+  </upf-info-panel>
+
+  <div class="tw-flex tw-flex-row tw-items-center tw-justify-between -tw-mt-2 -tw-mb-2">
+    <span class="tw-text-base tw-font-bold">
+      {{ 'FleetProfile.RRO.Modals.UploadKey.Btn.Upload.Label' | translate }}
+    </span>
+
+    <button type="button" mat-button class="how-to-get-key-link" (click)="handlerOpenHowToGetKeyModal()">
+      <mat-icon class="outlined">info</mat-icon>
+      <span>{{ 'FleetProfile.RRO.Modals.UploadKey.HowToUse' | translate }}</span>
+    </button>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      class="small upload-btn"
+      data-cy="select-file-from-computer"
+      [disabled]="selectedFileName"
+      (click)="!selectedFileName ? triggerFileInput() : null"
+    >
+      <mat-icon class="upload-btn-icon">
+        <span class="material-symbols-outlined">upload</span>
+      </mat-icon>
+      <span class="upload-btn-name">{{ 'FleetProfile.RRO.Modals.UploadKey.Btn.Upload.Name' | translate }}</span>
+    </button>
+    <input type="file" #fileInput (change)="handlerFileSelect($event)" class="tw-hidden" />
+
+    @if (errorMessages.length > 0) {
+      @for (item of errorMessages; track $index) {
+        <mat-error class="tw-text-sm">
+          {{ item | translate }}
+        </mat-error>
+      }
+    }
+  </div>
+
+  <mat-divider></mat-divider>
+
+  @if (selectedFileName) {
+    <div class="tw-flex tw-flex-row tw-items-center tw-gap-1 -tw-mt-2 -tw-mb-2">
+      <span class="tw-text-base tw-font-bold">
+        {{ 'FleetProfile.RRO.Modals.UploadKey.Btn.Upload.Label' | translate }}:
+      </span>
+      <span class="tw-block tw-truncate tw-max-w-[120px]">{{ selectedFileName }}</span>
+
+      <button type="button" mat-button color="primary" (click)="triggerFileInput()">
+        <span class="tw-text-sm">{{ 'FleetProfile.RRO.Modals.UploadKey.Btn.UploadAgain.Name' | translate }}</span>
+      </button>
+    </div>
+  }
+
+  <mat-form-field color="primary" appearance="outline">
+    <mat-label>
+      {{ 'FleetProfile.RRO.Modals.UploadKey.Input.Password.Label' | translate }}
+    </mat-label>
+
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      autocomplete="on"
+      (input)="clearErrors()"
+      #password
+      data-cy="upload-key-input-password"
+    />
+
+    <mat-icon matIconSuffix (click)="togglePasswordField($event, password)">
+      {{ password.type === 'text' ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>
+      {{ 'FleetProfile.RRO.Modals.UploadKey.Input.KeyName.Label' | translate }}
+    </mat-label>
+
+    <input
+      matInput
+      type="text"
+      formControlName="display_name"
+      data-cy="upload-key-input-name"
+      (input)="clearErrors()"
+    />
+  </mat-form-field>
+</form>
+
+<mat-divider></mat-divider>
+
+<footer>
+  <button mat-flat-button color="accent" (click)="closeDialog()">{{ 'Common.Buttons.B_Close' | translate }}</button>
+  <div class="tw-w-[124px]">
+    <upf-loader-button
+      color="primary"
+      type="button"
+      class="!tw-w-full"
+      [dataCY]="'upload-key-btn-upload'"
+      [disabled]="isSaveBtnDisabled()"
+      [loading]="uploadSignatureKey$ | async"
+      (handlerClick)="handlerSave()"
+    >
+      {{ 'Common.Buttons.B_Upload' | translate }}
+    </upf-loader-button>
+  </div>
+</footer>

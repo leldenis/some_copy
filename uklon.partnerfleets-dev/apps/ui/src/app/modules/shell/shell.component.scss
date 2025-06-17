@@ -1,0 +1,59 @@
+@use "mixins" as m;
+
+$transition-speed: 0.4s;
+$nav-item-height: 56px;
+
+:host {
+  @apply tw-block tw-w-screen tw-h-[100dvh];
+
+  .mat-drawer {
+    @apply tw-overflow-visible;
+  }
+
+  ::ng-deep {
+    .mat-drawer-backdrop {
+      @apply tw-bg-neutral-onyx tw-opacity-50 sm:tw-hidden;
+    }
+
+    .mat-drawer-inner-container {
+      @apply tw-overflow-visible;
+    }
+  }
+}
+
+.mat-drawer-container {
+  @apply tw-block tw-w-screen tw-h-full tw-max-h-[100dvh];
+}
+
+.mat-drawer-content {
+  @apply tw-flex;
+}
+
+.sidebar {
+  @apply tw-flex tw-flex-col tw-justify-between;
+  @apply tw-bg-neutral-onyx tw-text-white;
+  @apply tw-h-[100dvh] tw-max-w-[90vw] tw-w-[21.25rem] sm:tw-w-full;
+  transition: width $transition-speed ease-in-out;
+
+  &.opened {
+    @apply sm:tw-w-[17.5rem];
+  }
+
+  .navigation {
+    @apply tw-overflow-auto;
+    max-height: calc(100vh - calc(#{$nav-item-height}) * 3);
+
+    &.overflowing {
+      @apply tw-border-b tw-border-neutral-carbon;
+    }
+  }
+}
+
+.navigation-item {
+  @include m.navigation-item();
+}
+
+.footer-item {
+  @apply tw-border-t tw-border-neutral-carbon;
+}
+

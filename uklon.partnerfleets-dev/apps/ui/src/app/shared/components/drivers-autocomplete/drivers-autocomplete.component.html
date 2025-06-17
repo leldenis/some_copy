@@ -1,0 +1,70 @@
+<mat-form-field floatLabel="always" class="tw-w-full no-indent">
+  <mat-label>
+    {{ 'Driver.Filters.Driver.Label' | translate }}
+  </mat-label>
+
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="autoDrivers"
+    [formControl]="filterControl"
+    (keyup)="handleChange($event)"
+    (focus)="inputFocused = true"
+    (blur)="inputFocused = false"
+    [placeholder]="
+      (withAllDriversOption
+        ? inputFocused
+          ? 'Driver.Filters.SelectDriver'
+          : 'Driver.AllDrivers'
+        : 'Driver.Filters.SelectDriver'
+      ) | translate
+    "
+    [ngClass]="{ 'with-all-option': withAllDriversOption && !inputFocused }"
+  />
+
+  @if (selectedDriverId) {
+    <mat-icon matIconSuffix (click)="resetControl()" class="tw-cursor-pointer">close</mat-icon>
+  } @else {
+    <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+  }
+
+  <mat-autocomplete #autoDrivers="matAutocomplete" [displayWith]="displayWithFn">
+    <cdk-virtual-scroll-viewport
+      #scroller
+      [itemSize]="itemHeightPx"
+      [minBufferPx]="itemHeightPx * itemsPerPage"
+      [maxBufferPx]="panelHeightPx"
+      [style.height.px]="panelHeight$ | async"
+      (scrolledIndexChange)="handleScroll($event)"
+      class="autocomplete-viewport"
+    >
+      <mat-option
+        *cdkVirtualFor="let driver of filteredDrivers$ | async"
+        [value]="driver"
+        (onSelectionChange)="onSelectionChange($event)"
+        class="!tw-p-0"
+        attr.data-cy="driver-option-{{ driver.first_name }}-{{ driver.last_name }}"
+      >
+        <div
+          *upfLet="driver.last_name + ' ' + driver.first_name as fullName"
+          class="tw-text-base tw-px-4 tw-truncate"
+          [innerHTML]="fullName | searchHighlight: (selectedDriverId ? null : filterControl.value)"
+        >
+          {{ fullName }}
+        </div>
+      </mat-option>
+
+      @if (!drivers$.value.length && !selectedDriverId && filterControl.value) {
+        <mat-option disabled class="!tw-p-0">
+          <div class="tw-text-base tw-px-4 tw-truncate">
+            {{ 'Common.Filters.NoMatch' | translate }}
+          </div>
+        </mat-option>
+      }
+
+      @if (isLoading) {
+        <upf-progress-spinner class="!tw-h-10"></upf-progress-spinner>
+      }
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+</mat-form-field>

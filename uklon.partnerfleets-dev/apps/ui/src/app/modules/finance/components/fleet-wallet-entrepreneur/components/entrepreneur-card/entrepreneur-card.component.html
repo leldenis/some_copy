@@ -1,0 +1,49 @@
+<section class="entrepreneur" data-cy="entrepreneur">
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <div class="card-avatar">
+      <mat-icon class="outlined tw-text-neutral-smoke tw-text-icon !tw-w-5 !tw-h-5">account_balance</mat-icon>
+    </div>
+
+    <div class="tw-grid tw-gap-2" [ngClass]="{ '!tw-gap-1': selectedEntrepreneur?.payment_providers?.length > 1 }">
+      <div class="tw-text-neutral-graphite tw-text-base tw-font-medium" data-cy="merchant-name">
+        {{ selectedEntrepreneur?.name }}
+      </div>
+
+      <div class="tw-grid tw-gap-1">
+        @if (showMerchantDetails) {
+          @for (merchant of selectedEntrepreneur.payment_providers; track merchant?.merchant_id) {
+            <div class="tw-text-xs tw-leading-3 tw-text-neutral-smoke">
+              {{ $index + 1 }}.
+              <b>{{ merchant?.type }}:</b>
+              {{ merchant?.merchant_id }}
+            </div>
+          }
+        } @else {
+          <div class="tw-text-xs tw-leading-3 tw-text-neutral-smoke">
+            {{ 'Finance.FleetEntrepreneur.NumberOfMerchants' | translate }}:
+            {{ selectedEntrepreneur.payment_providers.length }}
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (showMenu) {
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="merchantMenu"
+      (click)="handlerOpenMenu.emit()"
+      data-cy="merchant-menu-button"
+    >
+      <mat-icon class="tw-text-neutral-smoke">more_vert</mat-icon>
+    </button>
+  }
+</section>
+
+<mat-menu #merchantMenu class="auto-height tw-top-md -tw-right-2" xPosition="before">
+  <button mat-menu-item (click)="handlerMenuClick.emit()" data-cy="merchant-settings-button">
+    <div class="tw-text-neutral-graphite">
+      {{ 'Finance.FleetEntrepreneur.Settings' | translate }}
+    </div>
+  </button>
+</mat-menu>

@@ -1,0 +1,36 @@
+<div
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  class="tw-w-full tw-p-4 tw-flex tw-flex-col tw-overflow-auto"
+>
+  <div class="tw-flex tw-flex-col tw-grow tw-bg-neutral-white">
+    <mat-tab-group
+      color="primary"
+      class="tw-grow !tw-touch-pan-y"
+      [selectedIndex]="selectedTabIndex$ | async"
+      (selectedIndexChange)="handleFragmentChange($event)"
+    >
+      <mat-tab
+        label="{{ 'Couriers.CourierDetails.Tabs.Reports' | translate }}"
+        labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+        data-cy="orders-trips-tab"
+      >
+        <ng-template matTabContent>
+          <upf-couriers-reports></upf-couriers-reports>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab
+        label="{{ 'Couriers.CourierDetails.Tabs.Deliveries' | translate }}"
+        labelClass="tw-flex-grow tw-flex-shrink tw-w-0 sm:tw-flex-grow-0 sm:tw-flex-shrink-0 sm:tw-w-inherit"
+        data-cy="orders-trips-tab"
+      >
+        <ng-template matTabContent>
+          <upf-couriers-deliveries></upf-couriers-deliveries>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

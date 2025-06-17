@@ -1,0 +1,24 @@
+@if (fleetId$ | async; as fleetId) {
+  <upf-courier-transactions-filters
+    [fleetId]="fleetId"
+    (filtersChange)="filters$.next($event)"
+  ></upf-courier-transactions-filters>
+
+  @if (filters$?.value?.courierId) {
+    @if (transaction$ | async; as transactions) {
+      @if (transactions.length) {
+        <upf-courier-transactions-list
+          [isMobileView]="isMobileView$ | async"
+          [transactions]="transactions"
+          (cdkScrolled)="onLoadNext()"
+        ></upf-courier-transactions-list>
+      } @else {
+        <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+      }
+    }
+  } @else {
+    @if (!filters$?.value?.courierId) {
+      <upf-empty-state [state]="emptyState.SELECT_COURIER_FOR_SEARCH"></upf-empty-state>
+    }
+  }
+}

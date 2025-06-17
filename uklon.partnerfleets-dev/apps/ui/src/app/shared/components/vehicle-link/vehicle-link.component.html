@@ -1,0 +1,15 @@
+@if (vehicleId() && licensePlate()) {
+  <div>
+    <a
+      data-cy="vehicle-link"
+      class="tw-font-medium hover:tw-underline focus:tw-underline tw-break-words"
+      [routerLink]="['/', corePaths.WORKSPACE, corePaths.VEHICLES, vehiclePaths.DETAILS, vehicleId()]"
+    >
+      {{ licensePlate() }}
+    </a>
+  </div>
+
+  <span class="tw-text-sm tw-text-neutral-granit" data-cy="vehicle-make-model">{{ make() }} {{ model() }}</span>
+} @else {
+  -
+}

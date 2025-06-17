@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+@use 'components' as components;
+@use '../palettes' as pallete;
+
+@include mat.core();
+
+$fleet-theme: mat.m2-define-light-theme(
+    (
+      color: (
+        primary: mat.m2-define-palette(pallete.$primary-palette),
+        accent: mat.m2-define-palette(pallete.$accent-palette),
+        warn: mat.m2-define-palette(pallete.$warn-palette),
+      ),
+      typography: (
+        brand-family: 'Roboto, Helvetica, Arial, sans-serif',
+        plain-family: 'Roboto, Helvetica, Arial, sans-serif',
+        regular-weight: 400,
+      ),
+      density: 0
+    )
+);
+
+@include mat.all-component-themes($fleet-theme);
+
+// legacy datepicker
+.mat-calendar {
+  font-size: 14px;
+
+  .mat-calendar-body-cell-content {
+    font-size: 13px;
+  }
+}
+
+.mat-datepicker-toggle {
+  .mdc-icon-button {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .mat-datepicker-toggle-default-icon {
+    display: block;
+    margin: 0 auto;
+    width: 20px !important;
+    height: 20px !important;
+  }
+}

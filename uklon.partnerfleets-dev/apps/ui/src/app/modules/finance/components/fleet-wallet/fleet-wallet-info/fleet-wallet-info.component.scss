@@ -1,0 +1,10 @@
+.mat-mdc-raised-button {
+  @apply tw-text-base sm:tw-text-inherit;
+  @apply tw-text-neutral-white tw-p-md;
+}
+
+.flt-balance-icon {
+  &.mat-icon {
+    @apply tw-w-[42px] tw-h-[42px];
+  }
+}

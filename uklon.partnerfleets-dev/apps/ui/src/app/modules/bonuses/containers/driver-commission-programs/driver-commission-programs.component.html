@@ -1,0 +1,24 @@
+<upf-commission-programs-info-icon-mobile
+  (mouseEnterEvent)="reportAnalytics(analyticsEventType.COMMISSION_PROGRAMS_WHAT_IS_IT)"
+></upf-commission-programs-info-icon-mobile>
+
+<upf-commission-programs-sub-tabs
+  [activatedProgramType]="activatedProgramType()"
+  (changeProgramType)="handlerProgramType($event)"
+></upf-commission-programs-sub-tabs>
+
+@if (fleetData(); as fleet) {
+  @switch (activatedProgramType()) {
+    @case (programTypes.ACTIVE) {
+      <upf-driver-active-commission-programs [fleetData]="fleet"></upf-driver-active-commission-programs>
+    }
+
+    @case (programTypes.PLANNED) {
+      <upf-driver-planned-commission-programs [fleetData]="fleet"></upf-driver-planned-commission-programs>
+    }
+
+    @case (programTypes.ARCHIVED) {
+      <upf-driver-archived-commission-programs [fleetData]="fleet"></upf-driver-archived-commission-programs>
+    }
+  }
+}

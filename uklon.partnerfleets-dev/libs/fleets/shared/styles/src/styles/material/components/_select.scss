@@ -1,0 +1,24 @@
+$font-size: 14px;
+$option-text-color: #454754;
+$option-height: 42px;
+$selected-option-bg: #EBFAF6 !important;
+
+.mat-mdc-select-panel,
+.mat-mdc-autocomplete-panel {
+  font-size: $font-size;
+  padding: 0 !important;
+
+  .mdc-list-item {
+    min-height: $option-height;
+    height: $option-height;
+
+    &--selected {
+      background-color: $selected-option-bg;
+    }
+
+    &__primary-text {
+      width: 100%;
+      color: $option-text-color;
+    }
+  }
+}

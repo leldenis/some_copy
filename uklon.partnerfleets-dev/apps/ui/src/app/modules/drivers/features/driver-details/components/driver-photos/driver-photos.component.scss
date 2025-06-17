@@ -1,0 +1,11 @@
+:host {
+  @apply tw-flex tw-p-4 tw-text-neutral-graphite;
+}
+
+.upf-photos-container {
+  @apply tw-grid tw-grid-cols-12 tw-gap-4 tw-col-span-12;
+
+  .upf-photo {
+    @apply tw-col-span-6 sm:tw-col-span-4 tw-h-28 sm:tw-h-44;
+  }
+}

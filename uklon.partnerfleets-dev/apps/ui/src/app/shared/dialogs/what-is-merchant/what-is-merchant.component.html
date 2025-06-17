@@ -1,0 +1,71 @@
+<div class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-w-fit" (click)="showMerchantDialog()">
+  <mat-icon class="outlined tw-text-accent-mint-light tw-text-icon !tw-w-5 !tw-h-5">info</mat-icon>
+  <div class="tw-text-accent-mint-light tw-font-medium tw-text-base">{{ 'WhatIsMerchant.Title' | translate }}</div>
+</div>
+
+<ng-template #dialog>
+  <div class="header">
+    <div class="tw-text-tmp tw-font-medium">{{ 'WhatIsMerchant.Title' | translate }}</div>
+
+    <button mat-icon-button matDialogClose>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="content">
+    <div class="tw-grid tw-gap-8">
+      <div [innerHTML]="'WhatIsMerchant.Splits.1' | translate"></div>
+      <div [innerHTML]="'WhatIsMerchant.Splits.2' | translate"></div>
+      <div [innerHTML]="'WhatIsMerchant.Splits.3' | translate"></div>
+    </div>
+
+    <upf-info-panel color="accent" [hideToggle]="true" [expanded]="true">
+      <ng-template upfInfoPanelTitle>{{ 'WhatIsMerchant.InfoPanel.Title' | translate }}</ng-template>
+
+      <div class="tw-text-base tw-leading-5" [innerHTML]="'WhatIsMerchant.InfoPanel.Message1' | translate"></div>
+    </upf-info-panel>
+
+    <div class="tw-grid tw-gap-8">
+      <div>
+        <div class="tw-font-medium">{{ 'WhatIsMerchant.Examples.Title' | translate: { example: 1 } }}</div>
+        <div [innerHTML]="'WhatIsMerchant.Examples.1' | translate"></div>
+      </div>
+
+      <div>
+        <div class="tw-font-medium">{{ 'WhatIsMerchant.Examples.Title' | translate: { example: 2 } }}</div>
+        <div [innerHTML]="'WhatIsMerchant.Examples.2' | translate"></div>
+      </div>
+
+      <div>
+        <div class="tw-font-medium">{{ 'WhatIsMerchant.Examples.Title' | translate: { example: 3 } }}</div>
+        <div [innerHTML]="'WhatIsMerchant.Examples.3' | translate"></div>
+      </div>
+    </div>
+
+    <upf-info-panel color="accent">
+      <ng-template upfInfoPanelTitle>{{ 'WhatIsMerchant.InfoPanel.Title' | translate }}</ng-template>
+
+      <div class="tw-text-base tw-leading-5" [innerHTML]="'WhatIsMerchant.InfoPanel.Message2' | translate"></div>
+    </upf-info-panel>
+
+    <div [innerHTML]="'WhatIsMerchant.Splits.4' | translate"></div>
+
+    <mat-divider class="tw-border-neutral-silver"></mat-divider>
+
+    <div class="tw-grid tw-gap-8">
+      <b>{{ 'WhatIsMerchant.Glossary.Title' | translate }}</b>
+
+      <div class="tw-grid tw-gap-md">
+        <div [innerHTML]="'WhatIsMerchant.Glossary.Rider' | translate"></div>
+        <div [innerHTML]="'WhatIsMerchant.Glossary.Merchant' | translate"></div>
+        <div [innerHTML]="'WhatIsMerchant.Glossary.Balance' | translate"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-p-md tw-flex tw-justify-center tw-border-t tw-border-neutral-silver">
+    <button mat-flat-button matDialogClose color="accent" class="tw-w-full sm:tw-w-fit">
+      {{ 'Dialogs.WithdrawToCard.PendingTransaction.ConfirmBtn' | translate }}
+    </button>
+  </div>
+</ng-template>

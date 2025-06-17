@@ -1,0 +1,34 @@
+<upf-info-panel color="accent">
+  <div class="tw-flex tw-gap-md sm:tw-gap-6">
+    <div class="tw-text-base tw-leading-5 tw-text-[#0B7A94]">
+      <div data-cy="cash-limits-panel-period">
+        {{ 'CashLimits.PeriodTitle' | translate }}:
+        <b>{{ 'CashLimits.Period.' + cashLimitsSettings().period | translate | lowercase }}</b>
+      </div>
+
+      <div data-cy="cash-limits-panel-limit">
+        {{ 'CashLimits.LimitTitle' | translate }}:
+
+        @let selectedLimit =
+          (cashLimitsSettings().enabled ? 'CashLimits.Limit.FleetLimit' : 'CashLimits.Limit.NoLimit')
+            | translate
+            | lowercase;
+
+        <b>
+          @if (cashLimitsSettings().enabled) {
+            @if (cashLimitsSettings()?.limit?.currency; as currency) {
+              {{ selectedLimit + ',' }} {{ currency | currencySymbol }}
+              {{ cashLimitsSettings()?.limit?.amount / 100 }}
+            }
+          } @else {
+            {{ selectedLimit }}
+          }
+        </b>
+      </div>
+    </div>
+
+    <button mat-icon-button (click)="editCashLimits.emit()" data-cy="cash-limits-panel-edit-btn">
+      <mat-icon class="outlined tw-text-[#0B7A94]">stylus</mat-icon>
+    </button>
+  </div>
+</upf-info-panel>

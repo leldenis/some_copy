@@ -1,0 +1,46 @@
+{
+  "name": "@uklon/fleets/fleets-app/authentication/domain",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/fleets/fleets-app/authentication/domain/src",
+  "prefix": "upf",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": [
+        "{workspaceRoot}/dist/libs/fleets/fleets-app/authentication/domain"
+      ],
+      "options": {
+        "project": "libs/fleets/fleets-app/authentication/domain/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/fleets/fleets-app/authentication/domain/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/fleets/fleets-app/authentication/domain/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/fleets/fleets-app/authentication/domain"
+      ],
+      "options": {
+        "jestConfig": "libs/fleets/fleets-app/authentication/domain/jest.config.ts",
+        "testTimeout": 20000
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": [
+    "platform:web",
+    "framework:angular",
+    "scope:authentication",
+    "type:domain"
+  ]
+}

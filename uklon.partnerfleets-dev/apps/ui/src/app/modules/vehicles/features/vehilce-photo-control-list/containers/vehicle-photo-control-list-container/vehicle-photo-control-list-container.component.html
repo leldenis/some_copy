@@ -1,0 +1,59 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersGroup.getRawValue()"
+  (filtersChange)="onFiltersChange($event)"
+>
+  <form [formGroup]="filtersGroup" class="tw-flex-col tw-flex tw-gap-md sm:tw-flex-row">
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'Common.Filters.Period.Label' | translate }}</mat-label>
+
+      <upf-date-time-range-control formControlName="period"></upf-date-time-range-control>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>
+        {{ 'Common.Filters.LicencePlate.Caption' | translate }}
+      </mat-label>
+
+      <input
+        matInput
+        formControlName="licensePlate"
+        placeholder="{{ 'Common.Filters.LicencePlate.Placeholder' | translate }}"
+        data-cy="photo-control-plate-filter"
+      />
+
+      <mat-icon matIconSuffix [svgIcon]="icons.search"></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'Common.Filters.Status.Caption' | translate }}</mat-label>
+
+      <mat-select formControlName="status" data-cy="photo-control-status-filter">
+        <mat-option [value]="''">
+          {{ 'PhotoControl.TicketStatus.All' | translate }}
+        </mat-option>
+
+        @for (status of ticketStatus | keyvalue; track status.value) {
+          @if (status.value !== ticketStatus.BLOCKED_BY_MANAGER && status.value !== ticketStatus.ALL) {
+            <mat-option [value]="status.value" [attr.data-cy]="'status-' + status.value">
+              {{ 'PhotoControl.TicketStatus.' + status.value | translate }}
+            </mat-option>
+          }
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</upf-filters-container>
+
+@if (tickets$ | async; as tickets) {
+  @if (tickets.length) {
+    <upf-vehicles-photo-control-list
+      [tickets]="tickets"
+      (cdkScrolled)="onLoadNext()"
+      data-cy="photo-control-list"
+    ></upf-vehicles-photo-control-list>
+  } @else {
+    <upf-empty-state [state]="emptyState.NO_DATA"></upf-empty-state>
+  }
+}

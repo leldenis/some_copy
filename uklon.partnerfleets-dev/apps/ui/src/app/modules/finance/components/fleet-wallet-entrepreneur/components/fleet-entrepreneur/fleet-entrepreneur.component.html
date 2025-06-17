@@ -1,0 +1,18 @@
+<div class="tw-grid tw-gap-md tw-w-full">
+  <ng-content></ng-content>
+
+  @if (!b2bActivated) {
+    <upf-info-panel class="sm:!tw-hidden">
+      {{ 'Finance.FleetEntrepreneur.PaymentCardDisclaimer' | translate }}
+    </upf-info-panel>
+  }
+
+  @if (selectedEntrepreneur) {
+    <upf-entrepreneur-card
+      [showMenu]="availableEntrepreneurs.length > 1"
+      [selectedEntrepreneur]="selectedEntrepreneur"
+      (handlerOpenMenu)="loadBalanceSplitSettings()"
+      (handlerMenuClick)="openMerchantDialog()"
+    ></upf-entrepreneur-card>
+  }
+</div>

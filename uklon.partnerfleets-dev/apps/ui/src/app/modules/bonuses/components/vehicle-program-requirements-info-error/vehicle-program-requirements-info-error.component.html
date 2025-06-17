@@ -1,0 +1,11 @@
+@if (hasDriver()) {
+  @if (driver().rating | ratingLessRequirement: minProgramRating()) {
+    <upf-info-panel color="error" data-cy="requirement-panel">
+      {{ 'Bonuses.Commissions.Errors.RequirementsNotDone' | translate }}
+    </upf-info-panel>
+  }
+} @else {
+  <upf-info-panel color="error">
+    {{ 'Bonuses.VehicleCommissions.List.VehicleWithoutDriver' | translate }}
+  </upf-info-panel>
+}

@@ -1,0 +1,82 @@
+@use 'sass:map';
+@use 'functions';
+@use 'variables' as vars;
+
+@mixin core() {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  color: map.get(vars.$neutral-palette, neutral-graphite);
+  font-size: functions.remify(3);
+  line-height: functions.remify(3.5);
+  font-weight: 400;
+}
+
+@mixin setFont($size, $line-height, $weight: null, $color: null) {
+  font-size: $size;
+  line-height: $line-height;
+
+  @if $weight {
+    font-weight: $weight;
+  }
+
+  @if $color {
+    color: $color;
+  }
+}
+
+@mixin upfTextModifiers {
+  &.upf-success {
+    color: map.get(vars.$accent-palette, accent-mint);
+  }
+
+  &.upf-danger {
+    color: map.get(vars.$alert-text-palette, alert-red);
+  }
+}
+
+@mixin upfTypography {
+  .upf-money-text {
+    @include upfTextModifiers;
+
+    color: map.get(vars.$neutral-palette, neutral-graphite);
+    font-size: functions.remify(3.5);
+    line-height: functions.remify(4.5);
+  }
+
+  .upf-no-money-text {
+    @include upfTextModifiers;
+
+    color: map.get(vars.$neutral-palette, neutral-granit);
+    font-size: functions.remify(3.5);
+    line-height: functions.remify(4.5);
+  }
+
+  .upf-primary-text {
+    @include upfTextModifiers;
+
+    color: map.get(vars.$neutral-palette, neutral-graphite);
+    font-size: functions.remify(3.5);
+    line-height: functions.remify(4.5);
+  }
+
+  .upf-secondary-text {
+    @include upfTextModifiers;
+
+    color: map.get(vars.$neutral-palette, neutral-granit);
+    font-size: functions.remify(3);
+    line-height: functions.remify(3.5);
+  }
+
+  .upf-secondary-text-sm {
+    @extend .upf-secondary-text;
+
+    font-size: functions.remify(2.5);
+  }
+
+  .upf-link-text {
+    @include upfTextModifiers;
+
+    color: map.get(vars.$accent-palette, accent-blue);
+    font-size: functions.remify(3.5);
+    line-height: functions.remify(4.5);
+  }
+}

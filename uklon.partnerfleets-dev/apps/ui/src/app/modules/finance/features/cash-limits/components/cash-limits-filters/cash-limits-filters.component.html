@@ -1,0 +1,60 @@
+<upf-filters-container
+  direction="row"
+  [filterKey]="filterKey"
+  [defaultFilters]="filtersForm.getRawValue()"
+  (filtersChange)="onFiltersChange($event)"
+  (controlsChange)="reportFiltersChange($event)"
+  data-cy="filter"
+>
+  <form [formGroup]="filtersForm" class="tw-flex tw-flex-col tw-gap-md sm:tw-flex-row sm:tw-items-center">
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'Common.Filters.Name.Caption' | translate }}</mat-label>
+
+      <input
+        matInput
+        formControlName="name"
+        [placeholder]="'Common.Filters.Name.Placeholder' | translate"
+        data-cy="filter-Name"
+      />
+
+      <mat-icon [svgIcon]="icons.search" matSuffix data-cy="filter-suffix-Search"></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'Common.Filters.Phone.Caption' | translate }}</mat-label>
+
+      <input
+        type="tel"
+        matInput
+        formControlName="phone"
+        mask="000 (00) 000 00 00"
+        [placeholder]="'Common.Filters.Phone.Placeholder' | translate"
+        data-cy="filter-Phone"
+      />
+
+      <mat-icon [svgIcon]="icons.search" matSuffix data-cy="filter-suffix-Search"></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>{{ 'CashLimits.List.LimitType' | translate }}</mat-label>
+
+      <mat-select formControlName="cash_limit_type" data-cy="filter-limitType-trigger">
+        <mat-option [value]="''" data-cy="filter-limitType-All">
+          {{ 'CashLimits.LimitType.All' | translate }}
+        </mat-option>
+
+        @for (type of limitType | keyvalue; track $index) {
+          <mat-option [value]="type.value" [attr.data-cy]="'filter-limitType-' + type.value">
+            {{ 'CashLimits.LimitType.' + type.value | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="has_restriction_by_cash_limit">
+      <span class="tw-text-base tw-text-neutral-graphite">
+        {{ 'CashLimits.List.Filters.DriversWithLimits' | translate }}
+      </span>
+    </mat-checkbox>
+  </form>
+</upf-filters-container>

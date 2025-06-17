@@ -1,0 +1,5 @@
+<div class="progress progress-bar-{{ size }} theme-{{ theme }}">
+  <div class="progress-bar-buffer" [class.progress-inactive]="inactive">
+    <div class="progress-bar-leaner" [ngStyle]="{ width: value + '%' }" data-cy="progress-bar-leaner"></div>
+  </div>
+</div>

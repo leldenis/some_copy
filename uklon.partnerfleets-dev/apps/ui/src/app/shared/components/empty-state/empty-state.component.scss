@@ -1,0 +1,84 @@
+@use 'mixins' as m;
+@use 'functions' as f;
+
+:host {
+  height: 100%;
+}
+
+.no-data {
+  height: 100%;
+
+  &--image {
+    width: f.px2rem(160);
+    height: f.px2rem(160);
+    background: url('/assets/images/empty_state_no_data.svg') no-repeat center/contain;
+  }
+
+  &--title {
+    @include m.set-font(f.px2rem(14), f.px2rem(17), 400, var(--grey40-color));
+    text-align: center;
+    margin-bottom: 1rem;
+    max-width: f.px2rem(400);
+  }
+}
+
+.select-to-search {
+  width: f.px2rem(140);
+  background: url('/assets/images/empty_state_no_tx.svg') no-repeat center/contain;
+}
+
+.error {
+  width: f.px2rem(120);
+  background: url('/assets/images/empty_state_error.svg') no-repeat center/contain;
+}
+
+.general {
+  width: f.px2rem(120);
+  background: url('/assets/images/empty_state_general.svg') no-repeat center/contain;
+}
+
+.dashboard-income {
+  width: f.px2rem(160);
+  background: url('/assets/images/empty_state_dashboard_income.svg') no-repeat center/contain;
+}
+
+.dashboard-products {
+  width: f.px2rem(120);
+  background: url('/assets/images/empty_state_dashboard_products.svg') no-repeat center/contain;
+}
+
+.map {
+  width: 100vw;
+  height: 100%;
+  background: url('/assets/images/empty_state_map.svg') no-repeat center/cover;
+}
+
+.bonus {
+  width: f.px2rem(196);
+  background: url('/assets/images/empty-state-bonus.svg') no-repeat center/contain;
+
+  &--title, &--subtitle {
+    text-align: center;
+    max-width: f.px2rem(282);
+  }
+
+  &--title {
+    @include m.set-font(f.px2rem(16), f.px2rem(24), 500, var(--grey95-color));
+    margin-bottom: 0.5rem;
+  }
+
+  &--subtitle {
+    @include m.set-font(f.px2rem(14), f.px2rem(22), 400, var(--grey95-color));
+  }
+}
+
+.unsupported-data {
+  width: f.px2rem(200);
+  background: url('/assets/images/empty_state_unsupported_data.svg') no-repeat center/contain;
+
+  &--title {
+    text-align: center;
+    max-width: f.px2rem(276);
+    @include m.set-font(f.px2rem(16), f.px2rem(22), 400, var(--grey40-color));
+  }
+}

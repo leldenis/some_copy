@@ -1,0 +1,183 @@
+<div class="header">
+  <div>{{ 'DriverFilters.Properties.Title' | translate }}</div>
+
+  <button mat-icon-button matDialogClose data-cy="driver-filters-details-dialog-close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="content">
+  @for (filter of filters; track filter.filter_id) {
+    @let filterDetails = filter | driverOrderFilter | async;
+    @let isOldFilter = filter?.type_version === typeVersion.V1;
+
+    @if (filterDetails) {
+      <div class="filter">
+        @if (isOldFilter) {
+          <div class="tw-text-accent-coral-light" data-cy="driver-filter-old-format">
+            {{ 'DriverFilters.OldFilter' | translate }}
+          </div>
+        }
+
+        <div class="tw-flex tw-items-center tw-justify-between tw-gap-2 tw-flex-wrap">
+          <div class="filter-name" data-cy="filter-name">
+            <span class="tw-font-medium">{{ filter.name }}</span>
+
+            @if (filterDetails.typeKey) {
+              <span>{{ filterDetails.typeKey | translate | titlecase }}</span>
+            }
+          </div>
+
+          @if (filterDetails.time) {
+            <div class="tw-text-neutral-granit tw-text-sm" data-cy="filter-time">
+              @let data = filterDetails.time | uklToClientDate | date: 'dd.MM.YYYY HH:mm';
+
+              {{ 'DriverFilters.Properties.ActiveSince' | translate: { data } }}
+            </div>
+          }
+        </div>
+
+        <div class="properties">
+          @if (filter?.filters?.payment?.is_enabled) {
+            <div class="property" data-cy="filter-payment-type">
+              <div>{{ 'DriverFilters.Properties.PaymentType' | translate }}</div>
+
+              <div class="tw-flex tw-items-center tw-gap-2">
+                @for (paymentType of filter.filters.payment.payment_types; track $index) {
+                  <mat-icon [svgIcon]="paymentTypeIcon.get(paymentType)"></mat-icon>
+                }
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          @if (filter?.filters?.include_source_sectors?.is_enabled) {
+            <div class="property" data-cy="filter-source-sectors">
+              <div>{{ 'DriverFilters.Properties.From' | translate }}</div>
+
+              <div>{{ filterDetails.sourceSectors }}</div>
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          @if (filter.filters?.distance?.is_enabled) {
+            <div class="property" data-cy="filter-distance">
+              <div>{{ 'DriverFilters.Properties.Radius' | translate }}</div>
+
+              <div>{{ filter.filters?.distance?.max_distance_km | number: '1.1-2' }} {{ 'Common.Km' | translate }}</div>
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          @let cost = filter.filters?.cost;
+          @let tariff = filter.filters?.tariff;
+          @let locality = filter.filters?.locality;
+
+          @if (tariff) {
+            <div class="property-container" data-cy="filter-old-properties">
+              @if (tariff?.minimal_tariff_cost?.is_enabled) {
+                <div class="property" data-cy="filter-min-cost">
+                  <div>{{ 'DriverFilters.Properties.MinCost' | translate }}</div>
+
+                  <upf-money
+                    [money]="{
+                      amount: tariff.minimal_tariff_cost.cost * 100,
+                      currency: tariff.minimal_tariff_cost.currency_code,
+                    }"
+                  ></upf-money>
+                </div>
+              }
+
+              @if (tariff?.minimal_tariff_distance?.is_enabled) {
+                <div class="property" data-cy="filter-min-distance">
+                  <div>{{ 'DriverFilters.Properties.MinDistance' | translate }}</div>
+
+                  <div>{{ tariff.minimal_tariff_distance.distance_km }} {{ 'Common.Km' | translate }}</div>
+                </div>
+              }
+
+              @if (tariff?.min_cost_per_km?.is_enabled) {
+                <div class="property" data-cy="filter-cost-per-km">
+                  <div>{{ 'DriverFilters.Properties.CostPerKmCity' | translate }}</div>
+
+                  <upf-money
+                    [money]="{
+                      amount: tariff.min_cost_per_km.cost * 100,
+                      currency: tariff.min_cost_per_km.currency_code,
+                    }"
+                  ></upf-money>
+                </div>
+              }
+
+              @if (tariff?.min_cost_per_suburban_km?.is_enabled) {
+                <div class="property" data-cy="filter-cost-per-km-suburbs">
+                  <div>{{ 'DriverFilters.Properties.CostPerKmSuburbs' | translate }}</div>
+
+                  <upf-money
+                    [money]="{
+                      amount: tariff.min_cost_per_suburban_km.cost * 100,
+                      currency: tariff.min_cost_per_suburban_km.currency_code,
+                    }"
+                  ></upf-money>
+                </div>
+              }
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          @if (cost) {
+            <div class="property-container" [class.new-filters]="!isOldFilter" data-cy="filter-new-properties">
+              @if (cost?.minimal?.is_enabled) {
+                <div class="property" data-cy="filter-min-cost-new">
+                  <div>{{ 'DriverFilters.Properties.MinCost' | translate }}</div>
+
+                  <upf-money
+                    [money]="{
+                      amount: cost.minimal.value * 100,
+                      currency: cost.minimal.currency_code,
+                    }"
+                  ></upf-money>
+                </div>
+              }
+
+              @if (cost?.minimal_per_km?.is_enabled) {
+                <div class="property" data-cy="filter-cost-per-km-new">
+                  <div>{{ 'DriverFilters.Properties.MinCostPerKm' | translate }}</div>
+
+                  <upf-money
+                    [money]="{
+                      amount: cost.minimal_per_km.value * 100,
+                      currency: cost.minimal_per_km.currency_code,
+                    }"
+                  ></upf-money>
+                </div>
+              }
+
+              @if (!locality?.is_enabled) {
+                <div class="property" data-cy="filter-only-city">
+                  <div>{{ 'DriverFilters.Properties.OnlyCity' | translate }}</div>
+
+                  <mat-icon class="outlined">check_circle</mat-icon>
+                </div>
+              }
+            </div>
+
+            <mat-divider></mat-divider>
+          }
+
+          @if (filter?.filters?.include_destination_sectors?.is_enabled) {
+            <div class="property" data-cy="filter-destination-sectors">
+              <div>{{ 'DriverFilters.Properties.To' | translate }}</div>
+
+              <div>{{ filterDetails.destinationSectors }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

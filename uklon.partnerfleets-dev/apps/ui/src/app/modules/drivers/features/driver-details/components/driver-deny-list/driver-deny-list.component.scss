@@ -1,0 +1,25 @@
+.avatar {
+  @apply tw-w-12 tw-h-12 tw-rounded-full tw-bg-neutral-silver tw-shrink-0;
+  @apply tw-border tw-border-neutral-cloud tw-grid tw-place-content-center;
+}
+
+.clear-btn {
+  @apply tw-w-7 tw-h-7 tw-leading-7 tw-rounded-sm tw-bg-neutral-silver;
+
+  .mat-icon {
+    @apply tw-text-icon tw-text-accent-coral-light tw-leading-6;
+  }
+}
+
+.header {
+  @apply tw-flex tw-items-center tw-justify-between tw-border-b tw-border-b-neutral-silver tw-p-md;
+}
+
+.content {
+  @apply tw-px-md tw-py-6 tw-border-b tw-border-b-neutral-silver tw-grid tw-gap-6;
+}
+
+.footer {
+  @apply tw-w-full tw-grid tw-grid-cols-2 tw-p-md tw-gap-md;
+  @apply sm:tw-flex sm:tw-justify-end sm:tw-w-auto;
+}

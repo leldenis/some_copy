@@ -1,0 +1,32 @@
+<section class="panel-header" (click)="togglePanelOpened(panelType.DRIVERS_LIST)">
+  <div class="tw-flex tw-items-center tw-gap-md">
+    <button mat-icon-button (click)="onGoBack()" class="back-btn" data-cy="map-drivers-panel-back-btn">
+      <mat-icon class="tw-text-tmp">arrow_back</mat-icon>
+    </button>
+
+    <h3
+      class="!tw-m-0 !tw-font-normal tw-text-neutral-graphite !tw-text-tmp !tw-leading-4"
+      data-cy="map-drivers-panel-title"
+    >
+      {{ 'LiveMap.GroupStatus.' + employees()[0]?.status | translate: { count: employees()?.length } }}
+    </h3>
+  </div>
+
+  <mat-icon class="expand-btn" [ngClass]="{ opened: isOpened }" data-cy="map-drivers-panel-toggle">
+    expand_more
+  </mat-icon>
+</section>
+
+@if (isOpened) {
+  <section class="panel-content" data-cy="map-drivers-panel-body">
+    @for (employee of employees(); track employee.id) {
+      <upf-map-driver-details
+        [employee]="employee"
+        (click)="onSelectDriver(employee)"
+        (showActiveFilters)="showActiveFilters.emit($event)"
+        [ngClass]="{ 'max-sm:!tw-pt-md': $first }"
+        data-cy="map-driver"
+      ></upf-map-driver-details>
+    }
+  </section>
+}

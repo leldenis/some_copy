@@ -1,0 +1,38 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow tw-shrink tw-max-h-full tw-justify-between;
+  @apply sm:tw-shadow-sm sm:tw-rounded;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+  font-size: 1.25rem;
+}
+
+.upf-pagination {
+  @apply tw-w-full tw-border-t tw-border-neutral-cloud tw-bg-neutral-white sm:tw-bg-transparent;
+  @apply tw-fixed tw-right-0 tw-bottom-0 tw-z-10 sm:tw-relative;
+}
+
+.burger {
+  &__menu-btn {
+    @apply tw-flex tw-items-center tw-h-6 tw-w-6 tw-mt-1;
+    @apply tw-flex tw-h-6 tw-w-6;
+    @apply hover:tw-bg-neutral-cloud;
+    @apply focus:tw-bg-neutral-cloud tw-rounded-sm;
+    @apply tw-rounded-sm;
+  }
+
+  &__menu-icon {
+    @apply tw-h-6 tw-w-6;
+  }
+}
+
+.ticket-delete-icon {
+  @apply tw-text-icon tw-w-5 tw-h-5 tw-text-accent-coral-light tw-m-0;
+}
+
+
+.delete-btn {
+  @apply tw-text-neutral-smoke hover:tw-text-accent-coral-light hover:tw-bg-neutral-cloud;
+  @apply focus:tw-text-accent-coral-light focus:tw-bg-neutral-cloud tw-rounded-sm tw-transition-colors;
+}

@@ -1,0 +1,23 @@
+:host {
+  @apply tw-flex tw-flex-col tw-grow tw-shrink tw-max-h-full tw-justify-between;
+  @apply sm:tw-shadow-sm sm:tw-rounded;
+}
+
+.mat-icon {
+  @apply tw-w-5 tw-h-5;
+  font-size: 1.25rem;
+}
+
+.upf-pagination {
+  @apply tw-w-full tw-border-t tw-border-neutral-cloud tw-bg-neutral-white sm:tw-bg-transparent;
+  @apply tw-fixed tw-right-0 tw-bottom-0 sm:tw-relative;
+}
+
+.mat-icon.icon-cargo {
+  @apply tw-w-6 tw-h-6 tw-align-bottom;
+}
+
+.icon-vehicle-blocked {
+  color: var(--danger-color);
+  @apply tw-text-xl tw-align-bottom;
+}

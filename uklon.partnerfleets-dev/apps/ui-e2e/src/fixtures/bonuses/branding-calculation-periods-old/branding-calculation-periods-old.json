@@ -1,0 +1,38 @@
+{
+  "has_more_items": false,
+  "items": [
+    {
+      "calculation_id": "c259fbce-bc09-4a8b-a2c7-40ef75b379c6",
+      "period": {
+        "range": [
+          1719781200,
+          1720990800
+        ]
+      },
+      "calculation_created_at": 1721221087,
+      "branding_types": []
+    },
+    {
+      "calculation_id": "b76ed7fc-c931-43d9-9246-5f8bdcf0ecd8",
+      "period": {
+        "range": [
+          1718485200,
+          1719694800
+        ]
+      },
+      "calculation_created_at": 1721221072,
+      "branding_types": []
+    },
+    {
+      "calculation_id": "9f649ba3-76c1-4c58-9161-eb5dba1b4be0",
+      "period": {
+        "range": [
+          1717189200,
+          1718398800
+        ]
+      },
+      "calculation_created_at": 1721221061,
+      "branding_types": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+:host {
+  @apply tw-grid tw-gap-md;
+}
+
+.upf-grid-4 {
+  @apply tw-grid tw-grid-cols-4 tw-gap-2;
+}
+
+.upf-grid-col-3 {
+  @apply tw-col-span-3;
+}
+
+.merchant-row {
+  @apply tw-grid tw-grid-cols-[2fr_1fr_1fr] tw-gap-4;
+}

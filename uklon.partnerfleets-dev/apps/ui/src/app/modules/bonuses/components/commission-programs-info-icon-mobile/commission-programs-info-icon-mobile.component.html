@@ -1,0 +1,38 @@
+<div class="commission-info">
+  <mat-icon
+    class="tw-self-center tw-flex"
+    [svgIcon]="icons.info"
+    [ngxTippy]="commissionProgramRules"
+    [tippyProps]="{ maxWidth: '290px' }"
+    (mouseenter)="mouseEnterEvent.emit()"
+  ></mat-icon>
+  <span class="tw-self-center">{{ 'Bonuses.Commissions.Program.WhatIsCommissionProgram' | translate }}</span>
+</div>
+
+<ng-template #commissionProgramRules>
+  <div class="tw-py-2">
+    <div class="tw-flex tw-gap-2 tw-mb-2">
+      <mat-icon svgIcon="i-cash-base" class="tw-text-accent-mint-light tw-shrink-0"></mat-icon>
+
+      <span>
+        {{
+          (showDriverTooltip()
+            ? 'Bonuses.Commissions.Program.Tooltip.Rule1'
+            : 'Bonuses.Commissions.Program.Tooltip.VehicleRule1'
+          ) | translate
+        }}
+      </span>
+    </div>
+    <div class="tw-flex tw-gap-2">
+      <mat-icon svgIcon="i-check-green" class="tw-shrink-0"></mat-icon>
+      <span>
+        {{
+          (showDriverTooltip()
+            ? 'Bonuses.Commissions.Program.Tooltip.Rule2'
+            : 'Bonuses.Commissions.Program.Tooltip.VehicleRule2'
+          ) | translate
+        }}
+      </span>
+    </div>
+  </div>
+</ng-template>

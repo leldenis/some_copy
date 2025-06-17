@@ -1,0 +1,14 @@
+<div class="stepper-content">
+  <ng-container *ngTemplateOutlet="selected?.content"></ng-container>
+</div>
+@if (hasIndicator) {
+  <div class="step-indicator-content">
+    @for (step of steps; track step) {
+      <div
+        class="step-indicator"
+        [attr.data-cy]="'stepper-step-' + $index"
+        [class]="{ 'is-active': step === selected }"
+      ></div>
+    }
+  </div>
+}

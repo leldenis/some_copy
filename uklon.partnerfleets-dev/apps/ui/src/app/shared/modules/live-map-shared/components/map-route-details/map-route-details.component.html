@@ -1,0 +1,26 @@
+<dl class="tw-grid tw-gap-md tw-text-base tw-grid-cols-2 tw-text-neutral-graphite">
+  <dt class="tw-text-neutral-granit">
+    {{ 'Orders.Trips.List.PaymentType' | translate }}
+  </dt>
+  <dd>
+    {{ 'Orders.Trips.List.Tooltip.' + (order.payment_type | titlecase) | translate }}
+  </dd>
+
+  <dt class="tw-text-neutral-granit">
+    {{ 'Orders.Trips.Details.Cost' | translate }}
+  </dt>
+  <dd>{{ order.cost.cost | upfMoney: order.cost.currency }}</dd>
+
+  <dt class="tw-text-neutral-granit">
+    {{ 'Orders.Trips.Details.Distance' | translate }}
+  </dt>
+  <dd>{{ order.cost.distance }} {{ 'Common.Km' | translate }}</dd>
+
+  <a
+    class="tw-col-span-full !tw-text-accent-mint-light tw-flex tw-items-center tw-gap-2 tw-cursor-pointer"
+    (click)="navigateToOrder.emit()"
+  >
+    <mat-icon class="!tw-w-4 !tw-h-4 !tw-text-tmp">route</mat-icon>
+    {{ (isDelivery ? 'LiveMap.Couriers.GoToDelivery' : 'FleetOrderRecordList.GoToTrip') | translate }}
+  </a>
+</dl>

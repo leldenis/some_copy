@@ -1,0 +1,19 @@
+@use "mixins" as m;
+
+.navigation-item {
+  @include m.navigation-item();
+}
+
+.language-option {
+  @apply tw-grid tw-items-center tw-gap-2 tw-leading-normal tw-w-full;
+  grid-template-columns: 32px auto 20px;
+
+  .language-avatar {
+    @apply tw-grid tw-place-content-center tw-w-8 tw-h-8 tw-rounded-full;
+    @apply tw-bg-neutral-silver  tw-font-medium tw-text-sm tw-text-neutral-graphite;
+  }
+
+  .mat-icon {
+    @apply tw-w-5 tw-h-5 tw-m-0 tw-text-icon;
+  }
+}

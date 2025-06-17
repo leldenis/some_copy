@@ -1,0 +1,8 @@
+:host {
+  @apply tw-h-full;
+}
+
+.profile-container {
+  @apply tw-flex tw-flex-col tw-min-h-full tw-grow tw-h-full tw-overflow-auto;
+  @apply sm:tw-grid sm:tw-grid-cols-[412px_1fr] sm:tw-gap-4 sm:tw-p-4;
+}

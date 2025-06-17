@@ -1,0 +1,16 @@
+FROM ${AwsEcrHost}/webstack:node
+
+ARG CI_SERVER_HOST
+ARG CI_JOB_TOKEN
+
+WORKDIR /app
+
+# Copy package.json, package-lock.json files and download deps
+RUN echo -e "\
+@uklon:registry=https://${CI_SERVER_HOST}/api/v4/packages/npm/\n\
+//${CI_SERVER_HOST}/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}\
+" > ./.npmrc
+COPY package.json package-lock.json ./
+RUN npm ci --ignore-scripts
+
+COPY dist/apps/api /app

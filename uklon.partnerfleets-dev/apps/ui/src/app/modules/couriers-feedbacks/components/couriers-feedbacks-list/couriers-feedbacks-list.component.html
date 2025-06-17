@@ -1,0 +1,158 @@
+<div class="sm:tw-shadow-sm sm:tw-rounded" data-cy="drivers-feedbacks-list">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    <div class="grid-row header" data-cy="drivers-feedbacks-header-row">
+      <div data-cy="date-time-header">
+        <div>{{ 'Feedback.Table.Date' | translate }}</div>
+        <div>{{ 'Feedback.Table.Time' | translate }}</div>
+      </div>
+
+      <div data-cy="driver-header">
+        {{ 'Feedback.Table.Courier' | translate }}
+      </div>
+
+      <div data-cy="rating-header">{{ 'Feedback.Table.Rate' | translate }}</div>
+
+      <div data-cy="feedback-header">
+        {{ 'Feedback.Table.Template' | translate }}
+      </div>
+
+      <div data-cy="comment-header">
+        {{ 'Feedback.Table.Comment' | translate }}
+      </div>
+    </div>
+
+    @for (feedback of feedbacks; track feedback) {
+      <mat-expansion-panel
+        [disabled]="!isMobileView || (!feedback.comment && !feedback.template_comments?.length)"
+        hideToggle
+        #panel
+        class="grid-panel"
+      >
+        <mat-expansion-panel-header class="panel-header hover:!tw-bg-white">
+          <div class="grid-row" data-cy="drivers-feedbacks-row">
+            <div>
+              <div class="tw-font-medium tw-mb-1 sm:tw-hidden">
+                <a [routerLink]="['/', path.WORKSPACE, path.DRIVERS, courierPath.DETAILS, feedback?.employee.id]">
+                  {{ feedback?.employee?.first_name }}
+                  {{ feedback?.employee?.last_name }}
+                </a>
+              </div>
+
+              <div class="tw-flex tw-gap-0.5 sm:tw-flex-col sm:tw-gap-0" data-cy="date-time-cell">
+                <div class="tw-text-neutral-granit sm:tw-text-neutral-graphite">
+                  {{ feedback?.created_at | seconds2Date }}
+                </div>
+
+                <span class="sm:tw-hidden tw-text-neutral-granit">-</span>
+
+                <div class="tw-text-neutral-granit sm:tw-text-sm">
+                  {{ feedback?.created_at | seconds2Time }}
+                </div>
+              </div>
+            </div>
+
+            <div class="tw-font-medium hover:tw-underline tw-hidden sm:tw-block" data-cy="driver-cell">
+              <a [routerLink]="['/', path.WORKSPACE, path.COURIERS, courierPath.DETAILS, feedback?.employee.id]">
+                {{ feedback?.employee?.first_name }}
+                {{ feedback?.employee?.last_name }}
+              </a>
+            </div>
+
+            <div
+              class="mark"
+              [ngClass]="{
+                '!tw-containertw-text-neutral-granit': feedback?.mark <= 3,
+                '!tw-text-accent-coral-light': feedback?.status === feedbackStatus.REJECTED,
+              }"
+              data-cy="rating-cell"
+            >
+              <mat-icon class="mark-icon">grade</mat-icon>
+
+              <span class="tw-text-neutral-graphite">
+                {{ feedback?.mark }}
+              </span>
+
+              @if (feedback?.mark <= 3 && feedback?.status !== feedbackStatus.CONFIRMED) {
+                <mat-icon
+                  [ngxTippy]="
+                    (feedback?.status === feedbackStatus.REJECTED
+                      ? 'Feedback.Tooltip.NoAffectsRating'
+                      : 'Feedback.Tooltip.AffectsRating'
+                    ) | translate
+                  "
+                  class="info-icon material-symbols-outlined"
+                >
+                  info
+                </mat-icon>
+              }
+            </div>
+
+            <div class="tw-hidden sm:tw-block" data-cy="feedback-cell">
+              @for (template of feedback.template_comments; track template) {
+                <span>
+                  {{ ('Feedback.FeedbackTemplate.' + template | translate) + ($last ? '' : ',&nbsp;') }}
+                </span>
+              }
+            </div>
+
+            <div class="tw-hidden sm:tw-block" data-cy="comment-cell">
+              {{ feedback?.comment || '-' }}
+            </div>
+
+            @if (feedback.comment || feedback.template_comments?.length) {
+              <button
+                disableRipple
+                mat-icon-button
+                class="sm:!tw-hidden !tw-h-full !tw-rounded-none"
+                [ngClass]="{ 'tw-bg-neutral-silver': panel.expanded }"
+                data-cy="expand-cell"
+              >
+                <mat-icon class="tw-transition-transform" [ngClass]="{ 'tw-rotate-180': panel.expanded }">
+                  expand_more
+                </mat-icon>
+              </button>
+            }
+          </div>
+        </mat-expansion-panel-header>
+
+        <ng-container
+          [ngTemplateOutlet]="expandedTpl"
+          [ngTemplateOutletContext]="{ $implicit: feedback }"
+        ></ng-container>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>
+
+<!-- Expanded view template -->
+<ng-template #expandedTpl let-feedback>
+  <div class="tw-grid tw-gap-2" data-cy="expandable-row">
+    <div class="tw-grid tw-gap-1" data-cy="feedback-section">
+      <span class="tw-text-neutral-granit tw-text-xs">
+        {{ 'Feedback.Table.Template' | translate }}
+      </span>
+
+      @if (!feedback.template_comments?.length) {
+        <span>-</span>
+      }
+
+      @if (feedback.template_comments?.length) {
+        @for (template of feedback.template_comments; track template) {
+          <span>
+            {{ ('Feedback.FeedbackTemplate.' + template | translate) + ($last ? '' : ',&nbsp;') }}
+          </span>
+        }
+      }
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="tw-grid tw-gap-1" data-cy="comment-section">
+      <span class="tw-text-neutral-granit tw-text-xs">
+        {{ 'Feedback.Table.Comment' | translate }}
+      </span>
+
+      <span>{{ feedback?.comment || '-' }}</span>
+    </div>
+  </div>
+</ng-template>

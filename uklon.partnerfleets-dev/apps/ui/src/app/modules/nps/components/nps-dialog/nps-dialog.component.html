@@ -1,0 +1,76 @@
+<div class="tw-grid tw-gap-6 tw-px-md tw-flex-grow sm:tw-flex-grow-0">
+  <div class="tw-pt-12 tw-grid tw-gap-3 tw-text-center">
+    <img class="tw-justify-self-center" src="assets/images/nps.svg" alt="" />
+
+    <div class="tw-text-title tw-leading-6 tw-font-medium">{{ 'NPS.Title' | translate }}</div>
+
+    <div class="tw-text-tmp tw-leading-5">{{ 'NPS.Subtitle' | translate }}</div>
+  </div>
+
+  <mat-divider class="tw-w-full"></mat-divider>
+
+  <ng-container [formGroup]="npsForm">
+    <div class="tw-grid tw-gap-md">
+      <div class="tw-font-medium">{{ 'NPS.Mark.Title' | translate }}</div>
+
+      <div class="tw-grid tw-gap-2 sm:tw-gap-md">
+        <div class="tw-block sm:tw-hidden">{{ 'NPS.Mark.Negative' | translate }}</div>
+
+        <div class="rating-container">
+          @for (mark of marks; track mark) {
+            <div
+              class="rating"
+              tabindex="0"
+              (click)="selectMark(surveyMark[mark])"
+              (keydown.enter)="selectMark(surveyMark[mark])"
+              [ngClass]="{ selected: markSelection.isSelected(surveyMark[mark]) }"
+            >
+              {{ mark }}
+            </div>
+          }
+        </div>
+
+        <div class="tw-block tw-text-end sm:tw-hidden">{{ 'NPS.Mark.Positive' | translate }}</div>
+
+        <div class="tw-hidden tw-justify-between sm:tw-flex">
+          <span>{{ 'NPS.Mark.Negative' | translate }}</span>
+          <span>{{ 'NPS.Mark.Positive' | translate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-grid tw-gap-md tw-pb-md">
+      <div class="tw-font-semibold">{{ 'NPS.Comment.Title' | translate }}</div>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>{{ 'NPS.Comment.Label' | translate }}</mat-label>
+
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="5"
+          placeholder="{{ 'NPS.Comment.Placeholder' | translate }}"
+          formControlName="comment"
+          class="tw-resize-none tw-overflow-x-hidden"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-checkbox (change)="reportAnalytics(eventType.NPS_DIALOG_SKIP)" formControlName="skip">
+        {{ 'NPS.SkipSurvey' | translate }}
+      </mat-checkbox>
+    </div>
+  </ng-container>
+</div>
+
+<div class="tw-border-t tw-border-neutral-silver tw-p-md tw-flex tw-justify-between">
+  <button mat-flat-button color="accent" (click)="closeDialog(false)">
+    {{ npsForm.value.skip ? ('NPS.CloseBtn' | translate) : ('NPS.LaterBtn' | translate) }}
+  </button>
+
+  <div [ngxTippy]="npsForm.invalid ? ('NPS.Tooltip' | translate) : null">
+    <button mat-flat-button color="primary" [disabled]="npsForm.invalid" (click)="closeDialog(true)">
+      {{ 'NPS.RespondBtn' | translate }}
+    </button>
+  </div>
+</div>

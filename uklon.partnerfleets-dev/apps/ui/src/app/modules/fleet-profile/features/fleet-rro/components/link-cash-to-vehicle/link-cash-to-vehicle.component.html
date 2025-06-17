@@ -1,0 +1,55 @@
+<header>
+  <h3>
+    {{ 'FleetProfile.RRO.Modals.LinkCashToVehicle.Title' | translate }}
+  </h3>
+
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon class="!tw-align-sub tw-text-icon">close</mat-icon>
+  </button>
+</header>
+
+<mat-divider></mat-divider>
+
+<section class="content">
+  <span class="tw-text-base">
+    {{ 'FleetProfile.RRO.Modals.LinkCashToVehicle.SelectedCar' | translate }}:&nbsp;{{
+      data.vehicle.licencePlate
+    }}&nbsp;{{ data.vehicle?.about?.maker?.name }}&nbsp;{{ data.vehicle?.about?.model?.name }}
+  </span>
+
+  <mat-form-field>
+    <mat-label>
+      {{ 'FleetProfile.RRO.Modals.LinkCashToVehicle.Select.Label' | translate }}
+    </mat-label>
+
+    <mat-select
+      [formControl]="pointOfSaleFormControl"
+      [placeholder]="'FleetProfile.RRO.Modals.LinkCashToVehicle.Select.Placeholder' | translate"
+    >
+      @for (item of points$ | async; track item.id) {
+        <mat-option [value]="item">{{ item.name }} [{{ item.fiscal_number }}]</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<mat-divider></mat-divider>
+
+<footer>
+  <button type="button" mat-flat-button color="accent" (click)="closeDialog()">
+    {{ 'Common.Buttons.B_Close' | translate }}
+  </button>
+
+  <div class="tw-w-[124px]">
+    <upf-loader-button
+      color="primary"
+      type="button"
+      class="!tw-w-full"
+      [disabled]="!pointOfSaleFormControl.value"
+      [loading]="loading$ | async"
+      (handlerClick)="handlerSave()"
+    >
+      {{ 'Common.Buttons.B_Save' | translate }}
+    </upf-loader-button>
+  </div>
+</footer>

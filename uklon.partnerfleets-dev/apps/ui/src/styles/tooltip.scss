@@ -1,0 +1,17 @@
+@use "tippy.js/dist/tippy.css";
+
+.tippy-box {
+  @apply tw-text-sm tw-bg-neutral-graphite;
+
+  .tippy-arrow::before {
+    &[data-placement="top"], [data-placement="bottom"] {
+      border-top-color: hsl(232deg 10% 30% / 100%) !important;
+      border-bottom-color: hsl(232deg 10% 30% / 100%) !important;
+    }
+
+    &[data-placement="left"], [data-placement="right"] {
+      border-right-color: hsl(232deg 10% 30% / 100%) !important;
+      border-left-color: hsl(232deg 10% 30% / 100%) !important;
+    }
+  }
+}

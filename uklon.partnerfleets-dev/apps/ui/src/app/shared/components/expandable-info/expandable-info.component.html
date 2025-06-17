@@ -1,0 +1,13 @@
+<mat-expansion-panel #panel [expanded]="expanded" [disabled]="!canCollapse" [hideToggle]="true">
+  <mat-expansion-panel-header [collapsedHeight]="heightPx" [expandedHeight]="heightPx">
+    <div class="tw-flex tw-items-center tw-justify-between tw-w-full">
+      {{ headerTitle }}
+
+      @if (canCollapse) {
+        <mat-icon [ngClass]="{ expanded: panel.expanded }">expand_more</mat-icon>
+      }
+    </div>
+  </mat-expansion-panel-header>
+
+  <ng-content></ng-content>
+</mat-expansion-panel>

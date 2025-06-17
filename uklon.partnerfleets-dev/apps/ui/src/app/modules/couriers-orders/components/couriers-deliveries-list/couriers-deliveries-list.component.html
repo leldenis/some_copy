@@ -1,0 +1,188 @@
+<div class="sm:tw-shadow-sm sm:tw-rounded">
+  <mat-accordion displayMode="flat" class="tw-grid tw-gap-2 sm:tw-block">
+    @if (!isMobileView()) {
+      <div class="panel-header main">
+        <div>{{ 'CouriersAutocomplete.Title' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.PickUp' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.Route' | translate }}</div>
+        <div class="tw-grid">
+          <span>{{ 'Orders.Trips.List.Cost' | translate }}</span>
+          <span class="tw-text-neutral-granit">
+            {{ 'Orders.Trips.List.Distance' | translate }}
+          </span>
+        </div>
+        <div>{{ 'Orders.Trips.List.PaymentType' | translate }}</div>
+        <div>{{ 'Orders.Trips.List.Status' | translate }}</div>
+      </div>
+    }
+
+    @for (delivery of deliveries(); track delivery.id) {
+      <mat-expansion-panel [disabled]="!isMobileView()" hideToggle #panel class="delivery-panel">
+        <mat-expansion-panel-header
+          expandedHeight="56px"
+          collapsedHeight="56px"
+          class="!tw-p-0 hover:!tw-bg-white"
+          [ngClass]="{ '!tw-cursor-auto': panel.disabled }"
+        >
+          <ng-container
+            [ngTemplateOutlet]="isMobileView() ? mobileHeader : desktopHeader"
+            [ngTemplateOutletContext]="{
+              $implicit: delivery,
+              canceled: delivery.status === orderStatus.CANCELED,
+              expanded: panel.expanded,
+            }"
+          ></ng-container>
+        </mat-expansion-panel-header>
+
+        <ng-container
+          [ngTemplateOutlet]="expandedView"
+          [ngTemplateOutletContext]="{
+            $implicit: delivery,
+            canceled: delivery.status === orderStatus.CANCELED,
+          }"
+        ></ng-container>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>
+
+<ng-template #desktopHeader let-delivery let-canceled="canceled">
+  <div class="panel-header">
+    <div>{{ delivery?.courier?.fullName || '-' }}</div>
+
+    <div class="tw-grid">
+      <span>{{ delivery?.pickupTime | seconds2Date }}</span>
+      <span class="tw-text-neutral-granit tw-text-sm">
+        {{ delivery?.pickupTime | seconds2Time }}
+      </span>
+    </div>
+
+    <a
+      [routerLink]="delivery.status === orderStatus.CANCELED ? null : [orderPath.DETAILS, delivery.id]"
+      [queryParams]="{ courierId: delivery.courier?.id }"
+    >
+      <upf-route-points
+        [route]="delivery?.route"
+        [orderCanceled]="canceled"
+        [isRouteLink]="true"
+        [isMobile]="isMobileView()"
+      ></upf-route-points>
+    </a>
+
+    <div>
+      <div>
+        {{
+          !canceled
+            ? (delivery?.payment?.cost | upfMoney: delivery?.payment?.currency)
+            : (delivery?.payment?.currency | currencySymbol) + ' -'
+        }}
+      </div>
+
+      <div class="tw-text-neutral-granit tw-text-sm">
+        {{ !canceled ? delivery?.payment?.distance : '- ' }} {{ 'Common.Km' | translate }}
+      </div>
+    </div>
+
+    <div>
+      @if (!canceled) {
+        <mat-icon
+          svgIcon="i-fee-type-{{ delivery?.payment?.feeType }}"
+          ngxTippy="{{ 'Orders.Trips.List.Tooltip.' + (delivery?.payment?.feeType | titlecase) | translate }}"
+        ></mat-icon>
+      } @else {
+        -
+      }
+    </div>
+
+    <upf-status-badge [color]="statusColor[delivery?.status]">
+      {{ 'Orders.Trips.Filter.OrderStatus.' + delivery?.status | translate }}
+    </upf-status-badge>
+  </div>
+</ng-template>
+
+<ng-template #mobileHeader let-delivery let-canceled="canceled" let-expanded="expanded">
+  <div class="mobile-panel-header">
+    <div>{{ delivery?.courier?.fullName || '-' }}</div>
+
+    <upf-status-badge [color]="statusColor[delivery?.status]" class="tw-justify-self-end">
+      {{ 'Orders.Trips.Filter.OrderStatus.' + delivery?.status | translate }}
+    </upf-status-badge>
+
+    <div class="expand-icon" [ngClass]="{ expanded }">
+      <mat-icon>expand_more</mat-icon>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #expandedView let-delivery let-canceled="canceled">
+  <div class="tw-p-2 tw-bg-neutral-silver tw-grid tw-gap-2">
+    <a
+      [routerLink]="delivery.status === orderStatus.CANCELED ? null : [orderPath.DETAILS, delivery.id]"
+      [queryParams]="{ courierId: delivery.courier?.id }"
+    >
+      <upf-route-points
+        [route]="delivery?.route"
+        [orderCanceled]="canceled"
+        [isRouteLink]="true"
+        [isMobile]="isMobileView()"
+      ></upf-route-points>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <div class="expanded-view">
+      <div class="tw-flex tw-gap-md">
+        <div>
+          <div class="title">{{ 'Orders.Trips.List.PickUp' | translate }}</div>
+          <div>
+            {{ delivery?.pickupTime | seconds2Date }}
+            {{ delivery?.pickupTime | seconds2Time }}
+          </div>
+        </div>
+
+        <mat-divider vertical></mat-divider>
+
+        <div>
+          <div class="title">
+            {{ 'Orders.Trips.List.Distance' | translate }}
+          </div>
+          <div>
+            {{ !canceled ? delivery?.payment?.distance : '- ' }}
+            {{ 'Common.Km' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <mat-divider class="tw-col-span-full"></mat-divider>
+
+      <div class="tw-flex tw-gap-md">
+        <div>
+          <div class="title">{{ 'Orders.Trips.List.Cost' | translate }}</div>
+          <div>
+            {{
+              !canceled
+                ? (delivery?.payment?.cost | upfMoney: delivery?.payment?.currency)
+                : (delivery?.payment?.currency | currencySymbol) + ' -'
+            }}
+          </div>
+        </div>
+
+        <mat-divider vertical></mat-divider>
+
+        <div>
+          <div class="title">
+            {{ 'Orders.Trips.List.PaymentType' | translate }}
+          </div>
+
+          @if (!canceled) {
+            <div>
+              {{ 'Orders.Trips.List.Tooltip.' + (delivery?.payment?.feeType | titlecase) | translate }}
+            </div>
+          } @else {
+            -
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

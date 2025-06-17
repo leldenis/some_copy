@@ -1,0 +1,9 @@
+@use 'ngx-toastr/toastr';
+
+.toast-container {
+  inset: 16px;
+  left: unset;
+  top: unset !important;
+  right: 16px !important;
+  z-index: 1000 !important;
+}
